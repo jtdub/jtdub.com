@@ -1,0 +1,15 @@
+---
+layout: post
+title: Think that you have a compromised Red Hat based system?
+date: '2012-10-12T19:09:00.001-05:00'
+author: jtdub
+tags:
+- Linux
+- Security
+- RPM
+modified_time: '2019-04-11T11:09:53.117-05:00'
+blogger_id: tag:blogger.com,1999:blog-2200496390325245811.post-8210516761062177368
+blogger_orig_url: https://www.packetgeek.net/2012/10/think-that-you-have-compromised-red-hat_12.html
+---
+
+Use RPM to search for modified binaries.<br /><br /><span style="background-color: yellow;">rpm -Va | grep ^..5</span><br /><br />This one-liner will use the RPM database to compare md5sums of all installed files and will give you a report of all files that have been changed from the default install. Configuration files may not be a big deal, but binaries with md5sums that don't match is a dead give away of a compromised system.

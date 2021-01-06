@@ -1,0 +1,14 @@
+---
+layout: post
+title: Bash Shell Enumerator - Command Not Found
+date: '2013-02-22T17:35:00.001-06:00'
+author: jtdub
+tags:
+- Bash Tips
+- Pranks
+modified_time: '2019-04-11T11:09:55.801-05:00'
+blogger_id: tag:blogger.com,1999:blog-2200496390325245811.post-4484182884735226078
+blogger_orig_url: https://www.packetgeek.net/2013/02/bash-shell-enumerator-command-not-found_22.html
+---
+
+Make this script run when ever a user logs into their system and watch them freak out as it tells them that all their commands aren't found. :)<br/><pre class="lang:default decode:true ">#!/bin/sh<br/><br/>h=`hostname | cut -d . -f 1`;<br/>u=`id -un`;<br/>shell="[$u@$h ~]$";<br/><br/>while true;<br/>do<br/>        echo -n "$shell "; read cmd;<br/>        echo "bash: $cmd: command not found...";<br/>done;</pre><br/>&nbsp;

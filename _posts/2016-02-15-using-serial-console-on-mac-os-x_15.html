@@ -1,0 +1,15 @@
+---
+layout: post
+title: Using a serial console on Mac OS X
+date: '2016-02-15T18:12:00.001-06:00'
+author: jtdub
+tags:
+- Serial
+- Console
+- Mac OS X
+modified_time: '2019-04-11T11:10:06.653-05:00'
+blogger_id: tag:blogger.com,1999:blog-2200496390325245811.post-924198607569623516
+blogger_orig_url: https://www.packetgeek.net/2016/02/using-serial-console-on-mac-os-x_15.html
+---
+
+As a network engineer, a fundamental task is putting a base configuration onto a device via a serial console. In Windows, there are several applications from Hyper Terminal to Putty. In Linux, there is minicom. I've never been a Microsoft fan, but have been a Linux user for many years. Over the last few years have been using Mac OS X full time for work and personal. Given this, I need the ability to access a network device via a serial connection. A quick Google was <a href="https://supportforums.cisco.com/discussion/12071321/how-use-mac-connecting-through-console-port" target="_blank">fruitful</a>.<br/><ol><br/>	<li>Plug your USB to Serial device into the USB port.</li><br/>	<li>Open a command termal and execute: <strong>ls /dev/*usb*</strong></li><br/></ol><br/>If your Mac recognizes the USB device, it will display a USB device in <strong>/dev</strong>. If not, you may need to download and install a USB driver for your device. I used <a href="http://plugable.com/2011/07/12/installing-a-usb-serial-adapter-on-mac-os-x" target="_blank">this article</a> to assist me in determining which USB driver to download and install.<br/><ol><br/>	<li>My USB device showed up as <strong>/dev/tty.usbserial</strong>, thus I'll use that for the remainder of this example.</li><br/>	<li>Connect the other end of your USB to Serial cable into your network device's serial port.</li><br/>	<li>Execute: <strong>screen /dev/tty.usbserial 9600</strong><br/><ol><br/>	<li><strong><a href="https://kb.iu.edu/d/acuy" target="_blank">Screen</a></strong> is a UNIX utility that allows you to access your local computers VT100 terminal.</li><br/>	<li><strong>/dev/tty.usbserial</strong> is the driver to access your USB serial device.</li><br/>	<li><strong>9600</strong> is the baud rate.</li><br/></ol><br/></li><br/>	<li>Press enter and you should be prompted with your network device prompt.</li><br/>	<li>To disconnect use the following key sequence: <strong>CTRL+A</strong> followed by <strong>CTRL+\</strong></li><br/></ol>

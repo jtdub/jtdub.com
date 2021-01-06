@@ -1,0 +1,15 @@
+---
+layout: post
+title: Performing a full system restore after a Linux server re-kick
+date: '2013-05-24T07:49:00.001-05:00'
+author: jtdub
+tags:
+- Bash Tips
+- Linux
+- Backup and Recovery
+modified_time: '2019-04-11T11:09:57.621-05:00'
+blogger_id: tag:blogger.com,1999:blog-2200496390325245811.post-3238835812718615358
+blogger_orig_url: https://www.packetgeek.net/2013/05/performing-full-system-restore-after_24.html
+---
+
+Sometimes, a server becomes so corrupt that you need to re-install the operating system and perform a full system restore of the server from backups. After the OS re-install, but before you perform the restore, you need to create a backup of the files that are responsible for booting the server, defining the partition and file system layout, and naming the hardware. Once the full system restore has been completed, you should restore those files.<br/><br/>Here are the files that you should backup before performing the restore.<br/><ul><br/>	<li><span style="line-height: 13px;">/boot</span></li><br/>	<li>/etc/fstab</li><br/>	<li>/etc/grub.conf</li><br/>	<li>/etc/mtab</li><br/>	<li>/etc/udev</li><br/>	<li>/etc/modprobe.conf</li><br/>	<li>/etc/modprobe.d</li><br/></ul><br/>Here is a script that will help you out backup the needed files<br/><pre class="lang:default decode:true">mkdir ~/backup_files; cd $_<br/>for i in /boot /etc/fstab /etc/grub.conf /etc/mtab /etc/udev /etc/modprobe.conf /etc/modprobe.d; do<br/>    cp -a $i ~/backup_files;<br/>done</pre><br/>Here is a script that will help you restore the needed files<br/><pre class="lang:default decode:true">cd ~/backup_files<br/>d=`date +%m-%d-%Y`<br/><br/>for i in `ls`; do<br/>    if [[ $i == "boot" ]]; then<br/>        cp -a /boot /boot.$d<br/>        cp -a boot /<br/>        restorecon -R /$i<br/>    else<br/>        if [[ -e /etc/$i ]]; then<br/>            cp -a /etc/$i /etc/$i.$d<br/>            cp -a $i /etc/$i<br/>            restorecon -R /etc/$i<br/>        fi<br/>   fi<br/>done</pre><br/>After it's all complete, you just need to reboot the server. Just watch the console to ensure that everything boots correctly.

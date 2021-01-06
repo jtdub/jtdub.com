@@ -1,0 +1,16 @@
+---
+layout: post
+title: Making a VM boot at VM host boot in KVM
+date: '2012-10-12T19:22:00.001-05:00'
+author: jtdub
+tags:
+- Linux
+- Virtualization
+- KVM
+modified_time: '2019-04-11T11:09:52.859-05:00'
+thumbnail: http://3.bp.blogspot.com/-WsRQTYAVX_A/UHkGVT3jkbI/AAAAAAAAGqU/XyXRqs-Zulg/s72-c/KVM-VM-Persistant-boot.png
+blogger_id: tag:blogger.com,1999:blog-2200496390325245811.post-5336756992297447355
+blogger_orig_url: https://www.packetgeek.net/2012/10/making-vm-boot-at-vm-host-boot-in-kvm_12.html
+---
+
+<div style="clear: both; text-align: center;"></div><div style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em; text-align: center;"></div><div style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em; text-align: center;"></div><div style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em; text-align: center;"></div><div style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em; text-align: center;"></div><div style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em; text-align: center;"><a href="https://lh6.googleusercontent.com/-WsRQTYAVX_A/UHkGVT3jkbI/AAAAAAAAGqU/XyXRqs-Zulg/s800/KVM-VM-Persistant-boot.png" target="_blank"><img border="0" height="320" src="http://3.bp.blogspot.com/-WsRQTYAVX_A/UHkGVT3jkbI/AAAAAAAAGqU/XyXRqs-Zulg/s400/KVM-VM-Persistant-boot.png" width="400" /></a></div><br />From virt-manager, you can follow the screen shot:<span></span><span></span> <br /><br /><br /><br /><br /><div style="clear: both; text-align: center;"></div><br /><br />You can also do it from the command line:<br /><br /><br /><pre>[root@jtdub-workstation ~]# virsh autostart<br />error: command 'autostart' requires <domain> option<br />[root@jtdub-workstation ~]# virsh autostart 1<br />Domain 1 marked as autostarted<br /></domain></pre>
