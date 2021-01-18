@@ -52,7 +52,22 @@ def replace_image_url(file_name: str, image_path: str = "/images"):
     print(f"opening {PATH}/{file_name}")
 
     with open("/".join([PATH, file_name])) as f:
-        data = f.read()
+        data_lines = f.readlines()
+
+    data = str()
+    for line in data_lines:
+        if line.startswith("modified_time"):
+            pass
+        elif line.startswith("thumbnail"):
+            pass
+        elif line.startswith("blogger_id: tag:blogger.com,1999:blog-855819088028348335"):
+            data += "- jtdub.com\n"
+        elif line.startswith("blogger_id: tag:blogger.com,1999:blog-2200496390325245811"):
+            data += "- packetgeek.net\n"
+        elif line.startswith("blogger_orig_url"):
+            pass
+        else:
+            data += line
 
     soup = bs4.BeautifulSoup(data, "html.parser")
 
@@ -74,10 +89,6 @@ def replace_image_url(file_name: str, image_path: str = "/images"):
                 image_url, "/".join([image_path, image_name])
             )
 
-    if data != str(soup):
-        print(f"{PATH}/{file_name} will change.")
-        with open("/".join([PATH, file_name]), "w") as f:
-            print(f"writing to {PATH}/{file_name}")
-            f.write(str(soup.prettify()))
-    else:
-        print(f"{PATH}/{file_name} will NOT change.")
+    with open("/".join([PATH, file_name]), "w") as f:
+        print(f"writing to {PATH}/{file_name}")
+        f.write(str(soup.prettify()))
