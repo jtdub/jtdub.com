@@ -20,4 +20,791 @@ blogger_id: tag:blogger.com,1999:blog-2200496390325245811.post-54037487016146483
 blogger_orig_url: https://www.packetgeek.net/2012/10/rhcsa-class-notes_16.html
 ---
 
-Here are some notes from a recent RHCSA class. <br /><div dir="ltr"><span style="background-color: transparent; color: #666666; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;"> </span><span style="background-color: transparent; color: #666666; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;"> </span></div><h3 dir="ltr"><span style="background-color: transparent; color: #666666; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Boot process</span></h3><br /><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">RHEL 6 uses upstart instead of init. Upstart is setup to call the init scripts.</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><a href="http://upstart.ubuntu.com/"><span style="background-color: transparent; color: #1155cc; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">http://upstart.ubuntu.com</span></a><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"></span></li></ul></ul><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"></span><br /><h3 dir="ltr"><span style="background-color: transparent; color: #666666; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Networking</span></h3><br /><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">disable NetworkManager and edit /etc/sysconfig/network and /etc/sysconfig/network-scripts/ifcfg-* by hand.</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">for i in NetworkManager; do service $i stop; chkconfig $i off; done</span></li></ul></ul><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"></span><br /><h3 dir="ltr"><span style="background-color: transparent; color: #666666; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Cron</span></h3><br /><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Time  statements are OR’ed together, NOT AND’ed together. So Sunday, January 2  would be January 2 OR Sunday. To get around that, you’ll need to script  out the day of the week. </span></li></ul><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"></span><br /><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"></span><br /><h3 dir="ltr"><span style="background-color: transparent; color: #666666; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Disk Encryption</span></h3><br /><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">LUKS - Linux Unified Key Setup</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Create a new LUKS encrypted device:</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">cryptsetup luksFormat <device></device></span></li></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Establish access to the device:</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">cryptsetup luksOpen <device> <mapname></mapname></device></span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">/dev/mapper/<mapname></mapname></span></li></ul></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Create the filesystem:</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">mkfs -t ext4 /dev/mapper/<mapname></mapname></span></li></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Mount the filesystem:</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">mount /dev/mapper/<mapname> /mnt</mapname></span></li></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Make filesystem persistant:</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">vim /etc/fstab</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">/dev/mapper/<mapname> /cryptomount ext4 defaults 1 2</mapname></span></li></ul></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Removing access to an encrypted device:</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Umount the filesystem, if mounted:</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">umount /mnt</span></li></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">cryptsetup luksClose mapname</span></li></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">To make LUKS devices available at boot time (persistance):</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">/etc/crypttab</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"><mapname> <device> [keyfile] [options]</device></mapname></span></li></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">To create a keyfile:</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">dd if=/dev/urandom of=/etc/keyfile bs=1k count=4</span></li><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">cryptsetup luksAddKey <device> /etc/keyfile</device></span></li><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">chmod 400 /etc/keyfile</span></li></ul></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">To test LUKS functionality for persistance:</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">umount /cryptfs</span></li><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">cryptsetup luksClose mapname</span></li><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">#> bash</span></li><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">#> . /etc/init.d/functions</span></li><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">#> init_crypto 1</span></li><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">#> mount -a</span></li><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">#> ls /cryptfs</span></li></ul></ul></ul><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"></span><br /><h3 dir="ltr"><span style="background-color: transparent; color: #666666; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">SELinux</span></h3><br /><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Every process or object has a SELinux context:</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">identity:role:domain/type</span></li></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">The SELinux policy controls:</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">What identities can use which roles</span></li><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">What roles can enter which domains</span></li><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">What domains can access which types</span></li></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">To change the context of a file, you can use the chcon command:</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">chcon -R --reference=/var/www/html <file></file></span></li></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">To restore the default labeling from the policy and apply the contexts to file:</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">restorecon -R <path></path></span></li></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">To change the SELinux mode during boot, you can pass the ‘enforcing=0’ option to the kernel in GRUB.</span></li><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Tools:</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">sestatus</span></li><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">setenforce | getenforce</span></li><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">policycoreutils</span></li><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">setroubleshoot</span></li><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">system-config-selinux <- part of policycoreutils-gui in RHEL.</span></li><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">setsebool | getsebool</span></li><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">chcon</span></li><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">restorecon</span></li></ul></ul><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"></span><br /><h3 dir="ltr"><span style="background-color: transparent; color: #666666; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Kernel Tuning</span></h3><br /><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Kernel documentation package: kernel-doc</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">yum -y install kernel-doc</span></li><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">/usr/share/doc/kernel-doc-2.6.32/Documentation/sysctl</span></li></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">sysctl -a</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">displays all current values</span></li></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">sysctl -w <kernel_option></kernel_option></span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">sets a value</span></li></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">sysctl -p</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">reads the /etc/sysctl.conf and loads the values into the kernel</span></li></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">/etc/sysctl.conf</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">File location to make changes persistent</span></li><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">sysctl -w <kernel_option> >> /etc/sysctl.conf</kernel_option></span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">best practice</span></li></ul></ul></ul><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"></span><br /><h3 dir="ltr"><span style="background-color: transparent; color: #666666; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">LVM</span></h3><br /><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Create a Volume</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">pvcreate /dev/sda4</span></li><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">vgcreate VolGroup01 /dev/sda4</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">-s flag will allow you to change the physical extent size. Default is 4MB and can be changed in increments of power of 2.</span></li></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">lvcreate -n Volname01 [ -L 10G || -l +100%FREE || -l +50 {# of extents} ] VolGroup01</span></li></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Resizing a volume</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">vgextend <volume group="group" name="name"> <new path="path" pv="pv"></new></volume></span></li><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">lvextend { -l <+extents> | -L <+size> } <lv></lv></span></li><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">resize2fs <logical name="name" volume="volume"></logical></span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">lvresize -r {-l <+extents> | -L <+size>} <lv></lv></span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">‘-r’ - Resize logical volume and filesystem at the sametime.</span></li></ul></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">lvreduce -r { -l <extents> | -L <size> } <lv></lv></size></extents></span></li></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Snapshots</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">create snapshots</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">lvcreate -s <lv> { -l <extents> | -L <size> } -n <snapshot_lv></snapshot_lv></size></extents></lv></span></li></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">remove snapshots</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">lvremove -f <lv></lv></span></li></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">You  will need space available in the volume group of your logical volume to  be able to create a snapshot. A snapshot logical volume does not need  to be the same size of the logical volume, but will need to be large  enough to contain the data of the logical volume.</span></li></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">You can grow the file system while it is mounted, but before shrinking it must first be unmounted.</span></li></ul><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"></span><br /><h3 dir="ltr"><span style="background-color: transparent; color: #666666; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">NFS</span></h3><br /><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">showmount -e server1</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Confirm that services are running on the machine.</span></li></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">rpcinfo -p server1</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">See shared filesystems.</span></li></ul></ul><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"></span><br /><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"></span><br /><h3 dir="ltr"><span style="background-color: transparent; color: #666666; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Apache</span></h3><br /><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Documentation Package:</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">httpd-manual</span></li></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Documentation Location:</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><a href="http://localhost/manual"><span style="background-color: transparent; color: #1155cc; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">http://localhost/manual</span></a><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"></span></li></ul></ul><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"></span><br /><h3 dir="ltr"><span style="background-color: transparent; color: #666666; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Autofs</span></h3><br /><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Mounting NFS Home directories:</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">vi /etc/auto.master</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">/home/nfs    /etc/auto.nfs</span></li></ul><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">vi /etc/auto.nfs</span></li><ul style="margin-bottom: 0pt; margin-top: 0pt;"><li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">*    server:/home/nfs/&</span></li></ul></ul></ul><span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"></span>
+Here are some notes from a recent RHCSA class.
+<br/>
+<div dir="ltr">
+ <span style="background-color: transparent; color: #666666; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">
+ </span>
+ <span style="background-color: transparent; color: #666666; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">
+ </span>
+</div>
+<h3 dir="ltr">
+ <span style="background-color: transparent; color: #666666; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">
+  Boot process
+ </span>
+</h3>
+<br/>
+<ul style="margin-bottom: 0pt; margin-top: 0pt;">
+ <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+  <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+   RHEL 6 uses upstart instead of init. Upstart is setup to call the init scripts.
+  </span>
+ </li>
+ <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <a href="http://upstart.ubuntu.com/">
+    <span style="background-color: transparent; color: #1155cc; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">
+     http://upstart.ubuntu.com
+    </span>
+   </a>
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+   </span>
+  </li>
+ </ul>
+</ul>
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+</span>
+<br/>
+<h3 dir="ltr">
+ <span style="background-color: transparent; color: #666666; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">
+  Networking
+ </span>
+</h3>
+<br/>
+<ul style="margin-bottom: 0pt; margin-top: 0pt;">
+ <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+  <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+   disable NetworkManager and edit /etc/sysconfig/network and /etc/sysconfig/network-scripts/ifcfg-* by hand.
+  </span>
+ </li>
+ <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    for i in NetworkManager; do service $i stop; chkconfig $i off; done
+   </span>
+  </li>
+ </ul>
+</ul>
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+</span>
+<br/>
+<h3 dir="ltr">
+ <span style="background-color: transparent; color: #666666; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">
+  Cron
+ </span>
+</h3>
+<br/>
+<ul style="margin-bottom: 0pt; margin-top: 0pt;">
+ <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+  <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+   Time  statements are OR’ed together, NOT AND’ed together. So Sunday, January 2  would be January 2 OR Sunday. To get around that, you’ll need to script  out the day of the week.
+  </span>
+ </li>
+</ul>
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+</span>
+<br/>
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+</span>
+<br/>
+<h3 dir="ltr">
+ <span style="background-color: transparent; color: #666666; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">
+  Disk Encryption
+ </span>
+</h3>
+<br/>
+<ul style="margin-bottom: 0pt; margin-top: 0pt;">
+ <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+  <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+   LUKS - Linux Unified Key Setup
+  </span>
+ </li>
+ <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    Create a new LUKS encrypted device:
+   </span>
+  </li>
+  <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+   <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;">
+    <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+     cryptsetup luksFormat
+     <device>
+     </device>
+    </span>
+   </li>
+  </ul>
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    Establish access to the device:
+   </span>
+  </li>
+  <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+   <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;">
+    <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+     cryptsetup luksOpen
+     <device>
+      <mapname>
+      </mapname>
+     </device>
+    </span>
+   </li>
+   <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+    <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+     <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+      /dev/mapper/
+      <mapname>
+      </mapname>
+     </span>
+    </li>
+   </ul>
+  </ul>
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    Create the filesystem:
+   </span>
+  </li>
+  <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+   <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;">
+    <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+     mkfs -t ext4 /dev/mapper/
+     <mapname>
+     </mapname>
+    </span>
+   </li>
+  </ul>
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    Mount the filesystem:
+   </span>
+  </li>
+  <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+   <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;">
+    <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+     mount /dev/mapper/
+     <mapname>
+      /mnt
+     </mapname>
+    </span>
+   </li>
+  </ul>
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    Make filesystem persistant:
+   </span>
+  </li>
+  <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+   <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;">
+    <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+     vim /etc/fstab
+    </span>
+   </li>
+   <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+    <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+     <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+      /dev/mapper/
+      <mapname>
+       /cryptomount ext4 defaults 1 2
+      </mapname>
+     </span>
+    </li>
+   </ul>
+  </ul>
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    Removing access to an encrypted device:
+   </span>
+  </li>
+  <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+   <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;">
+    <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+     Umount the filesystem, if mounted:
+    </span>
+   </li>
+   <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+    <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+     <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+      umount /mnt
+     </span>
+    </li>
+   </ul>
+   <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;">
+    <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+     cryptsetup luksClose mapname
+    </span>
+   </li>
+  </ul>
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    To make LUKS devices available at boot time (persistance):
+   </span>
+  </li>
+  <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+   <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;">
+    <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+     /etc/crypttab
+    </span>
+   </li>
+   <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+    <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+     <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+      <mapname>
+       <device>
+        [keyfile] [options]
+       </device>
+      </mapname>
+     </span>
+    </li>
+   </ul>
+   <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;">
+    <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+     To create a keyfile:
+    </span>
+   </li>
+   <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+    <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+     <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+      dd if=/dev/urandom of=/etc/keyfile bs=1k count=4
+     </span>
+    </li>
+    <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+     <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+      cryptsetup luksAddKey
+      <device>
+       /etc/keyfile
+      </device>
+     </span>
+    </li>
+    <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+     <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+      chmod 400 /etc/keyfile
+     </span>
+    </li>
+   </ul>
+  </ul>
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    To test LUKS functionality for persistance:
+   </span>
+  </li>
+  <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+   <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;">
+    <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+     umount /cryptfs
+    </span>
+   </li>
+   <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;">
+    <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+     cryptsetup luksClose mapname
+    </span>
+   </li>
+   <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;">
+    <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+     #&gt; bash
+    </span>
+   </li>
+   <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;">
+    <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+     #&gt; . /etc/init.d/functions
+    </span>
+   </li>
+   <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;">
+    <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+     #&gt; init_crypto 1
+    </span>
+   </li>
+   <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;">
+    <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+     #&gt; mount -a
+    </span>
+   </li>
+   <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;">
+    <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+     #&gt; ls /cryptfs
+    </span>
+   </li>
+  </ul>
+ </ul>
+</ul>
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+</span>
+<br/>
+<h3 dir="ltr">
+ <span style="background-color: transparent; color: #666666; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">
+  SELinux
+ </span>
+</h3>
+<br/>
+<ul style="margin-bottom: 0pt; margin-top: 0pt;">
+ <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+  <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+   Every process or object has a SELinux context:
+  </span>
+ </li>
+ <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    identity:role:domain/type
+   </span>
+  </li>
+ </ul>
+ <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+  <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+   The SELinux policy controls:
+  </span>
+ </li>
+ <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    What identities can use which roles
+   </span>
+  </li>
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    What roles can enter which domains
+   </span>
+  </li>
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    What domains can access which types
+   </span>
+  </li>
+ </ul>
+ <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+  <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+   To change the context of a file, you can use the chcon command:
+  </span>
+ </li>
+ <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    chcon -R --reference=/var/www/html
+    <file>
+    </file>
+   </span>
+  </li>
+ </ul>
+ <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+  <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+   To restore the default labeling from the policy and apply the contexts to file:
+  </span>
+ </li>
+ <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    restorecon -R
+    <path>
+    </path>
+   </span>
+  </li>
+ </ul>
+ <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+  <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+   To change the SELinux mode during boot, you can pass the ‘enforcing=0’ option to the kernel in GRUB.
+  </span>
+ </li>
+ <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+  <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+   Tools:
+  </span>
+ </li>
+ <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    sestatus
+   </span>
+  </li>
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    setenforce | getenforce
+   </span>
+  </li>
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    policycoreutils
+   </span>
+  </li>
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    setroubleshoot
+   </span>
+  </li>
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    system-config-selinux &lt;- part of policycoreutils-gui in RHEL.
+   </span>
+  </li>
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    setsebool | getsebool
+   </span>
+  </li>
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    chcon
+   </span>
+  </li>
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    restorecon
+   </span>
+  </li>
+ </ul>
+</ul>
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+</span>
+<br/>
+<h3 dir="ltr">
+ <span style="background-color: transparent; color: #666666; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">
+  Kernel Tuning
+ </span>
+</h3>
+<br/>
+<ul style="margin-bottom: 0pt; margin-top: 0pt;">
+ <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+  <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+   Kernel documentation package: kernel-doc
+  </span>
+ </li>
+ <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    yum -y install kernel-doc
+   </span>
+  </li>
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    /usr/share/doc/kernel-doc-2.6.32/Documentation/sysctl
+   </span>
+  </li>
+ </ul>
+ <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+  <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+   sysctl -a
+  </span>
+ </li>
+ <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    displays all current values
+   </span>
+  </li>
+ </ul>
+ <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+  <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+   sysctl -w
+   <kernel_option>
+   </kernel_option>
+  </span>
+ </li>
+ <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    sets a value
+   </span>
+  </li>
+ </ul>
+ <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+  <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+   sysctl -p
+  </span>
+ </li>
+ <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    reads the /etc/sysctl.conf and loads the values into the kernel
+   </span>
+  </li>
+ </ul>
+ <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+  <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+   /etc/sysctl.conf
+  </span>
+ </li>
+ <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    File location to make changes persistent
+   </span>
+  </li>
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    sysctl -w
+    <kernel_option>
+     &gt;&gt; /etc/sysctl.conf
+    </kernel_option>
+   </span>
+  </li>
+  <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+   <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;">
+    <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+     best practice
+    </span>
+   </li>
+  </ul>
+ </ul>
+</ul>
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+</span>
+<br/>
+<h3 dir="ltr">
+ <span style="background-color: transparent; color: #666666; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">
+  LVM
+ </span>
+</h3>
+<br/>
+<ul style="margin-bottom: 0pt; margin-top: 0pt;">
+ <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+  <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+   Create a Volume
+  </span>
+ </li>
+ <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    pvcreate /dev/sda4
+   </span>
+  </li>
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    vgcreate VolGroup01 /dev/sda4
+   </span>
+  </li>
+  <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+   <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;">
+    <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+     -s flag will allow you to change the physical extent size. Default is 4MB and can be changed in increments of power of 2.
+    </span>
+   </li>
+  </ul>
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    lvcreate -n Volname01 [ -L 10G || -l +100%FREE || -l +50 {# of extents} ] VolGroup01
+   </span>
+  </li>
+ </ul>
+ <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+  <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+   Resizing a volume
+  </span>
+ </li>
+ <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    vgextend
+    <volume group="group" name="name">
+     <new path="path" pv="pv">
+     </new>
+    </volume>
+   </span>
+  </li>
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    lvextend { -l &lt;+extents&gt; | -L &lt;+size&gt; }
+    <lv>
+    </lv>
+   </span>
+  </li>
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    resize2fs
+    <logical name="name" volume="volume">
+    </logical>
+   </span>
+  </li>
+  <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+   <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;">
+    <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+     lvresize -r {-l &lt;+extents&gt; | -L &lt;+size&gt;}
+     <lv>
+     </lv>
+    </span>
+   </li>
+   <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+    <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+     <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+      ‘-r’ - Resize logical volume and filesystem at the sametime.
+     </span>
+    </li>
+   </ul>
+  </ul>
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    lvreduce -r { -l
+    <extents>
+     | -L
+     <size>
+      }
+      <lv>
+      </lv>
+     </size>
+    </extents>
+   </span>
+  </li>
+ </ul>
+ <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+  <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+   Snapshots
+  </span>
+ </li>
+ <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    create snapshots
+   </span>
+  </li>
+  <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+   <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;">
+    <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+     lvcreate -s
+     <lv>
+      { -l
+      <extents>
+       | -L
+       <size>
+        } -n
+        <snapshot_lv>
+        </snapshot_lv>
+       </size>
+      </extents>
+     </lv>
+    </span>
+   </li>
+  </ul>
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    remove snapshots
+   </span>
+  </li>
+  <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+   <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;">
+    <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+     lvremove -f
+     <lv>
+     </lv>
+    </span>
+   </li>
+  </ul>
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    You  will need space available in the volume group of your logical volume to  be able to create a snapshot. A snapshot logical volume does not need  to be the same size of the logical volume, but will need to be large  enough to contain the data of the logical volume.
+   </span>
+  </li>
+ </ul>
+ <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+  <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+   You can grow the file system while it is mounted, but before shrinking it must first be unmounted.
+  </span>
+ </li>
+</ul>
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+</span>
+<br/>
+<h3 dir="ltr">
+ <span style="background-color: transparent; color: #666666; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">
+  NFS
+ </span>
+</h3>
+<br/>
+<ul style="margin-bottom: 0pt; margin-top: 0pt;">
+ <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+  <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+   showmount -e server1
+  </span>
+ </li>
+ <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    Confirm that services are running on the machine.
+   </span>
+  </li>
+ </ul>
+ <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+  <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+   rpcinfo -p server1
+  </span>
+ </li>
+ <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    See shared filesystems.
+   </span>
+  </li>
+ </ul>
+</ul>
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+</span>
+<br/>
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+</span>
+<br/>
+<h3 dir="ltr">
+ <span style="background-color: transparent; color: #666666; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">
+  Apache
+ </span>
+</h3>
+<br/>
+<ul style="margin-bottom: 0pt; margin-top: 0pt;">
+ <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+  <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+   Documentation Package:
+  </span>
+ </li>
+ <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    httpd-manual
+   </span>
+  </li>
+ </ul>
+ <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+  <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+   Documentation Location:
+  </span>
+ </li>
+ <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <a href="http://localhost/manual">
+    <span style="background-color: transparent; color: #1155cc; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">
+     http://localhost/manual
+    </span>
+   </a>
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+   </span>
+  </li>
+ </ul>
+</ul>
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+</span>
+<br/>
+<h3 dir="ltr">
+ <span style="background-color: transparent; color: #666666; font-family: Arial; font-size: 16px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">
+  Autofs
+ </span>
+</h3>
+<br/>
+<ul style="margin-bottom: 0pt; margin-top: 0pt;">
+ <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: disc; text-decoration: none; vertical-align: baseline;">
+  <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+   Mounting NFS Home directories:
+  </span>
+ </li>
+ <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    vi /etc/auto.master
+   </span>
+  </li>
+  <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+   <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;">
+    <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+     /home/nfs    /etc/auto.nfs
+    </span>
+   </li>
+  </ul>
+  <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: circle; text-decoration: none; vertical-align: baseline;">
+   <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+    vi /etc/auto.nfs
+   </span>
+  </li>
+  <ul style="margin-bottom: 0pt; margin-top: 0pt;">
+   <li style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; list-style-type: square; text-decoration: none; vertical-align: baseline;">
+    <span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+     *    server:/home/nfs/&amp;
+    </span>
+   </li>
+  </ul>
+ </ul>
+</ul>
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">
+</span>

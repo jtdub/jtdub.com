@@ -13,4 +13,338 @@ blogger_id: tag:blogger.com,1999:blog-2200496390325245811.post-41581170980084780
 blogger_orig_url: https://www.packetgeek.net/2014/12/cisco-virl-bare-metal-install-tips-and_3.html
 ---
 
-In my first post on VIRL -  "<a href="http://www.packetgeek.net/2014/12/cisco-virl-status-digital-paper-weight/" target="_blank">Cisco VIRL Status? Digital Paper Weight</a>", I shared my frustration with not being able to get my system to activate with Cisco. Come to find out, I'm a dim wit. That is, in the 'Salt ID and domain' section, I mistakenly left the <em>.pem</em> suffix in the name. Ironically, I blurred out that section, in an attempt to retain some privacy. However, if I hadn't somebody may have rightly pointed out my error.<br/><br/>Given that, The VIRL install isn't a point and click and all is good in router land. There are some details here and there, that should be ironed out. In this post, I'll list some of the items that stood out, as I installed, found a quirk, and re-installed.<br/><br/>I did a bare-metal install. That is, I installed it on a physical computer, rather than a VM. The first quirk that I noticed is that udev immediately renamed eth0 to p3p1. Not a huge deal, however, the install requires that you have Internet access. By default, eth0 is set to DHCP an address, for Internet connectivity. After booting into the LiveCD environment, I needed to get network connectivity. To do this, I needed to get p3p1 and address. You can verify that eth0 has been renamed and what it's been renamed to by executing <em>dmesg | grep eth0</em> from a terminal prompt.<br/><br/><em> </em>Here's my steps:<br/><br/><em>Note: I make some assumptions:</em><br/><ul><br/>	<li>172.16.1.1 is the default gateway</li><br/>	<li>An address will be obtained via DHCP</li><br/>	<li>p3p1 is the name of the renamed ethernet interface</li><br/></ul><br/>&nbsp;<br/><ul><br/>	<li>Open xterm</li><br/>	<li>Sudo to root<br/><ol><br/>	<li><em>sudo su -</em></li><br/></ol><br/></li><br/>	<li>Use sed to rename eth0 to p3p1 in /etc/network/interfaces<br/><ol><br/>	<li><em>sed -i 's/eth0/p3p1/g' /etc/network/interfaces</em></li><br/></ol><br/></li><br/>	<li>Restart the network stack<br/><ol><br/>	<li><em>service networking restart</em></li><br/></ol><br/></li><br/>	<li>Verify that you have an IP Address<br/><ol><br/>	<li><em>ip addr show dev p3p1</em></li><br/></ol><br/></li><br/>	<li>Verify network connectivity<br/><ol><br/>	<li><em>ping -c 1 172.16.1.1</em></li><br/>	<li><em>ping -c 1 4.2.2.2</em></li><br/>	<li><em>ping -c 1 google.com</em></li><br/></ol><br/></li><br/></ul><br/>If you need to assign a static IP Address, you'll need to manually edit the /etc/network/interfaces file.<br/><ul><br/>	<li><em>Using your favorite text editor, open /etc/network/interfaces</em></li><br/>	<li><em>In the p3p1 section, replace dhcp with static</em></li><br/>	<li><em>Modify the config so that it resembles the below example:</em></li><br/></ul><br/><pre class="lang:default decode:true">auto p3p1<br/>iface p3p1 inet static<br/>     address 172.16.1.51<br/>     netmask 255.255.255.192<br/>     gateway 172.16.1.1</pre><br/>Remember to substitute the 172.16.x.x addresses and netmask for your specific network. Also, leave the dns-nameservers section in, but change the name servers to suite your network.<br/><ul><br/>	<li>After the necessary changes have been made, save the changes and exit the file.</li><br/>	<li>Restart the network stack.<br/><ul><br/>	<li><em>service network restart</em></li><br/></ul><br/></li><br/>	<li>After doing this, it may be necessary to restart the individual network interface, so that it pulls its current settings<br/><ul><br/>	<li><em>ifdown p3p1</em></li><br/>	<li><em>ifup p3p1</em></li><br/></ul><br/></li><br/></ul><br/>From here, the install should be ready to go. After the install is complete and the computer has been rebooted. Here are some of the notes that I made.<br/><ul><br/>	<li>Cisco mistakenly left Cisco internal network specific name servers in the /etc/ntp.conf. This needs to be changed. It can be quickly done via sed.<br/><ul><br/>	<li><em>sudo sed -i 's/ntp.esl.cisco.com/pool.ntp.org/g' /etc/ntp.conf</em></li><br/></ul><br/></li><br/>	<li>After the change has been made, stop the NTP service<br/><ul><br/>	<li><em>sudo service ntp stop</em></li><br/></ul><br/></li><br/>	<li>SYNC the system clock<br/><ul><br/>	<li><em>sudo ntpd -gq pool.ntp.org</em></li><br/></ul><br/></li><br/>	<li>Start NTP<br/><ul><br/>	<li><i>sudo service ntp start</i></li><br/></ul><br/></li><br/>	<li>From here, the activation should work properly. Don't be a dim wit, like myself, and leave the <em>.pem</em> suffix on the Salt ID and domain.</li><br/></ul><br/>After that, It's a mater of editing the /etc/virl.ini file. Take note that all the variables are lower case with under scores ("_") between words in a variable. There are at least two variables that mistakenly have upper case letters, thus won't be recognized by the automation and skipped - forcing you to either re-install or hack your way through the remainder of the install. Here are the variables that I noticed:<br/><ul><br/>	<li><strong><em>Static_IP </em></strong>should be<strong><em> static_ip</em></strong></li><br/>	<li><strong><em>internalnet_IP</em></strong> should be <strong><em>internalnet_ip</em></strong></li><br/></ul><br/>I also noticed that the 'dummy' interfaces don't work above the number 4 - I attempted to create a dummy interface scheme that matched my ip prefixes. That didn't work out to well. I'm also noticed that the <em>internalnet</em> section changes itself to 172.16.10.0/24 - according to /etc/network/interfaces and MySQL, but it's completely different in my /etc/virl.ini and I'm not certain where it's getting that prefix from, yet.<br/><br/>Once you get VIRL up and working, copy your /etc/virl.ini file off to another computer. That way, if you have to re-install, you can make quick work of the re-install.<br/><br/>I'm sure that I'll find more things. As I do, I'll take notes of them and post updates.<br/><br/>&nbsp;
+In my first post on VIRL -  "
+<a href="http://www.packetgeek.net/2014/12/cisco-virl-status-digital-paper-weight/" target="_blank">
+ Cisco VIRL Status? Digital Paper Weight
+</a>
+", I shared my frustration with not being able to get my system to activate with Cisco. Come to find out, I'm a dim wit. That is, in the 'Salt ID and domain' section, I mistakenly left the
+<em>
+ .pem
+</em>
+suffix in the name. Ironically, I blurred out that section, in an attempt to retain some privacy. However, if I hadn't somebody may have rightly pointed out my error.
+<br/>
+<br/>
+Given that, The VIRL install isn't a point and click and all is good in router land. There are some details here and there, that should be ironed out. In this post, I'll list some of the items that stood out, as I installed, found a quirk, and re-installed.
+<br/>
+<br/>
+I did a bare-metal install. That is, I installed it on a physical computer, rather than a VM. The first quirk that I noticed is that udev immediately renamed eth0 to p3p1. Not a huge deal, however, the install requires that you have Internet access. By default, eth0 is set to DHCP an address, for Internet connectivity. After booting into the LiveCD environment, I needed to get network connectivity. To do this, I needed to get p3p1 and address. You can verify that eth0 has been renamed and what it's been renamed to by executing
+<em>
+ dmesg | grep eth0
+</em>
+from a terminal prompt.
+<br/>
+<br/>
+<em>
+</em>
+Here's my steps:
+<br/>
+<br/>
+<em>
+ Note: I make some assumptions:
+</em>
+<br/>
+<ul>
+ <br/>
+ <li>
+  172.16.1.1 is the default gateway
+ </li>
+ <br/>
+ <li>
+  An address will be obtained via DHCP
+ </li>
+ <br/>
+ <li>
+  p3p1 is the name of the renamed ethernet interface
+ </li>
+ <br/>
+</ul>
+<br/>
+<br/>
+<ul>
+ <br/>
+ <li>
+  Open xterm
+ </li>
+ <br/>
+ <li>
+  Sudo to root
+  <br/>
+  <ol>
+   <br/>
+   <li>
+    <em>
+     sudo su -
+    </em>
+   </li>
+   <br/>
+  </ol>
+  <br/>
+ </li>
+ <br/>
+ <li>
+  Use sed to rename eth0 to p3p1 in /etc/network/interfaces
+  <br/>
+  <ol>
+   <br/>
+   <li>
+    <em>
+     sed -i 's/eth0/p3p1/g' /etc/network/interfaces
+    </em>
+   </li>
+   <br/>
+  </ol>
+  <br/>
+ </li>
+ <br/>
+ <li>
+  Restart the network stack
+  <br/>
+  <ol>
+   <br/>
+   <li>
+    <em>
+     service networking restart
+    </em>
+   </li>
+   <br/>
+  </ol>
+  <br/>
+ </li>
+ <br/>
+ <li>
+  Verify that you have an IP Address
+  <br/>
+  <ol>
+   <br/>
+   <li>
+    <em>
+     ip addr show dev p3p1
+    </em>
+   </li>
+   <br/>
+  </ol>
+  <br/>
+ </li>
+ <br/>
+ <li>
+  Verify network connectivity
+  <br/>
+  <ol>
+   <br/>
+   <li>
+    <em>
+     ping -c 1 172.16.1.1
+    </em>
+   </li>
+   <br/>
+   <li>
+    <em>
+     ping -c 1 4.2.2.2
+    </em>
+   </li>
+   <br/>
+   <li>
+    <em>
+     ping -c 1 google.com
+    </em>
+   </li>
+   <br/>
+  </ol>
+  <br/>
+ </li>
+ <br/>
+</ul>
+<br/>
+If you need to assign a static IP Address, you'll need to manually edit the /etc/network/interfaces file.
+<br/>
+<ul>
+ <br/>
+ <li>
+  <em>
+   Using your favorite text editor, open /etc/network/interfaces
+  </em>
+ </li>
+ <br/>
+ <li>
+  <em>
+   In the p3p1 section, replace dhcp with static
+  </em>
+ </li>
+ <br/>
+ <li>
+  <em>
+   Modify the config so that it resembles the below example:
+  </em>
+ </li>
+ <br/>
+</ul>
+<br/>
+<pre class="lang:default decode:true">auto p3p1<br/>iface p3p1 inet static<br/>     address 172.16.1.51<br/>     netmask 255.255.255.192<br/>     gateway 172.16.1.1</pre>
+<br/>
+Remember to substitute the 172.16.x.x addresses and netmask for your specific network. Also, leave the dns-nameservers section in, but change the name servers to suite your network.
+<br/>
+<ul>
+ <br/>
+ <li>
+  After the necessary changes have been made, save the changes and exit the file.
+ </li>
+ <br/>
+ <li>
+  Restart the network stack.
+  <br/>
+  <ul>
+   <br/>
+   <li>
+    <em>
+     service network restart
+    </em>
+   </li>
+   <br/>
+  </ul>
+  <br/>
+ </li>
+ <br/>
+ <li>
+  After doing this, it may be necessary to restart the individual network interface, so that it pulls its current settings
+  <br/>
+  <ul>
+   <br/>
+   <li>
+    <em>
+     ifdown p3p1
+    </em>
+   </li>
+   <br/>
+   <li>
+    <em>
+     ifup p3p1
+    </em>
+   </li>
+   <br/>
+  </ul>
+  <br/>
+ </li>
+ <br/>
+</ul>
+<br/>
+From here, the install should be ready to go. After the install is complete and the computer has been rebooted. Here are some of the notes that I made.
+<br/>
+<ul>
+ <br/>
+ <li>
+  Cisco mistakenly left Cisco internal network specific name servers in the /etc/ntp.conf. This needs to be changed. It can be quickly done via sed.
+  <br/>
+  <ul>
+   <br/>
+   <li>
+    <em>
+     sudo sed -i 's/ntp.esl.cisco.com/pool.ntp.org/g' /etc/ntp.conf
+    </em>
+   </li>
+   <br/>
+  </ul>
+  <br/>
+ </li>
+ <br/>
+ <li>
+  After the change has been made, stop the NTP service
+  <br/>
+  <ul>
+   <br/>
+   <li>
+    <em>
+     sudo service ntp stop
+    </em>
+   </li>
+   <br/>
+  </ul>
+  <br/>
+ </li>
+ <br/>
+ <li>
+  SYNC the system clock
+  <br/>
+  <ul>
+   <br/>
+   <li>
+    <em>
+     sudo ntpd -gq pool.ntp.org
+    </em>
+   </li>
+   <br/>
+  </ul>
+  <br/>
+ </li>
+ <br/>
+ <li>
+  Start NTP
+  <br/>
+  <ul>
+   <br/>
+   <li>
+    <i>
+     sudo service ntp start
+    </i>
+   </li>
+   <br/>
+  </ul>
+  <br/>
+ </li>
+ <br/>
+ <li>
+  From here, the activation should work properly. Don't be a dim wit, like myself, and leave the
+  <em>
+   .pem
+  </em>
+  suffix on the Salt ID and domain.
+ </li>
+ <br/>
+</ul>
+<br/>
+After that, It's a mater of editing the /etc/virl.ini file. Take note that all the variables are lower case with under scores ("_") between words in a variable. There are at least two variables that mistakenly have upper case letters, thus won't be recognized by the automation and skipped - forcing you to either re-install or hack your way through the remainder of the install. Here are the variables that I noticed:
+<br/>
+<ul>
+ <br/>
+ <li>
+  <strong>
+   <em>
+    Static_IP
+   </em>
+  </strong>
+  should be
+  <strong>
+   <em>
+    static_ip
+   </em>
+  </strong>
+ </li>
+ <br/>
+ <li>
+  <strong>
+   <em>
+    internalnet_IP
+   </em>
+  </strong>
+  should be
+  <strong>
+   <em>
+    internalnet_ip
+   </em>
+  </strong>
+ </li>
+ <br/>
+</ul>
+<br/>
+I also noticed that the 'dummy' interfaces don't work above the number 4 - I attempted to create a dummy interface scheme that matched my ip prefixes. That didn't work out to well. I'm also noticed that the
+<em>
+ internalnet
+</em>
+section changes itself to 172.16.10.0/24 - according to /etc/network/interfaces and MySQL, but it's completely different in my /etc/virl.ini and I'm not certain where it's getting that prefix from, yet.
+<br/>
+<br/>
+Once you get VIRL up and working, copy your /etc/virl.ini file off to another computer. That way, if you have to re-install, you can make quick work of the re-install.
+<br/>
+<br/>
+I'm sure that I'll find more things. As I do, I'll take notes of them and post updates.
+<br/>
+<br/>

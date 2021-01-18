@@ -12,4 +12,106 @@ blogger_id: tag:blogger.com,1999:blog-2200496390325245811.post-25360261120183010
 blogger_orig_url: https://www.packetgeek.net/2012/10/ipv4-subnetting-made-easy_29.html
 ---
 
-Many people are intimidated by the idea of subnetting a block of IP Addresses. In reality, it's much easier than what it appears and with some practice it can be easily done in a persons head, on the fly.<br /><br />There are two things that a person needs to know, so that they understand how the process works. Those two things are binary and the powers of two. We use binary and the powers of two to calculate the block size of a subnet, the number of hosts a subnet will have, and the number of subnets that a sub-network can accommodate.<br /><br />An IP Address of made up of four numbers, separated by a period. Each number represents an octet, which is one byte long. Eight bits make up a byte. Binary is a computer language that has two functions; on or off. The "1" in binary is "on" and the "0" is "off". These binary digits are counted from right to left to determine what an decimal number value is of an octet.<br /><br />Each byte can have a value of up to 255, starting with zero. Counting in binary goes against logic to those of us who were taught that we read left to right. Counting in binary is done right to left.<br /><br />As an example, <span style="background-color: yellow;">00110000</span> has a decimal value of 48. Starting at the 0 on the right, you count 1, 2, 4, 8, 16, 32, 64, 128. Or if you want to go backwards (left to right), 128, 64, 32, 16, 8, 4, 2, 1 See what I mean with the powers of two? Now, the only binary digits that you count are the 1's. You take the binary digits and add them together. In this example, binary digits in position 32 and 16 are turned on (1) and the remaining digits are turned off (0). So, add 32 and 16 together to get the value of 48.<br /><br />Let's write out a subnet mask in binary format.<br /><br />11111111.11111111.11111111.11000000<br /><br />In this example, the decimal format for the subnet mask is:<br /><br />255.255.255.192<br /><br />Now let's  look at the last octet to determine:<br /><ol><li>How we determine the subnet mask</li><li>1 bits on, 6 bits off</li><li>Block size, that is the size of a subnet</li><li>Number of subnets and hosts.</li></ol>We determined the subnet mask by looking at the octet that has off (0) bits, which is the last octet.<br /><br />.<span style="background-color: yellow;">11</span>000000<br /><br />Counting the on bits, 128 + 64 = 192.<br /><br />Now, to determine how many the size of a subnet (block size), we'll use the powers of two and count the off bits.<br /><br />.11<span style="background-color: yellow;">000000</span><br /><br />2^6 (or 1,2,4,8,16,32) The block size in this case is 32.<br /><br />To determine the number of subnets, you have to use the powers of two and count the on bits.<br /><br />2^2 = 4. So the number of subnets is 4.<br /><br />Which IPv4 IP Addresses, each subnet has a network address (the first address in a subnet and defines the start position of a network) and a broadcast address (the last address in a subnet and is used for broadcasting in a network). These addresses can not be assigned to computers.<br /><br />For instance: 192.168.1.0/24, The network address is 192.168.1.0, while the broadcast address is 192.168.1.255. This means that the only addresses that are able to be assigned to computers are 192.168.1.1 - 192.168.1.254. The network address and broadcast address are determined by the subnet mask.<br /><br />Class A and B networks are subnetted the exact same way. The difference is that you will also utilize the trailing octets in your calculations for the block size and usable number of hosts (computer assignable addresses).<br /><br />For instance,<br /><br />11111111.11111111.<span style="background-color: yellow;">1111</span><span style="background-color: lime;">0000.00000000</span><br /><br />The decimal notation for this subnet mask is 255.255.240.0.<br /><br />It's block size is 4096. The number of subnets available are 16 and the usable hosts per subnet are 4094 addresses.
+Many people are intimidated by the idea of subnetting a block of IP Addresses. In reality, it's much easier than what it appears and with some practice it can be easily done in a persons head, on the fly.
+<br/>
+<br/>
+There are two things that a person needs to know, so that they understand how the process works. Those two things are binary and the powers of two. We use binary and the powers of two to calculate the block size of a subnet, the number of hosts a subnet will have, and the number of subnets that a sub-network can accommodate.
+<br/>
+<br/>
+An IP Address of made up of four numbers, separated by a period. Each number represents an octet, which is one byte long. Eight bits make up a byte. Binary is a computer language that has two functions; on or off. The "1" in binary is "on" and the "0" is "off". These binary digits are counted from right to left to determine what an decimal number value is of an octet.
+<br/>
+<br/>
+Each byte can have a value of up to 255, starting with zero. Counting in binary goes against logic to those of us who were taught that we read left to right. Counting in binary is done right to left.
+<br/>
+<br/>
+As an example,
+<span style="background-color: yellow;">
+ 00110000
+</span>
+has a decimal value of 48. Starting at the 0 on the right, you count 1, 2, 4, 8, 16, 32, 64, 128. Or if you want to go backwards (left to right), 128, 64, 32, 16, 8, 4, 2, 1 See what I mean with the powers of two? Now, the only binary digits that you count are the 1's. You take the binary digits and add them together. In this example, binary digits in position 32 and 16 are turned on (1) and the remaining digits are turned off (0). So, add 32 and 16 together to get the value of 48.
+<br/>
+<br/>
+Let's write out a subnet mask in binary format.
+<br/>
+<br/>
+11111111.11111111.11111111.11000000
+<br/>
+<br/>
+In this example, the decimal format for the subnet mask is:
+<br/>
+<br/>
+255.255.255.192
+<br/>
+<br/>
+Now let's  look at the last octet to determine:
+<br/>
+<ol>
+ <li>
+  How we determine the subnet mask
+ </li>
+ <li>
+  1 bits on, 6 bits off
+ </li>
+ <li>
+  Block size, that is the size of a subnet
+ </li>
+ <li>
+  Number of subnets and hosts.
+ </li>
+</ol>
+We determined the subnet mask by looking at the octet that has off (0) bits, which is the last octet.
+<br/>
+<br/>
+.
+<span style="background-color: yellow;">
+ 11
+</span>
+000000
+<br/>
+<br/>
+Counting the on bits, 128 + 64 = 192.
+<br/>
+<br/>
+Now, to determine how many the size of a subnet (block size), we'll use the powers of two and count the off bits.
+<br/>
+<br/>
+.11
+<span style="background-color: yellow;">
+ 000000
+</span>
+<br/>
+<br/>
+2^6 (or 1,2,4,8,16,32) The block size in this case is 32.
+<br/>
+<br/>
+To determine the number of subnets, you have to use the powers of two and count the on bits.
+<br/>
+<br/>
+2^2 = 4. So the number of subnets is 4.
+<br/>
+<br/>
+Which IPv4 IP Addresses, each subnet has a network address (the first address in a subnet and defines the start position of a network) and a broadcast address (the last address in a subnet and is used for broadcasting in a network). These addresses can not be assigned to computers.
+<br/>
+<br/>
+For instance: 192.168.1.0/24, The network address is 192.168.1.0, while the broadcast address is 192.168.1.255. This means that the only addresses that are able to be assigned to computers are 192.168.1.1 - 192.168.1.254. The network address and broadcast address are determined by the subnet mask.
+<br/>
+<br/>
+Class A and B networks are subnetted the exact same way. The difference is that you will also utilize the trailing octets in your calculations for the block size and usable number of hosts (computer assignable addresses).
+<br/>
+<br/>
+For instance,
+<br/>
+<br/>
+11111111.11111111.
+<span style="background-color: yellow;">
+ 1111
+</span>
+<span style="background-color: lime;">
+ 0000.00000000
+</span>
+<br/>
+<br/>
+The decimal notation for this subnet mask is 255.255.240.0.
+<br/>
+<br/>
+It's block size is 4096. The number of subnets available are 16 and the usable hosts per subnet are 4094 addresses.

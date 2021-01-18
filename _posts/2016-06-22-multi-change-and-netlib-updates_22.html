@@ -14,4 +14,97 @@ blogger_id: tag:blogger.com,1999:blog-2200496390325245811.post-36207582915069709
 blogger_orig_url: https://www.packetgeek.net/2016/06/multi-change-and-netlib-updates_22.html
 ---
 
-I've implemented some new changes to pyMultiChange and netlib. The biggest change affects both netlib and pyMultiChange. In netlib, I ripped out both the 'simple_creds' and 'simple_yaml' methods, as both stored user credentials in plain text on the computer that you used them on.<br/><br/>Instead, utilizing the 'keyring' python module, I created a new class called 'KeyRing'. Using 'KeyRing' is simple. It implements three methods. These methods are 'get_creds', 'set_creds', and 'del_creds'.<br/><br/>'get_creds' will attempt to retrieve the credentials for a username, if the credentials exist. If they do not exist, 'get_creds' will automatically call the 'set_creds' method.<br/><pre>&gt;&gt;&gt; from netlib.user_keyring import KeyRing<br/>&gt;&gt;&gt; creds = KeyRing(username='testuser')<br/>&gt;&gt;&gt; creds.get_creds()<br/>No credentials keyring exist. Creating new credentials.<br/>Enter your user password: <br/>Confirm your user password: <br/>Enter your enable password: <br/>Confirm your enable password: <br/>&gt;&gt;&gt; print creds.get_creds()<br/>{'username': 'testuser', 'enable': u'test', 'password': u'testpass'}<br/>&gt;&gt;&gt; <br/></pre><br/>'set_creds' does exactly what it sounds like. It allows you to set your credentials. If no user credentials exist, it creates a new keyring. However, if user credentials do exist, it over-writes the credentials.<br/><pre>&gt;&gt;&gt; creds.set_creds()<br/>Enter your user password: <br/>Confirm your user password: <br/>Enter your enable password: <br/>Confirm your enable password: <br/>&gt;&gt;&gt; print creds.get_creds()<br/>{'username': 'testuser', 'enable': u'enable123', 'password': u'test123'}<br/></pre><br/>Finally, 'del_creds' deletes a user's credentials from an existing keyring.<br/><pre>&gt;&gt;&gt; creds.del_creds()<br/>Enter your user password: <br/>Deleting keyring credentials for testuser<br/></pre><br/>The '<a href="https://pypi.python.org/pypi/keyring" target="_blank">keyring</a>' python library utilizes your operating systems native methods for storing passwords. For Example, in Mac OS X, it will utilize the KeyChain functionality, In Linux, it will use dbus, and in Microsoft Windows, it utilizes the Credential Vault. There are also methods available for you to create your own backend. Much more secure than the ~/.tacacslogin or ~/.tacacs.yml files that used to be created from the old methods.<br/><br/>As expected, this change was implemented into pyMultiChange. Doing so, required that new command line arguments needed to be implemented. There are actually several new command line arguments, since the last time that I wrote about pyMultiChange. I'll go over them here.<br/><pre>usage: multi_change.py [-h] -u USERNAME [--delete-creds [DELETE_CREDS]]<br/>                       [--set-creds [SET_CREDS]] [-d DEVICES] [-c COMMANDS]<br/>                       [-s [SSH]] [-t [TELNET]] [-o [OUTPUT]] [-v [VERBOSE]]<br/>                       [--delay DELAY] [--buffer BUFFER]<br/>                       [--threaded [THREADED]] [-m MAXTHREADS]<br/><br/>Managing network devices with python<br/><br/>optional arguments:<br/>  -h, --help            show this help message and exit<br/>  -u USERNAME, --username USERNAME<br/>                        Specify your username.<br/>  --delete-creds [DELETE_CREDS]<br/>                        Delete credentials from keyring.<br/>  --set-creds [SET_CREDS]<br/>                        set keyring credentials.<br/>  -d DEVICES, --devices DEVICES<br/>                        Specifies a host file<br/>  -c COMMANDS, --commands COMMANDS<br/>                        Specifies a commands file<br/>  -s [SSH], --ssh [SSH]<br/>                        Default: Use the SSH protocol<br/>  -t [TELNET], --telnet [TELNET]<br/>                        Use the Telnet protocol<br/>  -o [OUTPUT], --output [OUTPUT]<br/>                        Verbose command output<br/>  -v [VERBOSE], --verbose [VERBOSE]<br/>                        Debug script output<br/>  --delay DELAY         Change the default delay exec between commands<br/>  --buffer BUFFER       Change the default SSH output buffer<br/>  --threaded [THREADED]<br/>                        Enable process threading<br/>  -m MAXTHREADS, --maxthreads MAXTHREADS<br/>                        Define the maximum number of threads<br/></pre><br/>The first, is that multi_change.py now requires that you specify a username for all actions. This allows multi_change.py to interact with the keyring to set, extract, and delete credentials.<br/><pre>usage: multi_change.py [-h] -u USERNAME [--delete-creds [DELETE_CREDS]]<br/>                       [--set-creds [SET_CREDS]] [-d DEVICES] [-c COMMANDS]<br/>                       [-s [SSH]] [-t [TELNET]] [-o [OUTPUT]] [-v [VERBOSE]]<br/>                       [--delay DELAY] [--buffer BUFFER]<br/>                       [--threaded [THREADED]] [-m MAXTHREADS]<br/>multi_change.py: error: argument -u/--username is required<br/></pre><br/>When you specify a username, multi_change.py immediately attempts to extract the credentials for the user. If they don't exist, multi_change.py will prompt you to set the credentials.<br/><pre>$ multi_change.py -u testuser<br/>No credentials keyring exist. Creating new credentials.<br/>Enter your user password: <br/>Confirm your user password: <br/>Enter your enable password: <br/>Confirm your enable password:<br/></pre><br/>You can also utilize the '--set-creds' command line argument to either set credentials for a new user or over-write the credentials for an existing user.<br/><pre>$ multi_change.py -u testuser --set-creds<br/>Enter your user password: <br/>Confirm your user password: <br/>Enter your enable password: <br/>Confirm your enable password: <br/></pre><br/>Like wise, you can use the '--delete-creds' to delete existing creds.<br/><pre>$ multi_change.py -u testuser --delete-creds<br/>Enter your user password: <br/>Deleting keyring credentials for testuser<br/></pre><br/>Beyond that, the option to utilize threading was created. With the threading ability, you also get the ability to specify the number of threads and the delay factor between command execution.<br/><br/>For example, the below series of command line arguments enable threading, utilizing 50 threads, create a delay factor of 5 seconds, and will display the command output.<br/><pre>$ multi_change.py -u testuser -d hosts.txt -c commands.txt --threaded -m 50 --delay 5 -o<br/></pre><br/>This is very handy for running a common command set across a large number of devices very quickly.<br/><br/>Beyond that, there are a few under the hood enhancements.<br/><ol><br/> 	<li>Protocol failover will no longer happen. Meaning that if a device fails to login via SSH, it will no longer failover to attempt to login via telnet and vise versa.</li><br/> 	<li>Login failures are logged in a file called 'failure.log'. This file is created in the local folder that you're running 'multi_change.py' in.</li><br/> 	<li>multi_change.py will now only read the commands file once, rather than reading it for every device that it attempts to make changes on.</li><br/> 	<li>pyMultiChange and netlib are now python installable packages. Meaning that you can run their 'setup.py' files and they will be installed as native python packages, allowing them to be called from anywhere on the OS.</li><br/></ol><br/>Both packages are available on github.com:<br/><ul><br/> 	<li><a href="https://github.com/jtdub/netlib" target="_blank">netlib</a></li><br/> 	<li><a href="https://github.com/jtdub/pyMultiChange" target="_blank">PyMultiChange</a></li><br/></ul>
+I've implemented some new changes to pyMultiChange and netlib. The biggest change affects both netlib and pyMultiChange. In netlib, I ripped out both the 'simple_creds' and 'simple_yaml' methods, as both stored user credentials in plain text on the computer that you used them on.
+<br/>
+<br/>
+Instead, utilizing the 'keyring' python module, I created a new class called 'KeyRing'. Using 'KeyRing' is simple. It implements three methods. These methods are 'get_creds', 'set_creds', and 'del_creds'.
+<br/>
+<br/>
+'get_creds' will attempt to retrieve the credentials for a username, if the credentials exist. If they do not exist, 'get_creds' will automatically call the 'set_creds' method.
+<br/>
+<pre>&gt;&gt;&gt; from netlib.user_keyring import KeyRing<br/>&gt;&gt;&gt; creds = KeyRing(username='testuser')<br/>&gt;&gt;&gt; creds.get_creds()<br/>No credentials keyring exist. Creating new credentials.<br/>Enter your user password: <br/>Confirm your user password: <br/>Enter your enable password: <br/>Confirm your enable password: <br/>&gt;&gt;&gt; print creds.get_creds()<br/>{'username': 'testuser', 'enable': u'test', 'password': u'testpass'}<br/>&gt;&gt;&gt; <br/></pre>
+<br/>
+'set_creds' does exactly what it sounds like. It allows you to set your credentials. If no user credentials exist, it creates a new keyring. However, if user credentials do exist, it over-writes the credentials.
+<br/>
+<pre>&gt;&gt;&gt; creds.set_creds()<br/>Enter your user password: <br/>Confirm your user password: <br/>Enter your enable password: <br/>Confirm your enable password: <br/>&gt;&gt;&gt; print creds.get_creds()<br/>{'username': 'testuser', 'enable': u'enable123', 'password': u'test123'}<br/></pre>
+<br/>
+Finally, 'del_creds' deletes a user's credentials from an existing keyring.
+<br/>
+<pre>&gt;&gt;&gt; creds.del_creds()<br/>Enter your user password: <br/>Deleting keyring credentials for testuser<br/></pre>
+<br/>
+The '
+<a href="https://pypi.python.org/pypi/keyring" target="_blank">
+ keyring
+</a>
+' python library utilizes your operating systems native methods for storing passwords. For Example, in Mac OS X, it will utilize the KeyChain functionality, In Linux, it will use dbus, and in Microsoft Windows, it utilizes the Credential Vault. There are also methods available for you to create your own backend. Much more secure than the ~/.tacacslogin or ~/.tacacs.yml files that used to be created from the old methods.
+<br/>
+<br/>
+As expected, this change was implemented into pyMultiChange. Doing so, required that new command line arguments needed to be implemented. There are actually several new command line arguments, since the last time that I wrote about pyMultiChange. I'll go over them here.
+<br/>
+<pre>usage: multi_change.py [-h] -u USERNAME [--delete-creds [DELETE_CREDS]]<br/>                       [--set-creds [SET_CREDS]] [-d DEVICES] [-c COMMANDS]<br/>                       [-s [SSH]] [-t [TELNET]] [-o [OUTPUT]] [-v [VERBOSE]]<br/>                       [--delay DELAY] [--buffer BUFFER]<br/>                       [--threaded [THREADED]] [-m MAXTHREADS]<br/><br/>Managing network devices with python<br/><br/>optional arguments:<br/>  -h, --help            show this help message and exit<br/>  -u USERNAME, --username USERNAME<br/>                        Specify your username.<br/>  --delete-creds [DELETE_CREDS]<br/>                        Delete credentials from keyring.<br/>  --set-creds [SET_CREDS]<br/>                        set keyring credentials.<br/>  -d DEVICES, --devices DEVICES<br/>                        Specifies a host file<br/>  -c COMMANDS, --commands COMMANDS<br/>                        Specifies a commands file<br/>  -s [SSH], --ssh [SSH]<br/>                        Default: Use the SSH protocol<br/>  -t [TELNET], --telnet [TELNET]<br/>                        Use the Telnet protocol<br/>  -o [OUTPUT], --output [OUTPUT]<br/>                        Verbose command output<br/>  -v [VERBOSE], --verbose [VERBOSE]<br/>                        Debug script output<br/>  --delay DELAY         Change the default delay exec between commands<br/>  --buffer BUFFER       Change the default SSH output buffer<br/>  --threaded [THREADED]<br/>                        Enable process threading<br/>  -m MAXTHREADS, --maxthreads MAXTHREADS<br/>                        Define the maximum number of threads<br/></pre>
+<br/>
+The first, is that multi_change.py now requires that you specify a username for all actions. This allows multi_change.py to interact with the keyring to set, extract, and delete credentials.
+<br/>
+<pre>usage: multi_change.py [-h] -u USERNAME [--delete-creds [DELETE_CREDS]]<br/>                       [--set-creds [SET_CREDS]] [-d DEVICES] [-c COMMANDS]<br/>                       [-s [SSH]] [-t [TELNET]] [-o [OUTPUT]] [-v [VERBOSE]]<br/>                       [--delay DELAY] [--buffer BUFFER]<br/>                       [--threaded [THREADED]] [-m MAXTHREADS]<br/>multi_change.py: error: argument -u/--username is required<br/></pre>
+<br/>
+When you specify a username, multi_change.py immediately attempts to extract the credentials for the user. If they don't exist, multi_change.py will prompt you to set the credentials.
+<br/>
+<pre>$ multi_change.py -u testuser<br/>No credentials keyring exist. Creating new credentials.<br/>Enter your user password: <br/>Confirm your user password: <br/>Enter your enable password: <br/>Confirm your enable password:<br/></pre>
+<br/>
+You can also utilize the '--set-creds' command line argument to either set credentials for a new user or over-write the credentials for an existing user.
+<br/>
+<pre>$ multi_change.py -u testuser --set-creds<br/>Enter your user password: <br/>Confirm your user password: <br/>Enter your enable password: <br/>Confirm your enable password: <br/></pre>
+<br/>
+Like wise, you can use the '--delete-creds' to delete existing creds.
+<br/>
+<pre>$ multi_change.py -u testuser --delete-creds<br/>Enter your user password: <br/>Deleting keyring credentials for testuser<br/></pre>
+<br/>
+Beyond that, the option to utilize threading was created. With the threading ability, you also get the ability to specify the number of threads and the delay factor between command execution.
+<br/>
+<br/>
+For example, the below series of command line arguments enable threading, utilizing 50 threads, create a delay factor of 5 seconds, and will display the command output.
+<br/>
+<pre>$ multi_change.py -u testuser -d hosts.txt -c commands.txt --threaded -m 50 --delay 5 -o<br/></pre>
+<br/>
+This is very handy for running a common command set across a large number of devices very quickly.
+<br/>
+<br/>
+Beyond that, there are a few under the hood enhancements.
+<br/>
+<ol>
+ <br/>
+ <li>
+  Protocol failover will no longer happen. Meaning that if a device fails to login via SSH, it will no longer failover to attempt to login via telnet and vise versa.
+ </li>
+ <br/>
+ <li>
+  Login failures are logged in a file called 'failure.log'. This file is created in the local folder that you're running 'multi_change.py' in.
+ </li>
+ <br/>
+ <li>
+  multi_change.py will now only read the commands file once, rather than reading it for every device that it attempts to make changes on.
+ </li>
+ <br/>
+ <li>
+  pyMultiChange and netlib are now python installable packages. Meaning that you can run their 'setup.py' files and they will be installed as native python packages, allowing them to be called from anywhere on the OS.
+ </li>
+ <br/>
+</ol>
+<br/>
+Both packages are available on github.com:
+<br/>
+<ul>
+ <br/>
+ <li>
+  <a href="https://github.com/jtdub/netlib" target="_blank">
+   netlib
+  </a>
+ </li>
+ <br/>
+ <li>
+  <a href="https://github.com/jtdub/pyMultiChange" target="_blank">
+   PyMultiChange
+  </a>
+ </li>
+ <br/>
+</ul>

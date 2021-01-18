@@ -11,4 +11,41 @@ blogger_id: tag:blogger.com,1999:blog-2200496390325245811.post-18413082863537997
 blogger_orig_url: https://www.packetgeek.net/2010/05/what-information-is-your-browser-giving_18.html
 ---
 
-This morning, there was an article where the EFF is claiming that just because you turn off cookies and javascript in your browser doesn't mean that you're not giving away information. Unfortunately, they are very correct. Your browser will give away ALL kinds of information about your computer; such as operating system, browser type / version number, browser plugin's, etc.<br /><br />I've used this exact same information for years to gain information about visitors on a site that I couldn't physically monitor the logs. What I did was use a CGI script, written in perl, to modify the HTTP header to point to an transparent image that was 1 pixel high and wide. It's very easy to hide an image when it's transparent and only a single pixel.<br /><br />The information that this script grabbed were IP Address, date / time the image was accessed, browser user agent, and the referring URL. That's enough information for me to get an idea of what content people are looking at and to even identify unique and repeat users.<br /><br />Here is a sample script that I've used before.<br /><br /><pre>#!/usr/bin/perl -w<br /><br />use DBI;<br /><br />my $imgurl = "http://www.domain.com/mytracker/images/1by1.gif";<br /><br />print "Cache-control: no-cache\n";<br />print "Content-type: image/gif\n";<br />print "Location: $imgurl\n\n";<br /><br />$refer = "$ENV{HTTP_REFERER}";<br />$ipaddr = "$ENV{REMOTE_ADDR}";<br />$browser = "$ENV{HTTP_USER_AGENT}";<br /><br />my $dbh = DBI->connect("DBI:mysql:database=mytracker;host=localhost", "username", "password", {'RaiseError' => 1});<br /><br />my $rows = $dbh->do("INSERT INTO trackerlogs (id, date, referurl, ipaddress, useragent) VALUES ('', NOW(), '$refer', '$ipaddr', '$browser')");<br /></pre><br />Here's an example of the information that the log generates:<br /><br /><table border="1" cellpadding="1" cellspacing="1"><tr>    <td>2009-10-11 19:54:06</td> <td>127.0.0.1</td> <td>http://www.domain.com/referringurl.htm</td> <td>Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/4.0; FunWebProducts; Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1) ; SLCC1; .NET CLR 2.0.50727; Media Center PC 5.0; .NET CLR 3.5.30729; .NET CLR 3.0.30618; AskTB5.3)</td>  </tr></table><br />Here's a link to the article: <a href="http://www.theregister.co.uk/2010/05/17/browser_fingerprint/">EFF Browser Fingerprints Article</a>
+This morning, there was an article where the EFF is claiming that just because you turn off cookies and javascript in your browser doesn't mean that you're not giving away information. Unfortunately, they are very correct. Your browser will give away ALL kinds of information about your computer; such as operating system, browser type / version number, browser plugin's, etc.
+<br/>
+<br/>
+I've used this exact same information for years to gain information about visitors on a site that I couldn't physically monitor the logs. What I did was use a CGI script, written in perl, to modify the HTTP header to point to an transparent image that was 1 pixel high and wide. It's very easy to hide an image when it's transparent and only a single pixel.
+<br/>
+<br/>
+The information that this script grabbed were IP Address, date / time the image was accessed, browser user agent, and the referring URL. That's enough information for me to get an idea of what content people are looking at and to even identify unique and repeat users.
+<br/>
+<br/>
+Here is a sample script that I've used before.
+<br/>
+<br/>
+<pre>#!/usr/bin/perl -w<br/><br/>use DBI;<br/><br/>my $imgurl = "http://www.domain.com/mytracker/images/1by1.gif";<br/><br/>print "Cache-control: no-cache\n";<br/>print "Content-type: image/gif\n";<br/>print "Location: $imgurl\n\n";<br/><br/>$refer = "$ENV{HTTP_REFERER}";<br/>$ipaddr = "$ENV{REMOTE_ADDR}";<br/>$browser = "$ENV{HTTP_USER_AGENT}";<br/><br/>my $dbh = DBI-&gt;connect("DBI:mysql:database=mytracker;host=localhost", "username", "password", {'RaiseError' =&gt; 1});<br/><br/>my $rows = $dbh-&gt;do("INSERT INTO trackerlogs (id, date, referurl, ipaddress, useragent) VALUES ('', NOW(), '$refer', '$ipaddr', '$browser')");<br/></pre>
+<br/>
+Here's an example of the information that the log generates:
+<br/>
+<br/>
+<table border="1" cellpadding="1" cellspacing="1">
+ <tr>
+  <td>
+   2009-10-11 19:54:06
+  </td>
+  <td>
+   127.0.0.1
+  </td>
+  <td>
+   http://www.domain.com/referringurl.htm
+  </td>
+  <td>
+   Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/4.0; FunWebProducts; Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1) ; SLCC1; .NET CLR 2.0.50727; Media Center PC 5.0; .NET CLR 3.5.30729; .NET CLR 3.0.30618; AskTB5.3)
+  </td>
+ </tr>
+</table>
+<br/>
+Here's a link to the article:
+<a href="http://www.theregister.co.uk/2010/05/17/browser_fingerprint/">
+ EFF Browser Fingerprints Article
+</a>
