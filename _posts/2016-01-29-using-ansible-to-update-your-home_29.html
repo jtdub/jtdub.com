@@ -6,9 +6,7 @@ author: jtdub
 tags:
 - DevOps
 - Ansible
-modified_time: '2019-04-11T11:10:06.138-05:00'
-blogger_id: tag:blogger.com,1999:blog-2200496390325245811.post-4589862192386248542
-blogger_orig_url: https://www.packetgeek.net/2016/01/using-ansible-to-update-your-home_29.html
+- packetgeek.net
 ---
 
 Like most home Internet users, my home Internet has a dynamic IP Address. For many years, I used DynDNS to keep a hostname associated to my home Internet, so that I could access my home resources remotely. After DynDNS started charging for the service, I just created a sub-domain off one of the domains that I own. The problem has always been that I would only find out about my IP Address changing after a failed login attempt. Since then, I have created a couple scripts. However, as I go down the Ansible journey, I try to apply the same problems to Ansible to see how it can solve problems. So, I decided to write a playbook to have Ansible automatically update my DNS record as needed.

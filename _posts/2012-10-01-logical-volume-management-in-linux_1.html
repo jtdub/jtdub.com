@@ -8,9 +8,7 @@ tags:
 - Filesystems
 - System Administration
 - LVM
-modified_time: '2019-04-11T11:09:44.847-05:00'
-blogger_id: tag:blogger.com,1999:blog-2200496390325245811.post-6649196142845002740
-blogger_orig_url: https://www.packetgeek.net/2012/10/logical-volume-management-in-linux_1.html
+- packetgeek.net
 ---
 
 LVM is a very powerful file system administration tool in Linux. It provides you with the ability to create, extend, resize, and even take snapshots of disk space on live systems. Here are my notes.  I created a new hard drive within my test VM. When the server booted, it sees the new drive as /dev/sda. The disk that's in use by Linux is /dev/vda.  To start, we'll need to partition /dev/sda. Note that you can only have four primary partitions on a single hard drive. Once you reach four primary partitions, if there is any space left on the disk, it will be unusable. Therefore, if you have a couple primary partitions, it's best to start using logical partitions.

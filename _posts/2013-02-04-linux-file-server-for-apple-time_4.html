@@ -8,9 +8,16 @@ tags:
 - netatalk
 - afp
 - Apple TimeMachine
-modified_time: '2019-04-11T11:09:54.764-05:00'
-blogger_id: tag:blogger.com,1999:blog-2200496390325245811.post-3586772696738796265
-blogger_orig_url: https://www.packetgeek.net/2013/02/linux-file-server-for-apple-time_4.html
+- packetgeek.net
 ---
 
-I got Apple Time Machine backups working with my Linux file server. Apple allows you to perform backups over the network utilizing the AFP (Apple Filing Protocol), via the Time Machine app. There is an open source implementation of afp in the netatalk package. Here is a quick and dirty run down of how I configured netatalk to work as my storage location for my apple backups.<br/><pre class="lang:default decode:true">[root@sgnhv ~]# cd /etc/netatalk/<br/>[root@sgnhv netatalk]# for i in afpd.conf AppleVolumes.default; do echo "### $i ####"; grep -v ^# $i | grep -v ^$; done<br/>### afpd.conf ####<br/>- -mimicmodel TimeCapsule6,106 -setuplog "default log_warn /var/log/afpd.log"<br/>[Global]<br/>mimic model = TimeCapsule6,106<br/>log level = default:warn<br/>log file = /var/log/afpd.log<br/>hosts allow = 172.16.1.0/24<br/>[TimeMachine]<br/>path = /timemachine<br/>valid users = jtdubb<br/>time machine = yes<br/>### AppleVolumes.default ####<br/>:DEFAULT: options:upriv,usedots<br/>/timemachine	TimeMachine	allow:jtdubb options:usedots,upriv,tm<br/><br/>[root@sgnhv netatalk]# history | egrep 'afppasswd|chkconfig netatalk|service netatalk'<br/>  786  service netatalk restart<br/>  795  afppasswd -a jtdubb<br/>  867  chkconfig netatalk on</pre><br/>As you can see, the configuration is similar to a samba configuration, with a couple minor exceptions.<br/><br/><a href="http://netatalk.sourceforge.net/" target="_blank">http://netatalk.sourceforge.net/</a>
+I got Apple Time Machine backups working with my Linux file server. Apple allows you to perform backups over the network utilizing the AFP (Apple Filing Protocol), via the Time Machine app. There is an open source implementation of afp in the netatalk package. Here is a quick and dirty run down of how I configured netatalk to work as my storage location for my apple backups.
+<br/>
+<pre class="lang:default decode:true">[root@sgnhv ~]# cd /etc/netatalk/<br/>[root@sgnhv netatalk]# for i in afpd.conf AppleVolumes.default; do echo "### $i ####"; grep -v ^# $i | grep -v ^$; done<br/>### afpd.conf ####<br/>- -mimicmodel TimeCapsule6,106 -setuplog "default log_warn /var/log/afpd.log"<br/>[Global]<br/>mimic model = TimeCapsule6,106<br/>log level = default:warn<br/>log file = /var/log/afpd.log<br/>hosts allow = 172.16.1.0/24<br/>[TimeMachine]<br/>path = /timemachine<br/>valid users = jtdubb<br/>time machine = yes<br/>### AppleVolumes.default ####<br/>:DEFAULT: options:upriv,usedots<br/>/timemachine	TimeMachine	allow:jtdubb options:usedots,upriv,tm<br/><br/>[root@sgnhv netatalk]# history | egrep 'afppasswd|chkconfig netatalk|service netatalk'<br/>  786  service netatalk restart<br/>  795  afppasswd -a jtdubb<br/>  867  chkconfig netatalk on</pre>
+<br/>
+As you can see, the configuration is similar to a samba configuration, with a couple minor exceptions.
+<br/>
+<br/>
+<a href="http://netatalk.sourceforge.net/" target="_blank">
+ http://netatalk.sourceforge.net/
+</a>

@@ -5,9 +5,7 @@ date: '2013-09-25T01:30:00.001-05:00'
 author: jtdub
 tags:
 - BGP
-modified_time: '2019-04-11T11:09:58.141-05:00'
-blogger_id: tag:blogger.com,1999:blog-2200496390325245811.post-7946569645919433184
-blogger_orig_url: https://www.packetgeek.net/2013/09/bgp-goodness-and-links_24.html
+- packetgeek.net
 ---
 
 I had my first real experience with playing with regular expressions in BGP this evening to manipulate traffic. In the instance below, I needed to give a lower preference to traffic that was learned from '65002' and was 4 AS hops out. I did this by creating an as-path access-list, using it in a route-map, and applying it to an eBGP neighbor.
