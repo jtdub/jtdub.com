@@ -16,3 +16,4 @@ highlighter: pygments
 
 exclude:
 - scripts
+- tests
