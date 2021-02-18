@@ -15,7 +15,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the site in the jekyll/builder container
       run: |
-        chown 1000:1000 ${{ github.workspace }}/Gemfile.lock
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll \
         -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
@@ -27,7 +26,6 @@ jobs:
         python -m pip install pytest bs4 requests
     - name: Run jekyll site container
       run: |
-        chown 1000:1000 ${{ github.workspace }}/Gemfile.lock
         docker run \
         -d --rm --name jekyll \
         -v ${{ github.workspace }}:/srv/jekyll \
