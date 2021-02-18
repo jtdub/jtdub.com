@@ -13,18 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build the site in the jekyll/builder container
-      run: |
-        docker run \
-        -v ${{ github.workspace }}:/srv/jekyll \
-        -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:latest \
-        /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future"
-    - name: Install tests dependencies
-      run: |
-        python -m pip install pip --upgrade
-        python -m pip install pytest bs4 requests
-    - name: Run jekyll site container
+    - name: run jekyll site container
       run: |
         docker run \
         -d --rm --name jekyll \
@@ -32,6 +21,8 @@ jobs:
         -it jekyll/jekyll:latest \
         -p 4000:4000 \
         jekyll serve
-    - name: Run pytest
+    - name: Run tests
       run: |
+        python -m pip install pip --upgrade
+        python -m pip install pytest bs4 requests
         pytest
