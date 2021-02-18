@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: run jekyll site container
+    - name: run tests against jekyll container
       run: |
         docker run \
         -d --rm --name jekyll \
@@ -21,8 +21,6 @@ jobs:
         -it jekyll/jekyll:latest \
         -p 4000:4000 \
         jekyll serve
-    - name: Run tests
-      run: |
         python3 -m pip install pip setuptools --upgrade
         python3 -m pip install pytest bs4 requests
         python3 -m pytest
