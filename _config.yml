@@ -1,18 +1,11 @@
 title: jtdub.com
-email: thedude@jtdub.com 
 description:
   tales of wanderlust, random thoughts, and blogs about technology; specifically linux, networking, automation, and software developmnet
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: packetgeeknet 
-github_username:  jtdub
-theme: minima 
 plugins:
   - jekyll-feed
-  - jekyll-paginate
-paginate: 2
-paginate_path: "/blog/:num/"
-highlighter: pygments
+
 
 exclude:
 - scripts
