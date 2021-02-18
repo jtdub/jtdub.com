@@ -21,6 +21,7 @@ jobs:
         -it jekyll/jekyll:latest \
         -p 4000:4000 \
         jekyll serve
+        sleep 30
         python3 -m pip install pip setuptools --upgrade
         python3 -m pip install pytest bs4 requests
         python3 -m pytest
