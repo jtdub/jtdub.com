@@ -25,4 +25,4 @@ jobs:
       run: |
         python -m pip install pip --upgrade
         python -m pip install pytest bs4 requests
-        pytest
+        python -m pytest
