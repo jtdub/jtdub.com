@@ -10,3 +10,4 @@ plugins:
 exclude:
 - scripts
 - tests
+- docker-compose.yaml

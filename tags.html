@@ -1,0 +1,9 @@
+---
+layout: default
+title: tags
+permalink: /tags/
+---
+
+{% for tag in site.tags %}
+<p>{{ tag | first }}</p>
+{% endfor %}
