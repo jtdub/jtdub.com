@@ -10,4 +10,7 @@ plugins:
 exclude:
 - scripts
 - tests
-- docker-compose.yaml
+- docker
+- ansible
+- container_files
+- k8s
