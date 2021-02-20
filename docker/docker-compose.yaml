@@ -10,7 +10,7 @@ services:
     image: nginx:latest
     container_name: nginx
     volumes:
-      - ./container_files/nginx:/etc/nginx/conf.d
+      - ../container_files/nginx:/etc/nginx/conf.d
     ports:
       - 80:80
       - 443:443

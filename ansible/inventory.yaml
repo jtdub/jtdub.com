@@ -1,0 +1,19 @@
+all:
+  hosts:
+      master1.infra:
+      node1.infra:
+      node2.infra:
+  children:
+    droplets:
+      hosts:
+        master1.infra:
+          swarm: manager
+        node1.infra:
+          swarm: worker
+        node2.infra:
+          swarm: worker
+      vars:
+        size_id: s-1vcpu-1gb
+        region_id: nyc3
+        image_id: ubuntu-20-04-x64
+        ansible_user: root

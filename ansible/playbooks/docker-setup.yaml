@@ -1,0 +1,27 @@
+- hosts: droplets
+
+  tasks:
+  - name: START DOCKER SERVICE
+    ansible.builtin.service:
+      name: docker
+      enabled: yes
+      state: started
+
+  - name: SETUP DOCKER SWARM MANAGER
+    community.docker.docker_swarm:
+      state: present
+      advertise_addr: "{{ ansible_host }}"
+    when: swarm == "manager"
+    register: swarm_manager
+
+  - name: SETUP DOCKER SWARM WORKER
+    community.docker.docker_swarm:
+      state: join 
+      advertise_addr: "{{ ansible_host }}"
+      join_token: "{{ hostvars['master1.infra'].swarm_manager.swarm_facts.JoinTokens.Manager  }}"
+      remote_addrs: "{{ hostvars['master1.infra'].ansible_host }}"
+    when: swarm == "worker"
+    register: swarm_worker
+
+  - debug:
+      msg: "{{ swarm_worker }}"

@@ -1,0 +1,38 @@
+- hosts: droplets
+
+  tasks:
+  - name: PREPARE TO INSTALL DOCKER
+    apt:
+      name: 
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg-agent
+      - software-properties-common
+      - python3-pip
+      state: present
+      update_cache: yes
+
+  - name: ADD DOCKER GPG KEY
+    ansible.builtin.apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+
+  - name: ADD DOCKER APT REPOSITORY
+    ansible.builtin.apt_repository:
+      repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+      state: present
+
+  - name: INSTALL DOCKER PACKAGES
+    apt:
+      name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      state: present
+      update_cache: yes
+
+  - name: INSTALL DOCKER PYTHON PACKAGE
+    pip:
+      name: docker
+      state: present
