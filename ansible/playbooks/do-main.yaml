@@ -3,3 +3,4 @@
 - import_playbook: apt.yaml
 - import_playbook: docker-install.yaml
 - import_playbook: docker-setup.yaml
+- import_playbook: glusterfs.yaml

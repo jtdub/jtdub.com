@@ -22,6 +22,3 @@
       remote_addrs: "{{ hostvars['master1.infra'].ansible_host }}"
     when: swarm == "worker"
     register: swarm_worker
-
-  - debug:
-      msg: "{{ swarm_worker }}"
