@@ -2,13 +2,17 @@ version: "3.9"
 services:
   jekyll:
     image: jekyll/jekyll:latest
-    container_name: jekyell
     volumes:
       - ..:/srv/jekyll
     command: jekyll serve
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
   nginx:
     image: nginx:latest
-    container_name: nginx
     volumes:
       - ../container_files/nginx:/etc/nginx/conf.d
     ports:
@@ -18,3 +22,9 @@ services:
       - jekyll
     depends_on:
       - jekyll
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
