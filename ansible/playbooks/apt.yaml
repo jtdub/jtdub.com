@@ -1,0 +1,7 @@
+- hosts: droplets
+
+  tasks:
+  - name: UPDATE INSTALLED PACKAGES
+    apt:
+      upgrade: yes
+      update_cache: yes

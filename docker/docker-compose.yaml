@@ -1,16 +1,35 @@
 version: "3.9"
 services:
+  sslbot-infra.jtdub.com:
+    build:
+      context: ../container_files/opensslbot
+    volumes:
+      - ../container_files/opensslbot/etc/ssl:/opt/sslbot/etc/ssl
+    environment:
+      - EXPIRE=30
+      - SUBJECT="/C=US/ST=TX/L=Austin/CN=infra.jtdub.com"
+      - DOMAIN="infra.jtdub.com"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
   jekyll:
     image: jekyll/jekyll:latest
-    container_name: jekyell
     volumes:
       - ..:/srv/jekyll
     command: jekyll serve
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
   nginx:
     image: nginx:latest
-    container_name: nginx
     volumes:
-      - ./container_files/nginx:/etc/nginx/conf.d
+      - ../container_files/nginx:/etc/nginx/conf.d
+      - ../container_files/opensslbot/etc/ssl:/opt/sslbot/etc/ssl
     ports:
       - 80:80
       - 443:443
@@ -18,3 +37,10 @@ services:
       - jekyll
     depends_on:
       - jekyll
+      - sslbot-infra.jtdub.com
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
