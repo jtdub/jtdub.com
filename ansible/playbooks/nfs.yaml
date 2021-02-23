@@ -1,0 +1,52 @@
+- hosts: droplets
+
+  tasks:
+  - name: INSTALL NFS SERVER PACKAGES
+    apt:
+      name:
+      - nfs-kernel-server
+      state: present
+      update_cache: yes
+    when: swarm == "manager"
+
+  - name: CREATE CLIENT DIRECTORY
+    ansible.builtin.file:
+      path: /srv/swarm
+      state: directory
+      mode: "0755"
+
+  - name: CREATE EXPORTS
+    ansible.builtin.template:
+      src: nfs-exports
+      dest: /etc/exports
+      mode: 644
+      owner: root
+      group: root
+    when: swarm == "manager"
+
+  - name: RUN EXPORTFS COMMAND
+    ansible.builtin.command: exportfs -a
+    when: swarm == "manager"
+
+  - name: START NFS SERVICE
+    ansible.builtin.service:
+      name: nfs-kernel-server
+      state: started
+      enabled: yes
+    when: swarm == "manager"
+
+  - name: INSTALL NFS CLIENT PACKAGES
+    apt:
+      name:
+      - nfs-common 
+      state: present
+      update_cache: yes
+    when: swarm == "worker"
+
+  - name: MOUNT NFS VOLUME
+    ansible.posix.mount: 
+      src: "{{ hostvars['master1.infra'].ansible_host }}:/srv/swarm"
+      path: /srv/swarm
+      fstype: nfs 
+      state: mounted
+    when: swarm == "worker"

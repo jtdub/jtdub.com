@@ -1,0 +1,1 @@
+/srv/swarm  node1.infra.jtdub.com(rw,sync,no_subtree_check) node2.infra.jtdub.com(rw,sync,no_subtree_check)
