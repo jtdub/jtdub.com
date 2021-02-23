@@ -1,6 +1,7 @@
 version: "3.9"
 services:
-  sslbot-infra.jtdub.com:
+  sslbot:
+    image: "localhost:5000/sslbot:latest"
     build:
       context: ../container_files/opensslbot
     volumes:
