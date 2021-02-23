@@ -8,10 +8,13 @@ all:
       hosts:
         master1.infra:
           swarm: manager
+          ansible_host: master1.infra.jtdub.com
         node1.infra:
           swarm: worker
+          ansible_host: node1.infra.jtdub.com
         node2.infra:
           swarm: worker
+          ansible_host: node2.infra.jtdub.com
       vars:
         size_id: s-1vcpu-1gb
         region_id: nyc3
