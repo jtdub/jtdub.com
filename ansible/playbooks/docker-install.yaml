@@ -32,7 +32,10 @@
       state: present
       update_cache: yes
 
-  - name: INSTALL DOCKER PYTHON PACKAGE
+  - name: INSTALL DOCKER PYTHON PACKAGES
     pip:
-      name: docker
+      name:
+      - docker
+      - docker-compose
+      - jsondiff
       state: present

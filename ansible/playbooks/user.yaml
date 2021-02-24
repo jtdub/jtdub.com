@@ -1,0 +1,23 @@
+- hosts: droplets
+
+  tasks:
+  - name: CREATE USER GROUPS
+    ansible.builtin.group:
+      name: "{{ item }}"
+      state: present
+    with_items:
+    - jtdub
+    - developers
+
+  - name: CREATE JTDUB USER ACCOUNT
+    ansible.builtin.user:
+      name: jtdub
+      comment: James Williams
+      shell: /bin/bash
+      home: /home/jtdub
+      groups:
+      - jtdub
+      - root
+      - developers
+      append: yes
+      state: present

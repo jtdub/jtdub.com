@@ -45,8 +45,8 @@
 
   - name: MOUNT NFS VOLUME
     ansible.posix.mount: 
-      src: "{{ hostvars['master1.infra'].ansible_host }}:/srv/swarm"
-      path: /srv/swarm
+      src: "{{ hostvars['master1.infra'].ansible_host }}:/home/jtdub"
+      path: /home/jtdub
       fstype: nfs 
       state: mounted
     when: swarm == "worker"

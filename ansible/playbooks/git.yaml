@@ -4,4 +4,15 @@
   - name: FETCH JTDUB.COM GIT REPOSITORY
     ansible.builtin.git:
       repo: git@github.com:jtdub/jtdub.com.git
-      dest: /src/swarm
+      dest: /home/jtdub/jtdub.com
+    when: swarm == "manager"
+  
+  - name: SET JTDUB.COM GIT REPOSITORY PERMISSIONS
+    ansible.builtin.file:
+      path: /home/jtdub/jtdub.com
+      owner: jtdub
+      group: jtdub
+      recurse: yes
+      state: directory
+      force: yes
+    when: swarm == "manager"
