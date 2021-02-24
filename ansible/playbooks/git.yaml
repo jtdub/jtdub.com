@@ -24,6 +24,6 @@
       group: jtdub
       recurse: yes
       state: directory
-      mode: 775
+      mode: 0775
       force: yes
     when: swarm == "manager"
