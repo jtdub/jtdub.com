@@ -16,6 +16,14 @@
       state: directory
       force: yes
     when: swarm == "manager"
+  
+  - name: SET GIT REPOSITORY ROOT PERMISSIONS
+    ansible.builtin.file:
+      path: /home/jtdub.com
+      state: directory
+      mode: 0775
+      force: yes
+    when: swarm == "manager"
 
   - name: SETUP JTDUB.COM CONTAINER FILES PERMISSIONS
     ansible.builtin.file:
