@@ -7,12 +7,23 @@
       dest: /home/jtdub/jtdub.com
     when: swarm == "manager"
   
-  - name: SET JTDUB.COM GIT REPOSITORY PERMISSIONS
+  - name: SET JTDUB.COM GIT REPOSITORY USER PERMISSIONS
     ansible.builtin.file:
       path: /home/jtdub/jtdub.com
       owner: jtdub
       group: jtdub
       recurse: yes
       state: directory
+      force: yes
+    when: swarm == "manager"
+
+  - name: SETUP JTDUB.COM CONTAINER FILES PERMISSIONS
+    ansible.builtin.file:
+      path: /home/jtdub/jtdub.com/container_files/opensslbot/etc/
+      owner: jtdub
+      group: jtdub
+      recurse: yes
+      state: directory
+      mode: 775
       force: yes
     when: swarm == "manager"
