@@ -38,7 +38,7 @@ services:
       - jekyll
     depends_on:
       - jekyll
-      - sslbot-infra.jtdub.com
+      - sslbot
     deploy:
       replicas: 2
       restart_policy:
