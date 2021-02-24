@@ -9,12 +9,6 @@
       update_cache: yes
     when: swarm == "manager"
 
-  - name: CREATE CLIENT DIRECTORY
-    ansible.builtin.file:
-      path: /srv/swarm
-      state: directory
-      mode: "0755"
-
   - name: CREATE EXPORTS
     ansible.builtin.template:
       src: nfs-exports
@@ -45,8 +39,8 @@
 
   - name: MOUNT NFS VOLUME
     ansible.posix.mount: 
-      src: "{{ hostvars['master1.infra'].ansible_host }}:/srv/swarm"
-      path: /srv/swarm
+      src: "{{ hostvars['master1.infra'].ansible_host }}:/home/jtdub"
+      path: /home/jtdub
       fstype: nfs 
       state: mounted
     when: swarm == "worker"
