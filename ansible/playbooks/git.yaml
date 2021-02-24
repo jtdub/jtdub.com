@@ -9,7 +9,7 @@
   
   - name: SET JTDUB.COM GIT REPOSITORY USER PERMISSIONS
     ansible.builtin.file:
-      path: /home/jtdub/jtdub.com
+      path: /home/jtdub
       owner: jtdub
       group: jtdub
       recurse: yes
