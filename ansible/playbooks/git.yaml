@@ -19,7 +19,7 @@
   
   - name: SET GIT REPOSITORY ROOT PERMISSIONS
     ansible.builtin.file:
-      path: /home/jtdub.com
+      path: /home/jtdub/jtdub.com
       state: directory
       mode: 0775
       force: yes
