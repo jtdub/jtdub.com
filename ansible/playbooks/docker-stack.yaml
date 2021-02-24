@@ -1,0 +1,10 @@
+- hosts: droplets
+
+  tasks:
+  - name: DEPLOY JTDUB.COM DOCKER STACK
+    community.docker.docker_stack:
+      state: present
+      name: jtdub-com
+      compose:
+      - /srv/swarm/jtdub.com/docker/docker-compose.yaml
+    when: swarm == "manager"

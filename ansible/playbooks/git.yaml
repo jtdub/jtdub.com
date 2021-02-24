@@ -1,0 +1,7 @@
+- hosts: droplets
+
+  tasks:
+  - name: FETCH JTDUB.COM GIT REPOSITORY
+    ansible.builtin.git:
+      repo: git@github.com:jtdub/jtdub.com.git
+      dest: /src/swarm
