@@ -1,6 +1,7 @@
 version: "3.9"
 services:
-  sslbot-infra.jtdub.com:
+  sslbot:
+    image: "localhost:5000/sslbot:latest"
     build:
       context: ../container_files/opensslbot
     volumes:
@@ -37,7 +38,7 @@ services:
       - jekyll
     depends_on:
       - jekyll
-      - sslbot-infra.jtdub.com
+      - sslbot
     deploy:
       replicas: 2
       restart_policy:
