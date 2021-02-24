@@ -9,12 +9,6 @@
       update_cache: yes
     when: swarm == "manager"
 
-  - name: CREATE CLIENT DIRECTORY
-    ansible.builtin.file:
-      path: /srv/swarm
-      state: directory
-      mode: "0755"
-
   - name: CREATE EXPORTS
     ansible.builtin.template:
       src: nfs-exports

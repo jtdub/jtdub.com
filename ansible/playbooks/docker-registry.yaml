@@ -14,7 +14,7 @@
   - name: CREATE SSLBOT IMAGE AND PUSH IT TO REGISTRY
     community.docker.docker_image:
       build:
-        path: /srv/swarm/jtdub.com/container_files/opensslbot
+        path: /home/jtdub/jtdub.com/container_files/opensslbot
       name: "localhost:5000/sslbot"
       tag: latest
       push: yes

@@ -13,5 +13,5 @@
       state: present
       name: jtdub-com
       compose:
-      - /srv/swarm/jtdub.com/docker/docker-compose.yaml
+      - /home/jtdub/jtdub.com/docker/docker-compose.yaml
     when: swarm == "manager"
