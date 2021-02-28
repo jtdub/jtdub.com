@@ -1,0 +1,38 @@
+- hosts: droplets
+
+  tasks:
+  - name: ALLOW NODES FULL ACCESS TO OTHER NODES
+    ansible.builtin.iptables:
+      chain: INPUT
+      jump: ACCEPT
+      source: "{{ item }}"
+    with_items:
+    - 143.198.6.244
+    - 165.227.97.37
+    - 143.198.14.18
+    become: yes
+
+  - name: ENABLE SSH, HTTP, AND HTTPS IN FIREWALL
+    ansible.builtin.iptables:
+      chain: INPUT
+      jump: ACCEPT
+      protocol: tcp
+      destination_port: "{{ item }}"
+    with_items:
+    - 22
+    - 80
+    - 443
+    become: yes
+
+  - name: ENABLE ICMP
+    ansible.builtin.iptables:
+      chain: INPUT
+      jump: ACCEPT
+      protocol: icmp
+    become: yes
+
+  - name: SET DEFAULT INPUT POLICY TO DROP
+    ansible.builtin.iptables:
+      chain: INPUT
+      policy: DROP
+    become: yes

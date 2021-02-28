@@ -7,3 +7,4 @@
 - import_playbook: docker-setup.yaml
 - import_playbook: docker-registry.yaml
 - import_playbook: docker-stack.yaml
+- import_playbook: iptables.yaml
