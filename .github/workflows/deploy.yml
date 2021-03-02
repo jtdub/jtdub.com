@@ -10,11 +10,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      name: DEPLOY SITE 
-      uses: dawidd6/action-ansible-playbook@v2
-      with:
-        playbook: ${{ github.workspace }}/deploy/git.yml
-        key: ${{secrets.SSH_PRIVATE_KEY}}
-        inventory: |
-          [all]
-          master1.infra.jtdub.com ansible_ssh_user=root
+        name: DEPLOY SITE 
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          playbook: ${{ github.workspace }}/deploy/git.yml
+          key: ${{secrets.SSH_PRIVATE_KEY}}
+          inventory: |
+            [all]
+            master1.infra.jtdub.com ansible_ssh_user=root
