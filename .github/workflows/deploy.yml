@@ -14,8 +14,7 @@ jobs:
       - name: DEPLOY SITE 
         uses: dawidd6/action-ansible-playbook@v2
         with:
-          playbook: git.yml
-          directory: ./deploy
+          playbook: ./deploy/git.yml
           key: ${{secrets.SSH_PRIVATE_KEY}}
           inventory: |
             [all]
