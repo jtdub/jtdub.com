@@ -9,24 +9,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: CHECKOUT REPOSITORY
-      uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: SETUP PYTHON 3.8 
-      run: |
-        apt-get update -y
-        apt-get install python3.8 python3-pip
+      - name: SETUP PYTHON 3.8 
+        run: |
+          apt-get update -y
+          apt-get install python3.8 python3-pip
 
-    - name: INSTALL ANSIBLE
-      run: |
-        pip install --upgrade pip ansible==3.0.0
+      - name: INSTALL ANSIBLE
+        run: |
+          pip install --upgrade pip ansible==3.0.0
 
-    - name: DEPLOY SITE 
-      uses: dawidd6/action-ansible-playbook@v2
-      with:
-        playbook: git.yml
-        directory: ./deploy
-        key: ${{secrets.SSH_PRIVATE_KEY}}
-        inventory: |
-          [all]
-          master1.infra.jtdub.com ansible_ssh_user=root
+      - name: DEPLOY SITE 
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          playbook: git.yml
+          directory: ./deploy
+          key: ${{secrets.SSH_PRIVATE_KEY}}
+          inventory: |
+            [all]
+            master1.infra.jtdub.com ansible_ssh_user=root
