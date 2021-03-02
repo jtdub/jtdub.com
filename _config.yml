@@ -10,7 +10,4 @@ plugins:
 exclude:
 - scripts
 - tests
-- docker
-- ansible
-- container_files
-- k8s
+- deploy
