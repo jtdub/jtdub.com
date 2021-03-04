@@ -9,12 +9,14 @@ permalink: /jtdub.com/
 <table class="table table-striped">
   <thead>
     <tr>
+      <th scope="col">post date</th>
       <th scope="col">{{ tag[0] }} posts</th>
     </tr>
   </thead>
   <tbody>
     {% for post in tag[1] %}
     <tr>
+      <th scope="row">{{ post.date }}</th>
       <td><a href="{{ post.url }}">{{ post.title }}</a></td>
     </tr>
     {% endfor %}
