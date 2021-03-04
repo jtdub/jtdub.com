@@ -1,0 +1,24 @@
+---
+layout: default
+title: tags
+permalink: /tags/
+---
+{% for tag in site.tags %}
+{%  if tag[0] == "packetgeek.net" or tag[0] == "jtdub.com" %}
+{%  else %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">{{ tag[0] | downcase }}</th>
+    </tr>
+  </thead>
+  <tbody>
+{%   for page in tag[1] %}
+    <tr>
+      <td><a href="{{ page.url }}">{{ page.title }}</a></td>
+    </tr>
+{%   endfor %}
+  </tbody>
+</table>
+{%  endif %}
+{% endfor %}

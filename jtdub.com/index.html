@@ -6,10 +6,19 @@ permalink: /jtdub.com/
 <p>jtdub.com is the blog where I talk about non-technology topics.</p>
 {% for tag in site.tags %}
   {% if tag[0] == "jtdub.com" %}
-<ul>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">{{ tag[0] }} posts</th>
+    </tr>
+  </thead>
+  <tbody>
     {% for post in tag[1] %}
-  <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+    <tr>
+      <td><a href="{{ post.url }}">{{ post.title }}</a></td>
+    </tr>
     {% endfor %}
+  </tbody>
+</table>
   {% endif %}
-</ul>
 {% endfor %}
