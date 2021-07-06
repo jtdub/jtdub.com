@@ -14,3 +14,13 @@
       recurse: yes
       state: directory
       force: yes
+
+  - name: BUILD JTDUB.COM CONTAINER AND PUSH IT TO REGISTRY
+    community.docker.docker_image:
+      build:
+        path: /home/jtdub/jtdub.com
+      name: "localhost:5000/jtdub.com"
+      tag: latest
+      push: yes
+      source: build
+    when: swarm == "manager"

@@ -18,3 +18,5 @@ jobs:
           inventory: |
             [all]
             master1.infra.jtdub.com ansible_ssh_user=root
+            node1.infra.jtdub.com ansible_ssh_user=root
+            node2.infra.jtdub.com ansible_ssh_user=root
