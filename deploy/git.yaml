@@ -23,4 +23,3 @@
       tag: latest
       push: yes
       source: build
-    when: swarm == "manager"
