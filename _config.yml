@@ -2,7 +2,7 @@ title: jtdub.com
 description:
   tales of wanderlust, random thoughts, and blogs about technology; specifically linux, networking, automation, and software developmnet
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://jtdub.com" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://www.jtdub.com" # the base hostname & protocol for your site, e.g. http://example.com
 plugins:
   - jekyll-feed
 
@@ -10,4 +10,3 @@ plugins:
 exclude:
 - scripts
 - tests
-- deploy
