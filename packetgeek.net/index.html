@@ -16,7 +16,7 @@ permalink: /packetgeek.net/
   <tbody>
     {% for post in tag[1] %}
     <tr>
-      <th scope="row">{{ post.date }}</th>
+      <th scope="row">{{ post.date | date: "%B %-d, %Y" }}</th>
       <td><a href="{{ post.url }}">{{ post.title }}</a></td>
     </tr>
     {% endfor %}
