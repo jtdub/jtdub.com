@@ -1,12 +1,11 @@
 ---
 layout: default
-title: tags
-permalink: /tags/
+title: study notes
+permalink: /study/
 ---
 <div class="accordion" id="accordionTags"></div>
 {% for tag in site.tags %}
-{%  if tag[0] == "packetgeek.net" or tag[0] == "jtdub.com" %}
-{%  else %}
+{%  if tag[0] contains "Study Notes" %}
   <div class="accordion-item">
     <h2 class="accordion-header" id="heading-{{ tag[0] | downcase | slugify }}">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ tag[0] | downcase | slugify }}" aria-expanded="true" aria-controls="collapse-{{ tag[0] | downcase | slugify }}">
