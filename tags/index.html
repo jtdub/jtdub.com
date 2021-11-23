@@ -3,22 +3,31 @@ layout: default
 title: tags
 permalink: /tags/
 ---
+<div class="accordion" id="accordionTags"></div>
 {% for tag in site.tags %}
 {%  if tag[0] == "packetgeek.net" or tag[0] == "jtdub.com" %}
 {%  else %}
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">{{ tag[0] | downcase }}</th>
-    </tr>
-  </thead>
-  <tbody>
-{%   for page in tag[1] %}
-    <tr>
-      <td><a href="{{ page.url }}">{{ page.title }}</a></td>
-    </tr>
-{%   endfor %}
-  </tbody>
-</table>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="heading-{{ tag[0] | downcase }}">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ tag[0] | downcase}}" aria-expanded="true" aria-controls="collapse-{{ tag[0] | downcase}}">
+        {{ tag[0] | upcase }}
+      </button>
+    </h2>
+    <div id="collapse-{{ tag[0] | downcase }}" class="accordion-collapse collapse show" aria-labelledby="heading-{{ tag[0] | downcase }}" data-bs-parent="#accordionTags">
+      <div class="accordion-body">
+        <table class="table table-striped">
+          <tbody>
+        {%   for page in tag[1] %}
+            <tr>
+              <td style="width:200px">{{ page.date | date: "%B %-d, %Y" }}</td>
+              <td><a href="{{ page.url }}">{{ page.title }}</a></td>
+            </tr>
+        {%   endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 {%  endif %}
 {% endfor %}
+</div>
