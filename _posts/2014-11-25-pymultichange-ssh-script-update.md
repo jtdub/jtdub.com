@@ -1,0 +1,28 @@
+---
+layout: post
+title: pyMultiChange - SSH Script Update
+date: '2014-11-25'
+author: jtdub
+tags:
+- Cisco Administration Python Scripting
+- Software Defined Networking
+- Python Tips
+- packetgeek.net
+---
+
+I updated the ssh-multi.py script from my pyMultiChange repository. It's now fully functional and allows you to enter 'enable' mode on Cisco routers and switches. As I'm using the paramiko library to interact with routers and switches via SSH, I had to switch from using the 'exec_command' API to invoke_shell, send, and recv API's. It took a little more work - and I'm not completely thrilled with how the 'recv' API is implemented in paramiko, but it's what we have to work with for now.
+<br/>
+<br/>
+The pyMuliChange repository is available on my
+<a href="https://github.com/jtdub/pyMultiChange" target="_blank">
+ github
+</a>
+.
+<br/>
+<br/>
+<div class="separator" style="clear: both; text-align: center;">
+ <a href="/images/Screen-Shot-2014-11-26-at-2.49.55-AM.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+  <img border="0" data-original-height="245" data-original-width="512" height="153" src="/images/Screen-Shot-2014-11-26-at-2.49.55-AM.png" width="320"/>
+ </a>
+</div>
+<br/>

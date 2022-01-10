@@ -1,0 +1,39 @@
+---
+layout: post
+title: I'm going to place these here...
+date: '2013-12-04'
+author: jtdub
+tags:
+- VXLAN
+- Innovative
+- SDN
+- VLAN
+- Openstack
+- NVP
+- openvswitch
+- packetgeek.net
+---
+
+I found these articles fantastic and I wanted a quick place to reference them all. They are all in relation and deal with NVP, SDN, Open vSwitch, and VXLAN.
+<br/>
+<br/>
+<br/>
+<br/>
+<a href="http://networkstatic.net/configuring-vxlan-and-gre-tunnels-on-openvswitch/" target="_blank" title="Configuring VXLAN and GRE Tunnels on OpenvSwitch">
+ Configuring VXLAN and GRE Tunnels on OpenvSwitch
+</a>
+<br/>
+<br/>
+<a href="http://networkstatic.net/install-open-vswitch-v2-0-rpm-redhat-fedora/?utm_source=twitterfeed&amp;utm_medium=twitter" target="_blank" title="Install Open vSwitch 2.0 from RPM on RedHat Fedora">
+ Install Open vSwitch 2.0 from RPM on RedHat Fedora
+</a>
+<br/>
+<br/>
+<a href="http://openvswitch.org/slides/OpenStack-131107.pdf" target="_blank" title="OpenStack: OVS Deep Dive">
+ OpenStack: OVS Deep Dive
+</a>
+<br/>
+<br/>
+<a href="https://wiki.opendaylight.org/view/OpenDaylight_Controller:Installation" target="_blank" title="OpenDaylight Controller:Installation - Wiki">
+ OpenDaylight Controller:Installation - Wiki
+</a>

@@ -1,0 +1,16 @@
+---
+layout: post
+title: Happy Independence Day!
+date: '2017-07-04'
+author: jtdub
+tags:
+- July4
+- July 4
+- Independence Day
+- jtdub.com
+---
+<div class="separator" style="clear: both; text-align: center;">
+ <iframe allowfullscreen="" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/-KXtMPnIZpc/0.jpg" frameborder="0" height="266" src="https://www.youtube.com/embed/-KXtMPnIZpc?feature=player_embedded" width="320">
+ </iframe>
+</div>
+<br/>

@@ -1,0 +1,43 @@
+---
+layout: post
+title: |-
+  RHCE Series: Use /proc/sys and sysctl to modify and set kernel runtime
+  parameters.
+date: '2012-10-16'
+author: jtdub
+tags:
+- Kernel Tuning
+- Linux
+- RHCE Study Notes
+- packetgeek.net
+---
+
+Kernel tuning is pretty easy. There are a couple of ways of doing it. The old way of modifying kernel perimeters was by modifying the /proc.
+<br/>
+<br/>
+For example:
+<br/>
+<br/>
+<br/>
+<pre>[root@server1 ~]# cat /proc/sys/net/ipv4/icmp_echo_ignore_all <br/>0</pre>
+<br/>
+If I were to change that to a 0 to a 1, server1 would drop all icmp echo packets, thus ignoring ping requests.
+<br/>
+<pre>[root@client1 ~]# echo "Before kernel tuning" &amp;&amp; ping -c 1 192.168.101.1<br/>Before kernel tuning<br/>PING 192.168.101.1 (192.168.101.1) 56(84) bytes of data.<br/>64 bytes from 192.168.101.1: icmp_seq=1 ttl=64 time=0.598 ms<br/><br/>--- 192.168.101.1 ping statistics ---<br/>1 packets transmitted, 1 received, 0% packet loss, time 0ms<br/>rtt min/avg/max/mdev = 0.598/0.598/0.598/0.000 ms<br/><br/><br/>[root@server1 ~]# echo 1 &gt; /proc/sys/net/ipv4/icmp_echo_ignore_all <br/>[root@server1 ~]# <br/><br/><br/>[root@client1 ~]# echo "After kernel tuning" &amp;&amp; ping -c 1 192.168.101.1<br/>After kernel tuning<br/>PING 192.168.101.1 (192.168.101.1) 56(84) bytes of data.<br/><br/>--- 192.168.101.1 ping statistics ---<br/>1 packets transmitted, 0 received, 100% packet loss, time 10000ms</pre>
+<br/>
+You can also use the sysctl command to do the same thing:
+<br/>
+<br/>
+<br/>
+<pre>[root@server1 ~]# sysctl -a | grep icmp | grep echo<br/>net.ipv4.icmp_echo_ignore_all = 1<br/>net.ipv4.icmp_echo_ignore_broadcasts = 1<br/><br/><br/>[root@client1 ~]# echo "Before kernel tuning" &amp;&amp; ping -c 1 192.168.101.1<br/>Before kernel tuning<br/>PING 192.168.101.1 (192.168.101.1) 56(84) bytes of data.<br/><br/>--- 192.168.101.1 ping statistics ---<br/>1 packets transmitted, 0 received, 100% packet loss, time 10000ms<br/><br/><br/>[root@server1 ~]# sysctl net.ipv4.icmp_echo_ignore_all=0<br/>net.ipv4.icmp_echo_ignore_all = 0<br/><br/><br/>[root@client1 ~]# echo "After kernel tuning" &amp;&amp; ping -c 1 192.168.101.1<br/>After kernel tuning<br/>PING 192.168.101.1 (192.168.101.1) 56(84) bytes of data.<br/>64 bytes from 192.168.101.1: icmp_seq=1 ttl=64 time=0.590 ms<br/><br/>--- 192.168.101.1 ping statistics ---<br/>1 packets transmitted, 1 received, 0% packet loss, time 0ms<br/>rtt min/avg/max/mdev = 0.590/0.590/0.590/0.000 ms</pre>
+<br/>
+To make any changes persistent on boot up, you'll need to put them in the /etc/sysctl.conf
+<br/>
+<br/>
+<br/>
+<pre class="crayon-selected">[root@server1 ~]# sysctl net.ipv4.icmp_echo_ignore_all=0 &gt;&gt; /etc/sysctl.conf <br/>[root@server1 ~]# tail -1 /etc/sysctl.conf <br/>net.ipv4.icmp_echo_ignore_all = 0</pre>
+<br/>
+Practice care when outputting kernel paremeters to the /etc/sysctl.conf. There are already some values specified and you output using &gt; instead of &gt;&gt;, then you'll overwrite those values. Got backups?
+<br/>
+<br/>
+You can also see all kernel tunable values by issuing a 'sysctl -a'.

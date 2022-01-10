@@ -1,0 +1,224 @@
+---
+layout: post
+title: Linux Unified Key Setup
+date: '2014-05-29'
+author: jtdub
+tags:
+- LUKS
+- Encryption
+- packetgeek.net
+---
+
+Here are some notes that I took about setting up LUKS when studying for the RHCSA. I felt that this would be appropriate to post after the recent issues with
+<a href="http://truecrypt.sourceforge.net/">
+ TrueCrypt
+</a>
+.
+<br/>
+<h3>
+ Disk Encryption
+</h3>
+<br/>
+<ul>
+ <br/>
+ <li>
+  LUKS - Linux Unified Key Setup
+  <br/>
+  <ul>
+   <br/>
+   <li>
+    Create a new LUKS encrypted device:
+    <br/>
+    <ul>
+     <br/>
+     <li>
+      cryptsetup luksFormat &lt;device&gt;
+     </li>
+     <br/>
+    </ul>
+    <br/>
+   </li>
+   <br/>
+   <li>
+    Establish access to the device:
+    <br/>
+    <ul>
+     <br/>
+     <li>
+      cryptsetup luksOpen &lt;device&gt; &lt;mapname&gt;
+      <br/>
+      <ul>
+       <br/>
+       <li>
+        /dev/mapper/&lt;mapname&gt;
+       </li>
+       <br/>
+      </ul>
+      <br/>
+     </li>
+     <br/>
+    </ul>
+    <br/>
+   </li>
+   <br/>
+   <li>
+    Create the filesystem:
+    <br/>
+    <ul>
+     <br/>
+     <li>
+      mkfs -t ext4 /dev/mapper/&lt;mapname&gt;
+     </li>
+     <br/>
+    </ul>
+    <br/>
+   </li>
+   <br/>
+   <li>
+    Mount the filesystem:
+    <br/>
+    <ul>
+     <br/>
+     <li>
+      mount /dev/mapper/&lt;mapname&gt; /mnt
+     </li>
+     <br/>
+    </ul>
+    <br/>
+   </li>
+   <br/>
+   <li>
+    Make filesystem persistant:
+    <br/>
+    <ul>
+     <br/>
+     <li>
+      vim /etc/fstab
+      <br/>
+      <ul>
+       <br/>
+       <li>
+        /dev/mapper/&lt;mapname&gt; /cryptomount ext4 defaults 1 2
+       </li>
+       <br/>
+      </ul>
+      <br/>
+     </li>
+     <br/>
+    </ul>
+    <br/>
+   </li>
+   <br/>
+   <li>
+    Removing access to an encrypted device:
+    <br/>
+    <ul>
+     <br/>
+     <li>
+      Umount the filesystem, if mounted:
+      <br/>
+      <ul>
+       <br/>
+       <li>
+        umount /mnt
+       </li>
+       <br/>
+      </ul>
+      <br/>
+     </li>
+     <br/>
+     <li>
+      cryptsetup luksClose mapname
+     </li>
+     <br/>
+    </ul>
+    <br/>
+   </li>
+   <br/>
+   <li>
+    To make LUKS devices available at boot time (persistance):
+    <br/>
+    <ul>
+     <br/>
+     <li>
+      /etc/crypttab
+      <br/>
+      <ul>
+       <br/>
+       <li>
+        &lt;mapname&gt; &lt;device&gt; [keyfile] [options]
+       </li>
+       <br/>
+      </ul>
+      <br/>
+     </li>
+     <br/>
+     <li>
+      To create a keyfile:
+      <br/>
+      <ul>
+       <br/>
+       <li>
+        dd if=/dev/urandom of=/etc/keyfile bs=1k count=4
+       </li>
+       <br/>
+       <li>
+        cryptsetup luksAddKey &lt;device&gt; /etc/keyfile
+       </li>
+       <br/>
+       <li>
+        chmod 400 /etc/keyfile
+       </li>
+       <br/>
+      </ul>
+      <br/>
+     </li>
+     <br/>
+    </ul>
+    <br/>
+   </li>
+   <br/>
+   <li>
+    To test LUKS functionality for persistance:
+    <br/>
+    <ul>
+     <br/>
+     <li>
+      umount /cryptfs
+     </li>
+     <br/>
+     <li>
+      cryptsetup luksClose mapname
+     </li>
+     <br/>
+     <li>
+      #&gt; bash
+     </li>
+     <br/>
+     <li>
+      #&gt; . /etc/init.d/functions
+     </li>
+     <br/>
+     <li>
+      #&gt; init_crypto 1
+     </li>
+     <br/>
+     <li>
+      #&gt; mount -a
+     </li>
+     <br/>
+     <li>
+      #&gt; ls /cryptfs
+     </li>
+     <br/>
+    </ul>
+    <br/>
+   </li>
+   <br/>
+  </ul>
+  <br/>
+ </li>
+ <br/>
+</ul>
+<br/>
+If I remember correctly, you can't do whole disk encryption with LUKS after the fact. Meaning, you can use LUKS to do whole disk encryption after the operating system has been installed. You can, however, create a back up of a partition like /home, encrypt it, then restore /home to your newly encrypted partition. I'll play around with this soon and get some solid details available for those of you looking for an TrueCrypt alternative for Linux. For now, I hope that this helps.

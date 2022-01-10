@@ -1,0 +1,60 @@
+---
+layout: post
+title: Cisco VIRL Status? Digital Paper Weight
+date: '2014-12-03'
+author: jtdub
+tags:
+- Miscellaneous Hacking
+- Cisco VIRL
+- Misc.
+- packetgeek.net
+---
+<i>
+ <b>
+  Update:
+ </b>
+</i>
+I fixed the issue. Turns out, I'm a dim wit. There is an updated post, with tips and lessons learned,
+<a href="http://www.packetgeek.net/2014/12/cisco-virl-bare-metal-install-tips-and-lessons-learned/">
+ here
+</a>
+.
+<br/>
+<br/>
+I was excited that VIRL was finally released. On impulse, I went ahead and bought it, even though I thought it was a little pricey. So far, I haven't had any luck with it. It appears that I'm not the only one.
+<br/>
+<br/>
+For my install, I chose bare-metal, as I had the computer to spare. The install is a little clunky, but I worked my way through it. Udev changed the designated eth0 device to p3p1, which I'm used to and made the necessary changes in /etc/network/interfaces. After the install, you're supposed to configure NTP and activate the VIRL instance with Cisco's salt infrastructure. This is where the rub comes in. No matter what I do or try, I can't get it to register.
+<br/>
+<br/>
+I've configured NTP - and verified that I had a proper NTP association per these two support threads:
+<br/>
+<br/>
+<a href="http://community.dev-innovate.com/t/activation-error/743" target="_blank">
+ Activation Error
+</a>
+<br/>
+<br/>
+<a href="http://community.dev-innovate.com/t/virl-time-and-ntp-requirements/783" target="_blank">
+ VIRL Time and NTP Requirements
+</a>
+<br/>
+<br/>
+I've verified that my VIRL instance can ping the Cisco salt infrastructure. I can also telnet to their service ports. From my view. It should be working, but no matter what I do, I get this screen:
+<br/>
+<br/>
+<div class="separator" style="clear: both; text-align: center;">
+ <a href="/images/Screen-Shot-2014-12-03-at-3.57.52-AM.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+  <img border="0" data-original-height="594" data-original-width="906" height="209" src="/images/Screen-Shot-2014-12-03-at-3.57.52-AM.png" width="320"/>
+ </a>
+</div>
+<br/>
+<br/>
+I'm also a little irritated with the VIRL support forums, as I can't post this screen shot, because I'm a 'new users'. The best that I can do is link to it.
+<br/>
+<br/>
+If you know what I may be doing wrong - or if you know of a fix, shoot me a DM on
+<a href="http://twitter.com/packetgeeknet" target="_blank">
+ twitter
+</a>
+.

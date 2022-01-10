@@ -1,0 +1,17 @@
+---
+layout: post
+title: History Repeats itself?
+date: '2010-12-08'
+author: jtdub
+tags:
+- Liberty
+- Censorship
+- packetgeek.net
+---
+
+Very good article.
+<br/>
+<br/>
+<a href="http://www.ellsberg.net/archive/public-accuracy-press-release">
+ Ellsberg: “EVERY attack now made on WikiLeaks and Julian Assange was made against me and the release of the Pentagon Papers at the time.”
+</a>

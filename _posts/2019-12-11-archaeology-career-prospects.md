@@ -1,0 +1,89 @@
+---
+layout: post
+title: Archaeology Career Prospects
+date: '2019-12-11'
+author: jtdub
+tags:
+- Research
+- Archaeology
+- jtdub.com
+---
+
+Anthropology is the study of people and cultures from present day to the earliest humans. There are many disciplines in anthropology, including archaeology. Archaeology is the study of past peoples and cultures through the material remains that they leave behind. These remains are called artifacts. Artifacts are any physical items that are created or used by people. This essay takes a look at the archaeology job marketplace. This essay will analyze the education requirements for professional archaeologists, what typical salaries that one can expect in the job marketplace, and what types of jobs one can expect to obtain as an archaeologist.
+<br/>
+<br/>
+The marketplace for an archaeologist is small. The Bureau of Labor’s Occupational Employment and Wages statistics from May 2018 estimated that there were just 6,020 people working as archaeologists in the United States. The Bureau of Labor’s Occupational Employment and Wages statistics list income range from $36,840 per year to $97,170 per year, with a median income of $62,410 per year (“Occupational Employment and Wages”).
+<br/>
+<br/>
+The education requirements for an archaeologists generally depends on their career path. The minimum requirements for a person aspiring to enter the job market as an archaeologist are a bachelor's degree in Anthropology or Archaeology as well as have completed an accredited field school, such as the Institute for Field Research (“Institute for Field Research”). Individuals with these credentials can gain employment in cultural resource management as well as museum curators. The requirements to work in higher education typically require a masters or doctorate degree.
+<br/>
+<br/>
+The most prominent role in archaeology today is in cultural resource management. The field of cultural resource management arose in the 1960’s when the United States federal government enacted laws designed to protect the nations archaeological resources (Kelly 14). The primary mission of cultural resource management is identifying, preserving, protecting cultural resources, and in some instances performing public outreach duties. The industries that hire archaeologists for cultural resource management roles include federal, state, and municipal governments, and private archaeological consulting firms. An archaeologist working in cultural resource management doesn’t perform research as a primary function, but will often perform research as the role of anthropology is to expand the knowledge of the existence of people and cultures. Their primary function is to ensure that governments and companies are in compliance with government laws and regulations as it pertains to conserving cultural resources.
+<br/>
+<br/>
+Government archaeologists working in cultural resource management are responsible for protecting known cultural resources, identifying previously unknown cultural resources, and teaching the public about the cultural resources and explaining their importance as a part of our history (“What We Do”). In some cases, an archaeologist may identify previously unknown cultural resources. In those instances they document the artifacts. This initial documentation may be something as simple as pictures and GPS coordinates. The documentation that is gathered can then be used to help protect the area with the newly identified cultural resources. This information can also be shared with higher education institutions and museums for their research purposes.
+<br/>
+<br/>
+In the private sector, an archaeologists performs similar duties to those as a government archaeologist working in cultural resource management. Where their duties differ is in the protection and public outreach. A private sector archaeologist typically works for a private consulting firm whose clients are those that build buildings or infrastructure. These companies will hire archaeological consulting firms to ensure that the land that they are developing doesn’t contain any cultural resources to stay compliant with government laws and regulations. In instances where cultural resources are found, the archaeologists will document and excavate the cultural resources if permitted to do so.
+<br/>
+<br/>
+In a higher education environment, archaeologists perform a couple functions. Their primary role will depend on the mission of their institution. It is common for an archaeologist in higher education to perform both teaching and research functions. In a teaching function, an archaeologist is responsible for inoculating students with the aspects and techniques of the archaeological trade, an anthropology discipline, or history. In a research function, an archaeologist researches subjects that intrigue them. A lot of time may be spent performing site surveys, excavating archaeological sites, or performing analysis on excavated artifacts. In this role, an archaeologists will document and publish their findings to research journals and write grant proposals to obtain funding for research projects.
+<br/>
+<br/>
+An archaeologist in a museum setting performs the role of a museum curator. In this role, a curator builds museum exhibits, performs research, and public outreach. How much of either function will depend on the museum. Large museums tend to staff archaeologists that are more research based, while smaller museums tend to staff archaeologists that primarily curate exhibits and perform public outreach.
+<br/>
+<br/>
+The world’s archive of archaeological sites is shrinking and support of research archaeologists in a higher education setting is level (Fagan 59). The viewpoint of excavating archaeological sites is evolving. Excavation is a destructive process. Once an excavation has been performed, then there is no going back. Some evidence of human existence may be lost in the process, due to lack of better excavation and documentation techniques. Thus, the trend is shifting the archaeologists career towards less destructive excavation fieldwork and more towards protecting those cultural resources, non-destructive research techniques, and publication.
+<br/>
+<br/>
+The field of archaeology is small. The number of archaeological jobs in the United States is a small fraction of the overall jobs in the marketplace. Even then, the job role of an archaeologist is evolving. The need to preserve our cultural heritage is replacing the need to practice destructive excavation techniques at archaeological sites around the world. For some, this may be a welcome evolution. Others may have entered the job market in hopes of a job that allowed them to adventure the world in search of cultural treasures. For the foreseeable future, however, cultural resource management will continue to be the primary market for archaeologists.
+<br/>
+<br/>
+<div style="text-align: center;">
+ Works Cited
+</div>
+<br/>
+<br/>
+<div style="padding-left: 22px; text-indent: -22px;">
+ “Occupational Employment and Wages”, Occupational Wage Statistics, May 2018,
+ <a href="http://bls.gov/oes/current/oes193091.htm">
+  bls.gov/oes/current/oes193091.htm
+ </a>
+ .
+ <br/>
+ <br/>
+</div>
+<div style="padding-left: 22px; text-indent: -22px;">
+ Kelly, Robert L. Thomas, David Hurst, “Meet Some Real Archaeologists”,
+ <i>
+  Archaeology
+ </i>
+ , seventh edition, 2017, pp. 14.
+ <br/>
+ <br/>
+</div>
+<div style="padding-left: 22px; text-indent: -22px;">
+ “What We Do”, Cultural Resources, Partnerships, and Science Directorate, October 2018,
+ <a href="http://nps.gov/orgs/1345/whatwedo.htm">
+  nps.gov/orgs/1345/whatwedo.htm
+ </a>
+ .
+ <br/>
+ <br/>
+</div>
+<div style="padding-left: 22px; text-indent: -22px;">
+ Fagan, Brian. “So You Want To Be An Archaeologist?”,
+ <i>
+  Archaeology
+ </i>
+ , vol. 59, no. 3, May 2006, pp. 59.
+ <br/>
+ <br/>
+</div>
+<div style="padding-left: 22px; text-indent: -22px;">
+ “Institute for Field Research”, 2019,
+ <a href="http://ifrglobal.org/">
+  ifrglobal.org/
+ </a>
+ .
+</div>

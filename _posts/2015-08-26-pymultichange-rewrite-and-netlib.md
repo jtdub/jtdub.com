@@ -1,0 +1,47 @@
+---
+layout: post
+title: pyMultiChange rewrite and Netlib
+date: '2015-08-26'
+author: jtdub
+tags:
+- Cisco Administration Python Scripting
+- Python Tips
+- packetgeek.net
+---
+
+I re-wrote '
+<a href="https://github.com/jtdub/pyMultiChange" target="_blank">
+ pyMultiChange
+</a>
+' around my new library for connecting and managing devices. Before I was using 'pyRouterLib', but now I've deprecated that library with the creation of my new library '
+<a href="https://github.com/jtdub/netlib" target="_blank">
+ netlib
+</a>
+'.
+<br/>
+<br/>
+Netlib is super easy to use and is more complete than
+<a href="https://github.com/jtdub/pyRouterLib" target="_blank">
+ pyRouterLib
+</a>
+was. Utilizing Netlib, allowed me to cut the code in pyMultiChange by almost half and netlib is more flexible and user friendly.
+<br/>
+<br/>
+To use netlib, first clone the git repo and install the necessary python libraries:
+<br/>
+<pre class="lang:default decode:true">git clone https://github.com/jtdub/netlib.git<br/>cd netlib<br/>sudo pip install -r requirements.txt<br/>sudo python setup.py install</pre>
+<br/>
+After that, you're ready to go. Accessing network devices via telnet and ssh are currently supported. Both have a very similar API syntax, that is layed out in the README on github.
+<br/>
+<br/>
+Here is an example of how to use the ssh module:
+<br/>
+<pre class="lang:default decode:true">$ python<br/>&gt;&gt;&gt; from netlib.conn_type import SSH<br/>&gt;&gt;&gt; conn = SSH('core1a', username='******', password='******')<br/>&gt;&gt;&gt; conn.connect()<br/>'\r\ncore1a.sat&gt;'<br/>&gt;&gt;&gt; conn.set_enable(enable_password='******')<br/>'\r\ncore1a.sat#'<br/>&gt;&gt;&gt; conn.disable_paging()<br/>&gt;&gt;&gt; print(conn.command('show version'))<br/>show version<br/>Cisco IOS Software, C3750 Software (C3750-IPSERVICESK9-M), Version 12.2(55)SE9, RELEASE SOFTWARE (fc1)<br/>Technical Support: http://www.cisco.com/techsupport<br/>Copyright (c) 1986-2014 by Cisco Systems, Inc.<br/>Compiled Mon 03-Mar-14 22:45 by prod_rel_team<br/>Image text-base: 0x01000000, data-base: 0x02F00000<br/><br/>ROM: Bootstrap program is C3750 boot loader<br/>BOOTLDR: C3750 Boot Loader (C3750-HBOOT-M) Version 12.2(44)SE5, RELEASE SOFTWARE (fc1)<br/><br/>core1a.sat uptime is 9 weeks, 5 days, 2 hours, 17 minutes<br/>System returned to ROM by power-on<br/>System restarted at 20:25:45 CST Fri Jun 19 2015<br/>System image file is "flash:c3750-ipservicesk9-mz.122-55.SE9.bin"<br/><br/><br/>This product contains cryptographic features and is subject to United<br/>States and local country laws governing import, export, transfer and<br/>use. Delivery of Cisco cryptographic products does not imply<br/>third-party authority to import, export, distribute or use encryption.<br/>Importers, exporters, distributors and users are responsible for<br/>compliance with U.S. and local country laws. By using this product you<br/>agree to comply with applicable laws and regulations. If you are unable<br/>to comply with U.S. and local laws, return this product immediately.<br/><br/>A summary of U.S. laws governing Cisco cryptographic products may be found at:<br/>http://www.cisco.com/wwl/export/crypto/tool/stqrg.html<br/><br/>If you require further assistance please contact us by sending email to<br/>export@cisco.com.<br/><br/>cisco WS-C3750-24TS (PowerPC405) processor (revision L0) with 131072K bytes of memory.<br/>Processor board ID CAT1042ZGKL<br/>Last reset from power-on<br/>6 Virtual Ethernet interfaces<br/>24 FastEthernet interfaces<br/>2 Gigabit Ethernet interfaces<br/>The password-recovery mechanism is enabled.<br/><br/>512K bytes of flash-simulated non-volatile configuration memory.<br/>Base ethernet MAC Address       : 00:19:E7:5F:8F:80<br/>Motherboard assembly number     : 73-9677-10<br/>Power supply part number        : 341-0034-01<br/>Motherboard serial number       : CAT10415NLR<br/>Power supply serial number      : DTH1037117A<br/>Model revision number           : L0<br/>Motherboard revision number     : A0<br/>Model number                    : WS-C3750-24TS-S<br/>System serial number            : CAT1042ZGKL<br/>Top Assembly Part Number        : 800-25857-02<br/>Top Assembly Revision Number    : D0<br/>Version ID                      : V05<br/>CLEI Code Number                : CNMV100CRE<br/>Hardware Board Revision Number  : 0x01<br/><br/><br/>Switch Ports Model              SW Version            SW Image                 <br/>------ ----- -----              ----------            ----------               <br/>*    1 26    WS-C3750-24TS      12.2(55)SE9           C3750-IPSERVICESK9-M     <br/><br/><br/>Configuration register is 0xF<br/><br/>core1a.sat#<br/>&gt;&gt;&gt; conn.close()<br/></pre>
+<br/>
+How easy is that? I'm stoked about netlib. It should make rapidly creating code for interact with network devices pretty trivial. I'm experimenting with SNMP functionality, though it's not ready for prime time.
+<br/>
+<br/>
+I also have a method for storing and reading user credentials, so that they don't have to be stored in the script, called every time a script is run, or entered manually for every device that is accessed.
+<br/>
+<br/>
+Let me know what you think, add feature requests, or do a pull request. :)

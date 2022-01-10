@@ -1,0 +1,41 @@
+---
+layout: post
+title: IOS-XR (XRv) and IOS-XE (CSR1000v) KVM Config Generation
+date: '2014-04-05'
+author: jtdub
+tags:
+- Innovative
+- Virtualization
+- Miscellaneous Hacking
+- MySQL
+- CCNP SP Study Notes
+- training
+- IOS-XE
+- PHP
+- IOS-XR
+- packetgeek.net
+---
+
+As I'm mostly going to be using XRv and the CSR1000v to create my Service Provider Lab Environment to study for the CCNP Service Provider exams, I thought that I would throw together a quick script so that I can build lab environments quickly. If you've played with XRv or CSR1000v in KVM at all, you know that it's a hassle to generate your topologies. I've made that way easier with the "Virtual Network Lab Config Generator". Note that this doesn't generate device configs, but rather the KVM configuration that you use to spin up and connect your virtual devices. The code is on github.com. It was written hastily, so it's very rough. :)
+<br/>
+<br/>
+<a href="https://github.com/jtdub/vnlcg" target="_blank" title="Virtual Network Lab Config Generator">
+ Virtual Network Lab Config Generator
+</a>
+<br/>
+<br/>
+Here is a screen shot:
+<br/>
+<br/>
+<div class="separator" style="clear: both; text-align: center;">
+ <a href="/images/Screen-Shot-2014-04-05-at-8.53.49-PM1.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;">
+  <img border="0" data-original-height="663" data-original-width="738" height="287" src="/images/Screen-Shot-2014-04-05-at-8.53.49-PM1.png" width="320"/>
+ </a>
+</div>
+<br/>
+<br/>
+When used, it can generate complex KVM configs in a matter of minutes, rather than an hour or more. Here is an example:
+<br/>
+<pre class="lang:default decode:true"># p1<br/>/bin/qemu-kvm -cpu kvm64 -nographic -m 2548 -hda /var/lib/libvirt/images/p1-xr.raw <br/> -serial telnet::8110,server,nowait <br/> -net nic,model=virtio,vlan=1000,macaddr=00:01:00:ff:66:10 <br/> -net nic,model=virtio,vlan=10,macaddr=00:01:00:ff:10:10 <br/> -net socket,vlan=10,listen=127.0.0.1:7010 <br/> -net nic,model=virtio,vlan=11,macaddr=00:01:00:ff:10:11 <br/> -net socket,vlan=11,listen=127.0.0.1:7011 <br/> -net nic,model=virtio,vlan=12,macaddr=00:01:00:ff:10:12 <br/> -net socket,vlan=12,listen=127.0.0.1:7012 <br/> -net nic,model=virtio,vlan=13,macaddr=00:01:00:ff:10:13 <br/> -net socket,vlan=13,listen=127.0.0.1:7013 <br/> -net nic,model=virtio,vlan=14,macaddr=00:01:00:ff:10:14 <br/> -net socket,vlan=14,listen=127.0.0.1:7014 <br/> -net tap,ifname=tap10,vlan=1000,script=no &amp;<br/><br/># p2<br/>/bin/qemu-kvm -cpu kvm64 -nographic -m 2548 -hda /var/lib/libvirt/images/p2-xr.raw <br/> -serial telnet::8111,server,nowait <br/> -net nic,model=virtio,vlan=1000,macaddr=00:01:00:ff:66:11 <br/> -net nic,model=virtio,vlan=10,macaddr=00:01:00:ff:11:10 <br/> -net socket,vlan=10,connect=127.0.0.1:7010 <br/> -net nic,model=virtio,vlan=15,macaddr=00:01:00:ff:11:15 <br/> -net socket,vlan=15,listen=127.0.0.1:7015 <br/> -net nic,model=virtio,vlan=16,macaddr=00:01:00:ff:11:16 <br/> -net socket,vlan=16,listen=127.0.0.1:7016 <br/> -net nic,model=virtio,vlan=17,macaddr=00:01:00:ff:11:17 <br/> -net socket,vlan=17,listen=127.0.0.1:7017 <br/> -net nic,model=virtio,vlan=18,macaddr=00:01:00:ff:11:18 <br/> -net socket,vlan=18,listen=127.0.0.1:7018 <br/> -net tap,ifname=tap11,vlan=1000,script=no &amp;<br/><br/># pe1<br/>/bin/qemu-kvm -cpu kvm64 -nographic -m 2548 -hda /var/lib/libvirt/images/pe1-xr.raw <br/> -serial telnet::8112,server,nowait <br/> -net nic,model=virtio,vlan=1000,macaddr=00:01:00:ff:66:12 <br/> -net nic,model=virtio,vlan=11,macaddr=00:01:00:ff:12:11 <br/> -net socket,vlan=11,connect=127.0.0.1:7011 <br/> -net nic,model=virtio,vlan=15,macaddr=00:01:00:ff:12:15 <br/> -net socket,vlan=15,connect=127.0.0.1:7015 <br/> -net nic,model=virtio,vlan=19,macaddr=00:01:00:ff:12:19 <br/> -net socket,vlan=19,listen=127.0.0.1:7019 <br/> -net nic,model=virtio,vlan=20,macaddr=00:01:00:ff:12:20 <br/> -net socket,vlan=20,listen=127.0.0.1:7020 <br/> -net nic,model=virtio,vlan=27,macaddr=00:01:00:ff:12:27 <br/> -net socket,vlan=27,listen=127.0.0.1:7027 <br/> -net tap,ifname=tap12,vlan=1000,script=no &amp;<br/><br/># pe2<br/>/bin/qemu-kvm -cpu kvm64 -nographic -m 2548 -hda /var/lib/libvirt/images/pe2-xr.raw <br/> -serial telnet::8113,server,nowait <br/> -net nic,model=virtio,vlan=1000,macaddr=00:01:00:ff:66:13 <br/> -net nic,model=virtio,vlan=12,macaddr=00:01:00:ff:13:12 <br/> -net socket,vlan=12,connect=127.0.0.1:7012 <br/> -net nic,model=virtio,vlan=16,macaddr=00:01:00:ff:13:16 <br/> -net socket,vlan=16,connect=127.0.0.1:7016 <br/> -net nic,model=virtio,vlan=21,macaddr=00:01:00:ff:13:21 <br/> -net socket,vlan=21,listen=127.0.0.1:7021 <br/> -net nic,model=virtio,vlan=22,macaddr=00:01:00:ff:13:22 <br/> -net socket,vlan=22,listen=127.0.0.1:7022 <br/> -net nic,model=virtio,vlan=27,macaddr=00:01:00:ff:13:27 <br/> -net socket,vlan=27,connect=127.0.0.1:7027 <br/> -net tap,ifname=tap13,vlan=1000,script=no &amp;<br/><br/># pe3<br/>/bin/qemu-kvm -cpu kvm64 -nographic -m 2548 -hda /var/lib/libvirt/images/pe3-xe.raw <br/> -serial telnet::8114,server,nowait <br/> -net nic,model=virtio,vlan=1000,macaddr=00:01:00:ff:66:14 <br/> -net nic,model=virtio,vlan=13,macaddr=00:01:00:ff:14:13 <br/> -net socket,vlan=13,connect=127.0.0.1:7013 <br/> -net nic,model=virtio,vlan=17,macaddr=00:01:00:ff:14:17 <br/> -net socket,vlan=17,connect=127.0.0.1:7017 <br/> -net nic,model=virtio,vlan=23,macaddr=00:01:00:ff:14:23 <br/> -net socket,vlan=23,listen=127.0.0.1:7023 <br/> -net nic,model=virtio,vlan=24,macaddr=00:01:00:ff:14:24 <br/> -net socket,vlan=24,listen=127.0.0.1:7024 <br/> -net tap,ifname=tap14,vlan=1000,script=no &amp;<br/><br/># pe4<br/>/bin/qemu-kvm -cpu kvm64 -nographic -m 2548 -hda /var/lib/libvirt/images/pe4-xe.raw <br/> -serial telnet::8115,server,nowait <br/> -net nic,model=virtio,vlan=1000,macaddr=00:01:00:ff:66:15 <br/> -net nic,model=virtio,vlan=14,macaddr=00:01:00:ff:15:14 <br/> -net socket,vlan=14,connect=127.0.0.1:7014 <br/> -net nic,model=virtio,vlan=18,macaddr=00:01:00:ff:15:18 <br/> -net socket,vlan=18,connect=127.0.0.1:7018 <br/> -net nic,model=virtio,vlan=25,macaddr=00:01:00:ff:15:25 <br/> -net socket,vlan=25,listen=127.0.0.1:7025 <br/> -net nic,model=virtio,vlan=26,macaddr=00:01:00:ff:15:26 <br/> -net socket,vlan=26,listen=127.0.0.1:7026 <br/> -net tap,ifname=tap15,vlan=1000,script=no &amp;<br/><br/># ce1<br/>/bin/qemu-kvm -cpu kvm64 -nographic -m 2548 -hda /var/lib/libvirt/images/ce1-xe.raw <br/> -serial telnet::8116,server,nowait <br/> -net nic,model=virtio,vlan=1000,macaddr=00:01:00:ff:66:16 <br/> -net nic,model=virtio,vlan=19,macaddr=00:01:00:ff:16:19 <br/> -net socket,vlan=19,connect=127.0.0.1:7019 <br/> -net nic,model=virtio,vlan=21,macaddr=00:01:00:ff:16:21 <br/> -net socket,vlan=21,connect=127.0.0.1:7021 <br/> -net tap,ifname=tap16,vlan=1000,script=no &amp;<br/><br/># ce2<br/>/bin/qemu-kvm -cpu kvm64 -nographic -m 2548 -hda /var/lib/libvirt/images/ce2-xe.raw <br/> -serial telnet::8117,server,nowait <br/> -net nic,model=virtio,vlan=1000,macaddr=00:01:00:ff:66:17 <br/> -net nic,model=virtio,vlan=20,macaddr=00:01:00:ff:17:20 <br/> -net socket,vlan=20,connect=127.0.0.1:7020 <br/> -net nic,model=virtio,vlan=22,macaddr=00:01:00:ff:17:22 <br/> -net socket,vlan=22,connect=127.0.0.1:7022 <br/> -net tap,ifname=tap17,vlan=1000,script=no &amp;<br/><br/># ce3<br/>/bin/qemu-kvm -cpu kvm64 -nographic -m 2548 -hda /var/lib/libvirt/images/ce3-xr.raw <br/> -serial telnet::8118,server,nowait <br/> -net nic,model=virtio,vlan=1000,macaddr=00:01:00:ff:66:18 <br/> -net nic,model=virtio,vlan=23,macaddr=00:01:00:ff:18:23 <br/> -net socket,vlan=23,connect=127.0.0.1:7023 <br/> -net nic,model=virtio,vlan=25,macaddr=00:01:00:ff:18:25 <br/> -net socket,vlan=25,connect=127.0.0.1:7025 <br/> -net tap,ifname=tap18,vlan=1000,script=no &amp;<br/><br/># ce4<br/>/bin/qemu-kvm -cpu kvm64 -nographic -m 2548 -hda /var/lib/libvirt/images/ce4-xr.raw <br/> -serial telnet::8119,server,nowait <br/> -net nic,model=virtio,vlan=1000,macaddr=00:01:00:ff:66:19 <br/> -net nic,model=virtio,vlan=24,macaddr=00:01:00:ff:19:24 <br/> -net socket,vlan=24,connect=127.0.0.1:7024 <br/> -net nic,model=virtio,vlan=26,macaddr=00:01:00:ff:19:26 <br/> -net socket,vlan=26,connect=127.0.0.1:7026 <br/> -net tap,ifname=tap19,vlan=1000,script=no &amp;</pre>
+<br/>
+The above configuration was completely generated automatically. Super simple. :)

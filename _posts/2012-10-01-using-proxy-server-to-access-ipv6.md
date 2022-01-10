@@ -1,0 +1,51 @@
+---
+layout: post
+title: Using a Proxy Server to access the IPv6 Internet?
+date: '2012-10-01'
+author: jtdub
+tags:
+- Linux
+- System Administration
+- Proxy
+- Squid
+- packetgeek.net
+---
+
+I had an idea recently. Could a person use an http proxy server to access the IPv6 portions of the Internet? The answer is, yes.
+<br/>
+<br/>
+To test this out, I spun up a cloud server at
+<a href="http://www.rackspace.com/" target="_blank">
+ Rackspace
+</a>
+.
+<a href="http://www.rackspace.com/" target="_blank">
+ Rackspace
+</a>
+assigns IPv6 Addresses to their 'Next Generation' Cloud Servers. In this instance, I used Linux and installed squid and httpd-tools.
+<br/>
+<br/>
+<pre>[root@proxy ~]# ip addr show dev eth0<br/>2: eth0: <broadcast> mtu 1500 qdisc pfifo_fast state UP qlen 1000<br/>    link/ether bc:76:4e:04:54:39 brd ff:ff:ff:ff:ff:ff<br/>    inet 198.61.201.31/24 brd 198.61.201.255 scope global eth0<br/>    <span style="background-color: yellow;">inet6 2001:4800:780e:510:e026:3332:ff04:5439/64 scope global</span> <br/>       valid_lft forever preferred_lft forever<br/>    inet6 fe80::be76:4eff:fe04:5439/64 scope link <br/>       valid_lft forever preferred_lft forever<br/>[root@proxy ~]# history | grep yum<br/>    2  <span style="background-color: yellow;">yum -y install squid</span><br/>   28  yum -y --disableexcludes=all update<br/>   58  yum -y install setroubleshoot<br/>   63  yum whatprovides "*/finger"<br/>   87  yum search squid<br/>  124  yum whatprovides "*/htpasswd"<br/>  125  yum install --help<br/>  126  yum deplist httpd_tools<br/>  127  yum install httpd_tools<br/>  128  yum deplist httpd-tools<br/>  129  <span style="background-color: yellow;">yum install httpd-tools</span><br/>  195  history | grep yum<br/>[root@proxy ~]# <span style="background-color: lime;">head -n 50 /etc/squid/squid.conf</span><br/>#<br/># Recommended minimum configuration:<br/>#<br/>acl manager proto cache_object<br/>#acl localhost src 127.0.0.1/32 ::1<br/>#acl to_localhost dst 127.0.0.0/8 0.0.0.0/32 ::1<br/><br/><span style="background-color: yellow;">auth_param basic program /usr/lib64/squid/ncsa_auth /etc/squid/passwd<br/>acl sgn proxy_auth REQUIRED<br/>http_access allow sgn<br/>http_access deny all</span><br/><br/># Example rule allowing access from your local networks.<br/># Adapt to list your (internal) IP networks from where browsing<br/># should be allowed<br/>#acl localnet src 10.0.0.0/8 # RFC1918 possible internal network<br/>#acl localnet src 172.16.0.0/12 # RFC1918 possible internal network<br/>#acl localnet src 192.168.0.0/16 # RFC1918 possible internal network<br/>#acl localnet src fc00::/7       # RFC 4193 local private network range<br/>#acl localnet src fe80::/10      # RFC 4291 link-local (directly plugged) machines<br/><br/>acl SSL_ports port 443<br/>acl Safe_ports port 80  # http<br/>acl Safe_ports port 21  # ftp<br/>acl Safe_ports port 443  # https<br/>acl Safe_ports port 70  # gopher<br/>acl Safe_ports port 210  # wais<br/>acl Safe_ports port 1025-65535 # unregistered ports<br/>acl Safe_ports port 280  # http-mgmt<br/>acl Safe_ports port 488  # gss-http<br/>acl Safe_ports port 591  # filemaker<br/>acl Safe_ports port 777  # multiling http<br/>acl CONNECT method CONNECT<br/><br/>#<br/># Recommended minimum Access Permission configuration:<br/>#<br/># Only allow cachemgr access from localhost<br/>#http_access allow manager localhost<br/>#http_access deny manager<br/><br/># Deny requests to certain unsafe ports<br/>#http_access deny !Safe_ports<br/><br/># Deny CONNECT to other than secure SSL ports<br/>http_access deny CONNECT !SSL_ports<br/><br/># We strongly recommend the following be uncommented to protect innocent<br/># web applications running on the proxy server who think the only<br/># one who can access services on "localhost" is a local user<br/>[root@proxy ~]# history | grep htpasswd<br/>  124  yum whatprovides "*/htpasswd"<br/>  130  htpasswd <br/>  131  <span style="background-color: yellow;">htpasswd -cm /etc/squid/passwd someuser</span><br/>  197  history | grep htpasswd<br/>[root@proxy ~]# <span style="background-color: lime;">cat /etc/squid/passwd</span> <br/><span style="background-color: yellow;">someuser:$apr1$SjAEUZGj$3FhI5utUY/Bp1ARFa4fhDwaDjTjCsE$ClKtuD/<br/></span>[root@proxy ~]# <span style="background-color: lime;">iptables -L</span><br/>Chain INPUT (policy ACCEPT)<br/>target     prot opt source               destination         <br/>ACCEPT     all  --  anywhere             anywhere            state RELATED,ESTABLISHED <br/>ACCEPT     icmp --  anywhere             anywhere            <br/>ACCEPT     all  --  anywhere             anywhere            <br/>ACCEPT     tcp  --  anywhere             anywhere            state NEW tcp dpt:ssh <br/><span style="background-color: yellow;">ACCEPT     tcp  --  anywhere             anywhere            state NEW tcp dpt:squid</span> <br/>REJECT     all  --  anywhere             anywhere            reject-with icmp-host-prohibited <br/><br/>Chain FORWARD (policy ACCEPT)<br/>target     prot opt source               destination         <br/>REJECT     all  --  anywhere             anywhere            reject-with icmp-host-prohibited <br/><br/>Chain OUTPUT (policy ACCEPT)<br/>target     prot opt source               destination </broadcast></pre>
+<br/>
+As you can see, all that I did with squid was set it up to allow connections from authenticated users rather than IP Addresses. This would allow somebody to be mobile and still use the proxy. I then used 'htpasswd' from the httpd-tools package to generate the /etc/squid/passwd file, and finally, I opened up squid on the firewall.
+<br/>
+<br/>
+The only other changes would need to be made on your local machine. You would need to use DNS servers that served AAAA records. Googles servers do this. 8.8.8.8 and 8.8.4.4. Your local ISP may serve the AAAA records as well. You can test this with the dig or nslookup command.
+<br/>
+<br/>
+<br/>
+<pre><span style="background-color: lime;">dig aaaa packetgeek.net @ns1.rackspace.com<br/></span></pre>
+<br/>
+Lastly, you'll need to configure your browser to point to your proxy server. As you can see in the screenshot below. The IP Address from
+<a href="http://www.whatismyipv6.com/">
+ www.whatismyipv6.com
+</a>
+is listed as the IPv6 Address of my proxy server.
+<br/>
+<br/>
+<div style="clear: both; text-align: center;">
+ <a href="/images/Screen+Shot+2012-10-01+at+1.21.14+PM.png" style="margin-left: 1em; margin-right: 1em;">
+  <img border="0" height="200" src="/images/Screen+Shot+2012-10-01+at+1.21.14+PM.png" width="320"/>
+ </a>
+</div>
+<br/>

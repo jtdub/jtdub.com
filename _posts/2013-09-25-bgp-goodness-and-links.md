@@ -1,0 +1,34 @@
+---
+layout: post
+title: BGP Goodness and Links
+date: '2013-09-25'
+author: jtdub
+tags:
+- BGP
+- packetgeek.net
+---
+
+I had my first real experience with playing with regular expressions in BGP this evening to manipulate traffic. In the instance below, I needed to give a lower preference to traffic that was learned from '65002' and was 4 AS hops out. I did this by creating an as-path access-list, using it in a route-map, and applying it to an eBGP neighbor.
+<br/>
+<br/>
+<br/>
+<pre class="lang:default decode:true">ip as-path access-list 61 permit ^65002_[0-9]+_[0-9]+_[0-9]+$<br/>route-map SomeBGPTransit-in permit 15<br/> match as-path 61<br/> set local-preference 90<br/>end<br/>wr mem</pre>
+<br/>
+<br/>
+While I'm at it, I figured that I share the two links that have helped me the most with BGP. The first is the
+<a href="http://media.packetlife.net/media/library/1/BGP.pdf" target="_blank" title="BGP Cheat Sheet">
+ BGP cheat sheet
+</a>
+from
+<a href="http://packetlife.net" target="_blank" title="packetlife.net">
+ PacketLife.net
+</a>
+. The second is an
+<a href="http://www.ine.com/" target="_blank">
+ INE
+</a>
+blog post on
+<a href="http://blog.ine.com/2008/01/06/understanding-bgp-regular-expressions/" target="_blank">
+ BGP Regular Expressions
+</a>
+.

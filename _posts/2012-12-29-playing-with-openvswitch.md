@@ -1,0 +1,189 @@
+---
+layout: post
+title: Playing with Openvswitch.
+date: '2012-12-29'
+author: jtdub
+tags:
+- Linux
+- Software Defined Networking
+- SDN
+- openvswitch
+- packetgeek.net
+---
+
+I've been playing with openvswitch a little bit this evening. Here are some notes that I took for a very basic configuration on Ubuntu 12.04.
+<br/>
+<br/>
+------------------------------------------------------------
+<br/>
+Documentation References
+<br/>
+------------------------------------------------------------
+<br/>
+<br/>
+<a href="http://networkstatic.net/openflow-openvswitch-lab/">
+ http://networkstatic.net/openflow-openvswitch-lab/
+</a>
+<br/>
+<br/>
+<a href="http://openvswitch.org/support/config-cookbooks/vlan-configuration-cookbook/">
+ http://openvswitch.org/support/config-cookbooks/vlan-configuration-cookbook/
+</a>
+<br/>
+<br/>
+<a href="https://help.ubuntu.com/community/BridgingNetworkInterfaces">
+ https://help.ubuntu.com/community/BridgingNetworkInterfaces
+</a>
+<br/>
+<br/>
+------------------------------------------------------------
+<br/>
+Install, Update, and Configure Ubuntu
+<br/>
+------------------------------------------------------------
+<br/>
+<br/>
+Installed Ubuntu 12.04 from a thumb drive.
+<br/>
+- Started with an 80 GB drive / 4 GB RAM
+<br/>
+- Chose custom partitioning
+<br/>
+- 500 MB /boot partition
+<br/>
+- 4 GB swap partition
+<br/>
+- 10 GB / partition
+<br/>
+- remaining untouched (~65 GB) will be converted to LVM later.
+<br/>
+<br/>
+<code>
+ <span style="background-color: #ffff00;">
+  apt-get -y install vim openssh-server lvm2
+  <br/>
+  apt-get -y update
+  <br/>
+  apt-get -y dist-upgrade
+  <br/>
+  reboot
+  <br/>
+ </span>
+</code>
+<br/>
+<code>
+ <span style="background-color: #ffff00;">
+  apt-get -y purge network-manager
+ </span>
+</code>
+<br/>
+<code>
+ <span style="background-color: #ffff00;">
+  <br/>
+  echo "auto eth0
+  <br/>
+  iface eth0 inet static
+  <br/>
+  address 172.16.2.11
+  <br/>
+  netmask 255.255.255.0
+  <br/>
+  network 172.16.2.0
+  <br/>
+  broadcast 172.16.2.255
+  <br/>
+  dns-nameservers 172.16.2.1
+  <br/>
+  gateway 172.16.2.1" &gt;&gt; /etc/network/interfaces
+ </span>
+</code>
+<br/>
+<br/>
+<code>
+ <span style="background-color: #ffff00;">
+  /etc/init.d/networking restart
+ </span>
+</code>
+<br/>
+<br/>
+------------------------------------------------------------
+<br/>
+Install Openvswitch
+<br/>
+------------------------------------------------------------
+<br/>
+<br/>
+<code>
+ <span style="background-color: #ffff00;">
+  apt-get -y install openvswitch-datapath-source bridge-utils
+  <br/>
+  module-assistant auto-install openvswitch-datapath
+  <br/>
+  apt-get -y install openvswitch-brcompat openvswitch-common
+ </span>
+</code>
+<br/>
+<br/>
+------------------------------------------------------------
+<br/>
+Test Openvswitch Install
+<br/>
+------------------------------------------------------------
+<br/>
+<br/>
+<code>
+ <span style="background-color: #ffff00;">
+  service openvswitch-switch status
+  <br/>
+  ovs-vsctl show
+  <br/>
+ </span>
+</code>
+<br/>
+------------------------------------------------------------
+<br/>
+Configure Openvswitch
+<br/>
+------------------------------------------------------------
+<br/>
+<br/>
+The first thing that we'll want to do is enable bridging compatibility.
+<br/>
+Bridging will act as the interface between the hypervisor physical network cards and the virtual machines. This will be controlled by openvswitch.
+<br/>
+<br/>
+<code>
+ <span style="background-color: #ffff00;">
+  sed -i 's/# BRCOMPAT=no/BRCOMPAT=yes/g' /etc/default/openvswitch-switch
+  <br/>
+  service openvswitch-switch restart
+  <br/>
+ </span>
+</code>
+<br/>
+Once the bridging compatibility has been enabled and openvswitch restarted, we'll need to define a bridging interface and add the physical nic to the bridge.
+<br/>
+<br/>
+*/ NOTE: This should be performed on the physical computer as it will bring down the networking to the host /*
+<br/>
+<br/>
+<code>
+ <span style="background-color: #ffff00;">
+  sed -i 's/eth0/br0/g' /etc/network/interfaces
+  <br/>
+  echo "auto eth0
+  <br/>
+  iface eth0 inet manual
+  <br/>
+  up ip link set eth0 up" &gt;&gt; /etc/network/interfaces
+  <br/>
+  ovs-vsctl add-br br0
+  <br/>
+  ovs-vsctl add-port br0 eth0
+  <br/>
+  /etc/init.d/networking restart
+ </span>
+</code>
+<br/>
+<br/>
+At this point, the networking should be working again and you should be able to log into the host remotely.
