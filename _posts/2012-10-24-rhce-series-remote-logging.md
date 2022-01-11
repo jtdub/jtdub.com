@@ -12,7 +12,7 @@ tags:
 ---
 
 I'll be combining two objectives into one, as I feel that they are very closely related.
-<br/>
+
 <ul>
  <br/>
  <li>
@@ -24,57 +24,106 @@ I'll be combining two objectives into one, as I feel that they are very closely 
  </li>
  <br/>
 </ul>
-<br/>
-<br/>
-<pre>[root@server1 etc]# cat rsyslog.conf <br/># rsyslog v5 configuration file<br/><br/># For more information see /usr/share/doc/rsyslog-*/rsyslog_conf.html<br/># If you experience problems, see http://www.rsyslog.com/doc/troubleshoot.html<br/><br/>#### MODULES ####<br/><br/>$ModLoad imuxsock # provides support for local system logging (e.g. via logger command)<br/>$ModLoad imklog   # provides kernel logging support (previously done by rklogd)<br/>#$ModLoad immark  # provides --MARK-- message capability<br/><br/># Provides UDP syslog reception<br/>#$ModLoad imudp<br/>#$UDPServerRun 514<br/><br/># Provides TCP syslog reception<br/>#$ModLoad imtcp<br/>#$InputTCPServerRun 514<br/><br/><br/>#### GLOBAL DIRECTIVES ####<br/><br/># Use default timestamp format<br/>$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat<br/><br/># File syncing capability is disabled by default. This feature is usually not required,<br/># not useful and an extreme performance hit<br/>#$ActionFileEnableSync on<br/><br/># Include all config files in /etc/rsyslog.d/<br/>$IncludeConfig /etc/rsyslog.d/*.conf<br/><br/><br/>#### RULES ####<br/><br/># Log all kernel messages to the console.<br/># Logging much else clutters up the screen.<br/>#kern.*                                                 /dev/console<br/><br/># Log anything (except mail) of level info or higher.<br/># Don't log private authentication messages!<br/>*.info;mail.none;authpriv.none;cron.none                /var/log/messages<br/><br/># The authpriv file has restricted access.<br/>authpriv.*                                              /var/log/secure<br/><br/># Log all the mail messages in one place.<br/>mail.*                                                  -/var/log/maillog<br/><br/><br/># Log cron stuff<br/>cron.*                                                  /var/log/cron<br/><br/># Everybody gets emergency messages<br/>*.emerg                                                 *<br/><br/># Save news errors of level crit and higher in a special file.<br/>uucp,news.crit                                          /var/log/spooler<br/><br/># Save boot messages also to boot.log<br/>local7.*                                                /var/log/boot.log<br/><br/><br/># ### begin forwarding rule ###<br/># The statement between the begin ... end define a SINGLE forwarding<br/># rule. They belong together, do NOT split them. If you create multiple<br/># forwarding rules, duplicate the whole block!<br/># Remote Logging (we use TCP for reliable delivery)<br/>#<br/># An on-disk queue is created for this action. If the remote host is<br/># down, messages are spooled to disk and sent when it is up again.<br/>#$WorkDirectory /var/lib/rsyslog # where to place spool files<br/>#$ActionQueueFileName fwdRule1 # unique name prefix for spool files<br/>#$ActionQueueMaxDiskSpace 1g   # 1gb space limit (use as much as possible)<br/>#$ActionQueueSaveOnShutdown on # save messages to disk on shutdown<br/>#$ActionQueueType LinkedList   # run asynchronously<br/>#$ActionResumeRetryCount -1    # infinite retries if host is down<br/># remote host is: name/ip:port, e.g. 192.168.0.1:514, port optional<br/>#*.* @@remote-host:514<br/># ### end of the forwarding rule ###</pre>
-<br/>
-<tt>
- To configure a system to log to a remote system, you'll need to configure your rsyslog.conf to send local logs to a remote server, which is the last highlighted option from the rsyslog.conf:
-</tt>
-<br/>
-<br/>
-<span style="background-color: lime;">
- <tt>
-  *.* @@192.168.0.1:514
- </tt>
-</span>
-<br/>
-<br/>
-<tt>
- To make the server accept logs from a remote device, you'll need to uncomment one or both of the first two highlighted options. Generally, remote syslogging works on udp 514, so usually just uncommenting:
-</tt>
-<br/>
-<br/>
-<br/>
-<pre class="crayon-selected">#$ModLoad imudp<br/>#$UDPServerRun 514</pre>
-<br/>
-will usually work. Making changes to the rsyslog.conf requires a restart of the rsyslogd service
-<br/>
-<br/>
-<span style="background-color: lime;">
- service rsyslog restart
-</span>
-<br/>
-<br/>
-<tt>
- You will also need to be sure to open the firewall
-</tt>
-<br/>
-<br/>
-<span style="background-color: lime;">
- <tt>
-  iptables -A INPUT -p udp --dport 514 -j ACCEPT
- </tt>
-</span>
-<br/>
-<span style="background-color: lime;">
- <tt>
-  iptables -A INPUT -p tcp --dport 514 -j ACCEPT
- </tt>
-</span>
-<br/>
-<span style="background-color: lime;">
- <tt>
-  service iptables save
- </tt>
-</span>
+
+```bash
+[root@server1 etc]# cat rsyslog.conf 
+# rsyslog v5 configuration file
+
+# For more information see /usr/share/doc/rsyslog-*/rsyslog_conf.html
+# If you experience problems, see http://www.rsyslog.com/doc/troubleshoot.html
+
+#### MODULES ####
+
+$ModLoad imuxsock # provides support for local system logging (e.g. via logger command)
+$ModLoad imklog   # provides kernel logging support (previously done by rklogd)
+#$ModLoad immark  # provides --MARK-- message capability
+
+# Provides UDP syslog reception
+#$ModLoad imudp
+#$UDPServerRun 514
+
+# Provides TCP syslog reception
+#$ModLoad imtcp
+#$InputTCPServerRun 514
+
+
+#### GLOBAL DIRECTIVES ####
+
+# Use default timestamp format
+$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat
+
+# File syncing capability is disabled by default. This feature is usually not required,
+# not useful and an extreme performance hit
+#$ActionFileEnableSync on
+
+# Include all config files in /etc/rsyslog.d/
+$IncludeConfig /etc/rsyslog.d/*.conf
+
+
+#### RULES ####
+
+# Log all kernel messages to the console.
+# Logging much else clutters up the screen.
+#kern.*                                                 /dev/console
+
+# Log anything (except mail) of level info or higher.
+# Don't log private authentication messages!
+*.info;mail.none;authpriv.none;cron.none                /var/log/messages
+
+# The authpriv file has restricted access.
+authpriv.*                                              /var/log/secure
+
+# Log all the mail messages in one place.
+mail.*                                                  -/var/log/maillog
+
+
+# Log cron stuff
+cron.*                                                  /var/log/cron
+
+# Everybody gets emergency messages
+*.emerg                                                 *
+
+# Save news errors of level crit and higher in a special file.
+uucp,news.crit                                          /var/log/spooler
+
+# Save boot messages also to boot.log
+local7.*                                                /var/log/boot.log
+
+
+# ### begin forwarding rule ###
+# The statement between the begin ... end define a SINGLE forwarding
+# rule. They belong together, do NOT split them. If you create multiple
+# forwarding rules, duplicate the whole block!
+# Remote Logging (we use TCP for reliable delivery)
+#
+# An on-disk queue is created for this action. If the remote host is
+# down, messages are spooled to disk and sent when it is up again.
+#$WorkDirectory /var/lib/rsyslog # where to place spool files
+#$ActionQueueFileName fwdRule1 # unique name prefix for spool files
+#$ActionQueueMaxDiskSpace 1g   # 1gb space limit (use as much as possible)
+#$ActionQueueSaveOnShutdown on # save messages to disk on shutdown
+#$ActionQueueType LinkedList   # run asynchronously
+#$ActionResumeRetryCount -1    # infinite retries if host is down
+# remote host is: name/ip:port, e.g. 192.168.0.1:514, port optional
+#*.* @@remote-host:514
+# ### end of the forwarding rule ###
+```
+
+To configure a system to log to a remote system, you'll need to configure your rsyslog.conf to send local logs to a remote server, which is the last highlighted option from the rsyslog.conf: `*.* @@192.168.0.1:514`
+
+To make the server accept logs from a remote device, you'll need to uncomment one or both of the first two highlighted options. Generally, remote syslogging works on udp 514, so usually just uncommenting:
+
+```bash
+#$ModLoad imudp
+#$UDPServerRun 514
+```
+
+will usually work. Making changes to the rsyslog.conf requires a restart of the rsyslogd service `service rsyslog restart`
+
+You will also need to be sure to open the firewall 
+
+```bash
+iptables -A INPUT -p udp --dport 514 -j ACCEPT
+iptables -A INPUT -p tcp --dport 514 -j ACCEPT
+service iptables save
+```

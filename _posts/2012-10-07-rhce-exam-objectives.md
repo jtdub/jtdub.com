@@ -8,16 +8,10 @@ tags:
 - packetgeek.net
 ---
 
-I'm starting to study for the
-<a href="https://www.redhat.com/training/courses/ex300/examobjective" target="_blank">
- RHCE
-</a>
-exam. Below are the current exam objectives and will be referring to them as I study.
-<br/>
-<br/>
-<h4>
- System configuration and management
-</h4>
+I'm starting to study for the [RHCE](https://www.redhat.com/training/courses/ex300/examobjective) exam. Below are the current exam objectives and will be referring to them as I study.
+
+#### System configuration and management
+
 <ul>
  <li>
   Route IP traffic and create static routes.
@@ -50,11 +44,11 @@ exam. Below are the current exam objectives and will be referring to them as I s
   Configure a system to accept logging from a remote system.
  </li>
 </ul>
-<h4>
- Network services
-</h4>
+
+#### Network services
+
 Network services are an important subset of the exam objectives. RHCE  candidates should be capable of meeting the following objectives for  each of the network services listed below:
-<br/>
+
 <ul>
  <li>
   Install the packages needed to provide the service.
@@ -72,9 +66,9 @@ Network services are an important subset of the exam objectives. RHCE  candidate
   Configure host-based and user-based security for the service.
  </li>
 </ul>
-<h4>
- HTTP/HTTPS
-</h4>
+
+#### HTTP/HTTPS
+
 <ul>
  <li>
   Configure a virtual host.
@@ -89,9 +83,9 @@ Network services are an important subset of the exam objectives. RHCE  candidate
   Configure group-managed content.
  </li>
 </ul>
-<h4>
- DNS
-</h4>
+
+#### DNS
+
 <ul>
  <li>
   Configure a caching-only name server.
@@ -103,17 +97,17 @@ Network services are an important subset of the exam objectives. RHCE  candidate
   Note: Candidates are not expected to configure master or slave name servers.
  </li>
 </ul>
-<h4>
- FTP
-</h4>
+
+#### FTP
+
 <ul>
  <li>
   Configure anonymous-only download.
  </li>
 </ul>
-<h4>
- NFS
-</h4>
+
+#### NFS
+
 <ul>
  <li>
   Provide network shares to specific clients.
@@ -122,9 +116,9 @@ Network services are an important subset of the exam objectives. RHCE  candidate
   Provide network shares suitable for group collaboration.
  </li>
 </ul>
-<h4>
- SMB
-</h4>
+
+#### SMB
+
 <ul>
  <li>
   Provide network shares to specific clients.
@@ -133,9 +127,9 @@ Network services are an important subset of the exam objectives. RHCE  candidate
   Provide network shares suitable for group collaboration.
  </li>
 </ul>
-<h4>
- SMTP
-</h4>
+
+#### SMTP
+
 <ul>
  <li>
   Configure a mail transfer agent (MTA) to accept inbound email from other systems.
@@ -144,9 +138,9 @@ Network services are an important subset of the exam objectives. RHCE  candidate
   Configure an MTA to forward (relay) email through a smart host.
  </li>
 </ul>
-<h4>
- SSH
-</h4>
+
+#### SSH
+
 <ul>
  <li>
   Configure key-based authentication.
@@ -155,9 +149,9 @@ Network services are an important subset of the exam objectives. RHCE  candidate
   Configure additional options described in documentation.
  </li>
 </ul>
-<h4>
- NTP
-</h4>
+
+#### NTP
+
 <ul>
  <li>
   Synchronize time using other NTP peers.

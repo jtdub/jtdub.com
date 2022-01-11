@@ -8,11 +8,4 @@ tags:
 - packetgeek.net
 ---
 
-I purchased a new domain last night. The site is
-<a href="http://www.3.4028237e38.com" target="_blank" title="3.4028237e+38">
- 3.4028237e38.com
-</a>
-. I don't actually have any plans for it, yet. It will most likely just have a bunch of IPv6 related information on it. :) Check it out!
-<a href="http://www.3.4028237e38.com" target="_blank" title="3.4028237e+38">
- www.3.4028237e38.com
-</a>
+I purchased a new domain last night. The site is [3.4028237e38.com](http://www.3.4028237e38.com). I don't actually have any plans for it, yet. It will most likely just have a bunch of IPv6 related information on it. :) Check it out!

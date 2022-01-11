@@ -9,6 +9,38 @@ tags:
 - packetgeek.net
 ---
 
-This is a simple perl script that uses the 'Net::Telnet::Cisco' perl module to save the running configuration on a Cisco IOS router or switch. It could be modified to be automated very easily.
-<br/>
-<pre><br/>#!/usr/bin/perl<br/><br/>$confDir = '/home/james/cisco_configs';<br/>$user  = "changeme";<br/>$pass  = "changeme";<br/>$enable  = "changeme";<br/><br/>use Time::localtime;<br/>use Net::Telnet::Cisco;<br/><br/>$tm = localtime;<br/>($hour,$min,$day,$month,$year) = ($tm-&gt;hour,$tm-&gt;min,$tm-&gt;mday,$tm-&gt;mon,$tm-&gt;year);<br/>$month += 1;<br/>$year += 1900;<br/><br/>if($ARGV[0]) {<br/> $ip = $ARGV[0];<br/> my $session = Net::Telnet::Cisco-&gt;new(Host =&gt; "$ip");<br/> $session-&gt;login("$user", "$pass");<br/> $session-&gt;enable("$enable");<br/> my @output = $session-&gt;cmd("show configuration");<br/> open(CONFIG, "&gt;&gt;$confDir/$ip-$month$day$year-$hour$min.txt") <br/>                or die "Can't open $confDir/$ip-$month$day$year-$hour$min.txt\n";<br/>  print CONFIG @output;<br/> close(CONFIG);<br/> $session-&gt;close;<br/> print "\n$ip has been backed up successfully.\n";<br/>} else {<br/>        print "Error: You must specify an IP Address to connect to.\n";<br/>        print "$0 <ip_address>\n";<br/>}<br/></ip_address></pre>
+This is a simple perl script that uses the `Net::Telnet::Cisco` perl module to save the running configuration on a Cisco IOS router or switch. It could be modified to be automated very easily.
+
+```perl
+#!/usr/bin/perl
+
+$confDir = '/home/james/cisco_configs';
+$user  = "changeme";
+$pass  = "changeme";
+$enable  = "changeme";
+
+use Time::localtime;
+use Net::Telnet::Cisco;
+
+$tm = localtime;
+($hour,$min,$day,$month,$year) = ($tm->hour,$tm->min,$tm->mday,$tm->mon,$tm->year);
+$month += 1;
+$year += 1900;
+
+if($ARGV[0]) {
+ $ip = $ARGV[0];
+ my $session = Net::Telnet::Cisco->new(Host => "$ip");
+ $session->login("$user", "$pass");
+ $session->enable("$enable");
+ my @output = $session->cmd("show configuration");
+ open(CONFIG, ">>$confDir/$ip-$month$day$year-$hour$min.txt") 
+                or die "Can't open $confDir/$ip-$month$day$year-$hour$min.txt\n";
+  print CONFIG @output;
+ close(CONFIG);
+ $session->close;
+ print "\n$ip has been backed up successfully.\n";
+} else {
+        print "Error: You must specify an IP Address to connect to.\n";
+        print "$0 \n";
+}
+```

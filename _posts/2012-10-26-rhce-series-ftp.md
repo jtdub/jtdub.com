@@ -10,78 +10,136 @@ tags:
 - FTP
 - packetgeek.net
 ---
-<ul>
- <br/>
- <li>
-  Configure anonymous-only download.
- </li>
- <br/>
-</ul>
-<br/>
-Install vsftpd:
-<br/>
-<br/>
-<span style="background-color: lime;">
- yum -y install vsftpd
-</span>
-<br/>
-<br/>
+
+* Configure anonymous-only download.
+
+Install vsftpd: `yum -y install vsftpd`
+
 vsftpd is configured to allow anonymous downloads by default. So you'll need to disable non-anonymous logins.
-<br/>
-<br/>
-<br/>
-<pre>[root@server1 vsftpd]# pwd<br/>/etc/vsftpd<br/>[root@server1 vsftpd]# cat vsftpd.conf <br/># Example config file /etc/vsftpd/vsftpd.conf<br/>#<br/># The default compiled in settings are fairly paranoid. This sample file<br/># loosens things up a bit, to make the ftp daemon more usable.<br/># Please see vsftpd.conf.5 for all compiled in defaults.<br/>#<br/># READ THIS: This example file is NOT an exhaustive list of vsftpd options.<br/># Please read the vsftpd.conf.5 manual page to get a full idea of vsftpd's<br/># capabilities.<br/>#<br/># Allow anonymous FTP? (Beware - allowed by default if you comment this out).<br/>anonymous_enable=YES<br/>#<br/># Uncomment this to allow local users to log in.<br/>local_enable=YES<br/>#<br/># Uncomment this to enable any form of FTP write command.<br/>write_enable=YES</pre>
-<br/>
+
+```bash
+[root@server1 vsftpd]# pwd
+/etc/vsftpd
+[root@server1 vsftpd]# cat vsftpd.conf 
+# Example config file /etc/vsftpd/vsftpd.conf
+#
+# The default compiled in settings are fairly paranoid. This sample file
+# loosens things up a bit, to make the ftp daemon more usable.
+# Please see vsftpd.conf.5 for all compiled in defaults.
+#
+# READ THIS: This example file is NOT an exhaustive list of vsftpd options.
+# Please read the vsftpd.conf.5 manual page to get a full idea of vsftpd's
+# capabilities.
+#
+# Allow anonymous FTP? (Beware - allowed by default if you comment this out).
+anonymous_enable=YES
+#
+# Uncomment this to allow local users to log in.
+local_enable=YES
+#
+# Uncomment this to enable any form of FTP write command.
+write_enable=YES
+```
+
 We need to change the highlighted options to NO.
-<br/>
-<br/>
+
 Open the firewall and make persistent at boot.
-<br/>
-<br/>
-<span style="background-color: lime;">
- iptables -I INPUT -p tcp --dport 21 -j ACCEPT
-</span>
-<br/>
-<span style="background-color: lime;">
- service iptables save
-</span>
-<br/>
-<br/>
+
+```bash
+iptables -I INPUT -p tcp --dport 21 -j ACCEPT
+service iptables save
+```
+
 Start vsftpd and make it persistent at boot:
-<br/>
-<span style="background-color: lime;">
- <br/>
-</span>
-<span style="background-color: lime;">
+
+```bash
  service vsftpd start
-</span>
-<br/>
-<span style="background-color: lime;">
  chkconfig vsftpd on
-</span>
-<br/>
-<br/>
+```
+
 Let's test out the anonymous ftp. I created a 10MB file in /var/ftp/pub.
-<br/>
-<br/>
-<br/>
-<pre>[root@server1 vsftpd]# cd /var/ftp/pub/<br/>[root@server1 pub]# ls<br/>[root@server1 pub]# dd if=/dev/urandom of=data bs=1M count=10<br/>10+0 records in<br/>10+0 records out<br/>10485760 bytes (10 MB) copied, 1.3125 s, 8.0 MB/s<br/>[root@server1 pub]# ls -alh<br/>total 11M<br/>drwxr-xr-x. 2 root root 4.0K Oct 26 23:47 .<br/>drwxr-xr-x. 3 root root 4.0K Oct 26 23:34 ..<br/>-rw-r--r--. 1 root root  10M Oct 26 23:47 data</pre>
-<br/>
-<pre>[root@client1 ~]# ftp 192.168.1.1<br/>Connected to 192.168.1.1 (192.168.1.1).<br/>220 (vsFTPd 2.2.2)<br/>Name (192.168.1.1:root): anonymous<br/>331 Please specify the password.<br/>Password:<br/>230 Login successful.<br/>Remote system type is UNIX.<br/>Using binary mode to transfer files.<br/>ftp&gt; ls<br/>227 Entering Passive Mode (192,168,1,1,223,231).<br/>ftp: connect: No route to host</pre>
-<br/>
-What happened above is that by default the ftp server uses passive ftp mode and the firewall is blocking the &gt; 1024 port that the connection is trying to open.
-<br/>
-<br/>
+
+```bash
+[root@server1 vsftpd]# cd /var/ftp/pub/
+[root@server1 pub]# ls
+[root@server1 pub]# dd if=/dev/urandom of=data bs=1M count=10
+10+0 records in
+10+0 records out
+10485760 bytes (10 MB) copied, 1.3125 s, 8.0 MB/s
+[root@server1 pub]# ls -alh
+total 11M
+drwxr-xr-x. 2 root root 4.0K Oct 26 23:47 .
+drwxr-xr-x. 3 root root 4.0K Oct 26 23:34 ..
+-rw-r--r--. 1 root root  10M Oct 26 23:47 data
+
+
+[root@client1 ~]# ftp 192.168.1.1
+Connected to 192.168.1.1 (192.168.1.1).
+220 (vsFTPd 2.2.2)
+Name (192.168.1.1:root): anonymous
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> ls
+227 Entering Passive Mode (192,168,1,1,223,231).
+ftp: connect: No route to host
+```
+
+What happened above is that by default the ftp server uses passive ftp mode and the firewall is blocking the > 1024 port that the connection is trying to open.
+
 What we'll need to do is enable ftp connection tracking and make it persistent at boot.
-<br/>
-<br/>
-<br/>
-<pre>[root@server1 log]# modprobe -l | grep ftp<br/>kernel/net/netfilter/nf_conntrack_ftp.ko<br/>kernel/net/netfilter/nf_conntrack_tftp.ko<br/>kernel/net/netfilter/ipvs/ip_vs_ftp.ko<br/>kernel/net/ipv4/netfilter/nf_nat_ftp.ko<br/>kernel/net/ipv4/netfilter/nf_nat_tftp.ko<br/>[root@server1 log]# modprobe nf_conntrack_ftp</pre>
-<br/>
-<pre>[root@client1 ~]# ftp 192.168.1.1<br/>Connected to 192.168.1.1 (192.168.1.1).<br/>220 (vsFTPd 2.2.2)<br/>Name (192.168.1.1:root): anonymous<br/>331 Please specify the password.<br/>Password:<br/>230 Login successful.<br/>Remote system type is UNIX.<br/>Using binary mode to transfer files.<br/>ftp&gt; ls<br/>227 Entering Passive Mode (192,168,1,1,163,155).<br/>150 Here comes the directory listing.<br/>drwxr-xr-x    2 0        0            4096 Oct 27 04:47 pub<br/>226 Directory send OK.<br/>ftp&gt; cd pub<br/>250 Directory successfully changed.<br/>ftp&gt; ls<br/>227 Entering Passive Mode (192,168,1,1,98,124).<br/>150 Here comes the directory listing.<br/>-rw-r--r--    1 0        0        10485760 Oct 27 04:47 data<br/>226 Directory send OK.<br/>ftp&gt; get data<br/>local: data remote: data<br/>227 Entering Passive Mode (192,168,1,1,232,180).<br/>150 Opening BINARY mode data connection for data (10485760 bytes).<br/>226 Transfer complete.<br/>10485760 bytes received in 0.139 secs (75407.82 Kbytes/sec)</pre>
-<br/>
+
+```bash
+[root@server1 log]# modprobe -l | grep ftp
+kernel/net/netfilter/nf_conntrack_ftp.ko
+kernel/net/netfilter/nf_conntrack_tftp.ko
+kernel/net/netfilter/ipvs/ip_vs_ftp.ko
+kernel/net/ipv4/netfilter/nf_nat_ftp.ko
+kernel/net/ipv4/netfilter/nf_nat_tftp.ko
+[root@server1 log]# modprobe nf_conntrack_ftp
+
+
+[root@client1 ~]# ftp 192.168.1.1
+Connected to 192.168.1.1 (192.168.1.1).
+220 (vsFTPd 2.2.2)
+Name (192.168.1.1:root): anonymous
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> ls
+227 Entering Passive Mode (192,168,1,1,163,155).
+150 Here comes the directory listing.
+drwxr-xr-x    2 0        0            4096 Oct 27 04:47 pub
+226 Directory send OK.
+ftp> cd pub
+250 Directory successfully changed.
+ftp> ls
+227 Entering Passive Mode (192,168,1,1,98,124).
+150 Here comes the directory listing.
+-rw-r--r--    1 0        0        10485760 Oct 27 04:47 data
+226 Directory send OK.
+ftp> get data
+local: data remote: data
+227 Entering Passive Mode (192,168,1,1,232,180).
+150 Opening BINARY mode data connection for data (10485760 bytes).
+226 Transfer complete.
+10485760 bytes received in 0.139 secs (75407.82 Kbytes/sec)
+```
+
 To make the changes persistent, you'll need to add an entry in /etc/sysconfig/iptables-config:
-<br/>
-<br/>
-<br/>
-<pre class="crayon-selected">[root@server1 sysconfig]# grep MODULES iptables-config<br/>IPTABLES_MODULES="ip_conntrack_ftp"<br/>IPTABLES_MODULES_UNLOAD="yes"<br/>[root@server1 sysconfig]# service iptables restart<br/>iptables: Flushing firewall rules:                         [  OK  ]<br/>iptables: Setting chains to policy ACCEPT: filter nat      [  OK  ]<br/>iptables: Unloading modules:                               [  OK  ]<br/>iptables: Applying firewall rules:                         [  OK  ]<br/>iptables: Loading additional modules: ip_conntrack_ftp     [  OK  ]</pre>
+
+```bash
+[root@server1 sysconfig]# grep MODULES iptables-config
+IPTABLES_MODULES="ip_conntrack_ftp"
+IPTABLES_MODULES_UNLOAD="yes"
+[root@server1 sysconfig]# service iptables restart
+iptables: Flushing firewall rules:                         [  OK  ]
+iptables: Setting chains to policy ACCEPT: filter nat      [  OK  ]
+iptables: Unloading modules:                               [  OK  ]
+iptables: Applying firewall rules:                         [  OK  ]
+iptables: Loading additional modules: ip_conntrack_ftp     [  OK  ]
+```

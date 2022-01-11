@@ -10,8 +10,6 @@ tags:
 ---
 
 Very good article.
-<br/>
-<br/>
-<a href="http://www.ellsberg.net/archive/public-accuracy-press-release">
- Ellsberg: “EVERY attack now made on WikiLeaks and Julian Assange was made against me and the release of the Pentagon Papers at the time.”
-</a>
+
+[Ellsberg: “EVERY attack now made on WikiLeaks and Julian Assange was made against me and the release of the Pentagon Papers at the time.”](http://www.ellsberg.net/archive/public-accuracy-press-release)
+

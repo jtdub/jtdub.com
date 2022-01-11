@@ -11,12 +11,9 @@ tags:
 ---
 
 I spent last week attending the Virtualization Pro Summit. I came away with a wealth of information that I'm still compiling, wrapping my head around, and figuring out where and how I can implement what. Below are some of the notes that I took away from the conference.
-<br/>
-<br/>
-<b>
- General Virtualization
-</b>
-<br/>
+
+#### General Virtualization
+
 <ul>
  <li>
   Memory is the first bottle neck in virtualization.
@@ -155,10 +152,9 @@ I spent last week attending the Virtualization Pro Summit. I came away with a we
 </ul>
 <ul>
 </ul>
-<b>
- VMWare vSphere 4.0
-</b>
-<br/>
+
+#### VMWare vSphere 4.0
+
 <ul>
  <li>
   Memory Management:

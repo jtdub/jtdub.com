@@ -16,6 +16,11 @@ tags:
 
 ### Interrupt the boot process in order to gain access to a system
 
+> TLDR; 
+> 1) Reboot
+> 2) At Grub Menu, select rescue kernel and press `e`
+> 3) At the end of the `linux` kernel line, remove `rhgb quiet` and add `rd.break enforcing=0`
+
 In order to recover the root password of a system, you must have console access to the server in order to modify the boot loader to boot into single user mode. 
 
 When you're first prompted with the boot menu, press down down arrow on the keyboard to stop the boot timer. Then scroll through your boot menu options until the rescue kernel is highlighted. With the rescue kernel highlighted, press the `e` button to edit the rescue boot options.

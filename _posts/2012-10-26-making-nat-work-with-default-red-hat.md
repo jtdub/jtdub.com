@@ -12,6 +12,13 @@ tags:
 ---
 
 Just a mental note.
-<br/>
-<br/>
+
+```bash
+sysctl -w net.ipv4.ip_forward=1 >> /etc/sysctl.conf
+iptables -I POSTROUTING -t nat -o eth0 -j MASQUERADE
+iptables -I FORWARD -i eth1 -o eth0 -m state --state NEW -j ACCEPT
+iptables -I FORWARD -m state --state RELATED,ESTABLISHED -j ACCEPT
+service iptables save
+```
+
 <pre>sysctl -w net.ipv4.ip_forward=1 &gt;&gt; /etc/sysctl.conf<br/>iptables -I POSTROUTING -t nat -o eth0 -j MASQUERADE<br/>iptables -I FORWARD -i eth1 -o eth0 -m state --state NEW -j ACCEPT<br/>iptables -I FORWARD -m state --state RELATED,ESTABLISHED -j ACCEPT<br/>service iptables save<br/></pre>

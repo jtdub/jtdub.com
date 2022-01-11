@@ -10,55 +10,73 @@ tags:
 - Bind
 - packetgeek.net
 ---
-<ul>
- <br/>
- <li>
-  Configure a caching-only name server.
- </li>
- <br/>
- <li>
-  Configure a caching-only name server to forward DNS queries.
- </li>
- <br/>
- <li>
-  Note: Candidates are not expected to configure master or slave name servers.
- </li>
- <br/>
-</ul>
-<br/>
-Install bind:
-<br/>
-<br/>
-<span style="background-color: lime;">
- yum -y install bind
-</span>
-<br/>
-<br/>
+
+* Configure a caching-only name server.
+* Configure a caching-only name server to forward DNS queries.
+* Note: Candidates are not expected to configure master or slave name servers.
+
+Install bind: `yum -y install bind`
+
 Setup caching-only name server with forwarders.
-<br/>
-<br/>
-<br/>
-<pre class="crayon-selected">[root@server1 etc]# cat named.conf<br/>//<br/>// named.conf<br/>//<br/>// Provided by Red Hat bind package to configure the ISC BIND named(8) DNS<br/>// server as a caching only nameserver (as a localhost DNS resolver only).<br/>//<br/>// See /usr/share/doc/bind*/sample/ for example named configuration files.<br/>//<br/><br/>options {<br/> listen-on port 53 { any; }; //listen on any network<br/> listen-on-v6 port 53 { any; }; //listen on any network<br/> directory  "/var/named";<br/> dump-file  "/var/named/data/cache_dump.db";<br/>        statistics-file "/var/named/data/named_stats.txt";<br/>        memstatistics-file "/var/named/data/named_mem_stats.txt";<br/> allow-query     { 192.168.1.0/24; }; //define who to allow queries from<br/> forwarders { 8.8.8.8; }; //add this line to forward queries<br/> recursion yes;<br/><br/> dnssec-enable yes;<br/> dnssec-validation yes;<br/> dnssec-lookaside auto;<br/><br/> /* Path to ISC DLV key */<br/> bindkeys-file "/etc/named.iscdlv.key";<br/><br/> managed-keys-directory "/var/named/dynamic";<br/>};<br/><br/>logging {<br/>        channel default_debug {<br/>                file "data/named.run";<br/>                severity dynamic;<br/>        };<br/>};<br/><br/>zone "." IN {<br/> type hint;<br/> file "named.ca";<br/>};<br/><br/>include "/etc/named.rfc1912.zones";<br/>include "/etc/named.root.key";</pre>
-<br/>
-Open up the firewall:
-<br/>
-<br/>
-<span style="background-color: lime;">
- iptables -I INPUT -p udp --dport 53 -j ACCEPT
-</span>
-<br/>
-<span style="background-color: lime;">
- service iptables save
-</span>
-<br/>
-<br/>
+
+```bash
+[root@server1 etc]# cat named.conf
+//
+// named.conf
+//
+// Provided by Red Hat bind package to configure the ISC BIND named(8) DNS
+// server as a caching only nameserver (as a localhost DNS resolver only).
+//
+// See /usr/share/doc/bind*/sample/ for example named configuration files.
+//
+
+options {
+ listen-on port 53 { any; }; //listen on any network
+ listen-on-v6 port 53 { any; }; //listen on any network
+ directory  "/var/named";
+ dump-file  "/var/named/data/cache_dump.db";
+        statistics-file "/var/named/data/named_stats.txt";
+        memstatistics-file "/var/named/data/named_mem_stats.txt";
+ allow-query     { 192.168.1.0/24; }; //define who to allow queries from
+ forwarders { 8.8.8.8; }; //add this line to forward queries
+ recursion yes;
+
+ dnssec-enable yes;
+ dnssec-validation yes;
+ dnssec-lookaside auto;
+
+ /* Path to ISC DLV key */
+ bindkeys-file "/etc/named.iscdlv.key";
+
+ managed-keys-directory "/var/named/dynamic";
+};
+
+logging {
+        channel default_debug {
+                file "data/named.run";
+                severity dynamic;
+        };
+};
+
+zone "." IN {
+ type hint;
+ file "named.ca";
+};
+
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
+```
+
+Open up the firewall: 
+
+```bash
+iptables -I INPUT -p udp --dport 53 -j ACCEPT
+service iptables save
+```
+
 Start the service and make it persistent at boot:
-<br/>
-<br/>
-<span style="background-color: lime;">
- service named start
-</span>
-<br/>
-<span style="background-color: lime;">
- chkconfig named on
-</span>
+
+```bash
+service named start
+chkconfig named on
+```

@@ -10,10 +10,5 @@ tags:
 ---
 
 F5 offers a free web-based course! How cool is that?
-<br/>
-<br/>
-<a href="http://www.f5.com/support/training-certification/web-based-training/">
- http://www.f5.com/support/training-certification/web-based-training/
-</a>
-<br/>
-<br/>
+
+[http://www.f5.com/support/training-certification/web-based-training/](http://www.f5.com/support/training-certification/web-based-training/)
