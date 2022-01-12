@@ -11,50 +11,42 @@ tags:
 ---
 
 Sometimes, a server becomes so corrupt that you need to re-install the operating system and perform a full system restore of the server from backups. After the OS re-install, but before you perform the restore, you need to create a backup of the files that are responsible for booting the server, defining the partition and file system layout, and naming the hardware. Once the full system restore has been completed, you should restore those files.
-<br/>
-<br/>
+
 Here are the files that you should backup before performing the restore.
-<br/>
-<ul>
- <br/>
- <li>
-  <span style="line-height: 13px;">
-   /boot
-  </span>
- </li>
- <br/>
- <li>
-  /etc/fstab
- </li>
- <br/>
- <li>
-  /etc/grub.conf
- </li>
- <br/>
- <li>
-  /etc/mtab
- </li>
- <br/>
- <li>
-  /etc/udev
- </li>
- <br/>
- <li>
-  /etc/modprobe.conf
- </li>
- <br/>
- <li>
-  /etc/modprobe.d
- </li>
- <br/>
-</ul>
-<br/>
+* /boot
+* /etc/fstab
+* /etc/grub.conf
+* /etc/mtab
+* /etc/udev
+* /etc/modprobe.conf
+* /etc/modprobe.d
+
 Here is a script that will help you out backup the needed files
-<br/>
-<pre class="lang:default decode:true">mkdir ~/backup_files; cd $_<br/>for i in /boot /etc/fstab /etc/grub.conf /etc/mtab /etc/udev /etc/modprobe.conf /etc/modprobe.d; do<br/>    cp -a $i ~/backup_files;<br/>done</pre>
-<br/>
+
+```bash
+mkdir ~/backup_files; cd $_
+for i in /boot /etc/fstab /etc/grub.conf /etc/mtab /etc/udev /etc/modprobe.conf /etc/modprobe.d; do
+    cp -a $i ~/backup_files;
+done
+```
+
 Here is a script that will help you restore the needed files
-<br/>
-<pre class="lang:default decode:true">cd ~/backup_files<br/>d=`date +%m-%d-%Y`<br/><br/>for i in `ls`; do<br/>    if [[ $i == "boot" ]]; then<br/>        cp -a /boot /boot.$d<br/>        cp -a boot /<br/>        restorecon -R /$i<br/>    else<br/>        if [[ -e /etc/$i ]]; then<br/>            cp -a /etc/$i /etc/$i.$d<br/>            cp -a $i /etc/$i<br/>            restorecon -R /etc/$i<br/>        fi<br/>   fi<br/>done</pre>
-<br/>
-After it's all complete, you just need to reboot the server. Just watch the console to ensure that everything boots correctly.
+
+```bash
+cd ~/backup_files
+d=`date +%m-%d-%Y`
+
+for i in `ls`; do
+    if [[ $i == "boot" ]]; then
+        cp -a /boot /boot.$d
+        cp -a boot /
+        restorecon -R /$i
+    else
+        if [[ -e /etc/$i ]]; then
+            cp -a /etc/$i /etc/$i.$d
+            cp -a $i /etc/$i
+            restorecon -R /etc/$i
+        fi
+   fi
+done
+```

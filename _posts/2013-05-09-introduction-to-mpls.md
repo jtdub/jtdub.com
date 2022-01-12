@@ -9,9 +9,6 @@ tags:
 ---
 
 I ran across this (long) video. It's a pretty good introduction to what MPLS is.
-<br/>
-<br/>
-<br/>
-<br/>
+
 <iframe allowfullscreen="" frameborder="0" height="480" src="http://www.youtube.com/embed/--IHeAdipHk" width="640">
 </iframe>

@@ -12,12 +12,131 @@ tags:
 ---
 
 Here is my script to date. It's functional and works pretty well, in my limited testing.
-<br/>
-<br/>
-I'll put my future revisions on
-<a href="https://github.com/jtdub/pyMultiChange/" target="_blank">
- github.com/jtdub/pyMultiChange
-</a>
-<br/>
-<br/>
-<pre class="lang:default decode:true">#!/usr/bin/env python<br/><br/>import getpass, sys, telnetlib, os, argparse<br/><br/># Variables<br/>tacacs = '.tacacslogin'<br/>verbose = False <br/>devicetype = 'ios'<br/>hostsfile = ''<br/>commandsfile = ''<br/><br/>def main():<br/>    # Parse and display argument variables<br/>    global verbose, devicetype, hostsfile, commandsfile<br/>    parser = argparse.ArgumentParser(description='Managing Cisco routers/switches with Python')<br/>    parser.add_argument('-d', '--hosts', help='Specifies a host file')<br/>    parser.add_argument('-c', '--commands',  help='Specifies a commands file', required=True)<br/>    parser.add_argument('-v', '--verbose', help='Be verbose with command output')<br/>    parser.add_argument('-n', '--nexus', help='Execute script assuming Nexus hosts')<br/><br/>    args = vars(parser.parse_args())<br/><br/>    if args['hosts']:<br/>        hostsfile = args['hosts'] <br/>    if args['commands']:<br/>        commandsfile = args['commands']<br/>    if args['verbose']:<br/>        args['verbose'] = True<br/>        verbose = args['verbose']<br/>    if args['nexus']:<br/>        devicetype = 'nexus'<br/><br/>    return hostsfile, commandsfile, devicetype, verbose<br/><br/>main()<br/><br/>def userlogin():<br/>    # Getting login credentials<br/>    global username, password, enable<br/>    if os.path.isfile(tacacs):<br/>        login = open(tacacs, "r")<br/>        username = login.readline()<br/>        username = username.replace("\n", "")<br/>        password = login.readline()<br/>        password = password.replace("\n", "")<br/>        enable = login.readline()<br/>        enable = enable.replace("\n", "")<br/>        login.close()<br/>    else:<br/>        print tacacs, "not found.\n"<br/>        username = raw_input("Username: ")<br/>        password = getpass.getpass("User Password: ")<br/>        enable = getpass.getpass("Enable Password: ")<br/><br/>    return username, password, enable<br/><br/>def login(devicetype):<br/>    # Logging in with username, password, and eable password<br/>    global username, password, enable<br/>    if devicetype == "nexus":<br/>        telnet.read_until("Login: ")<br/>        telnet.write(str(username) + "\n")<br/>    else:<br/>        telnet.read_until("Username: ")<br/>        telnet.write(str(username) + "\n")<br/><br/>    if password:<br/>        telnet.read_until("Password: ")<br/>        telnet.write(str(password) + "\n")<br/><br/>    if devicetype == "ios":<br/>        if enable:<br/>            telnet.read_until(host2login + '&gt;')<br/>            telnet.write("enable\n")<br/>            telnet.read_until("Password: ")<br/>            telnet.write(str(enable) + "\n")<br/><br/>def sessioncommands():<br/>    # Executing commands on the host<br/>    global commands<br/>    print "Executing Commands on", host2login<br/>    if os.path.isfile(commandsfile):<br/>        commands = open(commandsfile, "r")<br/>        try:<br/>            for cmd2exe in commands:<br/>                telnet.write(cmd2exe)<br/>        finally:<br/>            commands.close()<br/>    else:<br/>        print commandsfile, " doesn't exist"<br/>        telnet.write("exit\n")<br/>    # Displaying the results<br/>    if verbose == True:<br/>        output = telnet.read_all()<br/>        if "% " in output:<br/>            print "Error: ", output<br/>            sys.exit()<br/>        else:<br/>            print output<br/><br/>    print "Logging out of", host2login<br/><br/># Doing work <br/>userlogin()<br/>if os.path.isfile(hostsfile):<br/>    hosts = open(hostsfile, "r")<br/>    while 1:<br/>        host2login = hosts.readline()<br/>        host2login = host2login.replace("\n", "")<br/>        print "Logging into", host2login<br/>        if not host2login:<br/>            break<br/>        else:<br/>            telnet = telnetlib.Telnet(host2login)<br/>            login(devicetype)<br/>            sessioncommands()<br/>    hosts.close()<br/>else:<br/>    host2login = raw_input("Host: ")<br/>    print "Logging into", host2login<br/>    telnet = telnetlib.Telnet(host2login)<br/>    login(devicetype)<br/>    sessioncommands()</pre>
+
+I'll put my future revisions on [github.com/jtdub/pyMultiChange](https://github.com/jtdub/pyMultiChange/)
+
+```python
+#!/usr/bin/env python
+
+import getpass, sys, telnetlib, os, argparse
+
+# Variables
+tacacs = '.tacacslogin'
+verbose = False 
+devicetype = 'ios'
+hostsfile = ''
+commandsfile = ''
+
+def main():
+    # Parse and display argument variables
+    global verbose, devicetype, hostsfile, commandsfile
+    parser = argparse.ArgumentParser(description='Managing Cisco routers/switches with Python')
+    parser.add_argument('-d', '--hosts', help='Specifies a host file')
+    parser.add_argument('-c', '--commands',  help='Specifies a commands file', required=True)
+    parser.add_argument('-v', '--verbose', help='Be verbose with command output')
+    parser.add_argument('-n', '--nexus', help='Execute script assuming Nexus hosts')
+
+    args = vars(parser.parse_args())
+
+    if args['hosts']:
+        hostsfile = args['hosts'] 
+    if args['commands']:
+        commandsfile = args['commands']
+    if args['verbose']:
+        args['verbose'] = True
+        verbose = args['verbose']
+    if args['nexus']:
+        devicetype = 'nexus'
+
+    return hostsfile, commandsfile, devicetype, verbose
+
+main()
+
+def userlogin():
+    # Getting login credentials
+    global username, password, enable
+    if os.path.isfile(tacacs):
+        login = open(tacacs, "r")
+        username = login.readline()
+        username = username.replace("\n", "")
+        password = login.readline()
+        password = password.replace("\n", "")
+        enable = login.readline()
+        enable = enable.replace("\n", "")
+        login.close()
+    else:
+        print tacacs, "not found.\n"
+        username = raw_input("Username: ")
+        password = getpass.getpass("User Password: ")
+        enable = getpass.getpass("Enable Password: ")
+
+    return username, password, enable
+
+def login(devicetype):
+    # Logging in with username, password, and eable password
+    global username, password, enable
+    if devicetype == "nexus":
+        telnet.read_until("Login: ")
+        telnet.write(str(username) + "\n")
+    else:
+        telnet.read_until("Username: ")
+        telnet.write(str(username) + "\n")
+
+    if password:
+        telnet.read_until("Password: ")
+        telnet.write(str(password) + "\n")
+
+    if devicetype == "ios":
+        if enable:
+            telnet.read_until(host2login + '>')
+            telnet.write("enable\n")
+            telnet.read_until("Password: ")
+            telnet.write(str(enable) + "\n")
+
+def sessioncommands():
+    # Executing commands on the host
+    global commands
+    print "Executing Commands on", host2login
+    if os.path.isfile(commandsfile):
+        commands = open(commandsfile, "r")
+        try:
+            for cmd2exe in commands:
+                telnet.write(cmd2exe)
+        finally:
+            commands.close()
+    else:
+        print commandsfile, " doesn't exist"
+        telnet.write("exit\n")
+    # Displaying the results
+    if verbose == True:
+        output = telnet.read_all()
+        if "% " in output:
+            print "Error: ", output
+            sys.exit()
+        else:
+            print output
+
+    print "Logging out of", host2login
+
+# Doing work 
+userlogin()
+if os.path.isfile(hostsfile):
+    hosts = open(hostsfile, "r")
+    while 1:
+        host2login = hosts.readline()
+        host2login = host2login.replace("\n", "")
+        print "Logging into", host2login
+        if not host2login:
+            break
+        else:
+            telnet = telnetlib.Telnet(host2login)
+            login(devicetype)
+            sessioncommands()
+    hosts.close()
+else:
+    host2login = raw_input("Host: ")
+    print "Logging into", host2login
+    telnet = telnetlib.Telnet(host2login)
+    login(devicetype)
+    sessioncommands()
+```
