@@ -233,25 +233,10 @@ default via 192.168.122.1 dev eth0
 
 Let's break it down:
 
-<ul>
- <br/>
- <li>
-  'ip route add' - add a route
- </li>
- <br/>
- <li>
-  192.168.100.0/24 - the destination network
- </li>
- <br/>
- <li>
-  'via 192.168.122.1' - the gateway to reach the 192.168.100.0/24 network.
- </li>
- <br/>
- <li>
-  'dev eth0' - the interface to send the traffic to both the gateway and destination network.
- </li>
- <br/>
-</ul>
+* 'ip route add' - add a route
+* 192.168.100.0/24 - the destination network
+* 'via 192.168.122.1' - the gateway to reach the 192.168.100.0/24 network.
+* 'dev eth0' - the interface to send the traffic to both the gateway and destination network.
 
 The 'dev eth0' is optional.
 

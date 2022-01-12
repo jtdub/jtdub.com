@@ -16,45 +16,16 @@ This section is on using IPTables to create a packet filtering firewall as well 
 
 The VM's:
 
-<ul>
- <br/>
- <li>
-  server1:
-  <ul>
-   <li>
-    eth0: dhcp has access to the Internet
-   </li>
-   <li>
-    eth1: static address of 192.168.101.1/24, internal network.
-   </li>
-   <li>
-    Server1 acts as the firewall / NAT router
-   </li>
-  </ul>
- </li>
- <li>
-  client1:
-  <ul>
-   <li>
-    eth0: static address of 192.168.101.101
-   </li>
-   <li>
-    Client1 acts as a computer on an internal network.
-   </li>
-  </ul>
- </li>
- <li>
-  client2:
-  <ul>
-   <li>
-    eth0: static address of 192.168.101.102
-   </li>
-   <li>
-    Client2 acts as a computer on an internal network.
-   </li>
-  </ul>
- </li>
-</ul>
+* server1:
+  * eth0: dhcp has access to the Internet
+  * eth1: static address of 192.168.101.1/24, internal network.
+  * server1 acts as the firewall / NAT router
+* client1:
+  * eth0: static address of 192.168.101.101
+  * client1 acts as a computer on an internal network.
+* client2:
+  * eth0: static address of 192.168.101.102
+  * client2 acts as a computer on an internal network.
 
 The first thing that I did on server1 was make sure that I had a clean slate to work with. That included making sure that my firewall had a default setting of allowing all traffic, but wasn't forwarding any traffic. I also verified my interfaces and routing table.
 

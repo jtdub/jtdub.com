@@ -16,23 +16,11 @@ Layer 3 switches can turn on routing by executing the "ip routing" command from 
 
 With large networks, topology-based switches may still be too slow. Then you will need to utilize hardwre based layer 3 switching. In hardware based layer 3 switching, the switch can utilize Policy Feature Cards (PFC) and Distributed Feature Cards (DFC) to route traffic at the hardware level. The hardware will do a packet rewrite on the egress port and alter the following fields:
 
-<ul>
- <li>
-  Layer 2 (MAC) destination address
- </li>
- <li>
-  Layer 2 (MAC) source address
- </li>
- <li>
-  Layer 3 IP TTL
- </li>
- <li>
-  Layer 3 checksum
- </li>
- <li>
-  Layer 2 (MAC) checksum, aka FCS
- </li>
-</ul>
+* Layer 2 (MAC) destination address
+* Layer 2 (MAC) source address
+* Layer 3 IP TTL
+* Layer 3 checksum
+* Layer 2 (MAC) checksum, aka FCS
 
 Any packets that can't be handled by the hardware will then be sent to the switches MSFC (Multi-Layer Switch Feature Card), which is a software based router.
 

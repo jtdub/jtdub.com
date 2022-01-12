@@ -14,45 +14,16 @@ tags:
 
 In this second part, we'll discuss how to set up a NAT in Linux, using iptables. As in the previous blog, here are the stats of my VM's:
 
-<ul>
- <li>
-  server1:
-  <ul>
-   <li>
-    eth0: dhcp has access to the Internet
-   </li>
-   <li>
-    eth1: static address of 192.168.101.1/24, internal network.
-   </li>
-   <li>
-    Server1 acts as the firewall / NAT router
-   </li>
-   <br/>
-  </ul>
- </li>
- <li>
-  client1:
-  <ul>
-   <li>
-    eth0: static address of 192.168.101.101
-   </li>
-   <li>
-    Client1 acts as a computer on an internal network.
-   </li>
-  </ul>
- </li>
- <li>
-  client2:
-  <ul>
-   <li>
-    eth0: static address of 192.168.101.102
-   </li>
-   <li>
-    Client2 acts as a computer on an internal network.
-   </li>
-  </ul>
- </li>
-</ul>
+* server1:
+  * eth0: dhcp has access to the Internet
+  * eth1: static address of 192.168.101.1/24, internal network.
+  * server1 acts as the firewall / NAT router
+* client1:
+  * eth0: static address of 192.168.101.101
+  * client1 acts as a computer on an internal network.
+* client2:
+  * eth0: static address of 192.168.101.102
+  * client2 acts as a computer on an internal network.
 
 The first thing that we'll need to do is allow the computer to forward traffic between interfaces.
 

@@ -25,45 +25,22 @@ Trunk ports generally are the connections between switches. They allow switches 
 There are a few different trunking protocols. In the Ethernet world, there are two methods; ISL and 802.1q. ISL stands for Inter-Switch Link and is a Cisco proprietary trunking protocol.
 
 ISL:
-<ul>
- <li>
-  Only carries 1000 VLANs
- </li>
- <li>
-  Encapsulates the frame, which add overhead
- </li>
- <li>
-  Must be point-to-point
- </li>
- <li>
-  does not have a separate QoS field
- </li>
-</ul>
+* Only carries 1000 VLANs
+* Encapsulates the frame, which add overhead
+* Must be point-to-point
+* does not have a separate QoS field
 
 Since ISL encapsulates the entire frame it can support other protocols besides Ethernet. It can support Token Ring, FDDI, and ATM.
 
 802.1q is an open standard trunking protocol. Since it's open, it can be used with multiple vendors. Rather than encapsulating the entire frame, 802.1q adds a tag to the existing Ethernet header. 802.1q had a priority field for better QoS support and has a rich protocol support. It can support:
 
-<ul>
- <li>
-  Ethernet
- </li>
- <li>
-  Token Ring
- </li>
- <li>
-  4095 VLANs
- </li>
- <li>
-  Common Spanning Tree
- </li>
- <li>
-  Multiple Spanning Tree
- </li>
- <li>
-  Rapid Spanning Tree
- </li>
-</ul>
+* Ethernet
+* Token Ring
+* 4095 VLANs
+* Common Spanning Tree
+* Multiple Spanning Tree
+* Rapid Spanning Tree
+
 The native vlan is not tagged on the trunk.
 
 **Command Sets:**

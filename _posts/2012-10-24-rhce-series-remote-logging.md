@@ -13,17 +13,8 @@ tags:
 
 I'll be combining two objectives into one, as I feel that they are very closely related.
 
-<ul>
- <br/>
- <li>
-  Configure a system to log to a remote system.
- </li>
- <br/>
- <li>
-  Configure a system to accept logging from a remote system.
- </li>
- <br/>
-</ul>
+* Configure a system to log to a remote system.
+* Configure a system to accept logging from a remote system.
 
 ```bash
 [root@server1 etc]# cat rsyslog.conf 
