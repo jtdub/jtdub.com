@@ -14,22 +14,79 @@ tags:
 - packetgeek.net
 ---
 
-After a LONG hiatus, I'm finally starting to work on my Open Source implementation of
-<a href="http://www.packetgeek.net/search/label/VPN" target="_blank">
- DMVPN
-</a>
-, again. So far, I've started off by taking the
-<a href="http://sourceforge.net/projects/opennhrp/" target="_blank">
- OpenNHRP
-</a>
-source code and building RPM files. I made no changes to the source code itself. Heck, I don't even consider myself a developer. I just built the RPM binaries so that a person could build a DMVPN device without needing to have developer tools installed on the device itself. It should be a little more secure that way. :)
-<br/>
-<br/>
+After a LONG hiatus, I'm finally starting to work on my Open Source implementation of DMVPN, again. So far, I've started off by taking the [OpenNHRP](http://sourceforge.net/projects/opennhrp/) source code and building RPM files. I made no changes to the source code itself. Heck, I don't even consider myself a developer. I just built the RPM binaries so that a person could build a DMVPN device without needing to have developer tools installed on the device itself. It should be a little more secure that way. :)
+
 Currently, the RPM files are being built in a CentOS 6 x86_64 environment. However, if this is something that people like, I will entertain building the RPM's for 32 bit environment or possibly deb packages for ubuntu / debian based environments.
-<br/>
-<br/>
+
 The binary and source RPM's are available right now! I'm still testing them to make sure everything is working properly.  You can get the package by installing the repository:
-<br/>
-<pre class="">[root@server ~]# <span style="background-color: lime;">curl http://tools.packetgeek.net/pgn.repo -o /etc/yum.repos.d/pgn.repo</span><br/>[root@server ~]# <span style="background-color: lime;">yum search opennhrp</span><br/>Loaded plugins: fastestmirror<br/>Loading mirror speeds from cached hostfile<br/> * base: centosmirror.quintex.com<br/> * extras: centosmirror.quintex.com<br/> * updates: centosmirror.quintex.com<br/><span style="background-color: yellow;">============================================================ N/S Matched: opennhrp ============================================================<br/>opennhrp.x86_64 : OpenNHRP implements NBMA Next Hop Resolution Protocol (as defined in RFC 2332). It makes it possible to create dynamic<br/>                : multipoint VPN Linux router using NHRP, GRE and IPsec. It aims to be Cisco DMVPN compatible.</span><br/><br/>  Name and summary matches only, use "search all" for everything.<br/>[root@server ~]# <span style="background-color: lime;">yum install opennhrp</span><br/>Loaded plugins: fastestmirror<br/>Loading mirror speeds from cached hostfile<br/> * base: centosmirror.quintex.com<br/> * extras: centosmirror.quintex.com<br/> * updates: centosmirror.quintex.com<br/>Setting up Install Process<br/>Resolving Dependencies<br/>--&gt; Running transaction check<br/>---&gt; Package opennhrp.x86_64 0:0.13.1-1.el6 will be installed<br/>--&gt; Processing Dependency: libcares.so.2()(64bit) for package: opennhrp-0.13.1-1.el6.x86_64<br/>--&gt; Running transaction check<br/>---&gt; Package c-ares.x86_64 0:1.7.0-6.el6 will be installed<br/>--&gt; Finished Dependency Resolution<br/><br/>Dependencies Resolved<br/><br/>===============================================================================================================================================<br/> Package                           Arch                            Version                                 Repository                     Size<br/>===============================================================================================================================================<br/>Installing:<br/> opennhrp                          x86_64                          0.13.1-1.el6                            pgn                            62 k<br/>Installing for dependencies:<br/> c-ares                            x86_64                          1.7.0-6.el6                             base                           53 k<br/><br/>Transaction Summary<br/>===============================================================================================================================================<br/>Install       2 Package(s)<br/><br/>Total download size: 115 k<br/>Installed size: 230 k<br/>Is this ok [y/N]: y<br/>Downloading Packages:<br/>(1/2): c-ares-1.7.0-6.el6.x86_64.rpm                                                                                    |  53 kB     00:00     <br/>(2/2): opennhrp-0.13.1-1.el6.x86_64.rpm                                                                                 |  62 kB     00:00     <br/>-----------------------------------------------------------------------------------------------------------------------------------------------<br/>Total                                                                                                          203 kB/s | 115 kB     00:00     <br/>Running rpm_check_debug<br/>Running Transaction Test<br/>Transaction Test Succeeded<br/>Running Transaction<br/>Warning: RPMDB altered outside of yum.<br/>  Installing : c-ares-1.7.0-6.el6.x86_64                                                                                                   1/2 <br/>  Installing : opennhrp-0.13.1-1.el6.x86_64                                                                                                2/2 <br/>  Verifying  : opennhrp-0.13.1-1.el6.x86_64                                                                                                1/2 <br/>  Verifying  : c-ares-1.7.0-6.el6.x86_64                                                                                                   2/2 <br/><br/>Installed:<br/>  opennhrp.x86_64 0:0.13.1-1.el6                                                                                                               <br/><br/>Dependency Installed:<br/>  c-ares.x86_64 0:1.7.0-6.el6                                                                                                                  <br/><br/>Complete!</pre>
-<br/>
+
+```bash
+[root@server ~]# curl http://tools.packetgeek.net/pgn.repo -o /etc/yum.repos.d/pgn.repo
+[root@server ~]# yum search opennhrp
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: centosmirror.quintex.com
+ * extras: centosmirror.quintex.com
+ * updates: centosmirror.quintex.com
+============================================================ N/S Matched: opennhrp ============================================================
+opennhrp.x86_64 : OpenNHRP implements NBMA Next Hop Resolution Protocol (as defined in RFC 2332). It makes it possible to create dynamic
+                : multipoint VPN Linux router using NHRP, GRE and IPsec. It aims to be Cisco DMVPN compatible.
+
+  Name and summary matches only, use "search all" for everything.
+[root@server ~]# yum install opennhrp
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: centosmirror.quintex.com
+ * extras: centosmirror.quintex.com
+ * updates: centosmirror.quintex.com
+Setting up Install Process
+Resolving Dependencies
+--> Running transaction check
+---> Package opennhrp.x86_64 0:0.13.1-1.el6 will be installed
+--> Processing Dependency: libcares.so.2()(64bit) for package: opennhrp-0.13.1-1.el6.x86_64
+--> Running transaction check
+---> Package c-ares.x86_64 0:1.7.0-6.el6 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+===============================================================================================================================================
+ Package                           Arch                            Version                                 Repository                     Size
+===============================================================================================================================================
+Installing:
+ opennhrp                          x86_64                          0.13.1-1.el6                            pgn                            62 k
+Installing for dependencies:
+ c-ares                            x86_64                          1.7.0-6.el6                             base                           53 k
+
+Transaction Summary
+===============================================================================================================================================
+Install       2 Package(s)
+
+Total download size: 115 k
+Installed size: 230 k
+Is this ok [y/N]: y
+Downloading Packages:
+(1/2): c-ares-1.7.0-6.el6.x86_64.rpm                                                                                    |  53 kB     00:00     
+(2/2): opennhrp-0.13.1-1.el6.x86_64.rpm                                                                                 |  62 kB     00:00     
+-----------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                          203 kB/s | 115 kB     00:00     
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+Warning: RPMDB altered outside of yum.
+  Installing : c-ares-1.7.0-6.el6.x86_64                                                                                                   1/2 
+  Installing : opennhrp-0.13.1-1.el6.x86_64                                                                                                2/2 
+  Verifying  : opennhrp-0.13.1-1.el6.x86_64                                                                                                1/2 
+  Verifying  : c-ares-1.7.0-6.el6.x86_64                                                                                                   2/2 
+
+Installed:
+  opennhrp.x86_64 0:0.13.1-1.el6                                                                                                               
+
+Dependency Installed:
+  c-ares.x86_64 0:1.7.0-6.el6                                                                                                                  
+
+Complete!
+```
+
 Have fun! I look forward to getting an open source of a DMVPN implementation up and running soon! Leave a comment if you have any comments or questions.

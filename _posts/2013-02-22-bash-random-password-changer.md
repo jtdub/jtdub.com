@@ -10,6 +10,16 @@ tags:
 ---
 
 Here's a script that will change a user's password at random internals with a randomly generated 30 character password. :)
-<br/>
-<pre class="lang:default decode:true">#!/bin/sh<br/>while true;<br/>do<br/>    for i in `&lt; /dev/urandom tr -dc A-Za-z0-9_ | head -c30`;<br/>    do<br/>        echo 'someuser:$i' | sudo chpasswd;<br/>        time=`&lt; /dev/urandom tr -dc 0-9 | head -c5`;   <br/>        sleep $time;<br/>    done<br/>done</pre>
-<br/>
+
+```bash
+#!/bin/sh
+while true;
+do
+    for i in `< /dev/urandom tr -dc A-Za-z0-9_ | head -c30`;
+    do
+        echo 'someuser:$i' | sudo chpasswd;
+        time=`< /dev/urandom tr -dc 0-9 | head -c5`;   
+        sleep $time;
+    done
+done
+```

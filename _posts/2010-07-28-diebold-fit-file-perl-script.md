@@ -10,6 +10,365 @@ tags:
 ---
 
 I wrote this to generate Diebold FIT files quickly. This script can generate a FIT file in a couple seconds in what would take me hours to do by hand.
-<br/>
-<pre class="lang:default decode:true">#!/usr/bin/perl<br/>#!C:\perl\bin\perl.exe<br/><br/># May, 29, 2009<br/># Automatically creates a Diebold ATM FIT file<br/># based on a list of BIN numbers.<br/><br/># 1) Takes each BIN number.<br/># 2) splits each BIN into two digit strings.<br/># 3) Assumes that each two digit string is a hex value.<br/># 4) Converts each hex value to decimal.<br/># 5) Makes sure each decimal number is three digits.<br/># 6) Creates the each incrementing FIT line.<br/># 7) Writes each FIT line to a specified file.<br/><br/># If you are using a UNIX-Like OS, be sure to change<br/># the \\ in the $binPath, $fitPath, and $testPath<br/># so a single /<br/><br/># User Definable Variables<br/># The directory in which the script looks for the input file<br/># and writes the output file(s).<br/>$homeDir  = 'C:\Documents and Settings\williamsj\My Documents';<br/>$binList  = "$ARGV[0]";<br/>$fitList  = "$ARGV[1]";<br/>$binPath = "$homeDir\\$binList";<br/>$fitPath = "$homeDir\\$fitList";<br/># Do you want to add a FIT line so that the ATM can use<br/># a settlement card?<br/>$settleCard = "1"; # 1 is On, 0 is Off<br/># Do you want to add a FIT line so that all other FI<br/># cards are defined? (Not "ON US")<br/>$allOtherFI = "1"; # 1 is On, 0 is Off<br/># Having problems? Turning this on will create a file<br/># that has all corresponding outputs. It can be useful in<br/># troubleshooting the code.<br/># 1) BIN length<br/># 2) The BIN number<br/># 3) The hex values<br/># 4) The decimal values<br/>$testData  = "0"; # 1 is On, 0 is Off<br/>$testFile  = "testData.txt";<br/>$testPath = "$homeDir\\$testFile";<br/><br/># This is the meat of the script.<br/>$num = "0";<br/>if(!$ARGV[0]) {<br/> print "Error: You must specify a bin list.\n";<br/>        print "$0 &lt;input_bin_list&gt; &lt;output_fit_file&gt;\n";<br/>} elsif(!$ARGV[1]) {<br/> print "Error: You must specify a fit file to write to.\n";<br/>        print "$0 &lt;input_bin_list&gt; &lt;output_fit_file&gt;\n";<br/>} else {<br/>if($settleCard eq 1) {<br/> open(FIT, "&gt;$fitPath") or die "Can't open $fitPath.\n";<br/> print FIT "; Settlement card BIN (all 9's)\n";<br/> print FIT "000000153153153153153002000140000000000031000255000000000000000000000000000000000000000000000000000000000000000000000\c\\n";<br/> print FIT "; on-us BINs\n";<br/> close(FIT);<br/>}<br/>open(BINS, "$binPath") or die "Can't open $binPath.\n";<br/>my @bins = ;<br/>foreach $bins (@bins) {<br/> chomp($bins);<br/>        $l = length($bins);<br/>        @sbins = split(/(\d\d)/,$bins);<br/> if($l eq 10) {<br/>         @b = ($sbins[1],$sbins[3],$sbins[5],$sbins[7],$sbins[9]);<br/>                @dec = @b;<br/>                $dec[0] = hex($dec[0]);<br/>                if(length($dec[0]) eq 2) {<br/>                 $dec[0] = "0$dec[0]";<br/>                } elsif(length($dec[0]) eq 1) {<br/>                 $dec[0] = "00$dec[0]";<br/>                }<br/>                $dec[1] = hex($dec[1]);<br/>                if(length($dec[1]) eq 2) {<br/>                 $dec[1] = "0$dec[1]";<br/>                } elsif(length($dec[1]) eq 1) {<br/>                 $dec[1] = "00$dec[1]";<br/>                }<br/>                $dec[2] = hex($dec[2]);<br/>                if(length($dec[2]) eq 2) {<br/>                 $dec[2] = "0$dec[2]";<br/>                } elsif(length($dec[2]) eq 1) {<br/>                 $dec[2] = "00$dec[2]";<br/>                }<br/>                $dec[3] = hex($dec[3]);<br/>                if(length($dec[3]) eq 2) {<br/>                 $dec[3] = "0$dec[3]";<br/>                } elsif(length($dec[3]) eq 1) {<br/>                 $dec[3] = "00$dec[3]";<br/>                }<br/>                $dec[4] = hex($dec[4]);<br/>                if(length($dec[4]) eq 2) {<br/>                 $dec[4] = "0$dec[4]";<br/>                } elsif(length($dec[4]) eq 1) {<br/>                 $dec[4] = "00$dec[4]";<br/>                }<br/> }<br/>        if($l eq 9) {<br/>         @b = ($sbins[1],$sbins[3],$sbins[5],$sbins[7],$sbins[8]);<br/>                $b[4] = "$b[4]f";<br/>                @dec = @b;<br/>                $dec[0] = hex($dec[0]);<br/>                if(length($dec[0]) eq 2) {<br/>                 $dec[0] = "0$dec[0]";<br/>                } elsif(length($dec[0]) eq 1) {<br/>                 $dec[0] = "00$dec[0]";<br/>                }<br/>                $dec[1] = hex($dec[1]);<br/>                if(length($dec[1]) eq 2) {<br/>                 $dec[1] = "0$dec[1]";<br/>                } elsif(length($dec[1]) eq 1) {<br/>                 $dec[1] = "00$dec[1]";<br/>                }<br/>                $dec[2] = hex($dec[2]);<br/>                if(length($dec[2]) eq 2) {<br/>                 $dec[2] = "0$dec[2]";<br/>                } elsif(length($dec[2]) eq 1) {<br/>                 $dec[2] = "00$dec[2]";<br/>                }<br/>                $dec[3] = hex($dec[3]);<br/>                if(length($dec[3]) eq 2) {<br/>                 $dec[3] = "0$dec[3]";<br/>                } elsif(length($dec[3]) eq 1) {<br/>                 $dec[3] = "00$dec[3]";<br/>                }<br/>                $dec[4] = hex($dec[4]);<br/>                if(length($dec[4]) eq 2) {<br/>                 $dec[4] = "0$dec[4]";<br/>                } elsif(length($dec[4]) eq 1) {<br/>                 $dec[4] = "00$dec[4]";<br/>                }<br/>        }<br/>        if($l eq 8) {<br/>         @b = ($sbins[1],$sbins[3],$sbins[5],$sbins[7]);<br/>                @dec = @b;<br/>                $dec[0] = hex($dec[0]);<br/>                if(length($dec[0]) eq 2) {<br/>                 $dec[0] = "0$dec[0]";<br/>                } elsif(length($dec[0]) eq 1) {<br/>                 $dec[0] = "00$dec[0]";<br/>                }<br/>                $dec[1] = hex($dec[1]);<br/>                if(length($dec[1]) eq 2) {<br/>                 $dec[1] = "0$dec[1]";<br/>                } elsif(length($dec[1]) eq 1) {<br/>                 $dec[1] = "00$dec[1]";<br/>                }<br/>                $dec[2] = hex($dec[2]);<br/>                if(length($dec[2]) eq 2) {<br/>                 $dec[2] = "0$dec[2]";<br/>                } elsif(length($dec[2]) eq 1) {<br/>                 $dec[2] = "00$dec[2]";<br/>                }<br/>                $dec[3] = hex($dec[3]);<br/>                if(length($dec[3]) eq 2) {<br/>                 $dec[3] = "0$dec[3]";<br/>                } elsif(length($dec[3]) eq 1) {<br/>                 $dec[3] = "00$dec[3]";<br/>                }<br/>        }<br/>        if($l eq 7) {<br/>         @b = ($sbins[1],$sbins[3],$sbins[5],$sbins[6]);<br/>                $b[3] = "$b[3]f";<br/>                @dec = @b;<br/>                $dec[0] = hex($dec[0]);<br/>                if(length($dec[0]) eq 2) {<br/>                 $dec[0] = "0$dec[0]";<br/>                } elsif(length($dec[0]) eq 1) {<br/>                 $dec[0] = "00$dec[0]";<br/>                }<br/>                $dec[1] = hex($dec[1]);<br/>                if(length($dec[1]) eq 2) {<br/>                 $dec[1] = "0$dec[1]";<br/>                } elsif(length($dec[1]) eq 1) {<br/>                 $dec[1] = "00$dec[1]";<br/>                }<br/>                $dec[2] = hex($dec[2]);<br/>                if(length($dec[2]) eq 2) {<br/>                 $dec[2] = "0$dec[2]";<br/>                } elsif(length($dec[2]) eq 1) {<br/>                 $dec[2] = "00$dec[2]";<br/>                }<br/>                $dec[3] = hex($dec[3]);<br/>                if(length($dec[3]) eq 2) {<br/>                 $dec[3] = "0$dec[3]";<br/>                } elsif(length($dec[2]) eq 1) {<br/>                 $dec[2] = "00$dec[2]";<br/>                }<br/>        }<br/>        if($l eq 6) {<br/>         @b = ($sbins[1],$sbins[3],$sbins[5]);<br/>                @dec = @b;<br/>                $dec[0] = hex($dec[0]);<br/>                if(length($dec[0]) eq 2) {<br/>                 $dec[0] = "0$dec[0]";<br/>                } elsif(length($dec[0]) eq 1) {<br/>                 $dec[0] = "00$dec[0]";<br/>                }<br/>                $dec[1] = hex($dec[1]);<br/>                if(length($dec[1]) eq 2) {<br/>                 $dec[1] = "0$dec[1]";<br/>                } elsif(length($dec[1]) eq 1) {<br/>                 $dec[1] = "00$dec[1]";<br/>                }<br/>                $dec[2] = hex($dec[2]);<br/>                if(length($dec[2]) eq 2) {<br/>                 $dec[2] = "0$dec[2]";<br/>                } elsif(length($dec[2]) eq 1) {<br/>                 $dec[2] = "00$dec[2]";<br/>                }<br/>        }<br/>        if($l eq 5) {<br/>         @b = ($sbins[1],$sbins[3],$sbins[4]);<br/>                $b[2] = "$b[2]f";<br/>                @dec = @b;<br/>                $dec[0] = hex($dec[0]);<br/>                if(length($dec[0]) eq 2) {<br/>                 $dec[0] = "0$dec[0]";<br/>                } elsif(length($dec[0]) eq 1) {<br/>                 $dec[0] = "00$dec[0]";<br/>                }<br/>                $dec[1] = hex($dec[1]);<br/>                if(length($dec[1]) eq 2) {<br/>                 $dec[1] = "0$dec[1]";<br/>                } elsif(length($dec[1]) eq 1) {<br/>                 $dec[1] = "00$dec[1]";<br/>                }<br/>                $dec[2] = hex($dec[2]);<br/>                if(length($dec[2]) eq 2) {<br/>                 $dec[2] = "0$dec[2]";<br/>                } elsif(length($dec[2]) eq 1) {<br/>                 $dec[2] = "00$dec[2]";<br/>                }<br/>        }<br/>        if($l eq 4) {<br/>         @b = ($sbins[1],$sbins[3]);<br/>                @dec = @b;<br/>                $dec[0] = hex($dec[0]);<br/>                if(length($dec[0]) eq 2) {<br/>                 $dec[0] = "0$dec[0]";<br/>                } elsif(length($dec[0]) eq 1) {<br/>                 $dec[0] = "00$dec[0]";<br/>                }<br/>                $dec[1] = hex($dec[1]);<br/>                if(length($dec[1]) eq 2) {<br/>                 $dec[1] = "0$dec[1]";<br/>                } elsif(length($dec[1]) eq 1) {<br/>                 $dec[1] = "00$dec[1]";<br/>                }<br/>        }<br/>        if($l eq 3) {<br/>         @b = ($sbins[1],$sbins[2]);<br/>                $b[1] = "$b[1]f";<br/>                @dec = @b;<br/>                $dec[0] = hex($dec[0]);<br/>                if(length($dec[0]) eq 2) {<br/>                 $dec[0] = "0$dec[0]";<br/>                } elsif(length($dec[0]) eq 1) {<br/>                 $dec[0] = "00$dec[0]";<br/>                }<br/>                $dec[1] = hex($dec[1]);<br/>                if(length($dec[1]) eq 2) {<br/>                 $dec[1] = "0$dec[1]";<br/>                } elsif(length($dec[1]) eq 1) {<br/>                 $dec[1] = "00$dec[1]";<br/>                }<br/>        }<br/>        if($l eq 2) {<br/>         @b = ($sbins[1]);<br/>                @dec = @b;<br/>                $dec[0] = hex($dec[0]);<br/>                if(length($dec[0]) eq 2) {<br/>                 $dec[0] = "0$dec[0]";<br/>                } elsif(length($dec[0]) eq 1) {<br/>                 $dec[0] = "00$dec[0]";<br/>                }<br/>        }<br/>        if($l eq 1) {<br/>         @b = ($sbins[0]);<br/>                $b[0] = "$b[0]f";<br/>                @dec = @b;<br/>                $dec[0] = hex($dec[0]);<br/>                if(length($dec[0]) eq 2) {<br/>                 $dec[0] = "0$dec[0]";<br/>                } elsif(length($dec[0]) eq 1) {<br/>                 $dec[0] = "00$dec[0]";<br/>                }<br/>        }<br/>        if($testData eq 1) {<br/>         open(FILE, "&gt;&gt;$testPath")<br/>                 or die "can't open file: $testFile.\n";<br/>                print FILE "BIN Length: $l\n";<br/>                print FILE "BINS: $bins\n";<br/>                print FILE "HEX:  @b\n";<br/>         print FILE "DEC:  @dec\n\n";<br/>         close(FILE);<br/>        }<br/>        $d = "@dec";<br/>        $d =~ s/ //g;<br/>        $dl = length($d);<br/>        if($dl eq 3) {<br/>         $d = "$d 255255255255";<br/>                $d =~ s/ //g;<br/>        } if($dl eq 6) {<br/>         $d = "$d 255255255";<br/>                $d =~ s/ //g;<br/>        } if($dl eq 9) {<br/>         $d = "$d 255255";<br/>                $d =~ s/ //g;<br/>        } if($dl eq 12) {<br/>         $d = "$d 255";<br/>                $d =~ s/ //g;<br/>        }<br/>        open(FIT, "&gt;&gt;$fitPath") or die "Can't Open $fitPath.\n";<br/>        foreach($d) {<br/>         chomp($d);<br/>                $num++;<br/>                if($num &lt;= "09") {<br/>                 $fl = "00 $num 000 $d 001000140000000000031000255000000000000000000000000000000000000000000000000000000000000000000000";<br/>                        $fl =~ s/ //g;<br/>                        print FIT "$fl\c\\n";<br/>                }<br/>                if($num &gt;= "10" &amp;&amp; $num &lt;= "99") {<br/>                 $fl = "0 $num 000 $d 001000140000000000031000255000000000000000000000000000000000000000000000000000000000000000000000";<br/>                        $fl =~ s/ //g;<br/>                        print FIT "$fl\c\\n";<br/>                }<br/>                if($num &gt;= "100" &amp;&amp; $num &lt;= "999") {<br/>                 $fl = "$num 000 $d 001000140000000000031000255000000000000000000000000000000000000000000000000000000000000000000000";<br/>                        $fl =~ s/ //g;<br/>                        print FIT "$fl\c\\n";<br/>                }<br/>        }<br/>        close(FIT);<br/>}<br/>if($allOtherFI eq 1) {<br/>        $num++;<br/>       open(FIT, "&gt;&gt;$fitPath") or die "Can't open $fitPath.\n";<br/>        print FIT "; foreign BINs (All F's)\n";<br/>        if($num &lt;= "09") {<br/>                $fl = "00 $num 000255255255255255000000140000000000031000255000000000000000000000000000000000000000000000000000000000000000000000";<br/>                $fl =~ s/ //g;<br/>                print FIT "$fl\c\\n";<br/>        } elsif($num &gt;= "10" &amp;&amp; $num &lt;= "99") {<br/>               $fl = "0 $num 000255255255255255000000140000000000031000255000000000000000000000000000000000000000000000000000000000000000000000";<br/>                $fl =~ s/ //g;<br/>                print FIT "$fl\c\\n";<br/>        } elsif($num &gt;= "100" &amp;&amp; $num &lt;= "999") {<br/>               $fl = "$num 000255255255255255000000140000000000031000255000000000000000000000000000000000000000000000000000000000000000000000";<br/>                $fl =~ s/ //g;<br/>                print FIT "$fl\c\\n";<br/>        }<br/>        close(FIT);<br/>}<br/>close(BINS);<br/>}</pre>
-<br/>
+
+```perl
+#!/usr/bin/perl
+#!C:\perl\bin\perl.exe
+
+# May, 29, 2009
+# Automatically creates a Diebold ATM FIT file
+# based on a list of BIN numbers.
+
+# 1) Takes each BIN number.
+# 2) splits each BIN into two digit strings.
+# 3) Assumes that each two digit string is a hex value.
+# 4) Converts each hex value to decimal.
+# 5) Makes sure each decimal number is three digits.
+# 6) Creates the each incrementing FIT line.
+# 7) Writes each FIT line to a specified file.
+
+# If you are using a UNIX-Like OS, be sure to change
+# the \\ in the $binPath, $fitPath, and $testPath
+# so a single /
+
+# User Definable Variables
+# The directory in which the script looks for the input file
+# and writes the output file(s).
+$homeDir  = 'C:\Documents and Settings\williamsj\My Documents';
+$binList  = "$ARGV[0]";
+$fitList  = "$ARGV[1]";
+$binPath = "$homeDir\\$binList";
+$fitPath = "$homeDir\\$fitList";
+# Do you want to add a FIT line so that the ATM can use
+# a settlement card?
+$settleCard = "1"; # 1 is On, 0 is Off
+# Do you want to add a FIT line so that all other FI
+# cards are defined? (Not "ON US")
+$allOtherFI = "1"; # 1 is On, 0 is Off
+# Having problems? Turning this on will create a file
+# that has all corresponding outputs. It can be useful in
+# troubleshooting the code.
+# 1) BIN length
+# 2) The BIN number
+# 3) The hex values
+# 4) The decimal values
+$testData  = "0"; # 1 is On, 0 is Off
+$testFile  = "testData.txt";
+$testPath = "$homeDir\\$testFile";
+
+# This is the meat of the script.
+$num = "0";
+if(!$ARGV[0]) {
+ print "Error: You must specify a bin list.\n";
+        print "$0 <input_bin_list> <output_fit_file>\n";
+} elsif(!$ARGV[1]) {
+ print "Error: You must specify a fit file to write to.\n";
+        print "$0 <input_bin_list> <output_fit_file>\n";
+} else {
+if($settleCard eq 1) {
+ open(FIT, ">$fitPath") or die "Can't open $fitPath.\n";
+ print FIT "; Settlement card BIN (all 9's)\n";
+ print FIT "000000153153153153153002000140000000000031000255000000000000000000000000000000000000000000000000000000000000000000000\c\\n";
+ print FIT "; on-us BINs\n";
+ close(FIT);
+}
+open(BINS, "$binPath") or die "Can't open $binPath.\n";
+my @bins = ;
+foreach $bins (@bins) {
+ chomp($bins);
+        $l = length($bins);
+        @sbins = split(/(\d\d)/,$bins);
+ if($l eq 10) {
+         @b = ($sbins[1],$sbins[3],$sbins[5],$sbins[7],$sbins[9]);
+                @dec = @b;
+                $dec[0] = hex($dec[0]);
+                if(length($dec[0]) eq 2) {
+                 $dec[0] = "0$dec[0]";
+                } elsif(length($dec[0]) eq 1) {
+                 $dec[0] = "00$dec[0]";
+                }
+                $dec[1] = hex($dec[1]);
+                if(length($dec[1]) eq 2) {
+                 $dec[1] = "0$dec[1]";
+                } elsif(length($dec[1]) eq 1) {
+                 $dec[1] = "00$dec[1]";
+                }
+                $dec[2] = hex($dec[2]);
+                if(length($dec[2]) eq 2) {
+                 $dec[2] = "0$dec[2]";
+                } elsif(length($dec[2]) eq 1) {
+                 $dec[2] = "00$dec[2]";
+                }
+                $dec[3] = hex($dec[3]);
+                if(length($dec[3]) eq 2) {
+                 $dec[3] = "0$dec[3]";
+                } elsif(length($dec[3]) eq 1) {
+                 $dec[3] = "00$dec[3]";
+                }
+                $dec[4] = hex($dec[4]);
+                if(length($dec[4]) eq 2) {
+                 $dec[4] = "0$dec[4]";
+                } elsif(length($dec[4]) eq 1) {
+                 $dec[4] = "00$dec[4]";
+                }
+ }
+        if($l eq 9) {
+         @b = ($sbins[1],$sbins[3],$sbins[5],$sbins[7],$sbins[8]);
+                $b[4] = "$b[4]f";
+                @dec = @b;
+                $dec[0] = hex($dec[0]);
+                if(length($dec[0]) eq 2) {
+                 $dec[0] = "0$dec[0]";
+                } elsif(length($dec[0]) eq 1) {
+                 $dec[0] = "00$dec[0]";
+                }
+                $dec[1] = hex($dec[1]);
+                if(length($dec[1]) eq 2) {
+                 $dec[1] = "0$dec[1]";
+                } elsif(length($dec[1]) eq 1) {
+                 $dec[1] = "00$dec[1]";
+                }
+                $dec[2] = hex($dec[2]);
+                if(length($dec[2]) eq 2) {
+                 $dec[2] = "0$dec[2]";
+                } elsif(length($dec[2]) eq 1) {
+                 $dec[2] = "00$dec[2]";
+                }
+                $dec[3] = hex($dec[3]);
+                if(length($dec[3]) eq 2) {
+                 $dec[3] = "0$dec[3]";
+                } elsif(length($dec[3]) eq 1) {
+                 $dec[3] = "00$dec[3]";
+                }
+                $dec[4] = hex($dec[4]);
+                if(length($dec[4]) eq 2) {
+                 $dec[4] = "0$dec[4]";
+                } elsif(length($dec[4]) eq 1) {
+                 $dec[4] = "00$dec[4]";
+                }
+        }
+        if($l eq 8) {
+         @b = ($sbins[1],$sbins[3],$sbins[5],$sbins[7]);
+                @dec = @b;
+                $dec[0] = hex($dec[0]);
+                if(length($dec[0]) eq 2) {
+                 $dec[0] = "0$dec[0]";
+                } elsif(length($dec[0]) eq 1) {
+                 $dec[0] = "00$dec[0]";
+                }
+                $dec[1] = hex($dec[1]);
+                if(length($dec[1]) eq 2) {
+                 $dec[1] = "0$dec[1]";
+                } elsif(length($dec[1]) eq 1) {
+                 $dec[1] = "00$dec[1]";
+                }
+                $dec[2] = hex($dec[2]);
+                if(length($dec[2]) eq 2) {
+                 $dec[2] = "0$dec[2]";
+                } elsif(length($dec[2]) eq 1) {
+                 $dec[2] = "00$dec[2]";
+                }
+                $dec[3] = hex($dec[3]);
+                if(length($dec[3]) eq 2) {
+                 $dec[3] = "0$dec[3]";
+                } elsif(length($dec[3]) eq 1) {
+                 $dec[3] = "00$dec[3]";
+                }
+        }
+        if($l eq 7) {
+         @b = ($sbins[1],$sbins[3],$sbins[5],$sbins[6]);
+                $b[3] = "$b[3]f";
+                @dec = @b;
+                $dec[0] = hex($dec[0]);
+                if(length($dec[0]) eq 2) {
+                 $dec[0] = "0$dec[0]";
+                } elsif(length($dec[0]) eq 1) {
+                 $dec[0] = "00$dec[0]";
+                }
+                $dec[1] = hex($dec[1]);
+                if(length($dec[1]) eq 2) {
+                 $dec[1] = "0$dec[1]";
+                } elsif(length($dec[1]) eq 1) {
+                 $dec[1] = "00$dec[1]";
+                }
+                $dec[2] = hex($dec[2]);
+                if(length($dec[2]) eq 2) {
+                 $dec[2] = "0$dec[2]";
+                } elsif(length($dec[2]) eq 1) {
+                 $dec[2] = "00$dec[2]";
+                }
+                $dec[3] = hex($dec[3]);
+                if(length($dec[3]) eq 2) {
+                 $dec[3] = "0$dec[3]";
+                } elsif(length($dec[2]) eq 1) {
+                 $dec[2] = "00$dec[2]";
+                }
+        }
+        if($l eq 6) {
+         @b = ($sbins[1],$sbins[3],$sbins[5]);
+                @dec = @b;
+                $dec[0] = hex($dec[0]);
+                if(length($dec[0]) eq 2) {
+                 $dec[0] = "0$dec[0]";
+                } elsif(length($dec[0]) eq 1) {
+                 $dec[0] = "00$dec[0]";
+                }
+                $dec[1] = hex($dec[1]);
+                if(length($dec[1]) eq 2) {
+                 $dec[1] = "0$dec[1]";
+                } elsif(length($dec[1]) eq 1) {
+                 $dec[1] = "00$dec[1]";
+                }
+                $dec[2] = hex($dec[2]);
+                if(length($dec[2]) eq 2) {
+                 $dec[2] = "0$dec[2]";
+                } elsif(length($dec[2]) eq 1) {
+                 $dec[2] = "00$dec[2]";
+                }
+        }
+        if($l eq 5) {
+         @b = ($sbins[1],$sbins[3],$sbins[4]);
+                $b[2] = "$b[2]f";
+                @dec = @b;
+                $dec[0] = hex($dec[0]);
+                if(length($dec[0]) eq 2) {
+                 $dec[0] = "0$dec[0]";
+                } elsif(length($dec[0]) eq 1) {
+                 $dec[0] = "00$dec[0]";
+                }
+                $dec[1] = hex($dec[1]);
+                if(length($dec[1]) eq 2) {
+                 $dec[1] = "0$dec[1]";
+                } elsif(length($dec[1]) eq 1) {
+                 $dec[1] = "00$dec[1]";
+                }
+                $dec[2] = hex($dec[2]);
+                if(length($dec[2]) eq 2) {
+                 $dec[2] = "0$dec[2]";
+                } elsif(length($dec[2]) eq 1) {
+                 $dec[2] = "00$dec[2]";
+                }
+        }
+        if($l eq 4) {
+         @b = ($sbins[1],$sbins[3]);
+                @dec = @b;
+                $dec[0] = hex($dec[0]);
+                if(length($dec[0]) eq 2) {
+                 $dec[0] = "0$dec[0]";
+                } elsif(length($dec[0]) eq 1) {
+                 $dec[0] = "00$dec[0]";
+                }
+                $dec[1] = hex($dec[1]);
+                if(length($dec[1]) eq 2) {
+                 $dec[1] = "0$dec[1]";
+                } elsif(length($dec[1]) eq 1) {
+                 $dec[1] = "00$dec[1]";
+                }
+        }
+        if($l eq 3) {
+         @b = ($sbins[1],$sbins[2]);
+                $b[1] = "$b[1]f";
+                @dec = @b;
+                $dec[0] = hex($dec[0]);
+                if(length($dec[0]) eq 2) {
+                 $dec[0] = "0$dec[0]";
+                } elsif(length($dec[0]) eq 1) {
+                 $dec[0] = "00$dec[0]";
+                }
+                $dec[1] = hex($dec[1]);
+                if(length($dec[1]) eq 2) {
+                 $dec[1] = "0$dec[1]";
+                } elsif(length($dec[1]) eq 1) {
+                 $dec[1] = "00$dec[1]";
+                }
+        }
+        if($l eq 2) {
+         @b = ($sbins[1]);
+                @dec = @b;
+                $dec[0] = hex($dec[0]);
+                if(length($dec[0]) eq 2) {
+                 $dec[0] = "0$dec[0]";
+                } elsif(length($dec[0]) eq 1) {
+                 $dec[0] = "00$dec[0]";
+                }
+        }
+        if($l eq 1) {
+         @b = ($sbins[0]);
+                $b[0] = "$b[0]f";
+                @dec = @b;
+                $dec[0] = hex($dec[0]);
+                if(length($dec[0]) eq 2) {
+                 $dec[0] = "0$dec[0]";
+                } elsif(length($dec[0]) eq 1) {
+                 $dec[0] = "00$dec[0]";
+                }
+        }
+        if($testData eq 1) {
+         open(FILE, ">>$testPath")
+                 or die "can't open file: $testFile.\n";
+                print FILE "BIN Length: $l\n";
+                print FILE "BINS: $bins\n";
+                print FILE "HEX:  @b\n";
+         print FILE "DEC:  @dec\n\n";
+         close(FILE);
+        }
+        $d = "@dec";
+        $d =~ s/ //g;
+        $dl = length($d);
+        if($dl eq 3) {
+         $d = "$d 255255255255";
+                $d =~ s/ //g;
+        } if($dl eq 6) {
+         $d = "$d 255255255";
+                $d =~ s/ //g;
+        } if($dl eq 9) {
+         $d = "$d 255255";
+                $d =~ s/ //g;
+        } if($dl eq 12) {
+         $d = "$d 255";
+                $d =~ s/ //g;
+        }
+        open(FIT, ">>$fitPath") or die "Can't Open $fitPath.\n";
+        foreach($d) {
+         chomp($d);
+                $num++;
+                if($num <= "09") {
+                 $fl = "00 $num 000 $d 001000140000000000031000255000000000000000000000000000000000000000000000000000000000000000000000";
+                        $fl =~ s/ //g;
+                        print FIT "$fl\c\\n";
+                }
+                if($num >= "10" && $num <= "99") {
+                 $fl = "0 $num 000 $d 001000140000000000031000255000000000000000000000000000000000000000000000000000000000000000000000";
+                        $fl =~ s/ //g;
+                        print FIT "$fl\c\\n";
+                }
+                if($num >= "100" && $num <= "999") {
+                 $fl = "$num 000 $d 001000140000000000031000255000000000000000000000000000000000000000000000000000000000000000000000";
+                        $fl =~ s/ //g;
+                        print FIT "$fl\c\\n";
+                }
+        }
+        close(FIT);
+}
+if($allOtherFI eq 1) {
+        $num++;
+       open(FIT, ">>$fitPath") or die "Can't open $fitPath.\n";
+        print FIT "; foreign BINs (All F's)\n";
+        if($num <= "09") {
+                $fl = "00 $num 000255255255255255000000140000000000031000255000000000000000000000000000000000000000000000000000000000000000000000";
+                $fl =~ s/ //g;
+                print FIT "$fl\c\\n";
+        } elsif($num >= "10" && $num <= "99") {
+               $fl = "0 $num 000255255255255255000000140000000000031000255000000000000000000000000000000000000000000000000000000000000000000000";
+                $fl =~ s/ //g;
+                print FIT "$fl\c\\n";
+        } elsif($num >= "100" && $num <= "999") {
+               $fl = "$num 000255255255255255000000140000000000031000255000000000000000000000000000000000000000000000000000000000000000000000";
+                $fl =~ s/ //g;
+                print FIT "$fl\c\\n";
+        }
+        close(FIT);
+}
+close(BINS);
+}
+```

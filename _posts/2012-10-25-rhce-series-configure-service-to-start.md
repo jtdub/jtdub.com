@@ -8,4 +8,39 @@ tags:
 - RHCE Study Notes
 - packetgeek.net
 ---
-<pre>[root@server1 ~]# chkconfig --list httpd<br/>httpd           0:off 1:off 2:off 3:off 4:off 5:off 6:off<br/>[root@server1 ~]# chkconfig --level 345 httpd on<br/>[root@server1 ~]# chkconfig --list httpd<br/>httpd           0:off 1:off 2:off 3:on 4:on 5:on 6:off<br/>[root@server1 ~]# chkconfig --level 345 httpd off<br/>[root@server1 ~]# chkconfig --list httpd<br/>httpd           0:off 1:off 2:off 3:off 4:off 5:off 6:off<br/>[root@server1 ~]# chkconfig httpd off<br/>[root@server1 ~]# chkconfig --list httpd<br/>httpd           0:off 1:off 2:off 3:off 4:off 5:off 6:off<br/>[root@server1 ~]# chkconfig --list<br/>auditd          0:off 1:off 2:on 3:on 4:on 5:on 6:off<br/>crond           0:off 1:off 2:on 3:on 4:on 5:on 6:off<br/>httpd           0:off 1:off 2:off 3:off 4:off 5:off 6:off<br/>ip6tables       0:off 1:off 2:on 3:on 4:on 5:on 6:off<br/>iptables        0:off 1:off 2:on 3:on 4:on 5:on 6:off<br/>lvm2-monitor    0:off 1:on 2:on 3:on 4:on 5:on 6:off<br/>named           0:off 1:off 2:off 3:off 4:off 5:off 6:off<br/>netconsole      0:off 1:off 2:off 3:off 4:off 5:off 6:off<br/>netfs           0:off 1:off 2:off 3:on 4:on 5:on 6:off<br/>network         0:off 1:off 2:on 3:on 4:on 5:on 6:off<br/>portreserve     0:off 1:off 2:on 3:on 4:on 5:on 6:off<br/>postfix         0:off 1:off 2:on 3:on 4:on 5:on 6:off<br/>rdisc           0:off 1:off 2:off 3:off 4:off 5:off 6:off<br/>restorecond     0:off 1:off 2:off 3:off 4:off 5:off 6:off<br/>rsyslog         0:off 1:off 2:on 3:on 4:on 5:on 6:off<br/>saslauthd       0:off 1:off 2:off 3:off 4:off 5:off 6:off<br/>sshd            0:off 1:off 2:on 3:on 4:on 5:on 6:off<br/>svnserve        0:off 1:off 2:off 3:off 4:off 5:off 6:off<br/>sysstat         0:off 1:on 2:on 3:on 4:on 5:on 6:off<br/>udev-post       0:off 1:on 2:on 3:on 4:on 5:on 6:off<br/>xinetd          0:off 1:off 2:off 3:off 4:off 5:off 6:off<br/></pre>
+
+```bash
+[root@server1 ~]# chkconfig --list httpd
+httpd           0:off 1:off 2:off 3:off 4:off 5:off 6:off
+[root@server1 ~]# chkconfig --level 345 httpd on
+[root@server1 ~]# chkconfig --list httpd
+httpd           0:off 1:off 2:off 3:on 4:on 5:on 6:off
+[root@server1 ~]# chkconfig --level 345 httpd off
+[root@server1 ~]# chkconfig --list httpd
+httpd           0:off 1:off 2:off 3:off 4:off 5:off 6:off
+[root@server1 ~]# chkconfig httpd off
+[root@server1 ~]# chkconfig --list httpd
+httpd           0:off 1:off 2:off 3:off 4:off 5:off 6:off
+[root@server1 ~]# chkconfig --list
+auditd          0:off 1:off 2:on 3:on 4:on 5:on 6:off
+crond           0:off 1:off 2:on 3:on 4:on 5:on 6:off
+httpd           0:off 1:off 2:off 3:off 4:off 5:off 6:off
+ip6tables       0:off 1:off 2:on 3:on 4:on 5:on 6:off
+iptables        0:off 1:off 2:on 3:on 4:on 5:on 6:off
+lvm2-monitor    0:off 1:on 2:on 3:on 4:on 5:on 6:off
+named           0:off 1:off 2:off 3:off 4:off 5:off 6:off
+netconsole      0:off 1:off 2:off 3:off 4:off 5:off 6:off
+netfs           0:off 1:off 2:off 3:on 4:on 5:on 6:off
+network         0:off 1:off 2:on 3:on 4:on 5:on 6:off
+portreserve     0:off 1:off 2:on 3:on 4:on 5:on 6:off
+postfix         0:off 1:off 2:on 3:on 4:on 5:on 6:off
+rdisc           0:off 1:off 2:off 3:off 4:off 5:off 6:off
+restorecond     0:off 1:off 2:off 3:off 4:off 5:off 6:off
+rsyslog         0:off 1:off 2:on 3:on 4:on 5:on 6:off
+saslauthd       0:off 1:off 2:off 3:off 4:off 5:off 6:off
+sshd            0:off 1:off 2:on 3:on 4:on 5:on 6:off
+svnserve        0:off 1:off 2:off 3:off 4:off 5:off 6:off
+sysstat         0:off 1:on 2:on 3:on 4:on 5:on 6:off
+udev-post       0:off 1:on 2:on 3:on 4:on 5:on 6:off
+xinetd          0:off 1:off 2:off 3:off 4:off 5:off 6:off
+```

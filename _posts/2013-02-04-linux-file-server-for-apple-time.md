@@ -12,12 +12,31 @@ tags:
 ---
 
 I got Apple Time Machine backups working with my Linux file server. Apple allows you to perform backups over the network utilizing the AFP (Apple Filing Protocol), via the Time Machine app. There is an open source implementation of afp in the netatalk package. Here is a quick and dirty run down of how I configured netatalk to work as my storage location for my apple backups.
-<br/>
-<pre class="lang:default decode:true">[root@sgnhv ~]# cd /etc/netatalk/<br/>[root@sgnhv netatalk]# for i in afpd.conf AppleVolumes.default; do echo "### $i ####"; grep -v ^# $i | grep -v ^$; done<br/>### afpd.conf ####<br/>- -mimicmodel TimeCapsule6,106 -setuplog "default log_warn /var/log/afpd.log"<br/>[Global]<br/>mimic model = TimeCapsule6,106<br/>log level = default:warn<br/>log file = /var/log/afpd.log<br/>hosts allow = 172.16.1.0/24<br/>[TimeMachine]<br/>path = /timemachine<br/>valid users = jtdubb<br/>time machine = yes<br/>### AppleVolumes.default ####<br/>:DEFAULT: options:upriv,usedots<br/>/timemachine	TimeMachine	allow:jtdubb options:usedots,upriv,tm<br/><br/>[root@sgnhv netatalk]# history | egrep 'afppasswd|chkconfig netatalk|service netatalk'<br/>  786  service netatalk restart<br/>  795  afppasswd -a jtdubb<br/>  867  chkconfig netatalk on</pre>
-<br/>
+
+```bash
+[root@sgnhv ~]# cd /etc/netatalk/
+[root@sgnhv netatalk]# for i in afpd.conf AppleVolumes.default; do echo "### $i ####"; grep -v ^# $i | grep -v ^$; done
+### afpd.conf ####
+- -mimicmodel TimeCapsule6,106 -setuplog "default log_warn /var/log/afpd.log"
+[Global]
+mimic model = TimeCapsule6,106
+log level = default:warn
+log file = /var/log/afpd.log
+hosts allow = 172.16.1.0/24
+[TimeMachine]
+path = /timemachine
+valid users = jtdubb
+time machine = yes
+### AppleVolumes.default ####
+:DEFAULT: options:upriv,usedots
+/timemachine	TimeMachine	allow:jtdubb options:usedots,upriv,tm
+
+[root@sgnhv netatalk]# history | egrep 'afppasswd|chkconfig netatalk|service netatalk'
+  786  service netatalk restart
+  795  afppasswd -a jtdubb
+  867  chkconfig netatalk on
+```
+
 As you can see, the configuration is similar to a samba configuration, with a couple minor exceptions.
-<br/>
-<br/>
-<a href="http://netatalk.sourceforge.net/" target="_blank">
- http://netatalk.sourceforge.net/
-</a>
+
+[http://netatalk.sourceforge.net/](http://netatalk.sourceforge.net/)

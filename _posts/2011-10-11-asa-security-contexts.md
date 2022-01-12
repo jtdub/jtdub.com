@@ -8,8 +8,6 @@ tags:
 - Cisco Firewalls
 - packetgeek.net
 ---
-<a href="http://www.cisco.com/en/US/products/hw/vpndevc/ps2030/products_configuration_example09186a00808d2b63.shtml">
- ASA Security Contexts
-</a>
-<br/>
+[ASA Security Contexts](http://www.cisco.com/en/US/products/hw/vpndevc/ps2030/products_configuration_example09186a00808d2b63.shtml)
+
 Just a mental note...

@@ -12,28 +12,302 @@ tags:
 ---
 
 I've updated the pyMultiChange.py script. It now is fully functional, with the addition of enable mode functionality. With this script, you can take a list of routers and switches from a text file and execute a series of commands, from a text file, all from SSH. For example:
-<br/>
-<br/>
+
 Here is the usage output, if you don't select the required arguments:
-<br/>
-<pre class="lang:default decode:true">$ ./pyMultiChange.py<br/>usage: pyMultiChange.py [-h] -d HOSTS -c COMMANDS [-v [VERBOSE]]<br/>pyMultiChange.py: error: argument -d/--hosts is required</pre>
-<br/>
+
+```bash
+$ ./pyMultiChange.py
+usage: pyMultiChange.py [-h] -d HOSTS -c COMMANDS [-v [VERBOSE]]
+pyMultiChange.py: error: argument -d/--hosts is required
+```
+
 Here is the usage output, without verbose / debugging mode:
-<br/>
-<pre class="lang:default decode:true">$ ./pyMultiChange.py -d hosts.txt -c commands.txt<br/>Using existing credentials file.<br/>*** SSH connection established to 172.16.1.1<br/>*** Executing Command: sh ver<br/>*** Closing Connection to 172.16.1.1<br/>Using existing credentials file.<br/>*** SSH connection established to 172.16.1.6<br/>*** Executing Command: sh ver<br/>*** Closing Connection to 172.16.1.6<br/></pre>
-<br/>
+
+```bash
+$ ./pyMultiChange.py -d hosts.txt -c commands.txt
+Using existing credentials file.
+*** SSH connection established to 172.16.1.1
+*** Executing Command: sh ver
+*** Closing Connection to 172.16.1.1
+Using existing credentials file.
+*** SSH connection established to 172.16.1.6
+*** Executing Command: sh ver
+*** Closing Connection to 172.16.1.6
+```
+
 Here is the usage output, with verbose / debugging mode:
-<br/>
-<br/>
-<br/>
-<pre class="lang:default decode:true">$ ./pyMultiChange.py -d hosts.txt -c commands.txt -v<br/>Using existing credentials file.<br/>DEBUG:paramiko.transport:starting thread (client mode): 0x78b9510L<br/>INFO:paramiko.transport:Connected (version 2.0, client Cisco-1.25)<br/>DEBUG:paramiko.transport:kex algos:[u'diffie-hellman-group-exchange-sha1', u'diffie-hellman-group14-sha1', u'diffie-hellman-group1-sha1'] server key:[u'ssh-rsa'] client encrypt:[u'aes128-cbc', u'3des-cbc', u'aes192-cbc', u'aes256-cbc'] server encrypt:[u'aes128-cbc', u'3des-cbc', u'aes192-cbc', u'aes256-cbc'] client mac:[u'hmac-sha1', u'hmac-sha1-96', u'hmac-md5', u'hmac-md5-96'] server mac:[u'hmac-sha1', u'hmac-sha1-96', u'hmac-md5', u'hmac-md5-96'] client compress:[u'none'] server compress:[u'none'] client lang:[u''] server lang:[u''] kex follows?False<br/>DEBUG:paramiko.transport:Ciphers agreed: local=aes128-cbc, remote=aes128-cbc<br/>DEBUG:paramiko.transport:using kex diffie-hellman-group1-sha1; server key type ssh-rsa; cipher: local aes128-cbc, remote aes128-cbc; mac: local hmac-sha1, remote hmac-sha1; compression: local none, remote none<br/>DEBUG:paramiko.transport:Switch to new keys ...<br/>DEBUG:paramiko.transport:Adding ssh-rsa host key for 172.16.1.1: d9df7efac164fbf7828fa284d5a31e63<br/>DEBUG:paramiko.transport:userauth is OK<br/>INFO:paramiko.transport:Authentication (password) successful!<br/>*** SSH connection established to 172.16.1.1<br/>DEBUG:paramiko.transport:[chan 1] Max packet in: 34816 bytes<br/>DEBUG:paramiko.transport:[chan 1] Max packet out: 4096 bytes<br/>INFO:paramiko.transport:Secsh channel 1 opened.<br/>DEBUG:paramiko.transport:[chan 1] Sesch channel 1 request ok<br/>DEBUG:paramiko.transport:[chan 1] Sesch channel 1 request ok<br/>*** Interactive SSH session established<br/>*** Sending enable password<br/>*** Successfully entered enable mode<br/>*** Executing Command: sh ver<br/>terminal length 0<br/>darkstar#sh ver<br/>Cisco IOS Software, C880 Software (C880DATA-UNIVERSALK9-M), Version 15.0(1)M7, RELEASE SOFTWARE (fc2)<br/>Technical Support: http://www.cisco.com/techsupport<br/>Copyright (c) 1986-2011 by Cisco Systems, Inc.<br/>Compiled Fri 05-Aug-11 02:01 by prod_rel_team<br/><br/>ROM: System Bootstrap, Version 12.4(22r)YB5, RELEASE SOFTWARE (fc1)<br/><br/>darkstar uptime is 10 weeks, 6 days, 12 minutes<br/>System returned to ROM by power-on<br/>System restarted at 23:21:02 CST Mon May 12 2014<br/>System image file is "flash:c880data-universalk9-mz.150-1.M7.bin"<br/>Last reload type: Normal Reload<br/><br/><br/>This product contains cryptographic features and is subject to United<br/>States and local country laws governing import, export, transfer and<br/>use. Delivery of Cisco cryptographic products does not imply<br/>third-party authority to import, export, distribute or use encryption.<br/>Importers, exporters, distributors and users are responsible for<br/>compliance with U.S. and local country laws. By using this product you<br/>agree to comply with applicable laws and regulations. If you are unable<br/>to comply with U.S. and local laws, return this product immediately.<br/><br/>A summary of U.S. laws governing Cisco cryptographic products may be found at:<br/>http://www.cisco.com/wwl/export/crypto/tool/stqrg.html<br/><br/>If you require further assistance please contact us by sending email to<br/>export@cisco.com.<br/><br/>Cisco 881 (MPC8300) processor (revision 1.0) with 236544K/25600K bytes of memory.<br/>Processor board ID FTX16038388<br/><br/>5 FastEthernet interfaces<br/>1 Gigabit Ethernet interface<br/>1 terminal line<br/>1 Virtual Private Network (VPN) Module<br/>1 cisco Embedded AP (s)<br/>256K bytes of non-volatile configuration memory.<br/>126000K bytes of ATA CompactFlash (Read/Write)<br/><br/><br/>License Info:<br/><br/>License UDI:<br/><br/>-------------------------------------------------<br/>Device#	  PID			SN<br/>-------------------------------------------------<br/>*0  	  CISCO881W-GN-A-K9     FTX16038388     <br/><br/><br/><br/>License Information for 'c880-data'<br/>    License Level: advsecurity   Type: Permanent<br/>    Next reboot license Level: advsecurity<br/><br/><br/>Configuration register is 0x2102<br/><br/>darkstar#<br/>*** Closing Connection to 172.16.1.1<br/>Using existing credentials file.<br/>DEBUG:paramiko.transport:EOF in transport thread<br/>DEBUG:paramiko.transport:starting thread (client mode): 0x78b9250L<br/>INFO:paramiko.transport:Connected (version 2.0, client Cisco-1.25)<br/>DEBUG:paramiko.transport:kex algos:[u'diffie-hellman-group1-sha1'] server key:[u'ssh-rsa'] client encrypt:[u'aes128-cbc', u'3des-cbc', u'aes192-cbc', u'aes256-cbc'] server encrypt:[u'aes128-cbc', u'3des-cbc', u'aes192-cbc', u'aes256-cbc'] client mac:[u'hmac-sha1', u'hmac-sha1-96', u'hmac-md5', u'hmac-md5-96'] server mac:[u'hmac-sha1', u'hmac-sha1-96', u'hmac-md5', u'hmac-md5-96'] client compress:[u'none'] server compress:[u'none'] client lang:[u''] server lang:[u''] kex follows?False<br/>DEBUG:paramiko.transport:Ciphers agreed: local=aes128-cbc, remote=aes128-cbc<br/>DEBUG:paramiko.transport:using kex diffie-hellman-group1-sha1; server key type ssh-rsa; cipher: local aes128-cbc, remote aes128-cbc; mac: local hmac-sha1, remote hmac-sha1; compression: local none, remote none<br/>DEBUG:paramiko.transport:Switch to new keys ...<br/>DEBUG:paramiko.transport:Adding ssh-rsa host key for 172.16.1.6: 917d0abc26c16df9860f57e3a248db1c<br/>DEBUG:paramiko.transport:userauth is OK<br/>INFO:paramiko.transport:Authentication (password) successful!<br/>*** SSH connection established to 172.16.1.6<br/>DEBUG:paramiko.transport:[chan 1] Max packet in: 34816 bytes<br/>DEBUG:paramiko.transport:[chan 1] Max packet out: 4096 bytes<br/>INFO:paramiko.transport:Secsh channel 1 opened.<br/>DEBUG:paramiko.transport:[chan 1] Sesch channel 1 request ok<br/>DEBUG:paramiko.transport:[chan 1] Sesch channel 1 request ok<br/>*** Interactive SSH session established<br/>*** Sending enable password<br/>*** Successfully entered enable mode<br/>*** Executing Command: sh ver<br/>terminal length 0<br/>sgncs1#sh ver<br/>Cisco IOS Software, C3550 Software (C3550-IPSERVICESK9-M), Version 12.2(44)SE6, RELEASE SOFTWARE (fc1)<br/>Copyright (c) 1986-2009 by Cisco Systems, Inc.<br/>Compiled Mon 09-Mar-09 20:28 by gereddy<br/>Image text-base: 0x00003000, data-base: 0x012A99FC<br/><br/>ROM: Bootstrap program is C3550 boot loader<br/><br/>sgncs1 uptime is 5 weeks, 2 days, 20 hours, 12 minutes<br/>System returned to ROM by power-on<br/>System restarted at 03:21:32 CST Fri Jun 20 2014<br/>System image file is "flash:c3550-ipservicesk9-mz.122-44.SE6.bin"<br/><br/><br/>This product contains cryptographic features and is subject to United<br/>States and local country laws governing import, export, transfer and<br/>use. Delivery of Cisco cryptographic products does not imply<br/>third-party authority to import, export, distribute or use encryption.<br/>Importers, exporters, distributors and users are responsible for<br/>compliance with U.S. and local country laws. By using this product you<br/>agree to comply with applicable laws and regulations. If you are unable<br/>to comply with U.S. and local laws, return this product immediately.<br/><br/>A summary of U.S. laws governing Cisco cryptographic products may be found at:<br/>http://www.cisco.com/wwl/export/crypto/tool/stqrg.html<br/><br/>If you require further assistance please contact us by sending email to<br/>export@cisco.com.<br/><br/>Cisco WS-C3550-24 (PowerPC) processor (revision G0) with 65526K/8192K bytes of memory.<br/>Processor board ID CHK0644W0KC<br/>Last reset from warm-reset<br/>Running Layer2/3 Switching Image<br/><br/>Ethernet-controller 1 has 12 Fast Ethernet/IEEE 802.3 interfaces<br/><br/>Ethernet-controller 2 has 12 Fast Ethernet/IEEE 802.3 interfaces<br/><br/>Ethernet-controller 3 has 1 Gigabit Ethernet/IEEE 802.3 interface<br/><br/>Ethernet-controller 4 has 1 Gigabit Ethernet/IEEE 802.3 interface<br/><br/>24 FastEthernet interfaces<br/>2 Gigabit Ethernet interfaces<br/><br/>The password-recovery mechanism is enabled.<br/>384K bytes of flash-simulated NVRAM.<br/>Base ethernet MAC Address: 00:0B:46:FE:D5:80<br/>Motherboard assembly number: 73-5700-09<br/>Power supply part number: 34-0966-02<br/>Motherboard serial number: CAT064307TM<br/>Power supply serial number: LIT063501PN<br/>Model revision number: G0<br/>Motherboard revision number: A0<br/>Model number: WS-C3550-24-SMI<br/>System serial number: CHK0644W0KC<br/>Configuration register is 0x10F<br/><br/>sgncs1#<br/>*** Closing Connection to 172.16.1.6<br/>DEBUG:paramiko.transport:EOF in transport thread</pre>
-<br/>
+
+```bash
+$ ./pyMultiChange.py -d hosts.txt -c commands.txt -v
+Using existing credentials file.
+DEBUG:paramiko.transport:starting thread (client mode): 0x78b9510L
+INFO:paramiko.transport:Connected (version 2.0, client Cisco-1.25)
+DEBUG:paramiko.transport:kex algos:[u'diffie-hellman-group-exchange-sha1', u'diffie-hellman-group14-sha1', u'diffie-hellman-group1-sha1'] server key:[u'ssh-rsa'] client encrypt:[u'aes128-cbc', u'3des-cbc', u'aes192-cbc', u'aes256-cbc'] server encrypt:[u'aes128-cbc', u'3des-cbc', u'aes192-cbc', u'aes256-cbc'] client mac:[u'hmac-sha1', u'hmac-sha1-96', u'hmac-md5', u'hmac-md5-96'] server mac:[u'hmac-sha1', u'hmac-sha1-96', u'hmac-md5', u'hmac-md5-96'] client compress:[u'none'] server compress:[u'none'] client lang:[u''] server lang:[u''] kex follows?False
+DEBUG:paramiko.transport:Ciphers agreed: local=aes128-cbc, remote=aes128-cbc
+DEBUG:paramiko.transport:using kex diffie-hellman-group1-sha1; server key type ssh-rsa; cipher: local aes128-cbc, remote aes128-cbc; mac: local hmac-sha1, remote hmac-sha1; compression: local none, remote none
+DEBUG:paramiko.transport:Switch to new keys ...
+DEBUG:paramiko.transport:Adding ssh-rsa host key for 172.16.1.1: d9df7efac164fbf7828fa284d5a31e63
+DEBUG:paramiko.transport:userauth is OK
+INFO:paramiko.transport:Authentication (password) successful!
+*** SSH connection established to 172.16.1.1
+DEBUG:paramiko.transport:[chan 1] Max packet in: 34816 bytes
+DEBUG:paramiko.transport:[chan 1] Max packet out: 4096 bytes
+INFO:paramiko.transport:Secsh channel 1 opened.
+DEBUG:paramiko.transport:[chan 1] Sesch channel 1 request ok
+DEBUG:paramiko.transport:[chan 1] Sesch channel 1 request ok
+*** Interactive SSH session established
+*** Sending enable password
+*** Successfully entered enable mode
+*** Executing Command: sh ver
+terminal length 0
+darkstar#sh ver
+Cisco IOS Software, C880 Software (C880DATA-UNIVERSALK9-M), Version 15.0(1)M7, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2011 by Cisco Systems, Inc.
+Compiled Fri 05-Aug-11 02:01 by prod_rel_team
+
+ROM: System Bootstrap, Version 12.4(22r)YB5, RELEASE SOFTWARE (fc1)
+
+darkstar uptime is 10 weeks, 6 days, 12 minutes
+System returned to ROM by power-on
+System restarted at 23:21:02 CST Mon May 12 2014
+System image file is "flash:c880data-universalk9-mz.150-1.M7.bin"
+Last reload type: Normal Reload
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+Cisco 881 (MPC8300) processor (revision 1.0) with 236544K/25600K bytes of memory.
+Processor board ID FTX16038388
+
+5 FastEthernet interfaces
+1 Gigabit Ethernet interface
+1 terminal line
+1 Virtual Private Network (VPN) Module
+1 cisco Embedded AP (s)
+256K bytes of non-volatile configuration memory.
+126000K bytes of ATA CompactFlash (Read/Write)
+
+
+License Info:
+
+License UDI:
+
+-------------------------------------------------
+Device#	  PID			SN
+-------------------------------------------------
+*0  	  CISCO881W-GN-A-K9     FTX16038388     
+
+
+
+License Information for 'c880-data'
+    License Level: advsecurity   Type: Permanent
+    Next reboot license Level: advsecurity
+
+
+Configuration register is 0x2102
+
+darkstar#
+*** Closing Connection to 172.16.1.1
+Using existing credentials file.
+DEBUG:paramiko.transport:EOF in transport thread
+DEBUG:paramiko.transport:starting thread (client mode): 0x78b9250L
+INFO:paramiko.transport:Connected (version 2.0, client Cisco-1.25)
+DEBUG:paramiko.transport:kex algos:[u'diffie-hellman-group1-sha1'] server key:[u'ssh-rsa'] client encrypt:[u'aes128-cbc', u'3des-cbc', u'aes192-cbc', u'aes256-cbc'] server encrypt:[u'aes128-cbc', u'3des-cbc', u'aes192-cbc', u'aes256-cbc'] client mac:[u'hmac-sha1', u'hmac-sha1-96', u'hmac-md5', u'hmac-md5-96'] server mac:[u'hmac-sha1', u'hmac-sha1-96', u'hmac-md5', u'hmac-md5-96'] client compress:[u'none'] server compress:[u'none'] client lang:[u''] server lang:[u''] kex follows?False
+DEBUG:paramiko.transport:Ciphers agreed: local=aes128-cbc, remote=aes128-cbc
+DEBUG:paramiko.transport:using kex diffie-hellman-group1-sha1; server key type ssh-rsa; cipher: local aes128-cbc, remote aes128-cbc; mac: local hmac-sha1, remote hmac-sha1; compression: local none, remote none
+DEBUG:paramiko.transport:Switch to new keys ...
+DEBUG:paramiko.transport:Adding ssh-rsa host key for 172.16.1.6: 917d0abc26c16df9860f57e3a248db1c
+DEBUG:paramiko.transport:userauth is OK
+INFO:paramiko.transport:Authentication (password) successful!
+*** SSH connection established to 172.16.1.6
+DEBUG:paramiko.transport:[chan 1] Max packet in: 34816 bytes
+DEBUG:paramiko.transport:[chan 1] Max packet out: 4096 bytes
+INFO:paramiko.transport:Secsh channel 1 opened.
+DEBUG:paramiko.transport:[chan 1] Sesch channel 1 request ok
+DEBUG:paramiko.transport:[chan 1] Sesch channel 1 request ok
+*** Interactive SSH session established
+*** Sending enable password
+*** Successfully entered enable mode
+*** Executing Command: sh ver
+terminal length 0
+sgncs1#sh ver
+Cisco IOS Software, C3550 Software (C3550-IPSERVICESK9-M), Version 12.2(44)SE6, RELEASE SOFTWARE (fc1)
+Copyright (c) 1986-2009 by Cisco Systems, Inc.
+Compiled Mon 09-Mar-09 20:28 by gereddy
+Image text-base: 0x00003000, data-base: 0x012A99FC
+
+ROM: Bootstrap program is C3550 boot loader
+
+sgncs1 uptime is 5 weeks, 2 days, 20 hours, 12 minutes
+System returned to ROM by power-on
+System restarted at 03:21:32 CST Fri Jun 20 2014
+System image file is "flash:c3550-ipservicesk9-mz.122-44.SE6.bin"
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+Cisco WS-C3550-24 (PowerPC) processor (revision G0) with 65526K/8192K bytes of memory.
+Processor board ID CHK0644W0KC
+Last reset from warm-reset
+Running Layer2/3 Switching Image
+
+Ethernet-controller 1 has 12 Fast Ethernet/IEEE 802.3 interfaces
+
+Ethernet-controller 2 has 12 Fast Ethernet/IEEE 802.3 interfaces
+
+Ethernet-controller 3 has 1 Gigabit Ethernet/IEEE 802.3 interface
+
+Ethernet-controller 4 has 1 Gigabit Ethernet/IEEE 802.3 interface
+
+24 FastEthernet interfaces
+2 Gigabit Ethernet interfaces
+
+The password-recovery mechanism is enabled.
+384K bytes of flash-simulated NVRAM.
+Base ethernet MAC Address: 00:0B:46:FE:D5:80
+Motherboard assembly number: 73-5700-09
+Power supply part number: 34-0966-02
+Motherboard serial number: CAT064307TM
+Power supply serial number: LIT063501PN
+Model revision number: G0
+Motherboard revision number: A0
+Model number: WS-C3550-24-SMI
+System serial number: CHK0644W0KC
+Configuration register is 0x10F
+
+sgncs1#
+*** Closing Connection to 172.16.1.6
+DEBUG:paramiko.transport:EOF in transport thread
+```
+
 Finally, here is the code:
-<br/>
-<pre class="lang:default decode:true">#!/usr/bin/env python<br/><br/>from pyRouterLib import *<br/>import os, argparse, paramiko, time<br/><br/>''' Define hosts file, command file, verbose variables '''<br/>hosts_file = ''<br/>cmd_file = ''<br/>verbose = False<br/><br/>def arguments():<br/>	''' Function to define the script command line arguments '''<br/>	global hosts_file, cmd_file, verbose<br/>	<br/>	parser = argparse.ArgumentParser(description='A Python implementation of MultiChange, which allows you to make mass changes to routers and switches via SSH.')<br/>	parser.add_argument('-d', '--hosts', help='Specify a host file', required=True)<br/>	parser.add_argument('-c', '--commands', help='Specify a commands file', required=True)<br/>	parser.add_argument('-v', '--verbose', nargs='?', default=False, help='Enables a verbose debugging mode')<br/><br/>	args = vars(parser.parse_args())<br/><br/>	if args['hosts']:<br/>		hosts_file = args['hosts']<br/>	if args['commands']:<br/>		cmd_file = args['commands']<br/>	if args['verbose'] == None:<br/>		verbose = True<br/>	<br/>	return hosts_file, cmd_file, verbose<br/><br/>arguments()<br/><br/>''' open the hosts file and commands file and execute each command on every host '''<br/>if os.path.isfile(hosts_file):<br/>	hosts = open(hosts_file, 'r')<br/>	for host in hosts:<br/>		host = host.strip("\n")<br/>		<br/>		''' use pyRouterLib to grab the user authentication credentials '''<br/>		rlib = pyRouterLib(host)<br/>		creds = rlib.get_creds()<br/>		username = creds[0]<br/>		password = creds[1]<br/>		enable = creds[2]<br/>		<br/>		''' Enable verbose debugging '''<br/>		if verbose:<br/>			rlib.debug()<br/>			<br/>		remoteConnectionSetup = paramiko.SSHClient()<br/>		remoteConnectionSetup.set_missing_host_key_policy(paramiko.AutoAddPolicy())<br/>		remoteConnectionSetup.connect(host, username=username, password=password, allow_agent=False, look_for_keys=False)<br/>		print "*** SSH connection established to %s" % host<br/>		remoteConnection = remoteConnectionSetup.invoke_shell()<br/>		if verbose:<br/>			print "*** Interactive SSH session established"<br/>		<br/>		time.sleep(1)<br/>		is_enable = remoteConnection.recv(1000)<br/>		if "#" not in is_enable:<br/>			remoteConnection.send("enable\n")<br/>			time.sleep(1)<br/>			if_enable = remoteConnection.recv(1000)<br/>			if "Password:" in if_enable:<br/>				if verbose:<br/>					print "*** Sending enable password"<br/>				remoteConnection.send(enable)<br/>				remoteConnection.send("\n")<br/>		<br/>			time.sleep(2)<br/>			is_enable = remoteConnection.recv(1000)<br/>		<br/>			if "#" in is_enable:<br/>				if verbose:<br/>					print "*** Successfully entered enable mode"<br/>			<br/>				remoteConnection.send("terminal length 0\n")<br/>			else:<br/>				if verbose:<br/>					print "*** Entering enable mode was unsuccessful"<br/>		else:<br/>			remoteConnection.send("terminal length 0\n")<br/>			if verbose:<br/>				print "*** User: %s already has enable privileges" % username<br/>		<br/>		cmds = open(cmd_file, 'r')<br/>		for command in cmds:<br/>			command = command.strip()<br/>			remoteConnection.send(command)<br/>			remoteConnection.send("\n")<br/>			print "*** Executing Command: %s" % command<br/>			if verbose:<br/>				time.sleep(2)<br/>				output = remoteConnection.recv(10000)<br/>				print output<br/>		cmds.close()<br/>		print "*** Closing Connection to %s" % host<br/>	hosts.close()</pre>
-<br/>
-I'm going to continue working on building out the pyRouterLib module, as there is so much functionality that could be added to that. I'll keep you updated on the progress. As always, updates will be posted to my
-<a href="https://github.com/jtdub/pyRouterLib" target="_blank">
- github
-</a>
-.
+
+```python
+#!/usr/bin/env python
+
+from pyRouterLib import *
+import os, argparse, paramiko, time
+
+''' Define hosts file, command file, verbose variables '''
+hosts_file = ''
+cmd_file = ''
+verbose = False
+
+def arguments():
+	''' Function to define the script command line arguments '''
+	global hosts_file, cmd_file, verbose
+	
+	parser = argparse.ArgumentParser(description='A Python implementation of MultiChange, which allows you to make mass changes to routers and switches via SSH.')
+	parser.add_argument('-d', '--hosts', help='Specify a host file', required=True)
+	parser.add_argument('-c', '--commands', help='Specify a commands file', required=True)
+	parser.add_argument('-v', '--verbose', nargs='?', default=False, help='Enables a verbose debugging mode')
+
+	args = vars(parser.parse_args())
+
+	if args['hosts']:
+		hosts_file = args['hosts']
+	if args['commands']:
+		cmd_file = args['commands']
+	if args['verbose'] == None:
+		verbose = True
+	
+	return hosts_file, cmd_file, verbose
+
+arguments()
+
+''' open the hosts file and commands file and execute each command on every host '''
+if os.path.isfile(hosts_file):
+	hosts = open(hosts_file, 'r')
+	for host in hosts:
+		host = host.strip("\n")
+		
+		''' use pyRouterLib to grab the user authentication credentials '''
+		rlib = pyRouterLib(host)
+		creds = rlib.get_creds()
+		username = creds[0]
+		password = creds[1]
+		enable = creds[2]
+		
+		''' Enable verbose debugging '''
+		if verbose:
+			rlib.debug()
+			
+		remoteConnectionSetup = paramiko.SSHClient()
+		remoteConnectionSetup.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+		remoteConnectionSetup.connect(host, username=username, password=password, allow_agent=False, look_for_keys=False)
+		print "*** SSH connection established to %s" % host
+		remoteConnection = remoteConnectionSetup.invoke_shell()
+		if verbose:
+			print "*** Interactive SSH session established"
+		
+		time.sleep(1)
+		is_enable = remoteConnection.recv(1000)
+		if "#" not in is_enable:
+			remoteConnection.send("enable\n")
+			time.sleep(1)
+			if_enable = remoteConnection.recv(1000)
+			if "Password:" in if_enable:
+				if verbose:
+					print "*** Sending enable password"
+				remoteConnection.send(enable)
+				remoteConnection.send("\n")
+		
+			time.sleep(2)
+			is_enable = remoteConnection.recv(1000)
+		
+			if "#" in is_enable:
+				if verbose:
+					print "*** Successfully entered enable mode"
+			
+				remoteConnection.send("terminal length 0\n")
+			else:
+				if verbose:
+					print "*** Entering enable mode was unsuccessful"
+		else:
+			remoteConnection.send("terminal length 0\n")
+			if verbose:
+				print "*** User: %s already has enable privileges" % username
+		
+		cmds = open(cmd_file, 'r')
+		for command in cmds:
+			command = command.strip()
+			remoteConnection.send(command)
+			remoteConnection.send("\n")
+			print "*** Executing Command: %s" % command
+			if verbose:
+				time.sleep(2)
+				output = remoteConnection.recv(10000)
+				print output
+		cmds.close()
+		print "*** Closing Connection to %s" % host
+	hosts.close()
+```
+
+I'm going to continue working on building out the pyRouterLib module, as there is so much functionality that could be added to that. I'll keep you updated on the progress. As always, updates will be posted to my [github](https://github.com/jtdub/pyRouterLib).

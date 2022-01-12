@@ -12,18 +12,103 @@ tags:
 ---
 
 For one reason or another, Python seems to have been my go to scripting language of choice recently. One of the things that I've been working on is creating a reusable python library for accessing Cisco devices via telnet. It's pretty basic code right now, but I'll be expanding upon what I have soon and will be sharing via github.com as well. For now, here is my simple library.
-<br/>
-<br/>
-<br/>
-<pre class="lang:default decode:true">class TelnetCisco:<br/>	<br/>	def __init__(self, userName, userPass, enablePass, host):<br/>		self.userName = userName<br/>		self.userPass = userPass<br/>		self.enablePass = enablePass<br/>		self.host = host<br/>		<br/>	def getCreds(self):<br/>		import getpass<br/>		<br/>		self.userName = raw_input("Username: ")<br/>		self.userPass = getpass.getpass("User Password: ")<br/>		self.enablePass = getpass.getpass("Enable Password: ")<br/>		<br/>		return self.userName, self.userPass, self.enablePass<br/>		<br/>	def credsFile(self, authfile):<br/>		import os, sys<br/>		<br/>		if os.path.isfile(authfile):<br/>			login = open(authfile, "r")<br/>			self.userName = login.readline()<br/>			self.userName = self.userName.replace("username = ", "")<br/>			self.userName = self.userName.replace("\n", "")<br/>			self.userPass = login.readline()<br/>			self.userPass = self.userPass.replace("password = ", "")<br/>			self.userPass = self.userPass.replace("\n", "")<br/>			self.enablePass = login.readline()<br/>			self.enablePass = self.enablePass.replace("enable = ", "")<br/>			self.enablePass = self.enablePass.replace("\n", "")<br/>			login.close()<br/>		else:<br/>			print "Error:", authfile, "doesn't exist!"<br/>			sys.exit(2)<br/>			<br/>		return self.userName, self.userPass, self.enablePass<br/><br/>	def devLogin(self, devType):<br/>		import telnetlib, re, sys<br/>		<br/>		TelnetCisco.devType = devType<br/>		telnet = telnetlib.Telnet(self.host)<br/>		<br/>		#usermode = re.match("(.*)" + "&gt;", "&gt;")<br/>		#enablemode = re.match("(.*)", "#")<br/>		<br/>		cmds2exe = ['show arp'] <br/>		<br/>		if devType == "ios":<br/>			telnet.read_until("Username: ", 20)<br/>			telnet.write(self.userName + "\r")<br/>			telnet.read_until("Password: ", 20)<br/>			telnet.write(self.userPass + "\r")<br/>			telnet.read_until(self.host + "&gt;")<br/>			telnet.write("enable\r")<br/>			telnet.read_until("Password: ", 20)<br/>			telnet.write(self.enablePass + "\r")<br/>			telnet.read_until(self.host + "#")<br/>			telnet.write("term length 0\r")<br/>			telnet.read_until(self.host + "#")<br/>			#telnet.write("show arp\r")<br/>			#print telnet.read_until(self.host + "#")<br/>			for command in cmds2exe:<br/>				telnet.write(command + "\r")<br/>				print telnet.read_until(self.host + "#")<br/>			telnet.close()<br/>		else:<br/>			print "Error:", devType, "is unknown by this script.\n"<br/>			sys.exit(2)<br/>		<br/>		return devType, self.host<br/>		<br/>	def codeDebug(self):<br/>		print "### CODE DEBUG ###"<br/>		print "Username:", self.userName<br/>		print "User Password:", self.userPass<br/>		print "Enable Password:", self.enablePass<br/>		print "Host: ", self.host<br/>		print "Device Type: ", TelnetCisco.devType<br/>		print "### CODE DEBUG ###"<br/></pre>
-<br/>
-<br/>
-<br/>
+
+```python
+class TelnetCisco:
+	
+	def __init__(self, userName, userPass, enablePass, host):
+		self.userName = userName
+		self.userPass = userPass
+		self.enablePass = enablePass
+		self.host = host
+		
+	def getCreds(self):
+		import getpass
+		
+		self.userName = raw_input("Username: ")
+		self.userPass = getpass.getpass("User Password: ")
+		self.enablePass = getpass.getpass("Enable Password: ")
+		
+		return self.userName, self.userPass, self.enablePass
+		
+	def credsFile(self, authfile):
+		import os, sys
+		
+		if os.path.isfile(authfile):
+			login = open(authfile, "r")
+			self.userName = login.readline()
+			self.userName = self.userName.replace("username = ", "")
+			self.userName = self.userName.replace("\n", "")
+			self.userPass = login.readline()
+			self.userPass = self.userPass.replace("password = ", "")
+			self.userPass = self.userPass.replace("\n", "")
+			self.enablePass = login.readline()
+			self.enablePass = self.enablePass.replace("enable = ", "")
+			self.enablePass = self.enablePass.replace("\n", "")
+			login.close()
+		else:
+			print "Error:", authfile, "doesn't exist!"
+			sys.exit(2)
+			
+		return self.userName, self.userPass, self.enablePass
+
+	def devLogin(self, devType):
+		import telnetlib, re, sys
+		
+		TelnetCisco.devType = devType
+		telnet = telnetlib.Telnet(self.host)
+		
+		#usermode = re.match("(.*)" + ">", ">")
+		#enablemode = re.match("(.*)", "#")
+		
+		cmds2exe = ['show arp'] 
+		
+		if devType == "ios":
+			telnet.read_until("Username: ", 20)
+			telnet.write(self.userName + "\r")
+			telnet.read_until("Password: ", 20)
+			telnet.write(self.userPass + "\r")
+			telnet.read_until(self.host + ">")
+			telnet.write("enable\r")
+			telnet.read_until("Password: ", 20)
+			telnet.write(self.enablePass + "\r")
+			telnet.read_until(self.host + "#")
+			telnet.write("term length 0\r")
+			telnet.read_until(self.host + "#")
+			#telnet.write("show arp\r")
+			#print telnet.read_until(self.host + "#")
+			for command in cmds2exe:
+				telnet.write(command + "\r")
+				print telnet.read_until(self.host + "#")
+			telnet.close()
+		else:
+			print "Error:", devType, "is unknown by this script.\n"
+			sys.exit(2)
+		
+		return devType, self.host
+		
+	def codeDebug(self):
+		print "### CODE DEBUG ###"
+		print "Username:", self.userName
+		print "User Password:", self.userPass
+		print "Enable Password:", self.enablePass
+		print "Host: ", self.host
+		print "Device Type: ", TelnetCisco.devType
+		print "### CODE DEBUG ###"
+```
+
 Usage is pretty simple. You need to specify a username, password, enable password, and host variable. To activate the module. The easiest way is to do it within the your python script.
-<br/>
-<br/>
-<br/>
-<pre class="lang:default decode:true">import TelnetCisco<br/><br/>username = 'somejoe'<br/>password = 'somepassword'<br/>enable = 'someenable'<br/>host = 'somerouter'<br/><br/>somejob = TelnetCisco(username, password, enable, host)<br/>somejob.devLogin("ios")<br/></pre>
-<br/>
-<br/>
+
+```bash
+import TelnetCisco
+
+username = 'somejoe'
+password = 'somepassword'
+enable = 'someenable'
+host = 'somerouter'
+
+somejob = TelnetCisco(username, password, enable, host)
+somejob.devLogin("ios")
+```
+
 Of course, the module also has options to specify a authentication file (credsFile(authfile)) or prompt prompt for your credentials (getCreds()). At the moment, the script only runs a 'show arp' on your devices. I'm still working on how I want to implement feeding commands to your devices. I'll post an update as I get more functionality working.

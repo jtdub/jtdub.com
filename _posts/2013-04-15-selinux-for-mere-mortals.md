@@ -10,9 +10,6 @@ tags:
 ---
 
 I ran across a great video that discusses SELinux. It's called "SELinux For Mere Mortals".
-<br/>
-<br/>
-<br/>
-<br/>
+
 <iframe allowfullscreen="" frameborder="0" height="480" src="http://www.youtube.com/embed/MxjenQ31b70" width="853">
 </iframe>

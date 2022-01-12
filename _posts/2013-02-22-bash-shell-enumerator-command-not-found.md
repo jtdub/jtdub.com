@@ -10,6 +10,17 @@ tags:
 ---
 
 Make this script run when ever a user logs into their system and watch them freak out as it tells them that all their commands aren't found. :)
-<br/>
-<pre class="lang:default decode:true">#!/bin/sh<br/><br/>h=`hostname | cut -d . -f 1`;<br/>u=`id -un`;<br/>shell="[$u@$h ~]$";<br/><br/>while true;<br/>do<br/>        echo -n "$shell "; read cmd;<br/>        echo "bash: $cmd: command not found...";<br/>done;</pre>
-<br/>
+
+```bash
+#!/bin/sh
+
+h=`hostname | cut -d . -f 1`;
+u=`id -un`;
+shell="[$u@$h ~]$";
+
+while true;
+do
+    echo -n "$shell "; read cmd;
+    echo "bash: $cmd: command not found...";
+done;
+```

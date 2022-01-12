@@ -9,38 +9,16 @@ tags:
 - KVM
 - packetgeek.net
 ---
-<div style="clear: both; text-align: center;">
-</div>
-<div style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em; text-align: center;">
-</div>
-<div style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em; text-align: center;">
-</div>
-<div style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em; text-align: center;">
-</div>
-<div style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em; text-align: center;">
-</div>
-<div style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em; text-align: center;">
- <a href="/images/KVM-VM-Persistant-boot.png" target="_blank">
-  <img border="0" height="320" src="/images/KVM-VM-Persistant-boot.png" width="400"/>
- </a>
-</div>
-<br/>
+
+<img height="320" src="/images/KVM-VM-Persistant-boot.png"/>
+
 From virt-manager, you can follow the screen shot:
-<span>
-</span>
-<span>
-</span>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<div style="clear: both; text-align: center;">
-</div>
-<br/>
-<br/>
+
 You can also do it from the command line:
-<br/>
-<br/>
-<br/>
-<pre>[root@jtdub-workstation ~]# virsh autostart<br/>error: command 'autostart' requires <domain> option<br/>[root@jtdub-workstation ~]# virsh autostart 1<br/>Domain 1 marked as autostarted<br/></domain></pre>
+
+```bash
+[root@jtdub-workstation ~]# virsh autostart
+error: command 'autostart' requires  option
+[root@jtdub-workstation ~]# virsh autostart 1
+Domain 1 marked as autostarted
+```

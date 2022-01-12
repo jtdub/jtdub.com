@@ -9,14 +9,7 @@ tags:
 - packetgeek.net
 ---
 
-I've updated the yum repository with the current version of OpenNHRP. The current version available in the repository is 0.14. For more information, check out the repository link.
-<a href="http://www.packetgeek.net/repository" target="_blank">
- http://www.packetgeek.net/repository
-</a>
-.
-<br/>
-<br/>
+I've updated the yum repository with the current version of OpenNHRP. The current version available in the repository is 0.14. For more information, check out the repository link. [http://www.packetgeek.net/repository](http://www.packetgeek.net/repository).
+
 For more information on OpenNHRP, check out their page.
-<a href="http://opennhrp.sourceforge.net" target="_blank">
- http://opennhrp.sourceforge.net
-</a>
+[http://opennhrp.sourceforge.net](http://opennhrp.sourceforge.net)

@@ -1,0 +1,11 @@
+pre{
+    display: block;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    color: #f8f8f2;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: #23241f;
+    border: .1px solid #ccc;
+    border-radius: 4px;
+}

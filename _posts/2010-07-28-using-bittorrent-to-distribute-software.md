@@ -10,26 +10,5 @@ tags:
 ---
 
 I just thought that this was a very cool concept.
-<br/>
-<br/>
-<br/>
-<object height="225" width="400">
- <param name="allowfullscreen" value="true"/>
- <param name="allowscriptaccess" value="always"/>
- <param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=11280885&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1"/>
- <embed allowfullscreen="true" allowscriptaccess="always" height="225" src="http://vimeo.com/moogaloop.swf?clip_id=11280885&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1" type="application/x-shockwave-flash" width="400"/>
-</object>
-<p>
- <a href="http://vimeo.com/11280885">
-  Twitter - Murder Bittorrent Deploy System
- </a>
- from
- <a href="http://vimeo.com/user3690378">
-  Larry Gadea
- </a>
- on
- <a href="http://vimeo.com">
-  Vimeo
- </a>
- .
-</p>
+
+[Twitter - Murder Bittorrent Deploy System](https://vimeo.com/11280885)

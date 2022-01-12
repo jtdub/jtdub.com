@@ -10,23 +10,36 @@ tags:
 ---
 
 This morning, there was an article where the EFF is claiming that just because you turn off cookies and javascript in your browser doesn't mean that you're not giving away information. Unfortunately, they are very correct. Your browser will give away ALL kinds of information about your computer; such as operating system, browser type / version number, browser plugin's, etc.
-<br/>
-<br/>
+
 I've used this exact same information for years to gain information about visitors on a site that I couldn't physically monitor the logs. What I did was use a CGI script, written in perl, to modify the HTTP header to point to an transparent image that was 1 pixel high and wide. It's very easy to hide an image when it's transparent and only a single pixel.
-<br/>
-<br/>
+
 The information that this script grabbed were IP Address, date / time the image was accessed, browser user agent, and the referring URL. That's enough information for me to get an idea of what content people are looking at and to even identify unique and repeat users.
-<br/>
-<br/>
+
 Here is a sample script that I've used before.
-<br/>
-<br/>
-<pre>#!/usr/bin/perl -w<br/><br/>use DBI;<br/><br/>my $imgurl = "http://www.domain.com/mytracker/images/1by1.gif";<br/><br/>print "Cache-control: no-cache\n";<br/>print "Content-type: image/gif\n";<br/>print "Location: $imgurl\n\n";<br/><br/>$refer = "$ENV{HTTP_REFERER}";<br/>$ipaddr = "$ENV{REMOTE_ADDR}";<br/>$browser = "$ENV{HTTP_USER_AGENT}";<br/><br/>my $dbh = DBI-&gt;connect("DBI:mysql:database=mytracker;host=localhost", "username", "password", {'RaiseError' =&gt; 1});<br/><br/>my $rows = $dbh-&gt;do("INSERT INTO trackerlogs (id, date, referurl, ipaddress, useragent) VALUES ('', NOW(), '$refer', '$ipaddr', '$browser')");<br/></pre>
-<br/>
+
+```perl
+#!/usr/bin/perl -w
+
+use DBI;
+
+my $imgurl = "http://www.domain.com/mytracker/images/1by1.gif";
+
+print "Cache-control: no-cache\n";
+print "Content-type: image/gif\n";
+print "Location: $imgurl\n\n";
+
+$refer = "$ENV{HTTP_REFERER}";
+$ipaddr = "$ENV{REMOTE_ADDR}";
+$browser = "$ENV{HTTP_USER_AGENT}";
+
+my $dbh = DBI->connect("DBI:mysql:database=mytracker;host=localhost", "username", "password", {'RaiseError' => 1});
+
+my $rows = $dbh->do("INSERT INTO trackerlogs (id, date, referurl, ipaddress, useragent) VALUES ('', NOW(), '$refer', '$ipaddr', '$browser')");
+```
+
 Here's an example of the information that the log generates:
-<br/>
-<br/>
-<table border="1" cellpadding="1" cellspacing="1">
+
+<table class="table">
  <tr>
   <td>
    2009-10-11 19:54:06
@@ -42,8 +55,6 @@ Here's an example of the information that the log generates:
   </td>
  </tr>
 </table>
-<br/>
+
 Here's a link to the article:
-<a href="http://www.theregister.co.uk/2010/05/17/browser_fingerprint/">
- EFF Browser Fingerprints Article
-</a>
+[EFF Browser Fingerprints Article](http://www.theregister.co.uk/2010/05/17/browser_fingerprint/)
