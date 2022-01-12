@@ -5,13 +5,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://www.jtdub.com" # the base hostname & protocol for your site, e.g. http://example.com
 plugins:
   - jekyll-feed
-fenced_code_blocks: true
-highligher: rouge
-# markdown: kdramdown
-# kramdown:
-#   input: GSM
-
-
+highlighter: pygments
 
 exclude:
 - scripts
