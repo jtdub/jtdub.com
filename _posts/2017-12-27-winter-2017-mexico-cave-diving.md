@@ -14,10 +14,6 @@ tags:
 ---
 
 Recently, some friends and I spent some time cave diving in Mexico. We had an excellent time, diving some new caves and some old caves. Below is a short video.
-<br/>
-<br/>
-<div class="separator" style="clear: both; text-align: center;">
- <iframe allowfullscreen="" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/FPRmA86opnY/0.jpg" frameborder="0" height="266" src="https://www.youtube.com/embed/FPRmA86opnY?feature=player_embedded" width="320">
- </iframe>
-</div>
-<br/>
+
+<iframe allowfullscreen="" class="YOUTUBE-iframe-video" data-thumbnail-src="https://i.ytimg.com/vi/FPRmA86opnY/0.jpg" frameborder="0" height="266" src="https://www.youtube.com/embed/FPRmA86opnY?feature=player_embedded" width="320">
+</iframe>
