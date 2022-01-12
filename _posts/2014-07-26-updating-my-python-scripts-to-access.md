@@ -10,18 +10,137 @@ tags:
 ---
 
 I've been working to migrate my python scripts, that access Cisco routers and switches to utilize SSH. I'm building out a 'pyRouterLib' class, that currently doesn't have much functionality, but I'm going to be building it out a lot more in the coming months. I'm also working on my pyMultiChange script, so that it utilizes SSH as well. Currently, the work is going well, although, there is still more work to go.
-<br/>
-<br/>
+
 Here is the pyRouterLib library:
-<br/>
-<pre class="lang:default decode:true">#!/usr/bin/env python<br/><br/>class pyRouterLib:<br/>	'''<br/>	Requirments:<br/>	*** Modules:<br/>		os, getpass, paramiko, logging<br/>	'''<br/>	<br/>	def __init__(self, host):<br/>		self.host = host<br/>	<br/>	''' Granular debugging that assists in trouble shooting issues '''<br/>	def debug(self):<br/>		import logging<br/>		logging.basicConfig(level=logging.DEBUG)<br/>	<br/>	''' Define where to get user credentials '''<br/>	def get_creds(self):<br/>		from os.path import expanduser<br/>		import os.path<br/>		homeDir = expanduser("~")<br/>		credsFile = ".tacacslogin"<br/>		credsFile = homeDir + "/" + credsFile<br/>		<br/>		if os.path.isfile(credsFile):<br/>			print "Using existing credentials file."<br/>			credsFileLocation = open(credsFile)<br/>			self.username = credsFileLocation.readline()<br/>			self.username = self.username.strip('\n')<br/>			self.password = credsFileLocation.readline()<br/>			self.password = self.password.strip('\n')<br/>			self.enable = credsFileLocation.readline()<br/>			self.enable = self.enable.strip('\n')<br/>			credsFileLocation.close()<br/>		else:<br/>			import getpass<br/>			print "You have not created a credentials file. Lets create one..."<br/>			self.username = raw_input("Username: ")<br/>			self.password = getpass.getpass("User Password: ")<br/>			self.enable = getpass.getpass("Enable Password: ")<br/>			<br/>			authFile = open(credsFile, 'w+')<br/>			authFile.write(self.username + "\n")<br/>			authFile.write(self.password + "\n")<br/>			authFile.write(self.enable + "\n")<br/>			authFile.close()<br/>				<br/>			print "Your credentials file has been created and is located at: "<br/>			print credsFile + "\n"<br/><br/>		username = self.username<br/>		password = self.password<br/>		enable = self.enable<br/>		<br/>		return username, password, enable<br/></pre>
-<br/>
+
+```python
+#!/usr/bin/env python
+
+class pyRouterLib:
+	'''
+	Requirments:
+	*** Modules:
+		os, getpass, paramiko, logging
+	'''
+	
+	def __init__(self, host):
+		self.host = host
+	
+	''' Granular debugging that assists in trouble shooting issues '''
+	def debug(self):
+		import logging
+		logging.basicConfig(level=logging.DEBUG)
+	
+	''' Define where to get user credentials '''
+	def get_creds(self):
+		from os.path import expanduser
+		import os.path
+		homeDir = expanduser("~")
+		credsFile = ".tacacslogin"
+		credsFile = homeDir + "/" + credsFile
+		
+		if os.path.isfile(credsFile):
+			print "Using existing credentials file."
+			credsFileLocation = open(credsFile)
+			self.username = credsFileLocation.readline()
+			self.username = self.username.strip('\n')
+			self.password = credsFileLocation.readline()
+			self.password = self.password.strip('\n')
+			self.enable = credsFileLocation.readline()
+			self.enable = self.enable.strip('\n')
+			credsFileLocation.close()
+		else:
+			import getpass
+			print "You have not created a credentials file. Lets create one..."
+			self.username = raw_input("Username: ")
+			self.password = getpass.getpass("User Password: ")
+			self.enable = getpass.getpass("Enable Password: ")
+			
+			authFile = open(credsFile, 'w+')
+			authFile.write(self.username + "\n")
+			authFile.write(self.password + "\n")
+			authFile.write(self.enable + "\n")
+			authFile.close()
+				
+			print "Your credentials file has been created and is located at: "
+			print credsFile + "\n"
+
+		username = self.username
+		password = self.password
+		enable = self.enable
+		
+		return username, password, enable
+```
+
 Here is the pyMultiShow.py script, which utilizes the pyRouterLib to obtain user credentials:
-<br/>
-<pre class="lang:default decode:true">#!/usr/bin/env python<br/><br/>from pyRouterLib import *<br/>import os, argparse, paramiko, time<br/><br/>''' Define hosts file, command file, verbose variables '''<br/>hosts_file = ''<br/>cmd_file = ''<br/>verbose = False<br/><br/>def arguments():<br/>	''' Function to define the script command line arguments '''<br/>	global hosts_file, cmd_file, verbose<br/>	<br/>	parser = argparse.ArgumentParser(description='A Python implementation of MultiChange, which allows you to make mass changes to routers and switches via SSH.')<br/>	parser.add_argument('-d', '--hosts', help='Specify a host file', required=True)<br/>	parser.add_argument('-c', '--commands', help='Specify a commands file', required=True)<br/>	parser.add_argument('-v', '--verbose', nargs='?', default=False, help='Enables a verbose debugging mode')<br/><br/>	args = vars(parser.parse_args())<br/><br/>	if args['hosts']:<br/>		hosts_file = args['hosts']<br/>	if args['commands']:<br/>		cmd_file = args['commands']<br/>	if args['verbose'] == None:<br/>		verbose = True<br/>	<br/>	return hosts_file, cmd_file, verbose<br/><br/>arguments()<br/><br/>''' open the hosts file and commands file and execute each command on every host '''<br/>if os.path.isfile(hosts_file):<br/>	hosts = open(hosts_file, 'r')<br/>	for host in hosts:<br/>		host = host.strip("\n")<br/>		<br/>		''' use pyRouterLib to grab the user authentication credentials '''<br/>		rlib = pyRouterLib(host)<br/>		creds = rlib.get_creds()<br/>		username = creds[0]<br/>		password = creds[1]<br/>		enable = creds[2]<br/>		<br/>		''' Enable verbose debugging '''<br/>		if verbose:<br/>			rlib.debug()<br/>		<br/>		remoteConnectionSetup = paramiko.SSHClient()<br/>		remoteConnectionSetup.set_missing_host_key_policy(paramiko.AutoAddPolicy())<br/>		remoteConnectionSetup.connect(host, username=username, password=password, allow_agent=False, look_for_keys=False)<br/>		print "*** SSH connection established to %s" % host<br/>		remoteConnection = remoteConnectionSetup.invoke_shell()<br/>		print "*** Interactive SSH session established"<br/>		cmds = open(cmd_file, 'r')<br/>		for command in cmds:<br/>			remoteConnection.send(command)<br/>			print "*** Executing Command: %s" % command<br/>			if verbose:<br/>				time.sleep(2)<br/>				output = remoteConnection.recv(10000)<br/>				print output<br/>		cmds.close()<br/>		print "*** Closing Connection to %s" % host<br/>	hosts.close()</pre>
-<br/>
-Both can be accessed from my
-<a href="https://github.com/jtdub/pyRouterLib" target="_blank">
- github
-</a>
-.
+
+```python
+#!/usr/bin/env python
+
+from pyRouterLib import *
+import os, argparse, paramiko, time
+
+''' Define hosts file, command file, verbose variables '''
+hosts_file = ''
+cmd_file = ''
+verbose = False
+
+def arguments():
+	''' Function to define the script command line arguments '''
+	global hosts_file, cmd_file, verbose
+	
+	parser = argparse.ArgumentParser(description='A Python implementation of MultiChange, which allows you to make mass changes to routers and switches via SSH.')
+	parser.add_argument('-d', '--hosts', help='Specify a host file', required=True)
+	parser.add_argument('-c', '--commands', help='Specify a commands file', required=True)
+	parser.add_argument('-v', '--verbose', nargs='?', default=False, help='Enables a verbose debugging mode')
+
+	args = vars(parser.parse_args())
+
+	if args['hosts']:
+		hosts_file = args['hosts']
+	if args['commands']:
+		cmd_file = args['commands']
+	if args['verbose'] == None:
+		verbose = True
+	
+	return hosts_file, cmd_file, verbose
+
+arguments()
+
+''' open the hosts file and commands file and execute each command on every host '''
+if os.path.isfile(hosts_file):
+	hosts = open(hosts_file, 'r')
+	for host in hosts:
+		host = host.strip("\n")
+		
+		''' use pyRouterLib to grab the user authentication credentials '''
+		rlib = pyRouterLib(host)
+		creds = rlib.get_creds()
+		username = creds[0]
+		password = creds[1]
+		enable = creds[2]
+		
+		''' Enable verbose debugging '''
+		if verbose:
+			rlib.debug()
+		
+		remoteConnectionSetup = paramiko.SSHClient()
+		remoteConnectionSetup.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+		remoteConnectionSetup.connect(host, username=username, password=password, allow_agent=False, look_for_keys=False)
+		print "*** SSH connection established to %s" % host
+		remoteConnection = remoteConnectionSetup.invoke_shell()
+		print "*** Interactive SSH session established"
+		cmds = open(cmd_file, 'r')
+		for command in cmds:
+			remoteConnection.send(command)
+			print "*** Executing Command: %s" % command
+			if verbose:
+				time.sleep(2)
+				output = remoteConnection.recv(10000)
+				print output
+		cmds.close()
+		print "*** Closing Connection to %s" % host
+	hosts.close()
+```
+
+Both can be accessed from my [github](https://github.com/jtdub/pyRouterLib).
