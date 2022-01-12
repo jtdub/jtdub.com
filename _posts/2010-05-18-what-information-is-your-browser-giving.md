@@ -39,7 +39,7 @@ my $rows = $dbh->do("INSERT INTO trackerlogs (id, date, referurl, ipaddress, use
 
 Here's an example of the information that the log generates:
 
-<table border="1" cellpadding="1" cellspacing="1">
+<table class="table">
  <tr>
   <td>
    2009-10-11 19:54:06

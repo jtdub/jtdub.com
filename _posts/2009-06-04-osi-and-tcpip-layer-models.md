@@ -20,51 +20,47 @@ By the late 1980's, there were many proprietary, and two standardized network mo
 
 TCP/IP classifies the various protocols into different catagories or layers.
 
-<table border="1" cellpadding="1" width="50%">
- <tr>
-  <td>
-   <span style="font-weight:bold;">
-    TCP/IP Architecture Layer
-   </span>
-  </td>
-  <td>
-   <span style="font-weight:bold;">
-    Example Protocols
-   </span>
-  </td>
- </tr>
- <tr>
-  <td>
-   Application
-  </td>
-  <td>
-   HTTP, SMTP, DNS, DHCP
-  </td>
- </tr>
- <tr>
-  <td>
-   Transport
-  </td>
-  <td>
-   TCP, UDP
-  </td>
- </tr>
- <tr>
-  <td>
-   Internet
-  </td>
-  <td>
-   IP
-  </td>
- </tr>
- <tr>
-  <td>
-   Network access
-  </td>
-  <td>
-   Ethernet, PPP, Frame Relay, IPSEC
-  </td>
- </tr>
+<table class="table">
+ <thead>
+  <tr>
+   <th scope="col">TCP/IP Architecture</th>
+   <th scope="col">Example Protocols</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td>
+    Application
+   </td>
+   <td>
+    HTTP, SMTP, DNS, DHCP
+   </td>
+  </tr>
+  <tr>
+   <td>
+    Transport
+   </td>
+   <td>
+    TCP, UDP
+   </td>
+  </tr>
+  <tr>
+   <td>
+    Internet
+   </td>
+   <td>
+    IP
+   </td>
+  </tr>
+  <tr>
+   <td>
+    Network access
+   </td>
+   <td>
+    Ethernet, PPP, Frame Relay, IPSEC
+   </td>
+  </tr>
+ </tbody>
 </table>
 
 If someone makes up a new application, the protocol used directly by the application would be considered to be application layer protocols. Similarly, the network access layer includes protocols and standards such as Ethernet. If someone makes up a new type of LAN, those protocols would be considered to be apart of the network access layer.
@@ -110,100 +106,39 @@ IP uses the network access layer protocols to deliver an IP packet to the next r
 As you can see from the explanations of how HTTP, TCP, IP and the network access protocols, Ethernet and PPP do their jobs, each layer adds its own header (and sometimes trailer) to the data supplied by the higher layer. Encapsulation refers to the process of putting headers and trailers around some data.
 
 #### Five steps of Data Encapsulation
-
-<table border="1" cellpadding="1" width="50%">
- <tr>
-  <td>
-   1.
-  </td>
-  <td>
-   <div align="center">
-    | Data |
-   </div>
-  </td>
-  <td>
-   <div align="center">
-    Application
-   </div>
-  </td>
-  <td>
-   <div align="center">
-   </div>
-  </td>
- </tr>
- <tr>
-  <td>
-   2.
-  </td>
-  <td>
-   <div align="center">
-    | TCP | Data |
-   </div>
-  </td>
-  <td>
-   <div align="center">
-    Transport
-   </div>
-  </td>
-  <td>
-   <div align="center">
-    Segment
-   </div>
-  </td>
- </tr>
- <tr>
-  <td>
-   3.
-  </td>
-  <td>
-   <div align="center">
-    | IP | TCP | Data |
-   </div>
-  </td>
-  <td>
-   <div align="center">
-    Internet
-   </div>
-  </td>
-  <td>
-   <div align="center">
-    Packet
-   </div>
-  </td>
- </tr>
- <tr>
-  <td>
-   4.
-  </td>
-  <td>
-   <div align="center">
-    | LH | IP | TCP | Data | LT |
-   </div>
-  </td>
-  <td>
-   <div align="center">
-    Network Access
-   </div>
-  </td>
-  <td>
-   <div align="center">
-    Frame
-   </div>
-  </td>
- </tr>
- <tr>
-  <td>
-   5.
-  </td>
-  <td colspan="3">
-   <div align="center">
-    Transmit Bits
-   </div>
-  </td>
- </tr>
+<table class="table">
+ <tbody>
+  <tr>
+   <th scope="row">1.</th>
+   <td>| Data |</td>
+   <td>Application</td>
+   <td></td>
+  </tr>
+  <tr>
+   <th scope="row">2.</th>
+   <td>| TCP | Data |</td>
+   <td>Transport</td>
+   <td>Segment</td>
+  </tr>
+  <tr>
+   <th scope="row">3.</th>
+   <td>| IP | TCP | Data |</td>
+   <td>Internet</td>
+   <td>Packet</td>
+  </tr>
+  <tr>
+   <th scope="row">4.</th>
+   <td>| LH | IP | TCP | Data | LT |</td>
+   <td>Network Access</td>
+   <td>Frame</td>
+  </tr>
+  <tr>
+   <th scope="row">5.</th>
+   <td colspan="3" align="center">Transmit Bits</td>
+  </tr>
+ </tbody>
 </table>
 
-<span style="font-style:italic;">
 *LH and LT stand for link header and link trailer*
 *Segment, packet, and frame* refer to the headers and possibly trailers defined by a particular layer. Only the network access layer provides a trailer in it's encapsulation, called a frame.
 
@@ -211,98 +146,58 @@ As you can see from the explanations of how HTTP, TCP, IP and the network access
 
 The Open System Interconnection (OSI) model consists of seven layers. Each layer defines a set of typical networking functions.
 
-<table border="1" cellpadding="1" width="50%">
- <tr>
-  <td>
-   <div align="center">
-    <span style="font-weight:bold;">
-     OSI Model
-    </span>
-   </div>
-  </td>
-  <td>
-   <div align="center">
-    <span style="font-weight:bold;">
-     TCP/IP
-    </span>
-   </div>
-  </td>
- </tr>
- <tr>
-  <td>
-   <div align="center">
-    Application
-   </div>
-  </td>
-  <td rowspan="3">
-   <div align="center">
-    Application
-   </div>
-   <div align="center">
-   </div>
-   <div align="center">
-   </div>
-  </td>
- </tr>
- <tr>
-  <td>
-   <div align="center">
-    Presentation
-   </div>
-  </td>
- </tr>
- <tr>
-  <td>
-   <div align="center">
-    Session
-   </div>
-  </td>
- </tr>
- <tr>
-  <td>
-   <div align="center">
-    Transport
-   </div>
-  </td>
-  <td>
-   <div align="center">
-    Transport
-   </div>
-  </td>
- </tr>
- <tr>
-  <td>
-   <div align="center">
-    Network
-   </div>
-  </td>
-  <td>
-   <div align="center">
-    Internet
-   </div>
-  </td>
- </tr>
- <tr>
-  <td>
-   <div align="center">
-    Data Link
-   </div>
-  </td>
-  <td rowspan="2">
-   <div align="center">
-    Network Access
-   </div>
-   <div align="center">
-   </div>
-  </td>
- </tr>
- <tr>
-  <td>
-   <div align="center">
-    Physical
-   </div>
-  </td>
- </tr>
+<table class="table">
+ <thead>
+  <tr>
+   <th scope="col">OSI Model</th>
+   <th scope="col">TCP/IP</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <td>Application</td>
+   <td rowspan="3">Application</td>
+  </tr>
+  <tr>
+   <td>
+     Presentation
+   </td>
+  </tr>
+  <tr>
+   <td>
+     Session
+   </td>
+  </tr>
+  <tr>
+   <td>
+     Transport
+   </td>
+   <td>
+     Transport
+   </td>
+  </tr>
+  <tr>
+   <td>
+     Network
+   </td>
+   <td>
+     Internet
+   </td>
+  </tr>
+  <tr>
+   <td>
+     Data Link
+   </td>
+   <td rowspan="2">
+     Network Access
+   </td>
+  </tr>
+  <tr>
+   <td>
+     Physical
+   </td>
+  </tr>
+ </tbody>
 </table>
 *OSI Layers in reference to the TCP/IP Layers*
 
@@ -316,76 +211,73 @@ Not all TCP/IP layers correspond to a single OSI layer. In particular, the TCP/I
 
 The upper layers of the OSI reference model (application, presentation, and session - Layers 7 - 5) define functions focused on the application. the lower four layers (transport, network, data link, and physical - Layers 4 - 1) define functions focused on the end-to-end delivery of the data.
 
-<table border="1" cellpadding="1" width="80%">
- <tr>
-  <td>
-   <span style="font-weight:bold;">
-    Layer
-   </span>
-  </td>
-  <td>
-   <span style="font-weight:bold;">
-    Functional Description
-   </span>
-  </td>
- </tr>
- <tr>
-  <td valign="top">
-   7
-  </td>
-  <td>
-   Layer 7 provides an interface between the communications software and any applications that need to communicate outside the computer on which the application resides. It also defines processes for user authentication.
-  </td>
- </tr>
- <tr>
-  <td valign="top">
-   6
-  </td>
-  <td>
-   The layers's main purpose is to define negotiate data formats, such as ASCII text, EBCDIC text, binary, BCD, and JPEG. Encryption also is defined by OSI as a presentation layer service.
-  </td>
- </tr>
- <tr>
-  <td valign="top">
-   5
-  </td>
-  <td>
-   The session layer defines how to start, control, and end conversations (called sessions). This includes the control and management of multiple bidirectional messages so that the application can be notified if only some of the series of messages are completed. this allows the presentation layer to have a seamless view of an incoming stream of data.
-  </td>
- </tr>
- <tr>
-  <td valign="top">
-   4
-  </td>
-  <td>
-   Layer 4 protocols provide a large number of services, as described of Chapter 6 of this book. Although OSI Layer 5 through 7 focus on issues related to the application, Layer 4 focuses on issues related to data delivery to another computer - for instance, error recovery and flow contol.
-  </td>
- </tr>
- <tr>
-  <td valign="top">
-   3
-  </td>
-  <td>
-   The network layer defines three main features: logical addressing, routing (forwarding), and path determination. The routing concepts define how devices (typically routers) forward packets to their final destination. Logical addressing defines how each device can have an address that can be used by the routing process. Path determination refers to the work done by routing protocols by which all possible routers are learned, but the best route is chosen for use.
-  </td>
- </tr>
- <tr>
-  <td valign="top">
-   2
-  </td>
-  <td>
-   The data link layer defines the rules (protocols) that determine when a device can send data over a particular medium. Data link protocols also define the format of a header and trailer that allows devices attached to the medium to send and reeive data successfully. The data link trailer, which follows the encapsulated data, typically defines a Frame Check Sequence (FCS) field, which allows the receiving device to detect transmission errors.
-  </td>
- </tr>
- <tr>
-  <td valign="top">
-   1
-  </td>
-  <td>
-   The layer typically refers to standards from other organizations. These standards deal with the physical characteristics of the transmission medium, including connectors, pins, use of pins, electrical currents, encoding, light modulation, and the rules for how to activate and deactivate the use of the physical medium.
-  </td>
- </tr>
+<table class="table">
+ <thead>
+  <tr>
+   <th scope="col">Layer</th>
+   <th scope="col">Functional Description</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+   <th scope="row">
+    7
+   </th>
+   <td>
+    Layer 7 provides an interface between the communications software and any applications that need to communicate outside the computer on which the application resides. It also defines processes for user authentication.
+   </td>
+  </tr>
+  <tr>
+   <th scope="row">
+    6
+   </th>
+   <td>
+    The layers's main purpose is to define negotiate data formats, such as ASCII text, EBCDIC text, binary, BCD, and JPEG. Encryption also is defined by OSI as a presentation layer service.
+   </td>
+  </tr>
+  <tr>
+   <th scope="row">
+    5
+   </th>
+   <td>
+    The session layer defines how to start, control, and end conversations (called sessions). This includes the control and management of multiple bidirectional messages so that the application can be notified if only some of the series of messages are completed. this allows the presentation layer to have a seamless view of an incoming stream of data.
+   </td>
+  </tr>
+  <tr>
+   <th scope="row">
+    4
+   </th>
+   <td>
+    Layer 4 protocols provide a large number of services, as described of Chapter 6 of this book. Although OSI Layer 5 through 7 focus on issues related to the application, Layer 4 focuses on issues related to data delivery to another computer - for instance, error recovery and flow contol.
+   </td>
+  </tr>
+  <tr>
+   <th scope="row">
+    3
+   </th>
+   <td>
+    The network layer defines three main features: logical addressing, routing (forwarding), and path determination. The routing concepts define how devices (typically routers) forward packets to their final destination. Logical addressing defines how each device can have an address that can be used by the routing process. Path determination refers to the work done by routing protocols by which all possible routers are learned, but the best route is chosen for use.
+   </td>
+  </tr>
+  <tr>
+   <th scope="row">
+    2
+   </th>
+   <td>
+    The data link layer defines the rules (protocols) that determine when a device can send data over a particular medium. Data link protocols also define the format of a header and trailer that allows devices attached to the medium to send and reeive data successfully. The data link trailer, which follows the encapsulated data, typically defines a Frame Check Sequence (FCS) field, which allows the receiving device to detect transmission errors.
+   </td>
+  </tr>
+  <tr>
+   <th scope="row">
+    1
+   </th>
+   <td>
+    The layer typically refers to standards from other organizations. These standards deal with the physical characteristics of the transmission medium, including connectors, pins, use of pins, electrical currents, encoding, light modulation, and the rules for how to activate and deactivate the use of the physical medium.
+   </td>
+  </tr>
+ </tbody>
 </table>
+
 *The CCNA focuses on issues in the lower (4-1) layers in the OSI.*
 *OSI Layering Concepts and Benefits*
 
