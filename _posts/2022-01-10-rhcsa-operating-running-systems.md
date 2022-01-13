@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'RHCSA Version 8: Operating Running Systems'
-date: '2021-01-10'
+date: '2022-01-10'
 author: jtdub
 tags:
 - packetgeek.net 
