@@ -14,7 +14,7 @@ Let's dive into an example playbook that demonstrates the solution. Suppose we h
 
 ```liquid
 {% raw %}
-- name: Extract specific key-value pair from a list of dictionaries
+- name: Extract name and age using json_query 
   hosts: localhost
   gather_facts: false
   vars:
