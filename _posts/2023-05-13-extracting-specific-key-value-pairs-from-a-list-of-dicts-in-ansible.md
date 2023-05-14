@@ -37,7 +37,8 @@ In this example, we use the `json_query` filter with the JMESPath query `[].{nam
 
 When running this playbook, the output will only include the extracted name-age pairs, while the other data in the dictionaries remains hidden:
 
-```shell
+```liquid
+<!-- {% raw %} -->
 TASK [Extract name and age using json_query] ***********************************
 ok: [localhost] => {
     "msg": [
@@ -55,5 +56,6 @@ ok: [localhost] => {
         }
     ]
 }
+<!-- {% endraw %} -->
 ```
 By following this approach, you can easily extract specific key-value pairs from a list of dictionaries in Ansible without exposing the remaining data. This provides a clean and secure way to pass only the necessary information to tasks, ensuring privacy and efficiency in your automation workflows.
