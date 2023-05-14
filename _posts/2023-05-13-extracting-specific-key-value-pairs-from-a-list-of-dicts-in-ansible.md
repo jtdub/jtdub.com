@@ -30,33 +30,30 @@ Let's dive into an example playbook that demonstrates the solution. Suppose we h
   tasks:
     - name: Extract name-age pair from each item
       debug:
-        msg: "{{ my_list | map(attribute='name') | zip(my_list | map(attribute='age')) | list }}"
+        msg: "{{ my_list | json_query('[].{name: name, age: age}') }}"
 
 ```
-
-In this example, we define the `my_list` variable containing a list of dictionaries. The `map` filter is used to extract the `name` value from each dictionary, while the `zip` filter combines it with the `age` value extracted from the same list. Finally, the `list` filter is used to convert the result into a list.
+In this example, we use the `json_query` filter with the JMESPath query `[].{name: name, age: age}`. This query instructs Ansible to iterate over each element in the `my_list` variable and create a new dictionary with the keys `name` and `age`, using the corresponding values from each dictionary in the original list.
 
 When running this playbook, the output will only include the extracted name-age pairs, while the other data in the dictionaries remains hidden:
 
 ```shell
-TASK [Extract name-age pair from each item] *************************************
+TASK [Extract name and age using json_query] ***********************************
 ok: [localhost] => {
     "msg": [
-        [
-            "John",
-            25
-        ],
-        [
-            "Alice",
-            30
-        ],
-        [
-            "Bob",
-            35
-        ]
+        {
+            "age": 25,
+            "name": "John"
+        },
+        {
+            "age": 30,
+            "name": "Alice"
+        },
+        {
+            "age": 35,
+            "name": "Bob"
+        }
     ]
 }
-
 ```
-
 By following this approach, you can easily extract specific key-value pairs from a list of dictionaries in Ansible without exposing the remaining data. This provides a clean and secure way to pass only the necessary information to tasks, ensuring privacy and efficiency in your automation workflows.
