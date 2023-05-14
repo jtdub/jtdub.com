@@ -13,7 +13,7 @@ Have you ever encountered a situation in Ansible where you had a list of diction
 Let's dive into an example playbook that demonstrates the solution. Suppose we have a list called `my_list` with dictionaries representing individuals, and we want to extract the `name` and `age` key-value pairs for each person while keeping the other attributes hidden. Here's how we can achieve that:
 
 ```liquid
-<!-- {% raw %} -->
+{% raw %}
 - name: Extract specific key-value pair from a list of dictionaries
   hosts: localhost
   gather_facts: false
@@ -32,7 +32,7 @@ Let's dive into an example playbook that demonstrates the solution. Suppose we h
     - name: Extract name-age pair from each item
       debug:
         msg: "{{ my_list | json_query('[].{name: name, age: age}') }}"
-<!-- {% endraw %} -->
+{% endraw %}
 ```
 In this example, we use the `json_query` filter with the JMESPath query `[].{name: name, age: age}`. This query instructs Ansible to iterate over each element in the `my_list` variable and create a new dictionary with the keys `name` and `age`, using the corresponding values from each dictionary in the original list.
 
