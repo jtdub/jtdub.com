@@ -98,32 +98,37 @@ To predict future needs, we can use statistical models like linear regression.
 ### Sample Code for Capacity Prediction
 
 ```liquid
-import pandas as pd
-import numpy as np
+from datetime import datetime
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
 
-# Constants
-sampling_rate = 5  # in minutes
-duration_days = 30
-minutes_in_day = 24 * 60
-total_samples = duration_days * (minutes_in_day // sampling_rate)
+# Preparing the data
+bandwidth_usage['HourOfDay'] = bandwidth_usage['Timestamp'].dt.hour
+X = bandwidth_usage[['HourOfDay']]
+y = bandwidth_usage['Bandwidth_Mbps']
 
-# Time series index
-time_index = pd.date_range(start='2023-11-01', periods=total_samples, freq=f'{sampling_rate}T')
+# Creating and training the model
+model = LinearRegression()
+model.fit(X, y)
 
-# Simulating bandwidth usage (in Mbps)
-np.random.seed(42)
-daytime_usage = np.random.normal(loc=50, scale=10, size=total_samples)
-nighttime_usage = np.random.normal(loc=20, scale=5, size=total_samples)
+def predict_bandwidth_usage(future_date_str):
+    # Convert the string to a datetime object
+    future_date = datetime.strptime(future_date_str, '%Y-%m-%d %H:%M:%S')
+    hour_of_day = future_date.hour
+    # Predicting bandwidth usage for the given hour
+    predicted_usage = model.predict([[hour_of_day]])
+    return predicted_usage[0]
 
-usage_pattern = np.where((time_index.hour >= 8) & (time_index.hour <= 22), daytime_usage, nighttime_usage)
-
-# Creating DataFrame
-bandwidth_usage = pd.DataFrame({'Timestamp': time_index, 'Bandwidth_Mbps': usage_pattern})
+# Example Usage
+predicted_usage = predict_bandwidth_usage("2024-03-01 15:00:00")
+print(f"Predicted Bandwidth Usage: {predicted_usage} Mbps")
 ```
+
+This function allows you to input a future date and time in the format 'YYYY-MM-DD HH:MM:SS' and returns the predicted bandwidth usage for that specific time.
 
 ## Using Your Model for Prediction
 
-With the model in place, you can now input the hour of the day to predict your bandwidth needs. This predictive capability is invaluable for planning and ensuring that your network can handle anticipated loads.
+With the model in place, you can now use the `predict_bandwidth_usage` function to estimate your bandwidth needs for any future date and time. This predictive capability is invaluable for planning and ensuring that your network can handle anticipated loads.
 
 ## Advantages and Limitations
 
