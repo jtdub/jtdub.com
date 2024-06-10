@@ -14,4 +14,4 @@ I updated the ssh-multi.py script from my pyMultiChange repository. It's now ful
 
 The pyMuliChange repository is available on my [github](https://github.com/jtdub/pyMultiChange).
 
-<img src="/images/Screen-Shot-2014-11-26-at-2.49.55-AM.png"/>
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/719bab99-6701-45a6-7a50-8ce951613600/public"/>

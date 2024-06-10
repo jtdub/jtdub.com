@@ -22,7 +22,7 @@ I've configured NTP - and verified that I had a proper NTP association per these
 
 I've verified that my VIRL instance can ping the Cisco salt infrastructure. I can also telnet to their service ports. From my view. It should be working, but no matter what I do, I get this screen:
 
-<img src="/images/Screen-Shot-2014-12-03-at-3.57.52-AM.png"/>
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/c2d737c4-02c3-4b3e-a61d-d37897bb6b00/public"/>
 
 I'm also a little irritated with the VIRL support forums, as I can't post this screen shot, because I'm a 'new users'. The best that I can do is link to it.
 

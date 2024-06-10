@@ -15,4 +15,4 @@ Laguna Sibinacocha is a stunningly beautiful place. It has clear blue waters, st
 
 This 360 degree aerial image doesn't do it justice.
 
-<img src="/images/23331144_10155778775142141_1800345003654905856_n-1.jpg"/>
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/71e89b0a-aa47-4be1-6d59-faf48c8e5300/public"/>

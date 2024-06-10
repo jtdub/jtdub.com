@@ -10,7 +10,7 @@ tags:
 - packetgeek.net
 ---
 
-<img height="320" src="/images/KVM-VM-Persistant-boot.png"/>
+<img height="320" src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/ce544fb0-1316-40cc-ee86-1dc66adea600/public"/>
 
 From virt-manager, you can follow the screen shot:
 
