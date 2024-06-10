@@ -58,7 +58,7 @@ After gathering your data, the next step is to analyze it for patterns. This inv
 
 To better understand your data, it's helpful to visualize it. We can plot the bandwidth usage over time and overlay the linear regression line to see the trend.
 
-![Bandwidth Usage with Linear Regression overlay](https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/0feeb298-db8c-4a73-f158-8131e2e9a700/public)
+![Bandwidth Usage with Linear Regression overlay](https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/704517a3-596c-4b85-b43c-549083c2f700/public)
 
 ### Sample Code for Visualizing Data with Linear Regression
 

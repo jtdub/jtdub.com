@@ -12,7 +12,7 @@ tags:
 - andean culture
 ---
 
-![Jauan performs a Despacho](https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/5b2716c6-69a1-4b73-1b5d-314c12e98600/public)
+![Jauan performs a Despacho](https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/608dbbd1-a69b-4d52-850f-d32fdd42d000/public)
 
 The Despacho ceremony is a cornerstone of Andean culture, a sacred ritual ingrained in the indigenous communities of Peru, Bolivia, Ecuador, and Colombia. It is a vibrant celebration of gratitude, balance, and harmony, reflecting the profound connection these cultures have with the natural world and spiritual realm.
 
