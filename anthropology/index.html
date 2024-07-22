@@ -1,0 +1,31 @@
+---
+layout: default
+title: Anthropology 
+permalink: /anthropology/
+---
+<iframe src='https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1kwhhfBl4Qxw97hSDcD1zYFSHoU8GhXnQ7GOw1ea8A3U&font=Default&lang=en&initial_zoom=2&height=650' width='100%' height='650' webkitallowfullscreen mozallowfullscreen allowfullscreen frameborder='0'></iframe>
+
+{% for tag in site.tags %}
+  {% if tag[0] == "anthropology" %}
+<div class="container mt-5">
+  <div class="row">
+    {% for post in tag[1] %}
+      <div class="col-md-14 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              <a href="{{ post.url }}">{{ post.title }}</a>
+            </h5>
+            <p class="card-subtitle mb-2 text-muted">{{ post.date | date: "%B %-d, %Y" }}</p>
+            <p class="card-text">
+              {{ post.excerpt | custom_exerpt: 50 }}
+            </p>
+            <a href="{{ post.url }}" class="btn btn-primary">Read More</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+  {% endif %}
+{% endfor %}
