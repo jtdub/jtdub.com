@@ -6,21 +6,6 @@ permalink: /packetgeek.net/
 <p>packetgeek.net is my technology blog. The topics range greatly and often reflect what is interesting to me at the time or what I'm studying.</p>
 {% for tag in site.tags %}
   {% if tag[0] == "packetgeek.net" %}
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">post date</th>
-      <th scope="col">{{ tag[0] }} posts</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for post in tag[1] %}
-    <tr>
-      <th scope="row">{{ post.date | date: "%B %-d, %Y" }}</th>
-      <td><a href="{{ post.url }}">{{ post.title }}</a></td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+    {% include tagged_posts.html %}
   {% endif %}
 {% endfor %}

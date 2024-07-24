@@ -3,37 +3,12 @@ layout: default
 title: external blog posts
 permalink: /external/
 ---
-<h3>external blog posts</h3>
 <p>From time to time, I post blogs on external sites. This is mostly for work, but this is a collection of external blog posts that I've contributed to.</p>
-<p>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">date posted</th>
-      <th scope="col">blog title</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>June 16, 2023</td>
-      <td><a href="https://blog.networktocode.com/post/whats-new-with-nautobot-lab/">What's New with Nautobot Lab</a></td>
-    </tr>
-    <tr>
-      <td>July 8, 2022</td>
-      <td><a href="https://blog.networktocode.com/post/structured-data-part-4/">Introduction to Structured Data - Part 4</a></td>
-    </tr>
-    <tr>
-      <td>June 23, 2022</td>
-      <td><a href="https://blog.networktocode.com/post/structured-data-part-2/">Introduction to Structured Data - Part 2</a></td>
-    </tr>
-    <tr>
-      <td>October 26, 2021</td>
-      <td><a href="http://blog.networktocode.com/post/hier-config-up-and-running/">Hierarchical Configuration Up and Running</a></td>
-    </tr>
-    <tr>
-      <td>March 18, 2021</td>
-      <td><a href="http://blog.networktocode.com/post/getting-nautobot-up-and-running-in-the-lab/">Getting Nautobot Up and Running in the Lab</a></td>
-    </tr>
-  </tbody>
-</table>
-</p>
+
+<div class="container mt-5">
+  <div class="row">
+{% for post in site.data.external_posts %}
+  {% include external_posts.html %}
+{% endfor %}
+  </div>
+</div>
