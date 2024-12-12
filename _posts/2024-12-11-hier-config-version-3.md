@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Hierarchical Configuration Version 3'
-date: '2024-12-10'
+date: '2024-12-11'
 author: jtdub
 tags:
 - packetgeek.net
