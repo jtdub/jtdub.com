@@ -167,7 +167,8 @@ class CustomPlatformDriver(HConfigDriverBase):
         return "undo "
 
     @property
-    def declaration_prefix(self
+    def declaration_prefix(self):
+        return ""
 ```
 
 ## WorkflowRemediation Object
@@ -295,7 +296,7 @@ print(v3_tags)
 
 ## Conclusion
 
-I really like this modernized update to Hier Config. It has come a long way in the past decade. I would invite the user base to help expand and build out the driver and participate in their development lifecycle.
+I really like this modernized update to Hier Config. It has come a long way in the past decade. I would invite the user base to help expand and build out the driver and participate in their development lifecycle. For more information, you can view the code on [https://github.com/netdevops/hier_config](Github) and you can view the documentation on [https://hier-config.readthedocs.io/en/latest/](ReadTheDocs)
 
 In future blogs about Hier Config, I will talk about:
 
