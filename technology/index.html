@@ -3,8 +3,10 @@ layout: default
 title: technology
 permalink: /technology/
 ---
+<div class="container mt-5">
 {% for tag in site.tags %}
 {% if tag[0] == "packetgeek.net" %}
 {% include tagged_posts.html %}
 {% endif %}
 {% endfor %}
+</div>
