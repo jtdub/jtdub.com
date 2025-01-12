@@ -12,6 +12,7 @@
 
     <title>{{ page.title }}</title>
 
+    </head>
     <body>
 
         <nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary sticky-top">
@@ -45,6 +46,10 @@
                     <a class="nav-link" href="/technology/">technology</a>
                   </li>
                 </ul>
+                <form class="d-flex" id="search-form" action="/search/" method="get">
+                  <input id="search-input" name="q" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
               </div>
             </div>
         </nav>
