@@ -1,4 +1,4 @@
-pre{
+pre {
     display: block;
     padding: 9.5px;
     margin: 0 0 10px;
@@ -8,4 +8,34 @@ pre{
     background-color: #23241f;
     border: .1px solid #ccc;
     border-radius: 4px;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+div, main {
+    flex: 1;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
