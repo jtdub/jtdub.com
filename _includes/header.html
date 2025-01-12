@@ -12,18 +12,19 @@
 
     <title>{{ page.title }}</title>
 
+    </head>
     <body>
 
-        <nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary">
+        <nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary sticky-top">
             <div class="container-fluid">
-              <a class="navbar-brand" href="/">jtdub.com</a>
+              <a class="navbar-brand" href="/">James Williams</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav ms-auto">
                   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">site specific blogs</a>
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">blogs</a>
                     <ul class="dropdown-menu">
                       <li><a class="dropdown-item" href="/jtdub.com/">jtdub.com</a></li>
                       <li><a class="dropdown-item" href="/packetgeek.net/">packetgeek.net</a></li>
@@ -33,12 +34,22 @@
                     </ul>
                   </li>
                   <li class="nav-item">
+                    <a class="nav-link" href="/anthropology/">anthropology</a>
+                  </li>
+                  <li class="nav-item">
                     <a class="nav-link" href="/photography/">photography</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/anthropology/">anthropology</a>
+                    <a class="nav-link" href="/publications/">publications</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/technology/">technology</a>
                   </li>
                 </ul>
+                <form class="d-flex" id="search-form" action="/search/" method="get">
+                  <input id="search-input" name="q" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
               </div>
             </div>
         </nav>

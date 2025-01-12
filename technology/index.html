@@ -1,0 +1,10 @@
+---
+layout: default
+title: technology
+permalink: /technology/
+---
+{% for tag in site.tags %}
+{% if tag[0] == "packetgeek.net" %}
+{% include tagged_posts.html %}
+{% endif %}
+{% endfor %}

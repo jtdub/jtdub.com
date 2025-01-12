@@ -12,6 +12,7 @@ tags:
 - Travel
 - Choquequirao
 - jtdub.com
+- anthropology
 ---
 <img width="400" src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/6218bf46-1b95-4af5-fbc4-652649308f00/public" title="Pumasillo from the priests quarters at Choquequirao"/>
 

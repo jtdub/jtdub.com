@@ -1,0 +1,10 @@
+---
+layout: default
+title: publications
+permalink: /publications/
+---
+<div class="container mt-5">
+{% for publication in site.data.publications %}
+  {% include publications.html %}
+{% endfor %}
+</div>
