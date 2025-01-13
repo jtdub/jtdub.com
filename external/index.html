@@ -3,12 +3,19 @@ layout: default
 title: external blog posts
 permalink: /external/
 ---
-<p>From time to time, I post blogs on external sites. This is mostly for work, but this is a collection of external blog posts that I've contributed to.</p>
-
-<div class="container mt-5">
-  <div class="row">
-{% for post in site.data.external_posts %}
-  {% include external_posts.html %}
-{% endfor %}
+  <div class="container mt-5">
+    <div class="row">
+  {% for post in site.data.external_posts %}
+      <div class="col-md-12 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              <a href="{{ post.url }}" target="_new">{{ post.name }}</a>
+            </h5>
+            <p class="card-subtitle mb-2 text-muted">{{ post.date | date: "%B %-d, %Y" }}</p>
+          </div>
+        </div>
+      </div>
+  {% endfor %}
+    </div>
   </div>
-</div>
