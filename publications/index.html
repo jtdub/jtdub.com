@@ -3,8 +3,19 @@ layout: default
 title: publications
 permalink: /publications/
 ---
-<div class="container mt-5">
-{% for publication in site.data.publications %}
-  {% include publications.html %}
-{% endfor %}
-</div>
+  <div class="container mt-5">
+  {% for publication in site.data.publications %}
+      <div class="col-md-12 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              <a href="{{ publication.url }}" target="_new">{{ publication.publication }}</a>
+            </h5>
+            <p class="card-subtitle mb-2 text-muted">{{ publication.volume }} | {{ publication.date }}</p>
+            <p class="card-subtitle mb-2 text-muted"><strong>{{ publication.title }}</strong></p>
+            <p class="card-subtitle mb-2 text-muted">{{ publication.description }}</p>
+          </div>
+        </div>
+      </div>
+  {% endfor %}
+  </div>

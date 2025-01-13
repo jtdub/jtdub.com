@@ -1,0 +1,22 @@
+---
+layout: default
+title: open source
+permalink: /opensource/
+---
+<div class="container mt-5">
+    I contribute to various open source projects either as a maintainer or contributor.
+</div>
+<div class="container mt-5">
+    {% for oss in site.data.oss_data %}
+    <div class="col-md-12 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <a href="{{ oss.repo }}" target="_new">{{ oss.name }}</a>
+                </h5>
+                <p class="card-subtitle mb-2 text-muted">Contributor type: {{ oss.contrib }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
