@@ -47,7 +47,7 @@ permalink: /
                     </h5>
                     <p class="card-subtitle mb-2 text-muted">{{ post.date | date: "%B %-d, %Y" }}</p>
                     <p class="card-text">
-                        {{ post.excerpt | custom_exerpt: 50 }}
+                        {{ post.excerpt | custom_exerpt: 50 | strip_html }}
                     </p>
                 </div>
             </div>
