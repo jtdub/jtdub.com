@@ -3,9 +3,10 @@ layout: default
 title: jtdub.com
 permalink: /jtdub.com/
 ---
-<p>jtdub.com is the blog where I talk about non-technology topics.</p>
-{% for tag in site.tags %}
+  <div class="container mt-5">
+  {% for tag in site.tags %}
   {% if tag[0] == "jtdub.com" %}
-    {% include tagged_posts.html %}
+  {% include tagged_posts.html %}
   {% endif %}
-{% endfor %}
+  {% endfor %}
+  </div>

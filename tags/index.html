@@ -3,17 +3,25 @@ layout: default
 title: tags
 permalink: /tags/
 ---
-<div class="accordion" id="accordionTags"></div>
-{% for tag in site.tags %}
+{% assign sorted_tags = site.tags | sort %}
+<div class="accordion" id="accordionTags">
+{% for tag in sorted_tags %}
 {%  if tag[0] == "packetgeek.net" or tag[0] == "jtdub.com" %}
 {%  else %}
   <div class="accordion-item">
     <h2 class="accordion-header" id="heading-{{ tag[0] | downcase | slugify }}">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ tag[0] | downcase | slugify }}" aria-expanded="true" aria-controls="collapse-{{ tag[0] | downcase | slugify }}">
+      <button class="accordion-button collapsed" type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapse-{{ tag[0] | downcase | slugify }}"
+        aria-expanded="false"
+        aria-controls="collapse-{{ tag[0] | downcase | slugify }}">
         <strong><a href="/tags/{{ tag[0] | slugify }}">{{ tag[0] | upcase }}</a></strong>
       </button>
     </h2>
-    <div id="collapse-{{ tag[0] | downcase | slugify }}" class="accordion-collapse collapse show" aria-labelledby="heading-{{ tag[0] | downcase | slugify }}" data-bs-parent="#accordionTags">
+    <div id="collapse-{{ tag[0] | downcase | slugify }}"
+      class="accordion-collapse collapse"
+      aria-labelledby="heading-{{ tag[0] | downcase | slugify }}"
+      data-bs-parent="#accordionTags">
       <div class="accordion-body">
         {% include tagged_posts.html %}
       </div>

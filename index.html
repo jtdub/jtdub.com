@@ -12,8 +12,8 @@ permalink: /
         <p>
             With over 20 years of experience in the tech industry, I've navigated the roles of
             Linux systems administrator, network engineer, and network automation engineer.
-            Along the way, I've mastered programming languages like Python, Ruby, Bash, and Perl,
-            while leveraging automation frameworks such as Ansible and Salt to solve complex
+            Along the way, I've written software in programming languages like Python, Ruby, Bash,
+            and Perl, while leveraging automation frameworks such as Ansible and Salt to solve complex
             challenges. My career spans industries, including financial services, higher education,
             and hosting providers, where I've tackled everything from system optimization to
             network scalability.
@@ -34,4 +34,23 @@ permalink: /
             their rituals—an intersection of science, humanity, and culture that constantly
             fuels my curiosity.
         </p>
+    </div>
+
+    <div class="container mt-4">
+        <h2>latests posts</h2>
+        {% for post in site.posts limit:2 %}
+        <div class="col-md-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{{ post.url }}">{{ post.title }}</a>
+                    </h5>
+                    <p class="card-subtitle mb-2 text-muted">{{ post.date | date: "%B %-d, %Y" }}</p>
+                    <p class="card-text">
+                        {{ post.excerpt | custom_exerpt: 50 | strip_html }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
