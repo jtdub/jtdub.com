@@ -1,0 +1,123 @@
+---
+summary: |
+  IT professional with over 20 years of experience, specializing in network automation,
+  configuration management, and IT infrastructure. Passionate about anthropology, with
+  over 10 years of field research experience in Peru, focusing on archaeology, and
+  climate change. Proficient in developing innovative tools and solutions that integrate
+  IT and anthropology.
+contact:
+  - name: LinkedIn
+    url: https://www.linkedin.com/in/jtdub/
+  - name: Github
+    url: https://www.github.com/jtdub/
+experience:
+  - employer: Network to Code
+    role: Senior Engineer, Network Automation
+    start: October, 2020
+    end: Present
+    description:
+      - Mentor junior engineers.
+      - Design and implementation of automation platforms that align with customer requirements and seamlessly integrate into existing business processes.
+      - Development of software solutions for both open-source and proprietary projects.
+      - Architecture and design of automation platforms.
+  - employer: Rackspace
+    role: Network Engineer III, Design and Build
+    start: August, 2015
+    end: October, 2020
+    description:
+      - Design and implementation of greenfield and brownfield data center and service provider networks.
+      - Development of software solutions using Python and Ruby.
+      - Automate the detection and remediation of configuration compliance tasks across the global network.
+  - employer: Rackspace
+    role: Network Engineer II, Network Operations
+    start: August, 2013
+    end: August, 2015
+    description:
+      - Mentoring and knowledge sharing with team members.
+      - Design and implementation of traffic engineering strategies.
+      - Identification and mitigation of DDoS attacks and network issues in data center environments.
+      - Development of software solutions using Python and Bash.
+      - Automation of software upgrades across the global fleet of network devices.
+  - employer: Rackspace
+    role: Linux Systems Administrator
+    start: April, 2012
+    end: August, 2013
+    description:
+      - Linux systems administration for enterprise customers across Europe and Asia Pacific regions.
+      - Automation of repetitive tasks using Bash and Perl.
+  - employer: Happy State Bank
+    role: Network Administrator Lead
+    start: "2009"
+    end: "2011"
+    description:
+      - Linux systems administration and maintenance.
+      - Design, implementation, and management of network engineering solutions.
+      - Design and implementation of virtualization architecture and solutions.
+      - Developing automation scripts for repetitive tasks using Bash and Perl.
+  - employer: First Data
+    role: Problem Support Technician
+    start: "2005"
+    end: "2009"
+    description:
+      - Providing technical support for ATM systems and networks.
+      - Developing automation scripts for repetitive tasks using Bash and Perl.
+  - employer: West Texas A&M University
+    role: Network Technician
+    start: "2002"
+    end: "2005"
+    description:
+      - Linux systems administration and maintenance.
+      - Design, implementation, and management of network engineering solutions.
+      - Developing automation scripts for repetitive tasks using Bash and Perl.
+  - employer: 1Source Technologies
+    role: Network Systems Analyst
+    start: "2001"
+    end: "2002"
+    description:
+      - Linux systems administration and maintenance.
+      - Providing technical support and troubleshooting for systems, networks, and applications.
+  - employer: ARNet
+    role: Broadband Network Technician
+    start: "2001"
+    end: "2001"
+    description:
+      - Providing technical support and troubleshooting for systems, networks, and applications.
+      - Installation and troubleshooting of xDSL circuits.
+education:
+  - school: Southern New Hampshire University
+    start: "2002"
+    end: "Present"
+    major: BA, Anthropology
+    concentration: Environmental Sustainability
+    gpa: "3.9"
+    activities:
+      - National Society of Success and Leadership
+  - school: Amarillo College
+    start: "2001"
+    end: "2009"
+    major: AAS, Electronics Technology
+    concentration: Networking Technology
+    gpa: ""
+    activities:
+      - Cisco Networking Academy
+certifications:
+  - vendor: Cisco Systems
+    cert: Cisco Certified DevNet Associate
+    start: "2020"
+    end: "2023"
+    credential: CSCO10407758
+  - vendor: Cisco Systems
+    cert: Cisco Certified Network Professional (CCNP)
+    start: "2010"
+    end: "2020"
+    credential: CSCO10407758
+  - vendor: Cisco Systems
+    cert: Cisco Certified Design Professional (CCDP)
+    start: "2017"
+    end: "2020"
+    credential: CSCO10407758
+  - vendor: Redhat
+    cert: Redhat Certified Engineer (RHCE)
+    start: "2013"
+    end: "2016"
+    credential: "120-138-847"

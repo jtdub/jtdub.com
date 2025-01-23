@@ -1,0 +1,92 @@
+---
+layout: default
+title: James Williams
+permalink: /resume/
+---
+<div class="accordion" id="ResumeAccordion">
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne">
+                Overview
+            </button>
+        </h2>
+
+        <div id="collapseOne" class="accordion-collapse collapse show">
+            <div class="accordion-body">
+                {{ site.data.resume.summary }}
+            </div>
+        </div>
+
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                aria-expanded="true" aria-controls="collapseTwo">
+                Employment
+            </button>
+        </h2>
+
+        <div id="collapseTwo" class="accordion-collapse collapse">
+            <div class="accordion-body">
+            {% for job in site.data.resume.experience %}
+            <h2>{{ job.employer }}</h2>
+            <div>{{ job.start }} - {{ job.end }}</div>
+            <div><strong>{{ job.role }}</strong></div>
+            <ul>
+            {%   for item in job.description %}
+                <li>{{ item }}</li>
+            {%   endfor %}
+            </ul>
+            {% endfor %}
+            </div>
+        </div>
+
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                aria-expanded="true" aria-controls="collapseThree">
+                Education
+            </button>
+        </h2>
+
+        <div id="collapseThree" class="accordion-collapse collapse">
+            <div class="accordion-body">
+                {% for school in site.data.resume.education %}
+                <h2>{{ school.school }}</h2>
+                <div>{{ school.start }} - {{ school.end }}{% if school.gpa %}, GPA: {{ school.gpa }}{% endif %}</div>
+                <div>Major: <strong>{{ school.major }}</strong></div>
+                <div>Concentration: <strong>{{ school.concentration }}</strong></div>
+                <div>Activities and Societies</div>
+                <ul>
+                {% for activity in school.activities %}
+                    <li>{{ activity }}</li>
+                {% endfor %}
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour"
+                aria-expanded="true" aria-controls="collapseFour">
+                Certifications
+            </button>
+        </h2>
+
+        <div id="collapseFour" class="accordion-collapse collapse">
+            <div class="accordion-body">
+                {% for certification in site.data.resume.certifications %}
+                <h2>{{ certification.cert }}</h2>
+                <div>{{ certification.start }} - {{ certification.end }}</div>
+                <div>Vendor: <strong>{{ certification.vendor }}</strong></div>
+                <div>Credential ID: {{ certification.credential }}</div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</div>

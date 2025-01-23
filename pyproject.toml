@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "jtdub-com"
+version = "0.1.0"
+description = ""
+authors = ["jtdub <james.williams@packetgeek.net>"]
+readme = "README.md"
+packages = [{include = "jtdub"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.4"
+bs4 = "^0.0.2"
+requests = "^2.32.3"
+ruff = "^0.9.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
