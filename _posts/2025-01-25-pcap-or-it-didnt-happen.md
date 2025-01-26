@@ -172,15 +172,6 @@ BGP EVPN (Ethernet VPN) is commonly used with VXLAN to create virtual Layer 2 ne
 Host A -> VTEP1 -> Encapsulate in VXLAN -> Route Through L3 -> VTEP2 -> Decapsulate -> Host B
 ```
 
-## **Why “PCAP or it Didn’t Happen”?**
-
-Tools like Wireshark, `tcpdump`, or even modern telemetry platforms allow you to see packet headers in action. By capturing and analyzing packets, you can:
-- Verify configurations (e.g., VLANs, GRE, IPsec).
-- Diagnose problems (e.g., routing loops, packet drops).
-- Understand advanced features in real-world deployments.
-
-If you can’t prove it in a packet capture, did it really happen?
-
 ## **Conclusion**
 
 Whether you’re troubleshooting a VLAN issue, configuring GRE, securing traffic with IPsec, or deploying BGP EVPN with VXLAN, everything in networking starts and ends with packets. By understanding packet structures and how framing and tagging work, you’ll not only be a better network engineer—you’ll also have the power to demystify complex problems.
