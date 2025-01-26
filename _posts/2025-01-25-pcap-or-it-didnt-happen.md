@@ -130,14 +130,14 @@ IPsec secures IP packets by encrypting and authenticating them. It works in two 
 Host A -> Router -> Encrypt + Add ESP Header -> Transit Network -> Decrypt -> Host B
 ```
 
-### **MPLS (LDP and SR)**
+### **MPLS (LDP)**
 
 In MPLS, labels are added between the Ethernet and IP headers to create label-switched paths (LSPs).
 
 ```
-+------------+------+----------+-----------+
-| Eth Header | MPLS | IP Hdr   | Payload   | 
-+------------+------+----------+-----------+
++------------+------------+----------+-----------+
+| Eth Header | MPLS Label | IP Hdr   | Payload   | 
++------------+------------+----------+-----------+
 ```
 
 #### MPLS Workflow
