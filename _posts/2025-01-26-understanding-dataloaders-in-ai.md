@@ -148,13 +148,16 @@ In this example:
 
 ## Key Differences Between PyTorch and TensorFlow Dataloaders
 
+```
+|-------------------------|--------------------------------------|-----------------------------------|
 | Feature                 | PyTorch                              | TensorFlow                        |
 |-------------------------|--------------------------------------|-----------------------------------| 
 | API Name                | `DataLoader`                         | `tf.data.Dataset`                 |
 | Parallel Loading        | Controlled via `num_workers`         | Controlled via `prefetch`         |
 | Transformation          | Done using `transforms`              | Done using `.map()`               |
 | Integration with Models | Easy integration with training loops | Works seamlessly with `model.fit` |
-
+|-------------------------|--------------------------------------|-----------------------------------|
+```
 
 ## Conclusion
 
