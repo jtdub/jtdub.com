@@ -4,7 +4,7 @@ title: '25 Years of U.S. Oil Dynamics: A Deep Dive into Production, Consumption,
 date: '2025-01-27'
 author: jtdub
 tags:
-- jtdub
+- jtdub.com
 - data is beautiful
 - analysis
 - Python
