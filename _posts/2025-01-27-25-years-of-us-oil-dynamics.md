@@ -7,6 +7,8 @@ tags:
 - jtdub
 - data is beautiful
 - analysis
+- Python
+- Python Tips
 ---
 
 Over the past quarter-century, the U.S. oil industry has undergone profound transformations, shaped by technological breakthroughs, economic forces, policy shifts, and global market dynamics. This blog explores the key trends in oil production, consumption, imports, and exports, with a focus on the most recent developments.
