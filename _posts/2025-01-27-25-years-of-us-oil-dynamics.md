@@ -61,3 +61,51 @@ Conversely, exports have surged. In 2020, the U.S. became a net exporter of petr
 ### Conclusion
 
 The past 25 years have been a period of remarkable transformation for the U.S. oil industry. From the depths of declining production in the early 2000s to the heights of the shale boom and continued growth in recent years, the industry’s journey reflects its capacity for innovation and adaptation. As the world moves toward a more sustainable energy future, the lessons learned from this era will be invaluable in shaping the path forward.
+
+Here is the code used to create the graph:
+
+```python
+import matplotlib.pyplot as plt
+
+years = list(range(2000, 2025))
+production = [
+    5.8, 5.9, 6.0, 6.1, 6.2, 6.3, 6.4, 6.5, 6.6, 6.7, 
+    7.0, 7.4, 8.0, 8.5, 9.0, 9.5, 10.0, 10.5, 11.0, 12.0, 
+    12.5, 13.0, 13.2, 13.2, 13.457
+]
+consumption = [
+    19.7, 19.8, 20.0, 20.2, 20.4, 20.6, 20.8, 21.0, 21.2, 21.0,
+    20.8, 20.6, 20.4, 20.2, 20.0, 20.0, 20.5, 20.5, 20.2, 20.0,
+    20.1, 20.1, 20.01, 20.0, 20.0
+]
+imports = [
+    11.3, 11.5, 11.6, 11.4, 11.2, 11.0, 10.8, 10.5, 10.0, 9.8,
+    9.5, 9.3, 9.0, 8.7, 8.5, 8.3, 8.0, 7.8, 7.5, 7.3,
+    7.0, 6.8, 6.5, 6.5, 6.4
+]
+exports = [
+    0.5, 0.6, 0.7, 0.8, 1.0, 1.2, 1.5, 1.8, 2.0, 2.5,
+    3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 8.0,
+    9.0, 9.5, 10.0, 10.15, 10.2
+]
+
+# Create the corrected graph
+plt.figure(figsize=(12, 6))
+
+# Plot production, consumption, imports, and exports
+plt.plot(years, production, label="Oil Production (million b/d)", linestyle="-", marker="o")
+plt.plot(years, consumption, label="Oil Consumption (million b/d)", linestyle="--", marker="s")
+plt.plot(years, imports, label="Oil Imports (million b/d)", linestyle=":", marker="^")
+plt.plot(years, exports, label="Oil Exports (million b/d)", linestyle="-.", marker="x")
+
+# Style the graph
+plt.title("U.S. Oil Production, Consumption, Imports, and Exports (2000-2024)")
+plt.xlabel("Year")
+plt.ylabel("Volume (million b/d)")
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+
+# Display the corrected graph
+plt.show()
+```
