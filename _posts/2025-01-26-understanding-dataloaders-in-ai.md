@@ -143,7 +143,11 @@ In this example:
 #### Output
 
 ```shell
-
+(2, 10) (2,)
+(2, 10) (2,)
+...
+(2, 10) (2,)
+(2, 10) (2,)
 ```
 
 ## Key Differences Between PyTorch and TensorFlow Dataloaders
