@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Understanding Dataloaders in AI: What They Are and Why They Matter'
-date: '2025-01-26'
+date: '2025-02-02'
 author: jtdub
 tags:
 - packetgeek.net
