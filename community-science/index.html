@@ -1,0 +1,95 @@
+---
+layout: default
+title: community science
+permalink: /community-science/
+---
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <div class="container mt-4">
+      <h2 class="text-center mb-4">San Gabriel River Water Quality Time-Series Data</h2>
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <canvas id="waterTemperatureChart"></canvas>
+        </div>
+        <div class="col-md-6 mb-4">
+          <canvas id="dissolvedOxygenChart"></canvas>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <canvas id="conductivityChart"></canvas>
+        </div>
+        <div class="col-md-6 mb-4">
+          <canvas id="phChart"></canvas>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h3>Community Science Blog Posts</h3>
+          {% for tag in site.tags %}
+          {% if tag[0] == "community-science" %}
+          {% include tagged_posts.html %}
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    
+    <script>
+      const sheetId = '1YFSx__TXpx66LwODJISEisWmgKOZQVSMcMi1gJHfNfo';
+      const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json`;
+
+      async function fetchData() {
+        const response = await fetch(url);
+        const text = await response.text();
+        const json = JSON.parse(text.substr(47).slice(0, -2));
+        const rows = json.table.rows;
+
+        const dates = [];
+        const waterTemps = [];
+        const dissolvedOxygen = [];
+        const conductivity = [];
+        const ph = [];
+
+        rows.forEach(row => {
+          if (row.c[0]) dates.push(row.c[0].v);
+          if (row.c[15]) waterTemps.push(parseFloat(row.c[15].v) || 0);
+          if (row.c[17]) dissolvedOxygen.push(parseFloat(row.c[17].v) || 0);
+          if (row.c[16]) conductivity.push(parseFloat(row.c[16].v) || 0);
+          if (row.c[18]) ph.push(parseFloat(row.c[18].v) || 0);
+        });
+
+        renderChart('waterTemperatureChart', 'Water Temperature (°C)', dates, waterTemps);
+        renderChart('dissolvedOxygenChart', 'Dissolved Oxygen (mg/L)', dates, dissolvedOxygen);
+        renderChart('conductivityChart', 'Conductivity (µS/cm)', dates, conductivity);
+        renderChart('phChart', 'pH (standard units)', dates, ph);
+      }
+
+      function renderChart(canvasId, label, labels, data) {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: label,
+              data: data,
+              tension: 0.1,
+              fill: false,
+              borderColor: 'rgba(75, 192, 192, 1)'
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              title: {
+                display: true,
+                text: `${label} Over Time`
+              }
+            }
+          }
+        });
+      }
+
+      fetchData().catch(error => console.error('Error loading data:', error));
+    </script>
