@@ -50,7 +50,10 @@ permalink: /community-science/
         const ph = [];
 
         rows.forEach(row => {
-          if (row.c[0]) dates.push(row.c[0].v);
+          if (row.c[0]) {
+            const date = new Date(row.c[0].f);
+            dates.push(date.toLocaleDateString('en-US'));
+          };
           if (row.c[15]) waterTemps.push(parseFloat(row.c[15].v) || 0);
           if (row.c[17]) dissolvedOxygen.push(parseFloat(row.c[17].v) || 0);
           if (row.c[16]) conductivity.push(parseFloat(row.c[16].v) || 0);
