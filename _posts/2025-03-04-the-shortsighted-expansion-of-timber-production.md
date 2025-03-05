@@ -8,9 +8,11 @@ tags:
 - politics
 - analysis
 ---
-On March 1, 2025, President Donald J. Trump issued an executive order aimed at rapidly expanding timber production in the United States. This order seeks to streamline permitting processes, increase timber harvesting, and boost domestic timber production by allowing for the accelerated removal of trees from national forests. The policy is being touted as a way to create jobs, reduce dependency on foreign timber imports, and improve forest management, all while lowering construction costs. However, the potential consequences of such a drastic move are far-reaching and potentially catastrophic, especially for the environment, climate, public health, and the very ecosystems that sustain life on Earth.
+On March 1, 2025, President Trump issued an executive order aimed at rapidly expanding timber production in the United States. This order seeks to streamline permitting processes, increase timber harvesting, and boost domestic timber production by allowing for the accelerated removal of trees from national forests. The policy is being touted as a way to create jobs, reduce dependency on foreign timber imports, and improve forest management, all while lowering construction costs. However, the potential consequences of such a drastic move are far-reaching and potentially catastrophic, especially for the environment, climate, public health, and the very ecosystems that sustain life on Earth.
 
-You can read the full executive order [here](https://www.whitehouse.gov/presidential-actions/2025/03/immediate-expansion-of-american-timber-production/). In this blog, we will explore the environmental damage caused by accelerated logging, its impact on climate change, the financial and health repercussions for people, the destruction of public lands, and why this executive order is ultimately shortsighted.
+You can read the full executive order [here](https://www.whitehouse.gov/presidential-actions/2025/03/immediate-expansion-of-american-timber-production/).
+
+In this blog, we will explore the environmental damage caused by accelerated logging, its impact on climate change, the financial and health repercussions for people, the destruction of public lands, and why this executive order is ultimately shortsighted.
 
 ## Environmental Damage: Erosion, Water Pollution, and Habitat Destruction
 
@@ -28,11 +30,11 @@ The impacts of climate change are becoming increasingly evident. Rising global t
 
 ## Impact on People: Financial Costs and Health Concerns
 
-The effects of climate change aren’t just environmental—they have real financial costs for individuals and communities. In the United States, natural disasters linked to climate change, such as hurricanes, wildfires, and floods, have already caused billions of dollars in damage each year. A 2021 report from the National Oceanic and Atmospheric Administration (NOAA) revealed that the U.S. experienced 20 separate billion-dollar weather and climate disasters in 2020, totaling $95 billion in damages. The financial cost is projected to rise as extreme weather events become more frequent and severe.
+The effects of climate change aren’t just environmental—they have real financial costs for individuals and communities. In the United States, natural disasters linked to climate change, such as hurricanes, wildfires, and floods, have already caused billions of dollars in damage each year. A 2021 report from the National Oceanic and Atmospheric Administration (NOAA) revealed that the U.S. experienced 20 separate billion-dollar weather and climate disasters in 2020, totaling $95 billion in damages ([NOAA](ttps://www.climate.gov/news-features/blogs/beyond-data/2021-us-billion-dollar-weather-and-climate-disasters-historical), 2021). The financial cost is projected to rise as extreme weather events become more frequent and severe.
 
-In addition to the economic toll, these disasters also raise the cost of insurance. In areas prone to wildfires, floods, or severe storms, insurance premiums are increasing rapidly, making it harder for people to afford coverage. In some cases, insurers are pulling out of high-risk areas entirely, leaving residents without the protection they need. These financial pressures disproportionately affect lower-income communities, exacerbating economic inequality.
+In addition to the economic toll, these disasters also raise the cost of insurance. In areas prone to wildfires, floods, or severe storms, insurance premiums are increasing rapidly, making it harder for people to afford coverage. In some cases, insurers are pulling out of high-risk areas entirely, leaving residents without the protection they need. These financial pressures disproportionately affect lower-income communities, exacerbating economic inequality ([CBO](https://www.cbo.gov/system/files/2024-08/59918-Climate-Change-Insurance.pdf), 2024).
 
-The health impacts are just as severe. Rising temperatures, air pollution, and extreme weather events contribute to respiratory diseases, heat-related illnesses, and the spread of infectious diseases. Wildfires, for example, release particulate matter into the air, which can cause lung damage, heart disease, and other health problems, particularly for vulnerable populations such as children, the elderly, and those with preexisting conditions. The increasing frequency of heatwaves leads to conditions like dehydration, heat exhaustion, and heatstroke, placing additional strain on public health systems.
+The health impacts are just as severe. Rising temperatures, air pollution, and extreme weather events contribute to respiratory diseases, heat-related illnesses, and the spread of infectious diseases. Wildfires, for example, release particulate matter into the air, which can cause lung damage, heart disease, and other health problems, particularly for vulnerable populations such as children, the elderly, and those with preexisting conditions ([U.S. EPA](https://www.epa.gov/pm-pollution/health-and-environmental-effects-particulate-matter-pm), n.d.). The increasing frequency of heatwaves leads to conditions like dehydration, heat exhaustion, and heatstroke, placing additional strain on public health systems.
 
 ## The Destruction of Public Lands: The Loss of Recreation and Conservation Areas
 
@@ -53,3 +55,15 @@ While the executive order may offer short-term economic benefits for the timber 
 This policy is shortsighted because it fails to take into account the broader environmental impacts of increased deforestation. Rather than focusing solely on immediate economic gains, we should be prioritizing sustainable forest management practices that balance timber production with ecological preservation. The health of our forests is inextricably linked to the health of our climate, our communities, and our future.
 
 In order to protect the planet for future generations, we must adopt policies that promote long-term environmental stewardship. Reducing carbon emissions, protecting biodiversity, and investing in sustainable forest management are essential steps toward a more resilient future—one that benefits both people and the planet.
+
+## References
+
+Congressional Budget Office. (2024, August). The effects of climate change on insurance and the U.S. economy. https://www.cbo.gov/system/files/2024-08/59918-Climate-Change-Insurance.pdf
+
+NOAA National Centers for Environmental Information. (2021, January 8). 2021 U.S. billion-dollar weather and climate disasters: Historical perspective. NOAA Climate.gov. https://www.climate.gov/news-features/blogs/beyond-data/2021-us-billion-dollar-weather-and-climate-disasters-historical
+
+The White House. (2025, March 1). Immediate expansion of American timber production. https://www.whitehouse.gov/presidential-actions/2025/03/immediate-expansion-of-american-timber-production/
+
+U.S. Environmental Protection Agency. (n.d.). Health and environmental effects of particulate matter (PM). U.S. EPA. https://www.epa.gov/pm-pollution/health-and-environmental-effects-particulate-matter-pm
+
+
