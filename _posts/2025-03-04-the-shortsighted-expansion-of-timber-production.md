@@ -58,12 +58,12 @@ In order to protect the planet for future generations, we must adopt policies th
 
 ## References
 
-Congressional Budget Office. (2024, August). The effects of climate change on insurance and the U.S. economy. https://www.cbo.gov/system/files/2024-08/59918-Climate-Change-Insurance.pdf
+Congressional Budget Office. (2024, August). The effects of climate change on insurance and the U.S. economy. [https://www.cbo.gov/system/files/2024-08/59918-Climate-Change-Insurance.pdf](https://www.cbo.gov/system/files/2024-08/59918-Climate-Change-Insurance.pdf)
 
-NOAA National Centers for Environmental Information. (2021, January 8). 2021 U.S. billion-dollar weather and climate disasters: Historical perspective. NOAA Climate.gov. https://www.climate.gov/news-features/blogs/beyond-data/2021-us-billion-dollar-weather-and-climate-disasters-historical
+NOAA National Centers for Environmental Information. (2021, January 8). 2021 U.S. billion-dollar weather and climate disasters: Historical perspective. NOAA Climate.gov. [https://www.climate.gov/news-features/blogs/beyond-data/2021-us-billion-dollar-weather-and-climate-disasters-historical](https://www.climate.gov/news-features/blogs/beyond-data/2021-us-billion-dollar-weather-and-climate-disasters-historical)
 
-The White House. (2025, March 1). Immediate expansion of American timber production. https://www.whitehouse.gov/presidential-actions/2025/03/immediate-expansion-of-american-timber-production/
+The White House. (2025, March 1). Immediate expansion of American timber production. [https://www.whitehouse.gov/presidential-actions/2025/03/immediate-expansion-of-american-timber-production/](https://www.whitehouse.gov/presidential-actions/2025/03/immediate-expansion-of-american-timber-production/)
 
-U.S. Environmental Protection Agency. (n.d.). Health and environmental effects of particulate matter (PM). U.S. EPA. https://www.epa.gov/pm-pollution/health-and-environmental-effects-particulate-matter-pm
+U.S. Environmental Protection Agency. (n.d.). Health and environmental effects of particulate matter (PM). U.S. EPA. [https://www.epa.gov/pm-pollution/health-and-environmental-effects-particulate-matter-pm](https://www.epa.gov/pm-pollution/health-and-environmental-effects-particulate-matter-pm)
 
 
