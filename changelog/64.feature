@@ -1,0 +1,1 @@
+Created Archive section for outdated certification/study notes from 2009-2014. Added archive notices to historical posts and reorganized content structure to prioritize modern technical content in Technology section. Updated navigation and internal links to support the new archive organization.
