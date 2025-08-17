@@ -16,7 +16,13 @@ permalink: /study/
     <div class="accordion" id="accordionTags">
     {% for tag in sorted_tags %}
     {%  if tag[0] contains "Study Notes" %}
-    {%  assign modern_posts = tag[1] | where_exp: "post", "post.date >= '2015-01-01'" %}
+    {%  assign modern_posts = "" | split: "" %}
+    {%  for post in tag[1] %}
+    {%    assign post_year = post.date | date: "%Y" | plus: 0 %}
+    {%    if post_year >= 2015 %}
+    {%      assign modern_posts = modern_posts | push: post %}
+    {%    endif %}
+    {%  endfor %}
     {%  if modern_posts.size > 0 %}
       <div class="accordion-item">
         <h2 class="accordion-header" id="heading-{{ tag[0] | downcase | slugify }}">

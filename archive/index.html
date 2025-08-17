@@ -60,7 +60,8 @@ permalink: /archive/
                         <div class="accordion-body">
                             <div class="row">
                                 {% for post in tag[1] %}
-                                {% if post.date < '2015-01-01' %}
+                                {% assign post_year = post.date | date: "%Y" | plus: 0 %}
+                                {% if post_year < 2015 %}
                                 <div class="col-md-12 mb-3">
                                     <div class="card">
                                         <div class="card-body">

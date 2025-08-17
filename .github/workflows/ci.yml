@@ -2,21 +2,31 @@ name: Jekyll Continuous Integration
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, main ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, main ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: run tests against jekyll container
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '2.7'
+        bundler-cache: true
+        
+    - name: Build site
+      run: bundle exec jekyll build --future
+      
+    - name: Test build
       run: |
-        docker run \
-        -v ${{ github.workspace }}:/srv/jekyll \
-        -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:latest \
-        /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future"
+        if [ ! -d "_site" ]; then
+          echo "Build failed - _site directory not found"
+          exit 1
+        fi
+        echo "Build successful - _site directory exists"
