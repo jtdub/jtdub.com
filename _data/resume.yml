@@ -1,123 +1,102 @@
 ---
 summary: |
-  IT professional with over 20 years of experience, specializing in network automation,
-  configuration management, and IT infrastructure. Passionate about anthropology, with
-  over 10 years of field research experience in Peru, focusing on archaeology, and
-  climate change. Proficient in developing innovative tools and solutions that integrate
-  IT and anthropology.
+  Senior Network Automation Engineer with 20+ years in IT, specializing in **network automation, Linux systems, and Python development**. Proven expertise in **designing automation platforms, mentoring teams, and driving efficiency** in enterprise and service provider networks. Strong cross-disciplinary background in **environmental sustainability and archaeological fieldwork**, with published work documenting submerged cultural resources in Peru and Mexico.
+
 contact:
   - name: LinkedIn
     url: https://www.linkedin.com/in/jtdub/
   - name: Github
     url: https://www.github.com/jtdub/
+
+skills:
+  - category: "Automation & Networking"
+    items: ["Ansible", "Nautobot", "Itential", "BGP", "MPLS", "IaC"]
+  - category: "Programming"
+    items: ["Python", "Bash", "Perl", "Django REST"]
+  - category: "Systems"
+    items: ["Linux (RHEL)", "MySQL", "Nginx", "Apache", "VMware"]
+  - category: "DevOps & Cloud"
+    items: ["CI/CD", "Git", "HAProxy", "Load Balancing"]
+  - category: "Leadership"
+    items: ["Mentoring", "Agile", "Architecture Design"]
+
 experience:
   - employer: Network to Code
-    role: Senior Engineer, Network Automation
-    start: October, 2020
+    role: Senior Network Automation Engineer
+    start: "2020"
     end: Present
+    location: Remote
     description:
-      - Mentor junior engineers.
-      - Design and implementation of automation platforms that align with customer requirements and seamlessly integrate into existing business processes.
-      - Development of software solutions for both open-source and proprietary projects.
-      - Architecture and design of automation platforms.
+      - Mentor junior engineers and lead automation initiatives.
+      - Architect and deliver automation platforms integrating with business processes.
+      - Develop open-source and enterprise automation software.
   - employer: Rackspace
-    role: Network Engineer III, Design and Build
-    start: August, 2015
-    end: October, 2020
+    role: Network Engineer III & II
+    start: "2013"
+    end: "2020"
+    location: Remote/San Antonio
     description:
-      - Design and implementation of greenfield and brownfield data center and service provider networks.
-      - Development of software solutions using Python and Ruby.
-      - Automate the detection and remediation of configuration compliance tasks across the global network.
-  - employer: Rackspace
-    role: Network Engineer II, Network Operations
-    start: August, 2013
-    end: August, 2015
-    description:
-      - Mentoring and knowledge sharing with team members.
-      - Design and implementation of traffic engineering strategies.
-      - Identification and mitigation of DDoS attacks and network issues in data center environments.
-      - Development of software solutions using Python and Bash.
-      - Automation of software upgrades across the global fleet of network devices.
-  - employer: Rackspace
-    role: Linux Systems Administrator
-    start: April, 2012
-    end: August, 2013
-    description:
-      - Linux systems administration for enterprise customers across Europe and Asia Pacific regions.
-      - Automation of repetitive tasks using Bash and Perl.
-  - employer: Happy State Bank
-    role: Network Administrator Lead
-    start: "2009"
-    end: "2011"
-    description:
-      - Linux systems administration and maintenance.
-      - Design, implementation, and management of network engineering solutions.
-      - Design and implementation of virtualization architecture and solutions.
-      - Developing automation scripts for repetitive tasks using Bash and Perl.
-  - employer: First Data
-    role: Problem Support Technician
-    start: "2005"
-    end: "2009"
-    description:
-      - Providing technical support for ATM systems and networks.
-      - Developing automation scripts for repetitive tasks using Bash and Perl.
-  - employer: West Texas A&M University
-    role: Network Technician
-    start: "2002"
-    end: "2005"
-    description:
-      - Linux systems administration and maintenance.
-      - Design, implementation, and management of network engineering solutions.
-      - Developing automation scripts for repetitive tasks using Bash and Perl.
-  - employer: 1Source Technologies
-    role: Network Systems Analyst
+      - Designed and automated enterprise & service provider networks.
+      - Built Python & Ruby automation for configuration compliance and monitoring.
+      - Mitigated DDoS attacks and streamlined data center operations.
+  - employer: Various Organizations
+    role: Network Engineering & Systems Administration
     start: "2001"
-    end: "2002"
+    end: "2013"
+    location: Texas
     description:
-      - Linux systems administration and maintenance.
-      - Providing technical support and troubleshooting for systems, networks, and applications.
-  - employer: ARNet
-    role: Broadband Network Technician
-    start: "2001"
-    end: "2001"
-    description:
-      - Providing technical support and troubleshooting for systems, networks, and applications.
-      - Installation and troubleshooting of xDSL circuits.
+      - Roles at Happy State Bank, First Data, West Texas A&M University, and others.
+      - Focus on Linux systems, automation with Bash/Perl, and enterprise network support.
+
 education:
   - school: Southern New Hampshire University
     start: "2022"
-    end: "Present"
-    major: BA, Anthropology
-    concentration: Environmental Sustainability
+    end: "Expected 2026"
+    major: B.A. Anthropology (Environmental Sustainability)
     gpa: "3.9"
-    activities:
-      - National Society of Success and Leadership
   - school: Amarillo College
-    start: "2001"
-    end: "2009"
-    major: AAS, Electronics Technology
-    concentration: Networking Technology
+    start: ""
+    end: ""
+    major: A.A.S. Electronics Technology
     gpa: ""
-    activities:
-      - Cisco Networking Academy
+
 certifications:
+  - vendor: IBM
+    cert: Generative AI & LLMs - Architecture and Data Prep
+    start: "2025"
+    end: ""
+    status: current
   - vendor: Cisco Systems
-    cert: Cisco Certified DevNet Associate
-    start: "2020"
-    end: "2023"
-    credential: CSCO10407758
-  - vendor: Cisco Systems
-    cert: Cisco Certified Network Professional (CCNP)
-    start: "2010"
-    end: "2020"
-    credential: CSCO10407758
-  - vendor: Cisco Systems
-    cert: Cisco Certified Design Professional (CCDP)
-    start: "2017"
-    end: "2020"
-    credential: CSCO10407758
-  - vendor: Redhat
-    cert: Redhat Certified Engineer (RHCE)
-    start: "2013"
-    end: "2016"
-    credential: "120-138-847"
+    cert: CCNA, CCNP, CCDP, DevNet Associate
+    start: ""
+    end: ""
+    status: expired
+  - vendor: Red Hat
+    cert: RHCE
+    start: ""
+    end: ""
+    status: expired
+
+research_volunteering:
+  - organization: Sibinacocha Watershed Project
+    role: Scientific Diver
+    description: Peru expeditions
+  - organization: Texas Stream Team
+    role: Water Quality Monitor
+    period: "2023–2024"
+  - organization: South Central Underwater Explorers & Water Explorers of Texas
+    role: Board Member
+
+publications:
+  - title: "Diving in Peru: The Recovery of a Submerged Pre-Incan Pot"
+    authors: "Williams, James"
+    year: "2020"
+    journal: "Quest: The Journal of Global Underwater Explorers"
+    volume: "21(2)"
+    pages: "31–34"
+  - title: "Cueva El Tule"
+    authors: "Williams, James, with Peter Sprouse and Jessica Gordan"
+    year: "2019"
+    journal: "Association of Mexican Cave Studies Activities Newsletter"
+    volume: "42"
+    pages: "23–29"

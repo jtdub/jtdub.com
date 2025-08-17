@@ -1,92 +1,152 @@
 ---
 layout: default
-title: James Williams
+title: James Williams - Resume
 permalink: /resume/
 ---
+
+<div class="container mt-4">
+    <div class="text-center mb-4">
+        <h1>James Williams</h1>
+        <h4 class="text-muted">Senior Network Automation Engineer</h4>
+        <p>Austin, TX · 
+        {% for contact in site.data.resume.contact %}
+            <a href="{{ contact.url }}" target="_blank">{{ contact.name }}</a>{% unless forloop.last %} · {% endunless %}
+        {% endfor %}
+         · Contact available upon request</p>
+    </div>
+</div>
+
 <div class="accordion" id="ResumeAccordion">
     <div class="accordion-item">
         <h2 class="accordion-header">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
                 aria-expanded="true" aria-controls="collapseOne">
-                Overview
+                Summary
             </button>
         </h2>
-
         <div id="collapseOne" class="accordion-collapse collapse show">
             <div class="accordion-body">
-                {{ site.data.resume.summary }}
+                {{ site.data.resume.summary | markdownify }}
             </div>
         </div>
-
     </div>
+
     <div class="accordion-item">
         <h2 class="accordion-header">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                aria-expanded="true" aria-controls="collapseTwo">
-                Employment
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSkills"
+                aria-expanded="false" aria-controls="collapseSkills">
+                Key Skills
             </button>
         </h2>
+        <div id="collapseSkills" class="accordion-collapse collapse">
+            <div class="accordion-body">
+                {% for skill_category in site.data.resume.skills %}
+                <div class="mb-3">
+                    <strong>{{ skill_category.category }}:</strong> 
+                    {% for skill in skill_category.items %}{{ skill }}{% unless forloop.last %}, {% endunless %}{% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                aria-expanded="false" aria-controls="collapseTwo">
+                Experience
+            </button>
+        </h2>
         <div id="collapseTwo" class="accordion-collapse collapse">
             <div class="accordion-body">
             {% for job in site.data.resume.experience %}
-            <h2>{{ job.employer }}</h2>
-            <div>{{ job.start }} - {{ job.end }}</div>
-            <div><strong>{{ job.role }}</strong></div>
-            <ul>
-            {%   for item in job.description %}
-                <li>{{ item }}</li>
-            {%   endfor %}
-            </ul>
+            <div class="mb-4">
+                <h5>{{ job.employer }}</h5>
+                <div class="text-muted">{{ job.role }} | {{ job.location }} | {{ job.start }}–{{ job.end }}</div>
+                <ul class="mt-2">
+                {%   for item in job.description %}
+                    <li>{{ item }}</li>
+                {%   endfor %}
+                </ul>
+            </div>
             {% endfor %}
             </div>
         </div>
-
     </div>
+
     <div class="accordion-item">
         <h2 class="accordion-header">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"
-                aria-expanded="true" aria-controls="collapseThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                aria-expanded="false" aria-controls="collapseThree">
                 Education
             </button>
         </h2>
-
         <div id="collapseThree" class="accordion-collapse collapse">
             <div class="accordion-body">
                 {% for school in site.data.resume.education %}
-                <h2>{{ school.school }}</h2>
-                <div>{{ school.start }} - {{ school.end }}{% if school.gpa %}, GPA: {{ school.gpa }}{% endif %}</div>
-                <div>Major: <strong>{{ school.major }}</strong></div>
-                <div>Concentration: <strong>{{ school.concentration }}</strong></div>
-                <div>Activities and Societies</div>
-                <ul>
-                {% for activity in school.activities %}
-                    <li>{{ activity }}</li>
-                {% endfor %}
-                </ul>
+                <div class="mb-3">
+                    <h5>{{ school.major }}</h5>
+                    <div class="text-muted">{{ school.school }}{% if school.end %} ({{ school.end }}){% endif %}{% if school.gpa %}, GPA {{ school.gpa }}{% endif %}</div>
+                </div>
                 {% endfor %}
             </div>
         </div>
-
     </div>
+
     <div class="accordion-item">
         <h2 class="accordion-header">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour"
-                aria-expanded="true" aria-controls="collapseFour">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour"
+                aria-expanded="false" aria-controls="collapseFour">
                 Certifications
             </button>
         </h2>
-
         <div id="collapseFour" class="accordion-collapse collapse">
             <div class="accordion-body">
                 {% for certification in site.data.resume.certifications %}
-                <h2>{{ certification.cert }}</h2>
-                <div>{{ certification.start }} - {{ certification.end }}</div>
-                <div>Vendor: <strong>{{ certification.vendor }}</strong></div>
-                <div>Credential ID: {{ certification.credential }}</div>
+                <div class="mb-3">
+                    <h6>{{ certification.vendor }} – {{ certification.cert }}</h6>
+                    {% if certification.start %}<div class="text-muted">({{ certification.start }}{% if certification.status %}, {{ certification.status }}{% endif %})</div>{% endif %}
+                </div>
                 {% endfor %}
             </div>
         </div>
+    </div>
 
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseResearch"
+                aria-expanded="false" aria-controls="collapseResearch">
+                Research & Volunteering
+            </button>
+        </h2>
+        <div id="collapseResearch" class="accordion-collapse collapse">
+            <div class="accordion-body">
+                {% for activity in site.data.resume.research_volunteering %}
+                <div class="mb-2">
+                    <strong>{{ activity.role }}</strong> – {{ activity.organization }}
+                    {% if activity.description %} ({{ activity.description }}){% endif %}
+                    {% if activity.period %}<div class="text-muted">{{ activity.period }}</div>{% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePublications"
+                aria-expanded="false" aria-controls="collapsePublications">
+                Publications
+            </button>
+        </h2>
+        <div id="collapsePublications" class="accordion-collapse collapse">
+            <div class="accordion-body">
+                {% for publication in site.data.resume.publications %}
+                <div class="mb-3">
+                    <strong>{{ publication.authors }}.</strong> {{ publication.year }}. <em>{{ publication.title }}.</em> {{ publication.journal }} {{ publication.volume }}:{{ publication.pages }}.
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </div>
