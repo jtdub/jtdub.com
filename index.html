@@ -21,22 +21,47 @@ permalink: /
 
     <div class="container mt-4">
         <h2>latest research posts</h2>
-        {% assign research_posts = site.posts | where_exp: "post", "post.tags contains 'Research' or post.tags contains 'Archaeology' or post.tags contains 'Anthropology' or post.tags contains 'Expedition' or post.tags contains 'Cave Diving' or post.tags contains 'Technical Diving' or post.tags contains 'Rebreather Diving' or post.tags contains 'Fieldwork' or post.tags contains 'Peru' or post.tags contains 'Sibinacocha' or post.tags contains 'Exploration'" %}
-        {% for post in research_posts limit:2 %}
-        <div class="col-md-12 mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <a href="{{ post.url }}">{{ post.title }}</a>
-                    </h5>
-                    <p class="card-subtitle mb-2 text-muted">{{ post.date | date: "%B %-d, %Y" }}</p>
-                    <p class="card-text">
-                        {{ post.excerpt | custom_exerpt: 50 | strip_html }}
-                    </p>
+        {% assign research_tags = 'Research,Archaeology,Anthropology,Expedition,Cave Diving,Technical Diving,Rebreather Diving,Fieldwork,Peru,Sibinacocha,Exploration' | split: ',' %}
+        {% assign research_posts = '' | split: '' %}
+        {% for post in site.posts %}
+            {% assign is_research_post = false %}
+            {% for tag in post.tags %}
+                {% if research_tags contains tag %}
+                    {% assign is_research_post = true %}
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+            {% if is_research_post %}
+                {% assign research_posts = research_posts | push: post %}
+            {% endif %}
+        {% endfor %}
+        
+        {% if research_posts.size > 0 %}
+            {% for post in research_posts limit:2 %}
+            <div class="col-md-12 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{{ post.url }}">{{ post.title }}</a>
+                        </h5>
+                        <p class="card-subtitle mb-2 text-muted">{{ post.date | date: "%B %-d, %Y" }}</p>
+                        <p class="card-text">
+                            {{ post.excerpt | custom_exerpt: 50 | strip_html }}
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-        {% endfor %}
+            {% endfor %}
+        {% else %}
+            <div class="col-md-12 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="text-muted">No recent research posts available. Check back soon!</p>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        
         <div class="text-center mt-4">
             <a href="/writing/" class="btn btn-outline-primary">See all posts →</a>
         </div>
