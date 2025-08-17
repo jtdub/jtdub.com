@@ -9,6 +9,11 @@ tags:
 - packetgeek.net
 ---
 
+
+<div class="alert alert-warning" role="alert">
+  <strong>📚 Archived Content:</strong> This post is part of my historical study notes archive. While some concepts may remain relevant, the specific technologies, procedures, and certifications mentioned may be outdated. For current technical content, visit the <a href="/technology/" class="alert-link">Technology</a> section.
+</div>
+
 Link State Advertisement (LSA) Types have never been my strong suite. I made a visual representation of how they are forwarded to help me get a better grasp on them.
 
 <img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/4fc61660-ba61-4db7-2c3d-10194f208400/public"/>

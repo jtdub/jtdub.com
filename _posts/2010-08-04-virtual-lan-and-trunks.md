@@ -12,6 +12,11 @@ tags:
 - packetgeek.net
 ---
 
+
+<div class="alert alert-warning" role="alert">
+  <strong>📚 Archived Content:</strong> This post is part of my historical study notes archive. While some concepts may remain relevant, the specific technologies, procedures, and certifications mentioned may be outdated. For current technical content, visit the <a href="/technology/" class="alert-link">Technology</a> section.
+</div>
+
 Virtual LAN, also known as VLAN, is exactly as it sounds. It's a method of having several virtual LAN's on a single switch or even on an enterprise campus LAN. It's completely driven by software and is strictly layer 2. Just as physical LAN's, you can connect VLAN's together with layer 3 devices, either routers or switches capable of providing layer three services.
 
 A switch port can operate in three modes. Those modes are access, trunk and hybrid.

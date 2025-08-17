@@ -3,29 +3,69 @@ layout: default
 title: study notes
 permalink: /study/
 ---
-{% assign sorted_tags = site.tags | sort %}
-<div class="accordion" id="accordionTags">
-{% for tag in sorted_tags %}
-{%  if tag[0] contains "Study Notes" %}
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="heading-{{ tag[0] | downcase | slugify }}">
-      <button class="accordion-button collapsed" type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#collapse-{{ tag[0] | downcase | slugify }}"
-        aria-expanded="true"
-        aria-controls="collapse-{{ tag[0] | downcase | slugify }}">
-        <strong>{{ tag[0] | upcase }}</strong>
-      </button>
-    </h2>
-    <div id="collapse-{{ tag[0] | downcase | slugify }}"
-      class="accordion-collapse collapse"
-      aria-labelledby="heading-{{ tag[0] | downcase | slugify }}"
-      data-bs-parent="#accordionTags">
-      <div class="accordion-body">
-        {% include tagged_posts.html %}
-      </div>
+
+<div class="container mt-5">
+    <h1>Study Notes</h1>
+    <p>Modern certification study notes and learning materials.</p>
+    
+    <div class="alert alert-info" role="alert">
+        <strong>Looking for older certification study notes?</strong> Historical study notes from 2009-2014 have been moved to the <a href="/archive/" class="alert-link">Archive</a> section.
     </div>
-  </div>
-{%  endif %}
-{% endfor %}
+    
+    {% assign sorted_tags = site.tags | sort %}
+    <div class="accordion" id="accordionTags">
+    {% for tag in sorted_tags %}
+    {%  if tag[0] contains "Study Notes" %}
+    {%  assign modern_posts = "" | split: "" %}
+    {%  for post in tag[1] %}
+    {%    assign post_year = post.date | date: "%Y" | plus: 0 %}
+    {%    if post_year >= 2015 %}
+    {%      assign modern_posts = modern_posts | push: post %}
+    {%    endif %}
+    {%  endfor %}
+    {%  if modern_posts.size > 0 %}
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="heading-{{ tag[0] | downcase | slugify }}">
+          <button class="accordion-button collapsed" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapse-{{ tag[0] | downcase | slugify }}"
+            aria-expanded="true"
+            aria-controls="collapse-{{ tag[0] | downcase | slugify }}">
+            <strong>{{ tag[0] | upcase }}</strong>
+          </button>
+        </h2>
+        <div id="collapse-{{ tag[0] | downcase | slugify }}"
+          class="accordion-collapse collapse"
+          aria-labelledby="heading-{{ tag[0] | downcase | slugify }}"
+          data-bs-parent="#accordionTags">
+          <div class="accordion-body">
+            <div class="row">
+                {% for post in modern_posts %}
+                <div class="col-md-12 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{{ post.url }}">{{ post.title }}</a>
+                            </h5>
+                            <p class="card-subtitle mb-2 text-muted">{{ post.date | date: "%B %-d, %Y" }}</p>
+                            <p class="card-text">
+                                {{ post.excerpt | custom_excerpt: 75 | strip_html }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    {%  endif %}
+    {%  endif %}
+    {% endfor %}
+    </div>
+    
+    <div class="mt-5">
+        <h3>Archive</h3>
+        <p>For historical study notes and certification content from 2009-2014, please visit the <a href="/archive/">Archive</a> section.</p>
+    </div>
 </div>

@@ -8,6 +8,11 @@ tags:
 - packetgeek.net
 ---
 
+
+<div class="alert alert-warning" role="alert">
+  <strong>📚 Archived Content:</strong> This post is part of my historical study notes archive. While some concepts may remain relevant, the specific technologies, procedures, and certifications mentioned may be outdated. For current technical content, visit the <a href="/technology/" class="alert-link">Technology</a> section.
+</div>
+
 I'm starting to study for the [RHCE](https://www.redhat.com/training/courses/ex300/examobjective) exam. Below are the current exam objectives and will be referring to them as I study.
 
 #### System configuration and management

@@ -10,6 +10,11 @@ tags:
 - packetgeek.net
 ---
 
+
+<div class="alert alert-warning" role="alert">
+  <strong>📚 Archived Content:</strong> This post is part of my historical study notes archive. While some concepts may remain relevant, the specific technologies, procedures, and certifications mentioned may be outdated. For current technical content, visit the <a href="/technology/" class="alert-link">Technology</a> section.
+</div>
+
 Many people are intimidated by the idea of subnetting a block of IP Addresses. In reality, it's much easier than what it appears and with some practice it can be easily done in a persons head, on the fly.
 
 There are two things that a person needs to know, so that they understand how the process works. Those two things are binary and the powers of two. We use binary and the powers of two to calculate the block size of a subnet, the number of hosts a subnet will have, and the number of subnets that a sub-network can accommodate.

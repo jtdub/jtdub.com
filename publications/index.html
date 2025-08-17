@@ -3,18 +3,44 @@ layout: default
 title: publications
 permalink: /publications/
 ---
-  <div class="container mt-5">
+<div class="container mt-5">
+  <h1>Publications</h1>
+  <p>Research publications and articles documenting exploration, archaeology, and scientific findings.</p>
+  
   {% for publication in site.data.publications %}
-      <div class="col-md-12 mb-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">
-              <a href="{{ publication.url }}" target="_new">{{ publication.title }}</a>
-            </h5>
-            <p class="card-subtitle mb-2 text-muted"><strong>{{ publication.publication }}</strong> | {{ publication.volume }} | {{ publication.date }}</p>
-            <p class="card-subtitle mb-2 text-muted">{{ publication.description }}</p>
-          </div>
+  <div class="col-md-12 mb-4">
+    <div class="card">
+      <div class="card-body">
+        <!-- Formal Citation -->
+        <p class="mb-2">
+          <strong>Williams, James.</strong> {{ publication.date }}. 
+          <em>{{ publication.title }}.</em> 
+          {{ publication.publication }} {{ publication.volume }}{% if publication.pages and publication.pages != "" %}:{{ publication.pages }}{% endif %}.
+        </p>
+        
+        <!-- Impact Statement -->
+        <p class="text-muted mb-3">
+          <strong>Why it matters:</strong> {{ publication.impact }}
+        </p>
+        
+        <!-- Description -->
+        <p class="mb-3">{{ publication.description }}</p>
+        
+        <!-- External Links -->
+        <div class="d-flex gap-2">
+          {% if publication.url %}
+          <a href="{{ publication.url }}" target="_blank" class="btn btn-primary btn-sm">
+            <i class="bi bi-link-45deg"></i> View Article
+          </a>
+          {% endif %}
+          {% if publication.pdf %}
+          <a href="{{ publication.pdf }}" target="_blank" class="btn btn-secondary btn-sm">
+            <i class="bi bi-file-pdf"></i> Download PDF
+          </a>
+          {% endif %}
         </div>
       </div>
-  {% endfor %}
+    </div>
   </div>
+  {% endfor %}
+</div>

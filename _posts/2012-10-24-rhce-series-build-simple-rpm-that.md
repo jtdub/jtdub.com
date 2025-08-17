@@ -11,6 +11,11 @@ tags:
 - packetgeek.net
 ---
 
+
+<div class="alert alert-warning" role="alert">
+  <strong>📚 Archived Content:</strong> This post is part of my historical study notes archive. While some concepts may remain relevant, the specific technologies, procedures, and certifications mentioned may be outdated. For current technical content, visit the <a href="/technology/" class="alert-link">Technology</a> section.
+</div>
+
 Alright, so this is a little more in depth than creating a simple package, but I figured I could full-fill the Red Hat requirement and create a little bit of documentation on how to create the rpm for OpenNHRP in one swoop. :)
 
 ```bash

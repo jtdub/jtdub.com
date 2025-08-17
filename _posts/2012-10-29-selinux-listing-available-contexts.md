@@ -10,6 +10,11 @@ tags:
 - packetgeek.net
 ---
 
+
+<div class="alert alert-warning" role="alert">
+  <strong>📚 Archived Content:</strong> This post is part of my historical study notes archive. While some concepts may remain relevant, the specific technologies, procedures, and certifications mentioned may be outdated. For current technical content, visit the <a href="/technology/" class="alert-link">Technology</a> section.
+</div>
+
 As you know, I've been studying for the RHCE exam. One of the things that I was unsure about with SELinux was how to find all the available contexts. It's easy to find booleans with the 'getsebool' command, but what about a context?
 
 ```bash

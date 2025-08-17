@@ -13,6 +13,11 @@ tags:
 - VRRP
 - packetgeek.net
 ---
+
+<div class="alert alert-warning" role="alert">
+  <strong>📚 Archived Content:</strong> This post is part of my historical study notes archive. While some concepts may remain relevant, the specific technologies, procedures, and certifications mentioned may be outdated. For current technical content, visit the <a href="/technology/" class="alert-link">Technology</a> section.
+</div>
+
 #### HSRP
 
 [Hot Standby Routing Protocol](http://www.cisco.com/en/US/tech/tk648/tk362/tk321/tsd_technology_support_sub-protocol_home.html), or HSRP, is a Cisco proprietary redundancy routing protocol. It's typically used in the distribution layer of a LAN. It works is by having two or more layer three devices that communicate with each other via multicast address 224.0.0.2 to UDP port 1985. In a typical configuration there will be a active router and a standby router. Each router has it's own physical IP Address and they share a virtual IP Address, which hosts on the LAN use as their default gateway. If the standby router detects that the active router is unavailable, then it will assume the active router role by assigning itself the virtual IP Address. There can only be a single active router in an HSRP group, but there can be multiple standby routers.

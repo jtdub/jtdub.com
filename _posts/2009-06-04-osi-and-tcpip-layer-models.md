@@ -10,6 +10,10 @@ tags:
 - packetgeek.net
 ---
 
+<div class="alert alert-warning" role="alert">
+  <strong>📚 Archived Content:</strong> This post is part of my historical study notes archive from 2009. While the fundamental concepts remain relevant, some specifics may be outdated. For current technical content, visit the <a href="/technology/" class="alert-link">Technology</a> section.
+</div>
+
 #### Background History
 
 Many vendors were developing proprietary network protocols that would only work with their systems. The International Organization for Standards (ISO) started to work on an open standard network model in the 1970's. This network model was called Open Systems Interconnection (OSI). A less formal effort to create a standardized, public network model came about from a U.S. Defense Department contract. Researchers from various universities worked to further the development of the work done by the department. The efforts resulted in TCP/IP.

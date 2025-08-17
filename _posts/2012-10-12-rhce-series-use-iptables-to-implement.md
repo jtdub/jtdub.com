@@ -12,6 +12,11 @@ tags:
 - packetgeek.net
 ---
 
+
+<div class="alert alert-warning" role="alert">
+  <strong>📚 Archived Content:</strong> This post is part of my historical study notes archive. While some concepts may remain relevant, the specific technologies, procedures, and certifications mentioned may be outdated. For current technical content, visit the <a href="/technology/" class="alert-link">Technology</a> section.
+</div>
+
 This section is on using IPTables to create a packet filtering firewall as well as implementing NAT with IPTables. My test environment are two stock installs of CentOS 6.3 in a virtualized environment.
 
 The VM's:

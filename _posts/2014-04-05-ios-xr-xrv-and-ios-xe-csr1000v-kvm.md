@@ -16,6 +16,11 @@ tags:
 - packetgeek.net
 ---
 
+
+<div class="alert alert-warning" role="alert">
+  <strong>📚 Archived Content:</strong> This post is part of my historical study notes archive. While some concepts may remain relevant, the specific technologies, procedures, and certifications mentioned may be outdated. For current technical content, visit the <a href="/technology/" class="alert-link">Technology</a> section.
+</div>
+
 As I'm mostly going to be using XRv and the CSR1000v to create my Service Provider Lab Environment to study for the CCNP Service Provider exams, I thought that I would throw together a quick script so that I can build lab environments quickly. If you've played with XRv or CSR1000v in KVM at all, you know that it's a hassle to generate your topologies. I've made that way easier with the "Virtual Network Lab Config Generator". Note that this doesn't generate device configs, but rather the KVM configuration that you use to spin up and connect your virtual devices. The code is on github.com. It was written hastily, so it's very rough. :)
 
 [Virtual Network Lab Config Generator](https://github.com/jtdub/vnlcg)

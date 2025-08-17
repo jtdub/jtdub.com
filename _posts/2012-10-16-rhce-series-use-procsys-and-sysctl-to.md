@@ -12,6 +12,11 @@ tags:
 - packetgeek.net
 ---
 
+
+<div class="alert alert-warning" role="alert">
+  <strong>📚 Archived Content:</strong> This post is part of my historical study notes archive. While some concepts may remain relevant, the specific technologies, procedures, and certifications mentioned may be outdated. For current technical content, visit the <a href="/technology/" class="alert-link">Technology</a> section.
+</div>
+
 Kernel tuning is pretty easy. There are a couple of ways of doing it. The old way of modifying kernel perimeters was by modifying the /proc.
 
 For example:

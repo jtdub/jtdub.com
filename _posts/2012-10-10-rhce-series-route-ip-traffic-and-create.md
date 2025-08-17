@@ -10,6 +10,11 @@ tags:
 - packetgeek.net
 ---
 
+
+<div class="alert alert-warning" role="alert">
+  <strong>📚 Archived Content:</strong> This post is part of my historical study notes archive. While some concepts may remain relevant, the specific technologies, procedures, and certifications mentioned may be outdated. For current technical content, visit the <a href="/technology/" class="alert-link">Technology</a> section.
+</div>
+
 As I start preparing for the RHCE exam, I'm attempting to go through each exam objective one by one and put together my notes on the subjects. I'll try to go trough each exam objective in the order that it's listed on it's page, but I may skip around a little bit on the objectives that very vague on what exactly they want. This first set of notes is on routing IP traffic and static routes. Enjoy.
 
 There are two installed packages that can provide the same routing and information and allow you to create static routes. Those packages are net-tools and iproute.
