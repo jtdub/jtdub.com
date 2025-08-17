@@ -11,6 +11,11 @@ tags:
 - packetgeek.net
 ---
 
+
+<div class="alert alert-warning" role="alert">
+  <strong>📚 Archived Content:</strong> This post is part of my historical study notes archive. While some concepts may remain relevant, the specific technologies, procedures, and certifications mentioned may be outdated. For current technical content, visit the <a href="/technology/" class="alert-link">Technology</a> section.
+</div>
+
 VLAN Trunking Protocol, aka VTP, is a Cisco proprietary protocol that allows Cisco switches to manage your VLAN database across all switches in your LAN through a central switch. This is done via a client / server environment.
 
 A switch can operate in three VTP modes. The first is server mode. This is the VTP server which hosts the VLAN database and other switches on the LAN communicate to obtain a copy of the VTP database. In server mode, a network admin can add and remove VLANs at will.

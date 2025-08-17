@@ -3,10 +3,42 @@ layout: default
 title: technology
 permalink: /technology/
 ---
-    <div class="container mt-5">
-    {% for tag in site.tags %}
-    {% if tag[0] == "packetgeek.net" %}
-    {% include tagged_posts.html %}
-    {% endif %}
-    {% endfor %}
+<div class="container mt-5">
+    <h1>Technology</h1>
+    <p>Modern technical articles, tutorials, and insights on current technology topics.</p>
+    
+    <div class="alert alert-info" role="alert">
+        <strong>Looking for older certification study notes?</strong> Check out the <a href="/archive/" class="alert-link">Archive</a> section for historical content from 2009-2014.
     </div>
+    
+    <div class="row">
+        {% assign modern_posts = site.posts | where_exp: "post", "post.date >= '2015-01-01'" %}
+        {% assign tech_posts = modern_posts | where_exp: "post", "post.tags contains 'packetgeek.net'" %}
+        
+        {% for post in tech_posts %}
+        <div class="col-md-12 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{{ post.url }}">{{ post.title }}</a>
+                    </h5>
+                    <p class="card-subtitle mb-2 text-muted">
+                        {{ post.date | date: "%B %-d, %Y" }}
+                        {% if post.tags.size > 0 %}
+                        · 
+                        {% for tag in post.tags limit:3 %}
+                            {% unless tag contains "Study Notes" %}
+                                <span class="badge bg-secondary">{{ tag }}</span>
+                            {% endunless %}
+                        {% endfor %}
+                        {% endif %}
+                    </p>
+                    <p class="card-text">
+                        {{ post.excerpt | custom_excerpt: 75 | strip_html }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

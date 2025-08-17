@@ -16,6 +16,11 @@ tags:
 - packetgeek.net
 ---
 
+
+<div class="alert alert-warning" role="alert">
+  <strong>📚 Archived Content:</strong> This post is part of my historical study notes archive. While some concepts may remain relevant, the specific technologies, procedures, and certifications mentioned may be outdated. For current technical content, visit the <a href="/technology/" class="alert-link">Technology</a> section.
+</div>
+
 I've been building and using virtual IOS images, such as IOS-XE (CSR1000v) and IOS-XRv for a while now. It's been great to just spin up a lab, based upon what ever topology that I want, not have to worry about a mess of cables, or hear the mildly annoying hum of a rack of routers and switches running up my electric bill.
 
 However, there are instances where running a physical lab makes sense. For example, the Cisco Switching images aren't where they need to be to be able to simulate live environments. There are a host of quirks, from creating bridging loops easily and crashing the images to FHRP's not having the desired functionality. Then there's the aspect of only being able to run so many virtual images on a single computer. Every now and then, I want to create a larger topology. I already have four switches and ten routers, so why not integrate my virtual lab environment and physical lab environment?
