@@ -8,7 +8,9 @@ tags:
 - jtdub.com
 - politics
 - analysis
----: post
+---
+
+In the world of fiscal policy, balanced budget strategies are often central to the economic philosophies of politicians and administrations.: post
 title: "Comparing Javier Milei and Bill Clinton’s Balanced Budget Strategies: Lessons for the U.S."
 date: '2025-02-26'
 author: jtdub
