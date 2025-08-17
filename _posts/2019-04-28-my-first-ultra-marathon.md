@@ -4,6 +4,7 @@ title: My First Ultra Marathon
 date: '2019-04-28'
 author: jtdub
 tags:
+- Essays
 - Trail Running
 - Colorado Bend State Park
 - Running

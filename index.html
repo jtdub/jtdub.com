@@ -25,13 +25,17 @@ permalink: /
         {% assign research_posts = '' | split: '' %}
         {% for post in site.posts %}
             {% assign is_research_post = false %}
+            {% assign is_essay_post = false %}
             {% for tag in post.tags %}
-                {% if research_tags contains tag %}
-                    {% assign is_research_post = true %}
+                {% if tag == 'Essays' %}
+                    {% assign is_essay_post = true %}
                     {% break %}
                 {% endif %}
+                {% if research_tags contains tag %}
+                    {% assign is_research_post = true %}
+                {% endif %}
             {% endfor %}
-            {% if is_research_post %}
+            {% if is_research_post and is_essay_post == false %}
                 {% assign research_posts = research_posts | push: post %}
             {% endif %}
         {% endfor %}

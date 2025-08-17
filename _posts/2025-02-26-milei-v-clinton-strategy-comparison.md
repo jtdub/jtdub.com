@@ -1,5 +1,14 @@
 ---
 layout: post
+title: "Comparing Javier Milei and Bill Clinton's Balanced Budget Strategies: Lessons for the U.S."
+date: '2025-02-26'
+author: jtdub
+tags:
+- Essays
+- jtdub.com
+- politics
+- analysis
+---: post
 title: "Comparing Javier Milei and Bill Clinton’s Balanced Budget Strategies: Lessons for the U.S."
 date: '2025-02-26'
 author: jtdub
