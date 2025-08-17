@@ -1,0 +1,1 @@
+Enhanced publications with formal citations, impact statements, and buttonized external links. Added Bootstrap Icons support and "Why it matters" blurbs for each publication to improve accessibility and understanding of research contributions.
