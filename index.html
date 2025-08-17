@@ -20,8 +20,9 @@ permalink: /
     </div>
 
     <div class="container mt-4">
-        <h2>latest posts</h2>
-        {% for post in site.posts limit:2 %}
+        <h2>latest research posts</h2>
+        {% assign research_posts = site.posts | where_exp: "post", "post.tags contains 'Research' or post.tags contains 'Archaeology' or post.tags contains 'Anthropology' or post.tags contains 'Expedition' or post.tags contains 'Cave Diving' or post.tags contains 'Technical Diving' or post.tags contains 'Rebreather Diving' or post.tags contains 'Fieldwork' or post.tags contains 'Peru' or post.tags contains 'Sibinacocha' or post.tags contains 'Exploration'" %}
+        {% for post in research_posts limit:2 %}
         <div class="col-md-12 mb-4">
             <div class="card">
                 <div class="card-body">
@@ -36,4 +37,7 @@ permalink: /
             </div>
         </div>
         {% endfor %}
+        <div class="text-center mt-4">
+            <a href="/writing/" class="btn btn-outline-primary">See all posts →</a>
+        </div>
     </div>
