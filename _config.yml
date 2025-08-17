@@ -5,6 +5,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://www.jtdub.com" # the base hostname & protocol for your site, e.g. http://example.com
 plugins:
   - jekyll-feed
+  - jekyll-redirect-from
 highlighter: pygments
 tag_dir: tags
 

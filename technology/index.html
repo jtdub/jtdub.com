@@ -5,15 +5,14 @@ permalink: /technology/
 ---
 <div class="container mt-5">
     <h1>Technology</h1>
-    <p>Modern technical articles, tutorials, and insights on current technology topics.</p>
+    <p>Technical articles, tutorials, and insights covering networking, Linux, automation, security, and software development.</p>
     
     <div class="alert alert-info" role="alert">
         <strong>Looking for older certification study notes?</strong> Check out the <a href="/archive/" class="alert-link">Archive</a> section for historical content from 2009-2014.
     </div>
     
     <div class="row">
-        {% assign modern_posts = site.posts | where_exp: "post", "post.date >= '2015-01-01'" %}
-        {% assign tech_posts = modern_posts | where_exp: "post", "post.tags contains 'packetgeek.net'" %}
+        {% assign tech_posts = site.posts | where_exp: "post", "post.tags contains 'packetgeek.net'" %}
         
         {% for post in tech_posts %}
         <div class="col-md-12 mb-3">
