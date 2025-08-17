@@ -3,54 +3,70 @@ layout: default
 title: home
 permalink: /
 ---
-    <div class="container mt-4">
-        I'm <strong>James Williams</strong>, a technology professional, underwater explorer, 
-        and anthropology enthusiast with a passion for discovery, innovation, and the stories
-        that connect us.
-    </div>
-    <div class="container mt-4">
-        <p>
-            With over 20 years of experience in the tech industry, I've navigated the roles of
-            Linux systems administrator, network engineer, and network automation engineer.
-            Along the way, I've written software in programming languages like Python, Ruby, Bash,
-            and Perl, while leveraging automation frameworks such as Ansible and Salt to solve complex
-            challenges. My career spans industries, including financial services, higher education,
-            and hosting providers, where I've tackled everything from system optimization to
-            network scalability.
-        </p>
-
-        <p>But my curiosity doesn't stop at technology.</p>
-
-        <p>
-            Since 2004, I've been a scuba diver and an underwater cave explorer, venturing into
-            some of the most awe-inspiring and remote aquatic environments. These experiences
-            have deepened my love for discovery and adventure.
-        </p>
-        
-        <p>
-            I'm also a dedicated anthropology student with a focus on the Andean cultures of
-            southeastern Peru and the indigenous cultures of the American Southwest. My passion
-            lies in exploring how people interact with their environment, their histories, and
-            their rituals—an intersection of science, humanity, and culture that constantly
-            fuels my curiosity.
-        </p>
-    </div>
-
-    <div class="container mt-4">
-        <h2>latests posts</h2>
-        {% for post in site.posts limit:2 %}
-        <div class="col-md-12 mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <a href="{{ post.url }}">{{ post.title }}</a>
-                    </h5>
-                    <p class="card-subtitle mb-2 text-muted">{{ post.date | date: "%B %-d, %Y" }}</p>
-                    <p class="card-text">
-                        {{ post.excerpt | custom_exerpt: 50 | strip_html }}
+    <div class="hero-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <p class="hero-text">
+                        I'm James Williams—an anthropology researcher and scientific diver focused on Andean high-altitude lakes and sustainability. I also build open-source automation tools.
                     </p>
+                    <div class="hero-ctas">
+                        <a href="/research/" class="btn btn-primary btn-lg me-3">→ Explore Research</a>
+                        <a href="/opensource/" class="btn btn-outline-primary btn-lg">→ See Open-Source Work</a>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="container mt-4">
+        <h2>latest research posts</h2>
+        {% assign research_tags = 'Research,Archaeology,Anthropology,Expedition,Cave Diving,Technical Diving,Rebreather Diving,Fieldwork,Peru,Sibinacocha,Exploration' | split: ',' %}
+        {% assign research_posts = '' | split: '' %}
+        {% for post in site.posts %}
+            {% assign is_research_post = false %}
+            {% assign is_essay_post = false %}
+            {% for tag in post.tags %}
+                {% if tag == 'Essays' %}
+                    {% assign is_essay_post = true %}
+                    {% break %}
+                {% endif %}
+                {% if research_tags contains tag %}
+                    {% assign is_research_post = true %}
+                {% endif %}
+            {% endfor %}
+            {% if is_research_post and is_essay_post == false %}
+                {% assign research_posts = research_posts | push: post %}
+            {% endif %}
         {% endfor %}
+        
+        {% if research_posts.size > 0 %}
+            {% for post in research_posts limit:2 %}
+            <div class="col-md-12 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{{ post.url }}">{{ post.title }}</a>
+                        </h5>
+                        <p class="card-subtitle mb-2 text-muted">{{ post.date | date: "%B %-d, %Y" }}</p>
+                        <p class="card-text">
+                            {{ post.excerpt | custom_exerpt: 50 | strip_html }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-md-12 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="text-muted">No recent research posts available. Check back soon!</p>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        
+        <div class="text-center mt-4">
+            <a href="/writing/" class="btn btn-outline-primary">See all posts →</a>
+        </div>
     </div>

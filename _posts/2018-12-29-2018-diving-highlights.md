@@ -4,6 +4,7 @@ title: 2018 Diving Highlights
 date: '2018-12-29'
 author: jtdub
 tags:
+- Essays
 - August Spring
 - Cave Diving
 - Exploration

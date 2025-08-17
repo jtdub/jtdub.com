@@ -4,6 +4,7 @@ title: Archaeology Career Prospects
 date: '2019-12-11'
 author: jtdub
 tags:
+- Essays
 - Research
 - Archaeology
 - jtdub.com

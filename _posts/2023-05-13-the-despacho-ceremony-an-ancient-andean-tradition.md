@@ -4,6 +4,7 @@ title: 'The Despacho Ceremony: An Ancient Andean Tradition'
 date: '2023-05-13'
 author: jtdub
 tags:
+- Essays
 - jtdub.com
 - anthropology
 - despacho
