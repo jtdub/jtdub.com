@@ -1,3 +1,133 @@
+/* Accessibility Improvements */
+
+/* Enhanced focus states for keyboard navigation */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus,
+[tabindex]:focus {
+    outline: 3px solid #007bff;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Skip link for screen readers */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: #000;
+    color: #fff;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 1000;
+    border-radius: 4px;
+}
+
+.skip-link:focus {
+    top: 6px;
+    outline: 3px solid #007bff;
+}
+
+/* Ensure sufficient color contrast */
+.text-muted {
+    color: #6c757d !important; /* WCAG AA compliant */
+}
+
+/* High contrast focus for form elements */
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: 2px solid #007bff;
+    outline-offset: -2px;
+}
+
+/* Enhanced button focus states */
+.btn:focus {
+    outline: 3px solid #007bff;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn-primary:focus {
+    outline-color: #0056b3;
+}
+
+.btn-outline-primary:focus {
+    outline-color: #007bff;
+}
+
+/* Card focus states for interactive cards */
+.card:focus-within {
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    border-color: #007bff;
+}
+
+/* Navigation focus improvements */
+.navbar-nav .nav-link:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+/* Ensure proper heading hierarchy - hide auto-generated H1 on homepage and project pages */
+body.home-page .container-fluid > h1,
+body.project-page .container-fluid > h1 {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* Improve color contrast for better accessibility */
+.badge {
+    font-weight: 600;
+}
+
+.badge.bg-secondary {
+    background-color: #495057 !important; /* Improved contrast */
+}
+
+.text-muted {
+    color: #495057 !important; /* Better than default #6c757d for contrast */
+}
+
+/* Ensure links have sufficient color contrast */
+a {
+    color: #0056b3; /* Darker blue for better contrast */
+}
+
+a:hover {
+    color: #004085;
+}
+
+/* Card accessibility improvements */
+.card {
+    border: 1px solid #dee2e6;
+}
+
+.card:hover {
+    border-color: #007bff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Breadcrumb improvements */
+.breadcrumb {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+}
+
+/* Make sure all interactive elements have visible focus states */
+.breadcrumb-item a:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+    text-decoration: underline;
+}
+
+/* Code block improvements for readability */
 pre {
     display: block;
     padding: 9.5px;
