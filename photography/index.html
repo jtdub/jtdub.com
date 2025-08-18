@@ -28,7 +28,7 @@ permalink: /photography/
             {% for image in year[1] %}
             <div class="carousel-item {% if forloop.first %}active{% endif %}">
               <img src="{{ image.url }}" class="d-block w-100" alt="{{ image.title }}">
-              <div class="carousel-caption d-none d-md-block">
+              <div class="carousel-caption d-none d-md-block text-body-emphasis bg-body-secondary bg-opacity-75 rounded">
                 <h5>{{ image.title }}</h5>
                 <p>{{ image.description }}</p>
               </div>

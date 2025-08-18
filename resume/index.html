@@ -7,7 +7,7 @@ permalink: /resume/
 <div class="container mt-4">
     <div class="text-center mb-4">
         <h1>James Williams</h1>
-        <h4 class="text-muted">Senior Network Automation Engineer</h4>
+    <h4>Senior Network Automation Engineer</h4>
         <p>Austin, TX · 
         {% for contact in site.data.resume.contact %}
             <a href="{{ contact.url }}" target="_blank">{{ contact.name }}</a>{% unless forloop.last %} · {% endunless %}
@@ -26,7 +26,7 @@ permalink: /resume/
         </h2>
         <div id="collapseOne" class="accordion-collapse collapse show">
             <div class="accordion-body">
-                {{ site.data.resume.summary | markdownify }}
+                {{ site.data.resume.summary }}
             </div>
         </div>
     </div>
@@ -61,8 +61,8 @@ permalink: /resume/
             <div class="accordion-body">
             {% for job in site.data.resume.experience %}
             <div class="mb-4">
-                <h5>{{ job.employer }}</h5>
-                <div class="text-muted">{{ job.role }} | {{ job.location }} | {{ job.start }}–{{ job.end }}</div>
+                <h5 class="text-body-emphasis">{{ job.employer }}</h5>
+                <div>{{ job.role }} | {{ job.location }} | {{ job.start }}–{{ job.end }}</div>
                 <ul class="mt-2">
                 {%   for item in job.description %}
                     <li>{{ item }}</li>
@@ -85,8 +85,8 @@ permalink: /resume/
             <div class="accordion-body">
                 {% for school in site.data.resume.education %}
                 <div class="mb-3">
-                    <h5>{{ school.major }}</h5>
-                    <div class="text-muted">{{ school.school }}{% if school.end %} ({{ school.end }}){% endif %}{% if school.gpa %}, GPA {{ school.gpa }}{% endif %}</div>
+                    <h5 class="text-body-emphasis">{{ school.major }}</h5>
+                    <div>{{ school.school }}{% if school.end %} ({{ school.end }}){% endif %}{% if school.gpa %}, GPA {{ school.gpa }}{% endif %}</div>
                 </div>
                 {% endfor %}
             </div>
@@ -104,8 +104,8 @@ permalink: /resume/
             <div class="accordion-body">
                 {% for certification in site.data.resume.certifications %}
                 <div class="mb-3">
-                    <h6>{{ certification.vendor }} – {{ certification.cert }}</h6>
-                    {% if certification.start %}<div class="text-muted">({{ certification.start }}{% if certification.status %}, {{ certification.status }}{% endif %})</div>{% endif %}
+                    <h6 class="text-body-emphasis">{{ certification.vendor }} – {{ certification.cert }}</h6>
+                    {% if certification.start %}<div>({{ certification.start }}{% if certification.status %}, {{ certification.status }}{% endif %})</div>{% endif %}
                 </div>
                 {% endfor %}
             </div>
@@ -125,7 +125,7 @@ permalink: /resume/
                 <div class="mb-2">
                     <strong>{{ activity.role }}</strong> – {{ activity.organization }}
                     {% if activity.description %} ({{ activity.description }}){% endif %}
-                    {% if activity.period %}<div class="text-muted">{{ activity.period }}</div>{% endif %}
+                    {% if activity.period %}<div>{{ activity.period }}</div>{% endif %}
                 </div>
                 {% endfor %}
             </div>

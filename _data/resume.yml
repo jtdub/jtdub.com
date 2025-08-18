@@ -1,6 +1,6 @@
 ---
 summary: |
-  Senior Network Automation Engineer with 20+ years in IT, specializing in **network automation, Linux systems, and Python development**. Proven expertise in **designing automation platforms, mentoring teams, and driving efficiency** in enterprise and service provider networks. Strong cross-disciplinary background in **environmental sustainability and archaeological fieldwork**, with published work documenting submerged cultural resources in Peru and Mexico.
+  Senior Network Automation Engineer with 20+ years in IT, specializing in network automation, Linux systems, and Python development. Proven expertise in designing automation platforms, mentoring teams, and driving efficiency in enterprise and service provider networks. Strong cross-disciplinary background in environmental sustainability and archaeological fieldwork, with published work documenting submerged cultural resources in Peru and Mexico.
 
 contact:
   - name: LinkedIn
@@ -68,13 +68,13 @@ certifications:
     status: current
   - vendor: Cisco Systems
     cert: CCNA, CCNP, CCDP, DevNet Associate
-    start: ""
-    end: ""
+    start: "2010"
+    end: "2023"
     status: expired
   - vendor: Red Hat
     cert: RHCE
-    start: ""
-    end: ""
+    start: "2013"
+    end: "2016"
     status: expired
 
 research_volunteering:

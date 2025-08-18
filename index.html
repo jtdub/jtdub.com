@@ -54,7 +54,7 @@ body_class: home-page
                         <h5 class="card-title">
                             <a href="{{ post.url }}">{{ post.title }}</a>
                         </h5>
-                        <p class="card-subtitle mb-2 text-muted">{{ post.date | date: "%B %-d, %Y" }}</p>
+                        <p class="card-subtitle mb-2">{{ post.date | date: "%B %-d, %Y" }}</p>
                         <p class="card-text">
                             {{ post.excerpt | custom_exerpt: 50 | strip_html }}
                         </p>
@@ -66,7 +66,7 @@ body_class: home-page
             <div class="col-md-12 mb-4">
                 <div class="card">
                     <div class="card-body">
-                        <p class="text-muted">No recent research posts available. Check back soon!</p>
+                        <p>No recent research posts available. Check back soon!</p>
                     </div>
                 </div>
             </div>
