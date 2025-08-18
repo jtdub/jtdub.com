@@ -1,18 +1,24 @@
 ---
 layout: default
 title: home
+summary: "James Williams - Anthropology researcher, scientific diver, and network automation engineer exploring human-environment interactions."
 permalink: /
+body_class: home-page
 ---
-    <div class="hero-section">
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <div class="hero-section" id="main-content">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
+                    <h1 class="visually-hidden">James Williams - Anthropology Researcher and Network Automation Engineer</h1>
                     <p class="hero-text">
                         I'm James Williams—an anthropology researcher and scientific diver focused on Andean high-altitude lakes and sustainability. I also build open-source automation tools.
                     </p>
                     <div class="hero-ctas">
-                        <a href="/research/" class="btn btn-primary btn-lg me-3">→ Explore Research</a>
-                        <a href="/opensource/" class="btn btn-outline-primary btn-lg">→ See Open-Source Work</a>
+                        <a href="/research/" class="btn btn-primary btn-lg me-3" aria-label="Explore research projects and fieldwork">→ Explore Research</a>
+                        <a href="/opensource/" class="btn btn-outline-primary btn-lg" aria-label="View open-source projects and contributions">→ See Open-Source Work</a>
                     </div>
                 </div>
             </div>
@@ -20,7 +26,7 @@ permalink: /
     </div>
 
     <div class="container mt-4">
-        <h2>latest research posts</h2>
+        <h2>Latest Research Posts</h2>
         {% assign research_tags = 'Research,Archaeology,Anthropology,Expedition,Cave Diving,Technical Diving,Rebreather Diving,Fieldwork,Peru,Sibinacocha,Exploration' | split: ',' %}
         {% assign research_posts = '' | split: '' %}
         {% for post in site.posts %}

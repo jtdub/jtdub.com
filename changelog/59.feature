@@ -1,0 +1,3 @@
+Water quality monitoring methods and environmental anthropology analysis page.
+
+Enhanced Texas Stream Team project page with comprehensive water quality monitoring protocols, sample data visualizations, and environmental anthropology analysis. Added detailed protocol cards for dissolved oxygen, pH, turbidity, conductivity, and water clarity measurements. Included three interactive charts showing DO-temperature relationships, pH stability, and turbidity response to precipitation events. Provided substantive analysis connecting community science practices to environmental anthropology theory and sustainability research, examining knowledge coproduction and environmental governance. Updated research page card to reflect new methodological focus.

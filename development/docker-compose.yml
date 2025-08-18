@@ -12,6 +12,9 @@ services:
     environment:
       - JEKYLL_ENV=development
       - BUNDLE_PATH=/usr/local/bundle
+      # Add environment to match GitHub Actions
+      - LANG=C.UTF-8
+      - LC_ALL=C.UTF-8
     stdin_open: true
     tty: true
     networks:

@@ -1,5 +1,16 @@
 """
 Invoke tasks for managing the Jekyll development environment and running tests.
+
+This task file focuses on Docker-based development to avoid Ruby version and
+architecture compatibility issues. All Jekyll operations run in containerized
+environments for consistency across different development machines and CI/CD.
+
+Key commands:
+- invoke setup: Full setup (install gems + build site)
+- invoke quick-build: Build site without starting server
+- invoke serve: Start development server with live reload
+- invoke exec-jekyll '<command>': Run arbitrary commands in Jekyll container
+- invoke add-platforms: Add Linux platform support for CI/CD
 """
 
 import os
@@ -66,17 +77,62 @@ def build(c):
     """Build the Jekyll site without starting the server."""
     print("🔨 Building Jekyll site...")
     with c.cd(DEV_DIR):
-        c.run("docker-compose run --rm jekyll jekyll build")
+        c.run("docker-compose run --rm jekyll jekyll build --trace")
     print("✅ Jekyll site built successfully")
 
 
 @task
 def bundle_install(c):
-    """Install Ruby gems using bundle."""
-    print("💎 Installing Ruby gems...")
+    """Install Ruby gems using Docker container."""
+    print("💎 Installing Ruby gems in Docker container...")
     with c.cd(DEV_DIR):
         c.run("docker-compose run --rm jekyll bundle install")
     print("✅ Ruby gems installed successfully")
+
+
+@task
+def quick_build(c):
+    """Quick build Jekyll site using Docker without starting server."""
+    print("🔨 Building Jekyll site in Docker container...")
+    with c.cd(DEV_DIR):
+        c.run("docker-compose run --rm jekyll jekyll build")
+    print("✅ Jekyll site built successfully")
+
+    _run_jekyll_build(c, "")
+    print("✅ Jekyll site built successfully")
+@task
+def setup(c):
+    """Setup Jekyll environment (install gems and build) using Docker."""
+    print("⚙️ Setting up Jekyll environment in Docker...")
+    bundle_install(c)
+    quick_build(c)
+    print("✅ Jekyll environment setup complete")
+
+
+@task
+def add_platforms(c):
+    """Add platform support for CI/CD environments using Docker."""
+    print("🏗️ Adding platform support for CI/CD environments...")
+    with c.cd(DEV_DIR):
+        c.run("docker-compose run --rm jekyll bundle lock --add-platform x86_64-linux")
+        c.run("docker-compose run --rm jekyll bundle lock --add-platform arm64-linux")
+    print("✅ Platform support added for Linux environments")
+
+
+@task
+def serve(c):
+    """Start Jekyll development server with live reload using Docker."""
+    print("🚀 Starting Jekyll development server...")
+    with c.cd(DEV_DIR):
+        c.run("docker-compose up")
+
+
+@task
+def exec_jekyll(c, command):
+    """Execute a command in the Jekyll Docker container."""
+    print(f"🐚 Executing '{command}' in Jekyll container...")
+    with c.cd(DEV_DIR):
+        c.run(f"docker-compose run --rm jekyll {command}")
 
 
 @task

@@ -11,7 +11,11 @@ for dir in dirs:
     for item in os.listdir():
         if os.path.isfile(item):
             with open(item) as f:
-                data = re.sub("(\d{4}-\d{1,2}-\d{1,2})(\w\d+:\d+\d:\d+\.\d+-\d+:\d+)","\\1", f.read())
+                data = re.sub(
+                    "(\d{4}-\d{1,2}-\d{1,2})(\w\d+:\d+\d:\d+\.\d+-\d+:\d+)",
+                    "\\1",
+                    f.read(),
+                )
 
             with open(item, "w") as f:
                 f.write(data)

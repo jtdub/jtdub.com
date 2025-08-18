@@ -1,3 +1,107 @@
+/* Accessibility Improvements */
+
+/* Enhanced focus states for keyboard navigation */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus,
+[tabindex]:focus {
+    outline: 3px solid var(--brand-primary);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Skip link for screen readers */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--text-primary);
+    color: var(--bg-primary);
+    padding: var(--space-2);
+    text-decoration: none;
+    z-index: 1000;
+    border-radius: 4px;
+    font-size: var(--font-size-sm);
+}
+
+.skip-link:focus {
+    top: 6px;
+    outline: 3px solid var(--brand-primary);
+}
+
+/* High contrast focus for form elements */
+.form-control:focus {
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: 2px solid var(--brand-primary);
+    outline-offset: -2px;
+}
+
+/* Enhanced button focus states */
+.btn:focus {
+    outline: 3px solid var(--brand-primary);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn-primary:focus {
+    outline-color: var(--brand-primary-hover);
+}
+
+.btn-outline-primary:focus {
+    outline-color: var(--brand-primary);
+}
+
+/* Card focus states for interactive cards */
+.card:focus-within {
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    border-color: var(--brand-primary);
+}
+
+/* Navigation focus improvements */
+.navbar-nav .nav-link:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+/* Ensure proper heading hierarchy - hide auto-generated H1 on homepage and project pages */
+body.home-page .container-fluid > h1,
+body.project-page .container-fluid > h1 {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+/* Badge and text improvements */
+.badge {
+    font-weight: 600;
+}
+
+/* Card accessibility improvements - now handled by theme system */
+.card:hover {
+    border-color: var(--brand-primary);
+    box-shadow: 0 4px 8px var(--shadow-light);
+}
+
+/* Breadcrumb improvements */
+.breadcrumb {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+}
+
+/* Make sure all interactive elements have visible focus states */
+.breadcrumb-item a:focus {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+    text-decoration: underline;
+}
+
+/* Code block improvements for readability */
 pre {
     display: block;
     padding: 9.5px;
@@ -31,10 +135,10 @@ main {
 }
 
 footer {
-    background-color: #007bff;
+    background-color: var(--brand-primary);
     color: white;
     text-align: center;
-    padding: 1rem 0;
+    padding: var(--space-4) 0;
     position: relative;
     bottom: 0;
     width: 100%;
@@ -42,29 +146,30 @@ footer {
 
 /* Hero Section Styles */
 .hero-section {
-    padding: 4rem 0;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    border-bottom: 1px solid #dee2e6;
+    padding: var(--space-16) 0;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .hero-text {
-    font-size: 1.25rem;
-    line-height: 1.6;
-    color: #495057;
-    margin-bottom: 2rem;
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-8);
     font-weight: 400;
 }
 
 .hero-ctas {
-    margin-top: 2rem;
+    margin-top: var(--space-8);
 }
 
 .hero-ctas .btn {
     font-weight: 500;
     border-radius: 50px;
-    padding: 0.75rem 2rem;
+    padding: var(--space-3) var(--space-8);
     text-decoration: none;
     transition: all 0.3s ease;
+    font-size: var(--font-size-base);
 }
 
 .hero-ctas .btn:hover {
@@ -75,17 +180,18 @@ footer {
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .hero-section {
-        padding: 3rem 0;
+        padding: var(--space-12) 0;
     }
     
     .hero-text {
-        font-size: 1.1rem;
+        font-size: var(--font-size-lg);
     }
     
     .hero-ctas .btn {
         display: block;
         width: 100%;
-        margin-bottom: 1rem;
+        margin-bottom: var(--space-4);
+        font-size: var(--font-size-sm);
     }
     
     .hero-ctas .btn:last-child {
@@ -99,15 +205,15 @@ footer {
 
 @media (max-width: 576px) {
     .hero-section {
-        padding: 2rem 0;
+        padding: var(--space-8) 0;
     }
     
     .hero-text {
-        font-size: 1rem;
+        font-size: var(--font-size-base);
     }
     
     .hero-ctas .btn {
-        padding: 0.625rem 1.5rem;
-        font-size: 0.95rem;
+        padding: var(--space-2) var(--space-6);
+        font-size: var(--font-size-sm);
     }
 }

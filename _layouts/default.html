@@ -1,7 +1,9 @@
 {% include header.html %}
-    <main>
+    <main role="main">
         <div class="container-fluid">
+            {% unless page.body_class contains 'home-page' or page.body_class contains 'project-page' %}
             <h1>{{ page.title }}</h1>
+            {% endunless %}
             {{ content }}
         </div>
     </main>

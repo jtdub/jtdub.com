@@ -5,6 +5,7 @@ gem "jekyll", "~> 4.2.2"
 
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.15"
+  gem "jekyll-sitemap", "~> 1.4"
   gem "jekyll-redirect-from", "~> 0.16"
 end
 
@@ -26,3 +27,6 @@ gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 
 # Explicitly add sassc for better compatibility
 gem "sassc", "~> 2.4.0"
+
+# Pin ffi to compatible version with Ruby 2.7/older RubyGems
+gem "ffi", "< 1.17.0"
