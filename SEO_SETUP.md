@@ -5,9 +5,12 @@ This document outlines the SEO and discoverability features implemented for the 
 ## Sitemap and RSS Implementation
 
 ### Sitemap.xml
-- **Plugin**: `jekyll-sitemap` automatically generates sitemap.xml
+- **Implementation**: Custom sitemap.xml template with Jekyll liquid templating
+- **Plugin**: `jekyll-sitemap` added to Gemfile and _config.yml (pending bundle install resolution)
 - **URL**: https://www.jtdub.com/sitemap.xml
 - **Purpose**: Helps search engines discover and index all pages
+- **Coverage**: Homepage, main pages, project pages, blog posts, and tag pages
+- **Dynamic**: Updates automatically with site.time for lastmod timestamps
 
 ### RSS Feed
 - **Plugin**: `jekyll-feed` automatically generates RSS feed
@@ -49,3 +52,9 @@ This document outlines the SEO and discoverability features implemented for the 
 - Test RSS feed: `curl https://www.jtdub.com/feed.xml`
 - Validate with Google's Rich Results Test
 - Check Google Search Console for indexing status
+
+## Development Notes
+- **Bundle Install Issue**: Currently experiencing platform compatibility issues with Docker-based bundle install
+- **Workaround**: Manual sitemap.xml template created with comprehensive coverage
+- **Future**: Resolve bundle dependencies to enable automatic jekyll-sitemap plugin functionality
+- **Current Status**: Sitemap and RSS feed implementations are functional and ready for search console submission
