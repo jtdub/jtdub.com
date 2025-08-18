@@ -19,7 +19,11 @@ So far all my testing has been done on my Rackspace Cloud account. I realize tha
 
 Here is a diagram of the lab:
 
-<img height="128" src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/b1c60fc8-5884-4a52-e25a-1a1411bf0e00/public"/>
+{% include optimized_image.html
+   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/b1c60fc8-5884-4a52-e25a-1a1411bf0e00/public"
+   alt="Network diagram or configuration screenshot"
+   height="128"
+   loading="lazy" %}
 
 I started off by building the OVS servers that would be used to create the VXLAN tunnels would would pass traffic to the servers sitting behind them. To do this, I used the Rackspace Cloud Networks to create a private internal network in both the ORD and DFW data centers. All my servers would use eth2 to access that network and as the data centers are physically separated, my internal networks would be isolated from each other as well. I also used the Rackspace Cloud Servers to build the lab infrastructure. This includes four servers in total. Each running the Rackspace provided Fedora 17 image and all would be 512 meg instances.
 

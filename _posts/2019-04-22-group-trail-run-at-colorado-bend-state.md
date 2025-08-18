@@ -14,7 +14,10 @@ This past weekend, I led a group of trail runners, "Austin Dirt Runners", on a t
 
 We started at the Lemons Ridge Pass parking lot and followed the trail to the Cedar Chopper Connection trail. This trail is a nice way to start off a run. It's pretty covered, not horribly technical, and has some nice gentle hills and turns to get you warmed up. At the Cedar Chopper Loop trail, we ran clock wise to the Tinaja trail.
 
-<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/c8f15d1d-1376-44c2-714f-c9703da3bc00/public">
+{% include optimized_image.html
+   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/c8f15d1d-1376-44c2-714f-c9703da3bc00/public"
+   alt="Image related to the article content"
+   loading="lazy" %}
 
 On the Tinaja trail, things start to get pretty technical. There are many switchbacks and rocky descents and climbs. Still, it's pretty easy to find a rhythm. Along the way there are some amazing hill country views. It's easy to just want to take it all in. The Tinaja trail's main attraction is the Tinaja. A Tinaja is a surface depression below a waterfall where water pools. This creates a vibrant ecosystem for plants and wildlife that rely on the water. It's a pretty enticing site, especially on a warm day.
 

@@ -1,0 +1,48 @@
+<!--
+  Optimized Image Component
+  Usage: {% include optimized_image.html src="image-url" alt="description" loading="lazy" %}
+  Parameters:
+  - src (required): Image URL
+  - alt (required): Alt text for accessibility
+  - loading (optional): "lazy" or "eager" (default: lazy)
+  - class (optional): Additional CSS classes
+  - width (optional): Image width
+  - height (optional): Image height
+  - sizes (optional): Responsive sizes attribute
+-->
+
+{% assign loading = include.loading | default: "lazy" %}
+{% assign class = include.class | default: "" %}
+
+{% if include.src contains "imagedelivery.net" %}
+  <!-- Cloudflare Image Delivery Network optimization -->
+  {% assign base_url = include.src | split: "/public" | first %}
+  {% assign webp_url = base_url | append: "/format=webp" %}
+  {% assign avif_url = base_url | append: "/format=avif" %}
+  
+  <picture class="{{ class }}">
+    <!-- AVIF format for maximum compression -->
+    <source srcset="{{ avif_url }}" type="image/avif">
+    <!-- WebP format for broad compatibility -->
+    <source srcset="{{ webp_url }}" type="image/webp">
+    <!-- Fallback to original format -->
+    <img src="{{ include.src }}" 
+         alt="{{ include.alt }}" 
+         loading="{{ loading }}"
+         {% if include.width %}width="{{ include.width }}"{% endif %}
+         {% if include.height %}height="{{ include.height }}"{% endif %}
+         {% if include.sizes %}sizes="{{ include.sizes }}"{% endif %}
+         class="img-fluid"
+         decoding="async">
+  </picture>
+{% else %}
+  <!-- Standard image with optimization attributes -->
+  <img src="{{ include.src }}" 
+       alt="{{ include.alt }}" 
+       loading="{{ loading }}"
+       {% if include.width %}width="{{ include.width }}"{% endif %}
+       {% if include.height %}height="{{ include.height }}"{% endif %}
+       {% if include.sizes %}sizes="{{ include.sizes }}"{% endif %}
+       class="img-fluid {{ class }}"
+       decoding="async">
+{% endif %}

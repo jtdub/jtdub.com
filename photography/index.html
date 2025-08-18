@@ -27,7 +27,16 @@ permalink: /photography/
           <div class="carousel-inner">
             {% for image in year[1] %}
             <div class="carousel-item {% if forloop.first %}active{% endif %}">
-              <img src="{{ image.url }}" class="d-block w-100" alt="{{ image.title }}">
+              {% assign loading_priority = "lazy" %}
+              {% if forloop.first and forloop.parentloop.first %}
+                {% assign loading_priority = "eager" %}
+              {% endif %}
+              {% include optimized_image.html 
+                 src=image.url 
+                 alt=image.title 
+                 class="d-block w-100" 
+                 loading=loading_priority
+                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px" %}
               <div class="carousel-caption d-none d-md-block">
                 <h5>{{ image.title }}</h5>
                 <p>{{ image.description }}</p>

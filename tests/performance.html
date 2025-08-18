@@ -1,0 +1,180 @@
+---
+layout: default
+title: "Performance Testing"
+permalink: /tests/performance/
+---
+
+<div class="container mt-5">
+    <h1>Image Performance Testing</h1>
+    
+    <div class="row mt-4">
+        <div class="col-md-8">
+            <h2>Performance Metrics</h2>
+            <div id="performance-stats" class="card">
+                <div class="card-body">
+                    <h5>Loading Statistics</h5>
+                    <div id="loading-stats">Loading...</div>
+                    
+                    <h5 class="mt-3">Image Loading Performance</h5>
+                    <div id="image-stats">Loading...</div>
+                </div>
+            </div>
+            
+            <h2 class="mt-4">Test Images</h2>
+            <p>The following images demonstrate various optimization techniques:</p>
+            
+            <!-- Hero image test -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5>Hero Image (Eager Loading)</h5>
+                </div>
+                <div class="card-body">
+                    {% include optimized_image.html 
+                       src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/71e89b0a-aa47-4be1-6d59-faf48c8e5300/public" 
+                       alt="High-altitude Sibinacocha lake aerial view" 
+                       class="hero-image critical-image"
+                       loading="eager"
+                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px" %}
+                </div>
+            </div>
+            
+            <!-- Lazy loading test -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5>Lazy Loaded Images (Below the fold)</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        {% include optimized_image.html 
+                           src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/66e28b69-5fcf-4044-e2e8-77a6acfa9f00/public" 
+                           alt="Spring Lake underwater photography" 
+                           width="400"
+                           loading="lazy" %}
+                    </div>
+                    
+                    <div class="mb-3">
+                        {% include optimized_image.html 
+                           src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/263ef67e-241f-468b-2e7c-ea8e6bf5e700/public" 
+                           alt="Blue Lagoon diving expedition" 
+                           width="400"
+                           loading="lazy" %}
+                    </div>
+                    
+                    <div class="mb-3">
+                        {% include optimized_image.html 
+                           src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/c8f15d1d-1376-44c2-714f-c9703da3bc00/public" 
+                           alt="Colorado Bend State Park trail running" 
+                           width="400"
+                           loading="lazy" %}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Responsive images test -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5>Responsive Image Sizes</h5>
+                </div>
+                <div class="card-body">
+                    {% include optimized_image.html 
+                       src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/9de54e97-d9ec-465e-71a3-82a2fc791500/public" 
+                       alt="Responsive image demonstration with multiple breakpoints" 
+                       loading="lazy"
+                       sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, (max-width: 1200px) 33vw, 400px" %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Optimization Features</h5>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li><strong>Format Optimization:</strong> AVIF → WebP → Original</li>
+                        <li><strong>Lazy Loading:</strong> Intersection Observer API</li>
+                        <li><strong>Responsive Sizing:</strong> Multiple breakpoints</li>
+                        <li><strong>Preload Critical:</strong> Above-the-fold images</li>
+                        <li><strong>Alt Text:</strong> Accessibility compliance</li>
+                        <li><strong>Progressive Enhancement:</strong> Fallback support</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h5>Performance Actions</h5>
+                </div>
+                <div class="card-body">
+                    <button class="btn btn-primary btn-sm" onclick="loadAllImages()">
+                        Load All Images
+                    </button>
+                    <button class="btn btn-secondary btn-sm" onclick="refreshStats()">
+                        Refresh Stats
+                    </button>
+                    <button class="btn btn-info btn-sm" onclick="testNetwork()">
+                        Network Test
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function loadAllImages() {
+    if (window.imageOptimizer) {
+        window.imageOptimizer.loadAllImages();
+        refreshStats();
+    }
+}
+
+function refreshStats() {
+    if (window.imageOptimizer) {
+        const stats = window.imageOptimizer.getLoadingStats();
+        document.getElementById('image-stats').innerHTML = `
+            <div class="row">
+                <div class="col-6"><strong>Total Images:</strong> ${stats.total}</div>
+                <div class="col-6"><strong>Loaded:</strong> ${stats.loaded}</div>
+                <div class="col-6"><strong>Pending:</strong> ${stats.pending}</div>
+                <div class="col-6"><strong>Errors:</strong> ${stats.errors}</div>
+            </div>
+        `;
+    }
+    
+    // Performance timing
+    if (performance && performance.timing) {
+        const timing = performance.timing;
+        const loadTime = timing.loadEventEnd - timing.navigationStart;
+        const domTime = timing.domContentLoadedEventEnd - timing.navigationStart;
+        
+        document.getElementById('loading-stats').innerHTML = `
+            <div class="row">
+                <div class="col-6"><strong>Page Load:</strong> ${loadTime}ms</div>
+                <div class="col-6"><strong>DOM Ready:</strong> ${domTime}ms</div>
+            </div>
+        `;
+    }
+}
+
+function testNetwork() {
+    if ('connection' in navigator) {
+        const connection = navigator.connection;
+        const info = `
+            <div class="mt-2">
+                <strong>Network:</strong> ${connection.effectiveType || 'Unknown'}<br>
+                <strong>Downlink:</strong> ${connection.downlink || 'Unknown'} Mbps<br>
+                <strong>RTT:</strong> ${connection.rtt || 'Unknown'} ms
+            </div>
+        `;
+        document.getElementById('loading-stats').innerHTML += info;
+    }
+}
+
+// Auto-refresh stats every 2 seconds
+setInterval(refreshStats, 2000);
+
+// Initial load
+document.addEventListener('DOMContentLoaded', refreshStats);
+</script>

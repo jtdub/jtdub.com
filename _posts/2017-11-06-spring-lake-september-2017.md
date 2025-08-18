@@ -15,12 +15,32 @@ My friend, [Jennifer Idol](http://www.theunderwaterdesigner.com/) and I recently
 
 Below are a few images that I took during the dive.
 
-<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/66e28b69-5fcf-4044-e2e8-77a6acfa9f00/public" width="600"/>
+{% include optimized_image.html 
+   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/66e28b69-5fcf-4044-e2e8-77a6acfa9f00/public" 
+   alt="Underwater scene at Spring Lake showing clear water and aquatic vegetation" 
+   width="600" 
+   loading="lazy" %}
 
-<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/9de54e97-d9ec-465e-71a3-82a2fc791500/public" width="600"/>
+{% include optimized_image.html 
+   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/9de54e97-d9ec-465e-71a3-82a2fc791500/public" 
+   alt="Diver exploring the underwater landscape at Spring Lake" 
+   width="600" 
+   loading="lazy" %}
 
-<img  src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/5de8cab7-08b9-4422-3114-b7588b2fa400/public" width="600"/>
+{% include optimized_image.html 
+   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/5de8cab7-08b9-4422-3114-b7588b2fa400/public" 
+   alt="Close-up view of Spring Lake's underwater environment and rock formations" 
+   width="600" 
+   loading="lazy" %}
 
-<img  src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/7efa5864-ebda-4b9b-a20d-f654e238b700/public" width="600"/>
+{% include optimized_image.html 
+   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/7efa5864-ebda-4b9b-a20d-f654e238b700/public" 
+   alt="Underwater photographer capturing Spring Lake's aquatic life" 
+   width="600" 
+   loading="lazy" %}
 
-<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/c0df92f6-e511-4894-efdf-d2b60e9fd100/public" width="600"/>
+{% include optimized_image.html 
+   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/c0df92f6-e511-4894-efdf-d2b60e9fd100/public" 
+   alt="Crystal clear water and natural features of Spring Lake underwater" 
+   width="600" 
+   loading="lazy" %}
