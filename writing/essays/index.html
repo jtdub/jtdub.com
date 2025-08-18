@@ -11,7 +11,7 @@ permalink: /writing/essays/
     <div class="container mt-5">
     {% for tag in site.tags %}
     {% if tag[0] == "Essays" %}
-    {% include tagged_posts.html posts=tag[1] %}
+    {% include tagged_posts.html %}
     {% endif %}
     {% endfor %}
     </div>
