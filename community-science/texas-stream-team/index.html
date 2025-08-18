@@ -1,8 +1,10 @@
 ---
 layout: default
-title: Texas Stream Team Monitoring
+title: Water Quality Monitoring Methods and Analysis
 permalink: /community-science/texas-stream-team/
 ---
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <div class="container mt-5">
     <div class="row">
@@ -11,31 +13,164 @@ permalink: /community-science/texas-stream-team/
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/research/">Research</a></li>
                     <li class="breadcrumb-item"><a href="/community-science/">Community Science</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Texas Stream Team</li>
+                    <li class="breadcrumb-item active" aria-current="page">Water Quality Monitoring</li>
                 </ol>
             </nav>
             
-            <h1>Texas Stream Team Monitoring</h1>
-            <p class="lead">Community-based water quality monitoring program building scientific capacity and environmental awareness across Texas watersheds.</p>
+            <h1>Water Quality Monitoring Methods and Analysis</h1>
+            <p class="lead">Community-based water quality monitoring program demonstrating standardized protocols and their relevance to environmental anthropology and sustainability research.</p>
+            
+            <!-- Water Quality Protocols Section -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h2>Standardized Monitoring Protocols</h2>
+                    <p>Water quality monitoring employs standardized methods to ensure data consistency and comparability across temporal and spatial scales. These protocols are essential for community science initiatives and professional environmental monitoring.</p>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-header bg-primary text-white">
+                            <h5><i class="me-2">💨</i>Dissolved Oxygen (DO)</h5>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Method:</strong> Electronic probe measurement (mg/L)</p>
+                            <p><strong>Protocol:</strong> Calibrate probe daily, measure at multiple depths, record temperature simultaneously</p>
+                            <p><strong>Significance:</strong> Critical indicator of aquatic ecosystem health. Values below 5 mg/L stress aquatic life; below 2 mg/L cause fish kills</p>
+                            <p><strong>Factors:</strong> Temperature-dependent, affected by organic pollution, algal blooms, and thermal stratification</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-header bg-success text-white">
+                            <h5><i class="me-2">⚖️</i>pH Levels</h5>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Method:</strong> Calibrated electronic pH meter (standard units)</p>
+                            <p><strong>Protocol:</strong> Two-point calibration (pH 7.0, 10.0), temperature compensation, multiple readings</p>
+                            <p><strong>Significance:</strong> Indicates acid-base balance. Natural waters: 6.5-8.5; values outside this range stress aquatic organisms</p>
+                            <p><strong>Factors:</strong> Influenced by geology, acid rain, agricultural runoff, and biological processes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-header bg-warning text-dark">
+                            <h5><i class="me-2">🌪️</i>Turbidity</h5>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Method:</strong> Nephelometric measurement (NTU - Nephelometric Turbidity Units)</p>
+                            <p><strong>Protocol:</strong> Use turbidity meter, collect sample avoiding air bubbles, measure within 24 hours</p>
+                            <p><strong>Significance:</strong> Measures suspended particles. High turbidity reduces light penetration, affects photosynthesis and aquatic habitats</p>
+                            <p><strong>Factors:</strong> Erosion, construction, agricultural practices, urban runoff, and natural events</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-header bg-info text-white">
+                            <h5><i class="me-2">⚡</i>Conductivity</h5>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Method:</strong> Electronic conductivity meter (µS/cm - microsiemens per centimeter)</p>
+                            <p><strong>Protocol:</strong> Temperature-compensated readings, calibration with standard solutions, multiple measurements</p>
+                            <p><strong>Significance:</strong> Indicates dissolved ion concentrations. Useful for detecting pollution and salinity changes</p>
+                            <p><strong>Factors:</strong> Geology, road salt, sewage discharge, industrial pollution, and natural mineral content</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-6 mx-auto">
+                    <div class="card h-100">
+                        <div class="card-header bg-secondary text-white">
+                            <h5><i class="me-2">👁️</i>Water Clarity</h5>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Method:</strong> Secchi disk measurement (centimeters or meters)</p>
+                            <p><strong>Protocol:</strong> Lower black and white disk until no longer visible, record depth, repeat measurement</p>
+                            <p><strong>Significance:</strong> Simple but effective measure of water transparency, related to turbidity and productivity</p>
+                            <p><strong>Factors:</strong> Suspended sediments, algal growth, organic matter, and seasonal variations</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sample Data Charts Section -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h2>Sample Water Quality Data</h2>
+                    <p>The following charts demonstrate typical water quality patterns observed in Central Texas streams during community monitoring efforts. These datasets illustrate seasonal variations and the interconnected nature of aquatic ecosystem parameters.</p>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6>Dissolved Oxygen vs Temperature Relationship</h6>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="doTemperatureChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6>pH Stability Over Time</h6>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="phTimeChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-8 mb-4 mx-auto">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6>Turbidity Response to Precipitation Events</h6>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="turbidityChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Environmental Anthropology Analysis Section -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h2>Environmental Anthropology and Sustainability Implications</h2>
+                </div>
+            </div>
             
             <div class="row mt-4">
                 <div class="col-md-8">
-                    <h3>Program Overview</h3>
-                    <p>The Texas Stream Team represents a statewide citizen science initiative focused on water quality monitoring and environmental education. As a community scientist, this work demonstrates the power of collaborative research approaches.</p>
+                    <h3>Community Science as Cultural Practice</h3>
+                    <p>Water quality monitoring through community science represents a contemporary form of environmental knowledge production that bridges scientific and local ways of understanding ecosystems. This practice embodies what anthropologist Anna Tsing calls "collaborative survival" - the ways humans and non-humans work together to maintain livable worlds.</p>
                     
-                    <h4>Research Methods</h4>
-                    <ul>
-                        <li><strong>Water Quality Testing:</strong> Regular monitoring of chemical, physical, and biological parameters</li>
-                        <li><strong>Citizen Science Training:</strong> Educational workshops and field training for community volunteers</li>
-                        <li><strong>Data Validation:</strong> Quality control and verification of community-collected datasets</li>
-                        <li><strong>Community Engagement:</strong> Public outreach and environmental education programs</li>
-                    </ul>
+                    <p>The standardization of monitoring protocols serves multiple functions beyond data collection. These practices create shared vocabularies and methods that enable diverse communities to participate in environmental governance. The act of measuring dissolved oxygen or pH becomes a form of embodied knowledge about local water systems, connecting abstract water chemistry concepts to lived experience of place.</p>
                     
-                    <h4>Impact and Outcomes</h4>
-                    <p>The program has generated extensive long-term monitoring datasets while building local environmental awareness and scientific capacity. Community volunteers contribute thousands of hours of data collection annually.</p>
+                    <h3>Sustainability and Watershed Governance</h3>
+                    <p>Long-term water quality datasets generated through community monitoring create new possibilities for environmental management that extend beyond traditional technocratic approaches. By engaging local communities as data collectors and stewards, these programs build social capacity for adaptive management in the face of climate change and urban development pressures.</p>
                     
-                    <h4>Research Applications</h4>
-                    <p>Data collected through the Stream Team program supports academic research, environmental management decisions, and community-led conservation efforts throughout Texas.</p>
+                    <p>The temporal dimension of monitoring data reveals the rhythms of human-environment interactions. Seasonal patterns in turbidity reflect agricultural cycles, while conductivity spikes may indicate urban runoff events. These patterns make visible the interconnections between human activities and watershed health, supporting more integrated approaches to sustainability planning.</p>
+                    
+                    <h3>Methodological Contributions to Environmental Anthropology</h3>
+                    <p>Community-based monitoring programs offer environmental anthropologists unique opportunities to study the coproduction of scientific knowledge and environmental governance. The standardized protocols create comparability across sites while still allowing for local adaptation and interpretation. This approach aligns with recent calls for more-than-human anthropology that takes seriously both cultural and biophysical processes.</p>
+                    
+                    <p>The integration of quantitative water quality data with ethnographic observation creates opportunities for understanding how environmental change is experienced and interpreted by different communities. Numbers become cultural objects that mediate relationships between humans and watershed systems, creating new forms of environmental citizenship and stewardship.</p>
                 </div>
                 
                 <div class="col-md-4">
@@ -46,8 +181,24 @@ permalink: /community-science/texas-stream-team/
                         <div class="card-body">
                             <p><strong>Program:</strong> Texas Stream Team</p>
                             <p><strong>Scope:</strong> Statewide monitoring network</p>
-                            <p><strong>Role:</strong> Community Scientist</p>
-                            <p><strong>Focus:</strong> Water quality and education</p>
+                            <p><strong>Role:</strong> Community Scientist & Anthropological Observer</p>
+                            <p><strong>Focus:</strong> Water quality methods and environmental knowledge systems</p>
+                            <p><strong>Duration:</strong> Ongoing monitoring since 2019</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <h5>Key Methods</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li><strong>•</strong> Standardized water quality protocols</li>
+                                <li><strong>•</strong> Community science training</li>
+                                <li><strong>•</strong> Participatory data validation</li>
+                                <li><strong>•</strong> Ethnographic observation</li>
+                                <li><strong>•</strong> Environmental education</li>
+                            </ul>
                         </div>
                     </div>
                     
@@ -55,9 +206,11 @@ permalink: /community-science/texas-stream-team/
                         <h6>Tags</h6>
                         <span class="badge bg-secondary me-1">Community science</span>
                         <span class="badge bg-secondary me-1">Water quality</span>
+                        <span class="badge bg-secondary me-1">Environmental anthropology</span>
+                        <span class="badge bg-secondary me-1">Sustainability</span>
                         <span class="badge bg-secondary me-1">Texas</span>
                         <span class="badge bg-secondary me-1">Environmental monitoring</span>
-                        <span class="badge bg-secondary me-1">Education</span>
+                        <span class="badge bg-secondary me-1">Methods</span>
                         <span class="badge bg-secondary me-1">Research</span>
                     </div>
                 </div>
@@ -65,3 +218,113 @@ permalink: /community-science/texas-stream-team/
         </div>
     </div>
 </div>
+
+<script>
+// Sample data for demonstration charts
+function createSampleCharts() {
+    // Dissolved Oxygen vs Temperature relationship
+    const doTempData = {
+        labels: ['15°C', '18°C', '21°C', '24°C', '27°C', '30°C', '33°C'],
+        datasets: [{
+            label: 'Dissolved Oxygen (mg/L)',
+            data: [10.2, 9.1, 8.3, 7.6, 6.9, 6.1, 5.4],
+            borderColor: 'rgba(54, 162, 235, 1)',
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            tension: 0.1
+        }]
+    };
+    
+    new Chart(document.getElementById('doTemperatureChart'), {
+        type: 'line',
+        data: doTempData,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false },
+                title: { display: false }
+            },
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    title: { display: true, text: 'DO (mg/L)' }
+                },
+                x: {
+                    title: { display: true, text: 'Temperature' }
+                }
+            }
+        }
+    });
+    
+    // pH stability over time
+    const phData = {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'pH',
+            data: [7.8, 7.9, 7.7, 7.6, 7.4, 7.2, 7.1, 7.0, 7.2, 7.5, 7.7, 7.8],
+            borderColor: 'rgba(75, 192, 192, 1)',
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            tension: 0.1
+        }]
+    };
+    
+    new Chart(document.getElementById('phTimeChart'), {
+        type: 'line',
+        data: phData,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false },
+                title: { display: false }
+            },
+            scales: {
+                y: {
+                    min: 6.5,
+                    max: 8.5,
+                    title: { display: true, text: 'pH (standard units)' }
+                },
+                x: {
+                    title: { display: true, text: 'Month' }
+                }
+            }
+        }
+    });
+    
+    // Turbidity response to precipitation
+    const turbidityData = {
+        labels: ['Pre-rain', 'During storm', '1 day post', '3 days post', '7 days post', '14 days post'],
+        datasets: [
+            {
+                label: 'Turbidity (NTU)',
+                data: [5.2, 45.8, 28.3, 15.7, 8.9, 6.1],
+                backgroundColor: 'rgba(255, 206, 86, 0.8)',
+                borderColor: 'rgba(255, 206, 86, 1)',
+                borderWidth: 1
+            }
+        ]
+    };
+    
+    new Chart(document.getElementById('turbidityChart'), {
+        type: 'bar',
+        data: turbidityData,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false },
+                title: { display: false }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: { display: true, text: 'Turbidity (NTU)' }
+                },
+                x: {
+                    title: { display: true, text: 'Time Relative to Precipitation Event' }
+                }
+            }
+        }
+    });
+}
+
+// Initialize charts when page loads
+document.addEventListener('DOMContentLoaded', createSampleCharts);
+</script>
