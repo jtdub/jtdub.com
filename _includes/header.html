@@ -12,7 +12,68 @@
     <link rel="stylesheet" href="/assets/css/monokai-sublime.css">
     <link rel="stylesheet" href="/assets/css/custom.css">
 
-    <title>{{ page.title }}</title>
+    <title>{{ page.title }}{% if page.title %} – {% endif %}James Williams</title>
+    
+    <!-- SEO and Social Media Meta Tags -->
+    <meta name="description" content="{% if page.summary %}{{ page.summary }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}Anthropologist, archaeologist, and software developer exploring human-environment interactions through fieldwork, research, and technology.{% endif %}">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{% if page.title %}{{ page.title }} – James Williams{% else %}James Williams{% endif %}" />
+    <meta property="og:description" content="{% if page.summary %}{{ page.summary }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}Anthropologist, archaeologist, and software developer exploring human-environment interactions through fieldwork, research, and technology.{% endif %}" />
+    <meta property="og:image" content="{% if page.hero %}{{ site.url }}{{ page.hero }}{% else %}{{ site.url }}/images/og-default.jpg{% endif %}" />
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+    <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}" />
+    <meta property="og:site_name" content="James Williams" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{% if page.title %}{{ page.title }} – James Williams{% else %}James Williams{% endif %}" />
+    <meta name="twitter:description" content="{% if page.summary %}{{ page.summary }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}Anthropologist, archaeologist, and software developer exploring human-environment interactions through fieldwork, research, and technology.{% endif %}" />
+    <meta name="twitter:image" content="{% if page.hero %}{{ site.url }}{{ page.hero }}{% else %}{{ site.url }}/images/og-default.jpg{% endif %}" />
+    
+    <!-- Additional Meta Tags -->
+    <meta name="author" content="James Williams" />
+    {% if page.tags %}<meta name="keywords" content="{{ page.tags | join: ', ' }}" />{% endif %}
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+    
+    <!-- Structured Data (Schema.org) -->
+    {% if page.url == "/" %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "James Williams",
+      "url": "https://www.jtdub.com",
+      "jobTitle": "Anthropology Researcher; Senior Network Automation Engineer",
+      "description": "Anthropologist, archaeologist, and software developer exploring human-environment interactions through fieldwork, research, and technology.",
+      "affiliation": [
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/in/jtdub/",
+        "https://github.com/jtdub"
+      ],
+      "knowsAbout": [
+        "Anthropology",
+        "Archaeology", 
+        "Underwater Archaeology",
+        "Network Automation",
+        "Python Programming",
+        "Environmental Science",
+        "Scientific Diving"
+      ],
+      "alumniOf": {
+        "@type": "Organization",
+        "name": "Southern New Hampshire University"
+      },
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Independent Researcher"
+      }
+    }
+    </script>
+    {% endif %}
 
     </head>
     <body>
