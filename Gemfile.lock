@@ -63,9 +63,9 @@ GEM
     webrick (1.9.1)
 
 PLATFORMS
-  arm64-darwin-24
+  arm64-linux
+  x86_64-darwin-24
   x86_64-linux
-  x86_64-linux-musl
 
 DEPENDENCIES
   http_parser.rb (~> 0.6.0)
