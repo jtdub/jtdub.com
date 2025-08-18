@@ -60,9 +60,13 @@ def replace_image_url(file_name: str, image_path: str = "/images"):
             pass
         elif line.startswith("thumbnail"):
             pass
-        elif line.startswith("blogger_id: tag:blogger.com,1999:blog-855819088028348335"):
+        elif line.startswith(
+            "blogger_id: tag:blogger.com,1999:blog-855819088028348335"
+        ):
             data += "- jtdub.com\n"
-        elif line.startswith("blogger_id: tag:blogger.com,1999:blog-2200496390325245811"):
+        elif line.startswith(
+            "blogger_id: tag:blogger.com,1999:blog-2200496390325245811"
+        ):
             data += "- packetgeek.net\n"
         elif line.startswith("blogger_orig_url"):
             pass

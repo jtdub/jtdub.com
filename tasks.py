@@ -1,5 +1,16 @@
 """
 Invoke tasks for managing the Jekyll development environment and running tests.
+
+This task file focuses on Docker-based development to avoid Ruby version and
+architecture compatibility issues. All Jekyll operations run in containerized
+environments for consistency across different development machines and CI/CD.
+
+Key commands:
+- invoke setup: Full setup (install gems + build site)
+- invoke quick-build: Build site without starting server
+- invoke serve: Start development server with live reload
+- invoke exec-jekyll '<command>': Run arbitrary commands in Jekyll container
+- invoke add-platforms: Add Linux platform support for CI/CD
 """
 
 import os
@@ -123,7 +134,7 @@ def exec_jekyll(c, command):
         c.run(f"docker-compose run --rm jekyll {command}")
 
 
-@task    
+@task
 def test(c):
     """Run pytest tests."""
     print("🧪 Running pytest tests...")
