@@ -15,30 +15,34 @@ class ThemeManager {
   }
   
   init() {
-    // Create theme toggle button
-    this.createThemeToggle();
-    
-    // Set initial theme
+    // Set initial theme before DOM manipulation
     this.setInitialTheme();
+    
+    // Initialize theme toggle button functionality
+    this.initializeThemeToggle();
     
     // Listen for system theme changes
     this.watchSystemTheme();
   }
   
-  createThemeToggle() {
-    const toggle = document.createElement('button');
-    toggle.className = 'theme-toggle';
-    toggle.setAttribute('aria-label', 'Toggle dark/light theme');
-    toggle.setAttribute('type', 'button');
-    toggle.innerHTML = `
-      <span class="theme-toggle-icon" aria-hidden="true">🌙</span>
-    `;
+  initializeThemeToggle() {
+    // Find both desktop and mobile theme toggle buttons
+    this.toggleButton = document.querySelector('.theme-toggle');
+    this.toggleButtonMobile = document.querySelector('.theme-toggle-mobile');
     
-    toggle.addEventListener('click', () => this.toggleTheme());
+    // Add click event listeners for both buttons
+    if (this.toggleButton) {
+      this.toggleButton.addEventListener('click', () => this.toggleTheme());
+    }
     
-    // Add to page
-    document.body.appendChild(toggle);
-    this.toggleButton = toggle;
+    if (this.toggleButtonMobile) {
+      this.toggleButtonMobile.addEventListener('click', () => this.toggleTheme());
+    }
+    
+    // Update initial icon and label based on current theme
+    const currentTheme = this.getCurrentTheme();
+    this.updateToggleIcon(currentTheme);
+    this.updateToggleLabel(currentTheme);
   }
   
   setInitialTheme() {
@@ -76,13 +80,38 @@ class ThemeManager {
   }
   
   updateToggleIcon(theme) {
-    const icon = this.toggleButton.querySelector('.theme-toggle-icon');
-    icon.textContent = theme === this.themes.dark ? '☀️' : '🌙';
+    const icon = theme === this.themes.dark ? '☀️' : '🌙';
+    
+    // Update desktop button
+    if (this.toggleButton) {
+      const iconElement = this.toggleButton.querySelector('.theme-toggle-icon');
+      if (iconElement) {
+        iconElement.textContent = icon;
+      }
+    }
+    
+    // Update mobile button
+    if (this.toggleButtonMobile) {
+      const iconElement = this.toggleButtonMobile.querySelector('.theme-toggle-icon');
+      if (iconElement) {
+        iconElement.textContent = icon;
+      }
+    }
   }
   
   updateToggleLabel(theme) {
     const nextTheme = theme === this.themes.dark ? 'light' : 'dark';
-    this.toggleButton.setAttribute('aria-label', `Switch to ${nextTheme} theme`);
+    const label = `Switch to ${nextTheme} theme`;
+    
+    // Update desktop button
+    if (this.toggleButton) {
+      this.toggleButton.setAttribute('aria-label', label);
+    }
+    
+    // Update mobile button
+    if (this.toggleButtonMobile) {
+      this.toggleButtonMobile.setAttribute('aria-label', label);
+    }
   }
   
   saveThemePreference(theme) {

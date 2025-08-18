@@ -158,11 +158,22 @@
                   <li class="nav-item">
                     <a class="nav-link" href="/contact/">Contact / CV</a>
                   </li>
+                  <li class="nav-item d-lg-none">
+                    <button class="theme-toggle-mobile nav-link btn" type="button" aria-label="Toggle dark/light theme">
+                      <span class="theme-toggle-icon" aria-hidden="true">🌙</span>
+                      <span class="ms-2">Toggle Theme</span>
+                    </button>
+                  </li>
                 </ul>
-                <form class="d-flex" id="search-form" action="/search/" method="get">
-                  <input id="search-input" name="q" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-light" type="submit">Search</button>
-                </form>
+                <div class="d-none d-lg-flex">
+                  <form class="d-flex" id="search-form" action="/search/" method="get">
+                    <input id="search-input" name="q" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                  </form>
+                  <button class="theme-toggle" type="button" aria-label="Toggle dark/light theme">
+                    <span class="theme-toggle-icon" aria-hidden="true">🌙</span>
+                  </button>
+                </div>
               </div>
             </div>
         </nav>
