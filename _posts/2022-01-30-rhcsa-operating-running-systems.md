@@ -142,27 +142,15 @@ In order to recover the root password of a system, you must have console access 
 
 When you're first prompted with the boot menu, press down down arrow on the keyboard to stop the boot timer. Then scroll through your boot menu options until the rescue kernel is highlighted. With the rescue kernel highlighted, press the `e` button to edit the rescue boot options.
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/25086e93-3d28-4af7-7646-e1e81e0a7500/public"
-   alt="Grub Menu"
-   width="600"
-   loading="lazy" %}
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/25086e93-3d28-4af7-7646-e1e81e0a7500/public" alt="Grub Menu" width=600>
 
 In the Grub edit menu, locate the line that starts with `linux`. The command may span multiple lines and will end with `rhgb quiet`. Go to the end of the line.
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/5819c727-fb48-48bf-d31c-e8c3588caf00/public"
-   alt="Grub Menu: Edit"
-   width="600"
-   loading="lazy" %}
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/5819c727-fb48-48bf-d31c-e8c3588caf00/public" alt="Grub Menu: Edit" width=600>
 
 Remove `rhgb quiet` from the command and add `rd.break enforcing=0`. Once complete, press the `Ctrl-X` key sequence to continue booting to the rescue mode.
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/df7af3ec-5e49-45c3-aba1-2b4d86f48000/public"
-   alt="Grub Menu:Single User Mode"
-   width="600"
-   loading="lazy" %}
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/df7af3ec-5e49-45c3-aba1-2b4d86f48000/public" alt="Grub Menu:Single User Mode" width=600>
 
 At this point, the system will boot into single user mode and will boot into a `switch_root:/#` prompt. The `/sysroot` filesystem will mount in read-only mode. This can be verified by executing: `mount | grep /sysroot`. You'll need to remount the filesystem as read-write. To to this execute, `mount -o rw,remount /sysroot`. The `mount | grep /sysroot` command will verify that it's mounted as read-write.
 

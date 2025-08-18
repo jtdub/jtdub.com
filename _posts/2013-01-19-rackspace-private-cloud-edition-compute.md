@@ -16,27 +16,15 @@ The first thing that you need to do is obtain the Private Cloud Edition (PCE) is
 
 The install is a pretty painless process. The first screen prompts you for a EULA, then how what you want to install - Controller, Compute, or All-in-One.
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/42dae73b-4219-4b6d-ec45-67e386c7e300/public"
-   alt="Image related to the article content"
-   width="320"
-   loading="lazy" %}
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/42dae73b-4219-4b6d-ec45-67e386c7e300/public" width="320"/>
 
 After that, you set up the IP Address of the server, the netblock assigned to VM's, (the default is 172.31.0.0/24 - I left this default), and the user accounts (admin Open Stack account, Open Stack user account, and server local user account). After that it's a matter of the automated installer installing the packages. Once it's done installing, it will boot up and you'll be ready to play!
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/c811d5a7-1fdc-446b-08c9-561a4b8f7b00/public"
-   alt="Image related to the article content"
-   width="320"
-   loading="lazy" %}
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/c811d5a7-1fdc-446b-08c9-561a4b8f7b00/public" width="320"/>
 
 If you've ever used the Rackspace public cloud, you will notice that the UI looks very familiar. Though, if you prefer, the UI can be changed to the default Open Stack UI. The first thing that we'll want to do when we log in is to grab your API credentials, so that you can easily use the command line tools. To do this, log in with your admin account, select the 'Settings' link at the top right of the screen, then select the "OpenStack API" tab, select 'admin' as the project, and finally press the "Download RC File" button.
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/24b4efb0-41ef-44e0-9dfa-4af24c7fe400/public"
-   alt="Image related to the article content"
-   width="320"
-   loading="lazy" %}
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/24b4efb0-41ef-44e0-9dfa-4af24c7fe400/public" width="320"/>
 
 Once the openrc.sh file is downloaded, you can copy it to your PCE server so that we can begin configuring what needs to be configured from the command line. As you can see below, I used scp to copy the file to the server.
 
@@ -76,11 +64,7 @@ None 172.16.2.46 None 172.16.2.32-net br0
 
 At this point, I should spend a little bit of time to describe how the networking for VM instances is going to work. When we initially installed PCE, we were prompted with a screen asking us for a CIDR block for Nova fixed (VM) networking. The default is 172.31.0.0/24
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/3998ff99-622e-4391-a3ef-132aee79db00/public"
-   alt="Image related to the article content"
-   width="320"
-   loading="lazy" %}
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/3998ff99-622e-4391-a3ef-132aee79db00/public" width="320"/>
 
 One IP Address on the 172.31.0.0/24 will be allocated to the br0 interface of your PCE server and the remaining will be assigned to your instances as they boot up. The br0 interface will also contain the IP Address of your PCE server. In this case, that IP Address will be 172.16.2.254.
 
@@ -103,45 +87,25 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 
 The br0 interface is a bridge interface that connects the VM network to the physical interface, eth0. Open Stack then routes (layer 3) traffic coming from eth0 to the 172.31.0.0/24 network. It also uses iptables to create a PAT/NAT, so that the instances can communicate on the network, and the internet if you allow it. However, computers outside the PCE environment can't communicate with the VM instances directly, because those computers will be unaware of the 172.31.0.0/24 network. This is where the floating IP Addresses come into play. The floating IP Addresses create a one-to-one NAT mapping a VM instance to an address in your floating IP Address range. In this case, my floating IP Address range is 172.16.2.32/28. Also, by default, the PCE iptables rules are very restrictive and don't allow incoming traffic to communicate with the VM instances. To allow this traffic, you will have to create or edit security groups. This will come later on. Below is a diagram of the PCE network environment.
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/673064c6-b357-4a3f-3281-dfd29be17500/public"
-   alt="Image related to the article content"
-   width="320"
-   loading="lazy" %}
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/673064c6-b357-4a3f-3281-dfd29be17500/public" width="320"/>
 
 Now that we understand how the networking works, let's log back into the UI as a normal user. As the normal user, we're going to edit our default security group to define what traffic we want to allow to our VM instances, we'll add a couple floating IP Addresses to our project, create keypairs that will be used to allow us to access our VM, we'll add a pre-built Fedora 17 image to our default images, and finally, we'll spin up an instance and verify that we can access it from an outside computer.
 
 Once we login as our normal user, the first thing that we'll do is edit our default security group to define what traffic that we want to allow to our VM instances from the outside world by default. In my test, I am going to allow ICMP echo (code -1, type -1), all UDP traffic, and all TCP traffic. To access the security groups, select the "Access &amp; Security" tab along the top menu, locate the "Security Groups" section, and press the "Edit Rules" on the default group.
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/2c075f52-96d6-4c3b-da0e-77d496eafe00/public"
-   alt="Image related to the article content"
-   width="320"
-   loading="lazy" %}
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/2c075f52-96d6-4c3b-da0e-77d496eafe00/public" width="320"/>
 
 Once you've located that screen, enter your rules.
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/203625f7-3134-491f-e328-b60d17f17300/public"
-   alt="Image related to the article content"
-   width="320"
-   loading="lazy" %}
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/203625f7-3134-491f-e328-b60d17f17300/public" width="320"/>
 
 Now that the security group has been edited, we'll go ahead and add floating IP Addresses, which are on the same "Access &amp; Security" page. To do this, press the "Allocate IP To Project" button, select your pool, if you have multiple IP Address pools, and press the  "Allocate IP" button. You can add as many IP Addresses as you need for your project. By default, there are quotas in place that limits a "project" to 10 floating IP Addresses. This quota can be changed and will be discussed later on.
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/bba31e09-d977-44bd-cd57-f2ab34b24200/public"
-   alt="Image related to the article content"
-   width="320"
-   loading="lazy" %}
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/bba31e09-d977-44bd-cd57-f2ab34b24200/public" width="320"/>
 
 Lastly, on the same "Access &amp; Security" page let's generate encryption key pairs that will be used to access our VM instances. In the "Keypairs" section, press the "Create Keypair" button. This will bring up a screen that will allow you to name the key pair.
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/ad39fb0b-7ac0-4be4-28bb-0d382a49d100/public"
-   alt="Image related to the article content"
-   width="320"
-   loading="lazy" %}
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/ad39fb0b-7ac0-4be4-28bb-0d382a49d100/public" width="320"/>
 
 Once the keypair has been generated, you'll be prompted to download a pem file. Do so, and then add the keypair to your keys for ssh. In Linux, you use the ssh-add command. As this is a private key, you won't want any other users to be able to read the key, so be sure to change the permissions on the file so that only your account can access the file.
 
@@ -153,19 +117,11 @@ Identity added: jtdub-keypair.pem (jtdub-keypair.pem)
 
 We're at the light at the end of the tunnel! If you wanted to, you could now just spin up VM instances utilizing the default images that come with PCE. However, I'm going to download a pre-built image of Fedora 17, so that I can demonstrate how to import images. The Fedora 17 image that I'm going to use can be downloaded at [http://berrange.fedorapeople.org/images/](http://berrange.fedorapeople.org/images/). In your UI, still logged in as the unprivileged user, select the "Images &amp; Snapshots" tab. Once there, select the "Create Image" button, fill out the information on the form, and press the "Create Image" button.
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/9676cf50-5427-4bf7-d523-349a84324800/public"
-   alt="Image related to the article content"
-   width="320"
-   loading="lazy" %}
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/9676cf50-5427-4bf7-d523-349a84324800/public" width="320"/>
 
 Now, you just wait for the image to download. It will take a little while depending on the speed of your Internet connection, as well as the size of the image.
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/038862de-b802-4304-06c1-fdb482e1f000/public"
-   alt="Image related to the article content"
-   width="320"
-   loading="lazy" %}
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/038862de-b802-4304-06c1-fdb482e1f000/public" width="320"/>
 
 When the image download completes, we can finally create our first instance. This can be accomplished from the "Instances" tab, in the UI, by pressing the "Launch Instance" button. On the Launch Instance page there are several options. It's best to spend a few minutes to get familiar with the options. I'll give a run down of the settings that I used.
 
@@ -178,31 +134,15 @@ When the image download completes, we can finally create our first instance. Thi
 
 After that, I pressed the "Launch" button. In no time flat, my first instance was up and running. The only other thing that I need to do is associate a floating IP Address to the VM instance.
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/1ddfc8d4-d33f-4f12-79e1-48ac304b3100/public"
-   alt="Image related to the article content"
-   width="320"
-   loading="lazy" %}
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/1ddfc8d4-d33f-4f12-79e1-48ac304b3100/public" width="320"/>
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/7d8fad17-aacc-4ffa-4600-f3f377776f00/public"
-   alt="Image related to the article content"
-   width="320"
-   loading="lazy" %}
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/7d8fad17-aacc-4ffa-4600-f3f377776f00/public" width="320"/>
 
 To associate a floating IP Address to an instance, locate your VM Instance on the "Instances" page, drop down the menu on the "Create Snapshot" button, and select "Associate Floating IP". Once the "Manage Floating IP Associations" page pulls up, select and IP Address and press the "Associate" button.
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/c38ecb4e-3f43-4940-800a-6abe175dc300/public"
-   alt="Image related to the article content"
-   width="320"
-   loading="lazy" %}
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/c38ecb4e-3f43-4940-800a-6abe175dc300/public" width="320"/>
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/3b1218ed-919a-486a-530f-af6cafbdbc00/public"
-   alt="Image related to the article content"
-   width="320"
-   loading="lazy" %}
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/3b1218ed-919a-486a-530f-af6cafbdbc00/public" width="320"/>
 
 That's it! The first instance is up and running and should be remotely accessible! To test it, I'll ssh to the instance.
 

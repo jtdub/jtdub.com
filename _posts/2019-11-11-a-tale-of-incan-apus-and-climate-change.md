@@ -14,11 +14,7 @@ tags:
 - jtdub.com
 - anthropology
 ---
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/6218bf46-1b95-4af5-fbc4-652649308f00/public"
-   alt="Image related to the article content"
-   width="400"
-   loading="lazy" %}
+<img width="400" src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/6218bf46-1b95-4af5-fbc4-652649308f00/public" title="Pumasillo from the priests quarters at Choquequirao"/>
 
 Henrik and I woke just in time to watch the sunrise over the Peruvian Andes landscape. The sky was hazy from nearby farmers practicing their centuries old tradition of slash and burn along the terraced mountain slopes. The sun crested the mountains and rays of light pierced the hazy sky. We were in a small mountain valley town called Cachora. Our stomachs were filled with butterflies and we were anxious about what lay ahead in the upcoming days. In the upcoming days we would be traversing the Apurimac River Valley, by foot, to tour the ancient Incan city of Choquequirao.
 

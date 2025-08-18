@@ -28,7 +28,4 @@ With all this knowledge gained, I determined that I would carry ~1600 calories o
 
 All this mostly worked out perfectly, but I'll continue to modify my nutritional carries during long runs. Overall, the run went nearly exactly as planned. When I finished the race, I was pretty tired, but I wasn't completely trashed. I attribute this to pacing myself through out the race. I loved this race and will likely do it again next year. I'll also likely do some other ultra marathon races in the future as well.
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/e2bd9f5b-397f-4c77-88a1-6363c8f2ca00/public"
-   alt="Image related to the article content"
-   loading="lazy" %}
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/e2bd9f5b-397f-4c77-88a1-6363c8f2ca00/public">

@@ -15,7 +15,4 @@ Laguna Sibinacocha is a stunningly beautiful place. It has clear blue waters, st
 
 This 360 degree aerial image doesn't do it justice.
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/71e89b0a-aa47-4be1-6d59-faf48c8e5300/public"
-   alt="High-altitude lake Sibinacocha in Peru"
-   loading="lazy" %}
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/71e89b0a-aa47-4be1-6d59-faf48c8e5300/public"/>

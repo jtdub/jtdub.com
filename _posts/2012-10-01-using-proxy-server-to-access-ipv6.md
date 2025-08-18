@@ -124,8 +124,4 @@ dig aaaa packetgeek.net @ns1.rackspace.com
 
 Lastly, you'll need to configure your browser to point to your proxy server. As you can see in the screenshot below. The IP Address from [http://www.whatismyipv6.com/](http://www.whatismyipv6.com/) is listed as the IPv6 Address of my proxy server.
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/09f1d94b-9b91-4de3-37b7-bf40e558b700/public"
-   alt="Image related to the article content"
-   height="200"
-   loading="lazy" %}
+<img height="200" src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/09f1d94b-9b91-4de3-37b7-bf40e558b700/public"/>

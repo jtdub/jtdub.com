@@ -27,11 +27,7 @@ As I'm mostly going to be using XRv and the CSR1000v to create my Service Provid
 
 Here is a screen shot:
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/a44fc1e7-5743-4b94-d3f9-d4c37292b400/public"
-   alt="Image related to the article content"
-   width="320"
-   loading="lazy" %}
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/a44fc1e7-5743-4b94-d3f9-d4c37292b400/public" width="320"/>
 
 When used, it can generate complex KVM configs in a matter of minutes, rather than an hour or more. Here is an example:
 

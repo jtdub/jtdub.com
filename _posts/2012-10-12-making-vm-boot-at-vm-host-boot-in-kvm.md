@@ -10,11 +10,7 @@ tags:
 - packetgeek.net
 ---
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/ce544fb0-1316-40cc-ee86-1dc66adea600/public"
-   alt="Image related to the article content"
-   height="320"
-   loading="lazy" %}
+<img height="320" src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/ce544fb0-1316-40cc-ee86-1dc66adea600/public"/>
 
 From virt-manager, you can follow the screen shot:
 

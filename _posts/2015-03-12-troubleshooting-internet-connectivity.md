@@ -18,15 +18,9 @@ Background information: My home Internet connectivity is provided by Cable Inter
 
 The first thing that I did was go to http://speedtest.rackspace.com. From this page, you can run the OOKLA speedtest application from any of their data centers. This provides excellent information on download &amp; upload speeds, latency, and jitter. I ran the test from the Dallas and Chicago data centers. Right off the bat, I noticed that I was getting a fraction of the download speed that my Internet service is configured for. This can be seen below:
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/fad74037-a2e4-479e-1965-620b94ea0d00/public"
-   alt="Image related to the article content"
-   loading="lazy" %}
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/fad74037-a2e4-479e-1965-620b94ea0d00/public"/>
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/9067939b-fc09-4304-d860-3bb59f5dbc00/public"
-   alt="Image related to the article content"
-   loading="lazy" %}
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/9067939b-fc09-4304-d860-3bb59f5dbc00/public"/>
 
 This immediately pointed to a real issue, but I didn't yet have all the information that I needed to take to my ISP. Next, I used an application called MTR. MTR is a traceroute application, that when ran correctly makes it visually easy to spot potential network issues. I ran an MTR report destined to one of my cloud servers at Rackspace.
 
@@ -68,15 +62,9 @@ Indeed, the ping saw the same packet loss. Before opening a ticket with my Inter
 
 First with the speed tests.
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/fe05fe22-4fff-4768-c8aa-84ca3084cf00/public"
-   alt="Image related to the article content"
-   loading="lazy" %}
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/fe05fe22-4fff-4768-c8aa-84ca3084cf00/public"/>
 
-{% include optimized_image.html
-   src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/89eef152-bbdd-4dbb-788f-92165fb07e00/public"
-   alt="Image related to the article content"
-   loading="lazy" %}
+<img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/89eef152-bbdd-4dbb-788f-92165fb07e00/public"/>
 
 Huge difference! Next, I ran the same MTR report.
 
