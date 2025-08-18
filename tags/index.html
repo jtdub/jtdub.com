@@ -23,7 +23,7 @@ permalink: /tags/
       aria-labelledby="heading-{{ tag[0] | downcase | slugify }}"
       data-bs-parent="#accordionTags">
       <div class="accordion-body">
-        {% include tagged_posts.html %}
+        {% include tagged_posts.html posts=tag[1] %}
       </div>
     </div>
   </div>

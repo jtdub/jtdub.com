@@ -26,7 +26,7 @@ permalink: /community-science/
           <h3>Community Science Blog Posts</h3>
           {% for tag in site.tags %}
           {% if tag[0] == "community-science" %}
-          {% include tagged_posts.html %}
+          {% include tagged_posts.html posts=tag[1] %}
           {% endif %}
           {% endfor %}
         </div>

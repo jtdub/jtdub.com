@@ -77,7 +77,7 @@ def build(c):
     """Build the Jekyll site without starting the server."""
     print("🔨 Building Jekyll site...")
     with c.cd(DEV_DIR):
-        c.run("docker-compose run --rm jekyll jekyll build")
+        c.run("docker-compose run --rm jekyll jekyll build --trace")
     print("✅ Jekyll site built successfully")
 
 

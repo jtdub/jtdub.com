@@ -6,7 +6,7 @@ permalink: /jtdub.com/
   <div class="container mt-5">
   {% for tag in site.tags %}
   {% if tag[0] == "jtdub.com" %}
-  {% include tagged_posts.html %}
+  {% include tagged_posts.html posts=tag[1] %}
   {% endif %}
   {% endfor %}
   </div>
