@@ -98,7 +98,8 @@ def quick_build(c):
         c.run("docker-compose run --rm jekyll jekyll build")
     print("✅ Jekyll site built successfully")
 
-
+    _run_jekyll_build(c, "")
+    print("✅ Jekyll site built successfully")
 @task
 def setup(c):
     """Setup Jekyll environment (install gems and build) using Docker."""
