@@ -9,10 +9,7 @@ GEM
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0)
     eventmachine (1.2.7)
-    ffi (1.17.2-arm-linux-gnu)
-    ffi (1.17.2-arm64-darwin)
-    ffi (1.17.2-x86_64-darwin)
-    ffi (1.17.2-x86_64-linux-gnu)
+    ffi (1.16.3)
     forwardable-extended (2.6.0)
     http_parser.rb (0.8.0)
     i18n (1.14.7)
@@ -74,6 +71,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  ffi (< 1.17.0)
   http_parser.rb (~> 0.6.0)
   jekyll (~> 4.2.2)
   jekyll-feed (~> 0.15)
