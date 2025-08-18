@@ -73,6 +73,47 @@
       }
     }
     </script>
+    {% elsif page.url == "/publications/" %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Publications by James Williams",
+      "description": "Research publications and articles documenting exploration, archaeology, and scientific findings.",
+      "author": {
+        "@type": "Person",
+        "name": "James Williams"
+      },
+      "itemListElement": [
+        {% for publication in site.data.publications %}
+        {
+          "@type": "ScholarlyArticle",
+          "position": {{ forloop.index }},
+          "headline": "{{ publication.title }}",
+          "author": {
+            "@type": "Person",
+            "name": "James Williams"
+          },
+          "isPartOf": {
+            "@type": "PublicationVolume",
+            "name": "{{ publication.publication }}"{% if publication.volume %},
+            "volumeNumber": "{{ publication.volume }}"{% endif %}
+          },
+          "datePublished": "{{ publication.date }}",
+          {% if publication.pages and publication.pages != "" %}"pagination": "{{ publication.pages }}",{% endif %}
+          {% if publication.url %}"url": "{{ publication.url }}",{% endif %}
+          {% if publication.pdf %}"distribution": {
+            "@type": "DataDownload",
+            "contentUrl": "{{ publication.pdf }}",
+            "encodingFormat": "application/pdf"
+          },{% endif %}
+          "description": "{{ publication.description }}",
+          "about": "{{ publication.impact }}"
+        }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]
+    }
+    </script>
     {% endif %}
 
     </head>
