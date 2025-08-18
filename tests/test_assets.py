@@ -2,7 +2,6 @@ import pytest
 import bs4
 import requests
 
-
 def test_external_images(posts_path):
     for item in posts_path["files"]:
         with open(f"{posts_path['path']}/{item}") as f:
