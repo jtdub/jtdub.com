@@ -23,3 +23,12 @@ We stopped for lunch beside an aqueduct channeling glacial meltwater from Ausang
 After lunch, we continued toward the base of Apu Ausangate, where we set up camp near the Seven Lakes of Ausangate. Shortly after arriving at camp, the sun dropped behind the mountains and the temperature fell rapidly. I pitched my tent, bundled myself in warm clothes, and watched as the sky faded into darkness.
 
 As is often the case at campsites in Peru, local dogs soon appeared, lingering in hopes of finding scraps of food. Gumercindo and Felipe prepared dinner, and we shared a hearty meal before turning in for the night. Sleep, however, did not come easily. I developed a headache and felt nauseous. I drank water and tried to rest, hoping the symptoms would pass, but instead they set the tone for the remainder of the journey.
+
+The next day, we packed up camp and began our slow walk around Ausangate toward the next campsite. I still wasn’t feeling great. Between the nausea from the night before, the lack of sleep, and the altitude, my body felt weak and uncooperative. We moved at an unhurried pace, meandering through the landscape and stopping to visit the seven lakes of Ausangate. Eventually, the trail turned upward and we began our ascent toward Campa Pass at 16,500 feet (5,100 meters).
+
+The walking was slow and labored. My head throbbed and my strength felt drained, forcing us to stop often. During those breaks, Felipe would point out the surrounding peaks and name them one by one: Callangate, Pachanta, Puku Punta, Mariposa. He also shared local folklore, including the story of the daughters of Ausangate.
+
+The legend of Ausangate’s daughters is used to explain aspects of the local ecology of the Vilcanota. In the story, one of Ausangate’s daughters marries a man from the altiplano. The new son-in-law wishes to take livestock and corn back to his homeland, but a bird steals the spirit of the corn and carries it to Cusco. There, the corn thrives, while it fails to grow in the altiplano. As punishment, the son-in-law is turned into a black rock near a road on the plateau. To this day, people still curse the rock as they pass.
+
+At the top of Campa Pass, we rested and ate lunch before descending the far side. From there, we wandered through bofedales; peat bogs saturated with glacial meltwater; until we found a flat, dry place to camp. After dinner, I turned in early, hoping that a night of rest would help restore some strength.
+
