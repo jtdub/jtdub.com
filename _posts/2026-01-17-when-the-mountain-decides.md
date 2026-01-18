@@ -11,7 +11,7 @@ tags:
 - Cordillera Vilcanota
 - Essays
 ---
-The freeze-dried potato sat in my palm like a small, gray stone. Chuño, Felipe called it—an Andean staple that had sustained generations in these mountains. I placed it in my mouth, its texture somewhere between chalk and cork, and chewed. Felipe and his brother Gumercindo watched with the kind of patient interest that comes from hosting outsiders who don't yet understand the wisdom of high-altitude food.
+The freeze-dried potato sat in my palm like a small, gray stone. Chuño, Felipe called it. Chuño is an Andean staple that had sustained generations in these mountains. I placed it in my mouth, its texture somewhere between chalk and cork, and chewed. Felipe and his brother Gumercindo watched with the kind of patient interest that comes from hosting outsiders who don't yet understand the wisdom of high-altitude food.
 
 This was my first solo journey to the Peruvian Andes, though I had been here before. Previous trips had been structured around research—scientific expeditions with clear objectives and rigid schedules. This time, I wanted something different. I wanted to move through these landscapes on my own terms, to experience them not as a researcher but as a visitor learning to listen.
 
