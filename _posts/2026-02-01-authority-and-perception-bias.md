@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "When Authority Overrides Evidence: An Applied Anthropological Analysis of Why People Believe Power Over Perception"
+title: "When Authority Overrides Evidence: An Anthropological Analysis of Why People Believe Power Over Perception"
 date: '2026-02-01'
 author: jtdub
 tags:
@@ -17,7 +17,7 @@ Recent incidents in the United States in which civilians were killed by federal 
 
 Applied anthropology is concerned not only with understanding human behavior but also with examining how social systems produce harm, justify institutional practices, and shape everyday decision making. From this perspective, the problem is not simply whether individuals misinterpret evidence. Rather, it is how political authority, bureaucratic institutions, media environments, and social identities interact to structure what kinds of knowledge are treated as credible.
 
-This paper argues that belief in authority over direct evidence emerges from five interconnected social processes: (1) the social construction of legitimate authority, (2) bureaucratic obedience and routinization, (3) identity-based conformity and emotion, (4) epistemic bias embedded in political systems, and (5) social network dynamics that amplify dominant narratives. Using these frameworks, the paper applies established theory to contemporary U.S. cases to demonstrate how institutional power shapes public belief even in the presence of contradictory visual documentation.
+This article argues that belief in authority over direct evidence emerges from five interconnected social processes: (1) the social construction of legitimate authority, (2) bureaucratic obedience and routinization, (3) identity-based conformity and emotion, (4) epistemic bias embedded in political systems, and (5) social network dynamics that amplify dominant narratives. Using these frameworks, the paper applies established theory to contemporary U.S. cases to demonstrate how institutional power shapes public belief even in the presence of contradictory visual documentation.
 
 ---
 
@@ -25,9 +25,9 @@ This paper argues that belief in authority over direct evidence emerges from fiv
 
 From an applied anthropological perspective, authority is best understood as a culturally maintained relationship rather than a simple exercise of force. Political institutions function because people collectively recognize their right to issue commands and define reality. Ladenson (1972) distinguishes between de facto authority, which refers to power that exists in practice, and legitimate authority, which refers to power that is believed to be morally justified. Importantly, legitimacy does not depend on whether authority behaves ethically, but on whether people believe its claims are valid.
 
-Gentry (2014) further demonstrates that modern political systems routinely merge procedural authority, meaning the recognized right to act, with moral legitimacy, meaning the assumption that actions are ethically correct. This conflation produces epistemic bias, a structural tendency to grant state actors automatic credibility while treating nonstate actors as inherently suspicious. In applied terms, when government officials describe a civilian as a terrorist, many people accept that description not because of independent evaluation, but because cultural norms assign truth-producing power to the state.
+Gentry (2014) further demonstrates that modern political systems routinely merge procedural authority, meaning the recognized right to act, with moral legitimacy, meaning the assumption that actions are ethically correct. This conflation produces epistemic bias, a structural tendency to grant state actors automatic credibility while treating nonstate actors as inherently suspicious. When government officials describe a civilian as a terrorist, many people accept that description not because of independent evaluation, but because cultural norms assign truth-producing power to the state.
 
-For applied anthropologists working with communities affected by state violence, this insight is essential. Harmful outcomes are not produced only by individual prejudice. They are sustained by shared cultural expectations about who is entitled to define truth.
+For anthropologists working with communities affected by state violence, this insight is essential. Harmful outcomes are not produced only by individual prejudice. They are sustained by shared cultural expectations about who is entitled to define truth.
 
 ---
 
@@ -41,7 +41,7 @@ Cunha, Rego, and Clegg (2010) extend this analysis through their examination of 
 
 Applied to contemporary law enforcement and immigration systems, these findings suggest that violent encounters are not merely the result of individual misconduct. They emerge from organizational cultures that prioritize rule enforcement, threat framing, and institutional loyalty. At the same time, members of the public who trust these institutions may assume that official statements reflect careful, objective assessments, even when video evidence suggests otherwise.
 
-For applied anthropologists, this highlights the importance of studying organizational cultures, training practices, and accountability structures, not only individual behavior.
+This highlights the importance of studying organizational cultures, training practices, and accountability structures, not only individual behavior.
 
 ---
 
