@@ -63,7 +63,7 @@ Noelle-Neumann’s (1977) spiral of silence theory explains how perceived majori
 
 When government narratives are rapidly amplified through press conferences, official statements, and major media outlets, they quickly appear dominant. Individuals who interpret video evidence differently may self-censor, even if they privately disagree. Silence is then mistaken for agreement.
 
-For applied anthropology, this process helps explain why communities may appear divided or apathetic even when substantial private doubt exists. Understanding this dynamic is critical for designing community-based forums where dissent can be expressed safely.
+This process helps explain why communities may appear divided or apathetic even when substantial private doubt exists. Understanding this dynamic is critical for designing community-based forums where dissent can be expressed safely.
 
 ---
 
@@ -73,13 +73,13 @@ Zollman (2010) shows that conformity within social networks can sometimes increa
 
 In contemporary digital environments, state institutions and major media organizations function as high-influence nodes. Their initial framing of events often reaches audiences before raw footage or independent analysis. Once a dominant interpretation circulates widely, later contradictory evidence faces structural resistance.
 
-Applied anthropologists studying digital cultures must therefore examine not only content but also network structure, platform algorithms, and amplification patterns.
+Studying digital cultures must therefore examine not only content but also network structure, platform algorithms, and amplification patterns.
 
 ---
 
 ## Synthesis: An Applied Model
 
-From an applied anthropological perspective, belief in authority over evidence is best understood as a system-level outcome:
+From an anthropological perspective, belief in authority over evidence is best understood as a system-level outcome:
 
 * Cultural norms grant moral legitimacy to state institutions.
 * Bureaucratic systems normalize obedience and diffuse responsibility.
@@ -93,7 +93,7 @@ Together, these forces make belief in official narratives socially reasonable, e
 
 ## Implications for Practice
 
-For applied anthropologists engaged in policy, advocacy, journalism, or community work, several implications follow:
+For anthropologists engaged in policy, advocacy, journalism, or community work, several implications follow:
 
 1. Counter-narratives must address identity and emotion, not only facts.
 2. Institutional reform requires attention to training, incentives, and accountability structures.
