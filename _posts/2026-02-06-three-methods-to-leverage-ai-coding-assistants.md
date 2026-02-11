@@ -5,6 +5,7 @@ date: '2026-02-06'
 author: jtdub
 tags:
 - jtdub.com
+- packetgeek.net
 - AI
 - LLM
 - Coding Assistant
