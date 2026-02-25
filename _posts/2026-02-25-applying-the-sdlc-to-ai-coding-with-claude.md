@@ -95,6 +95,6 @@ For developers interested in adopting this methodology, the following sequence p
 5. Review and approve the backlog before any implementation begins.
 6. Proceed through the phases sequentially, applying the build-test-review loop at each stage.
 
-In practice, I completed a working iOS application through this process in a single evening. A network topology visualization application took a few hours. The GitHub repositories for both projects, including the issues, pull requests, and commit history, are available for reference.
+In practice, I completed a working iOS application through this process in an evening.
 
 The capabilities of modern AI coding tools are, by most measures, remarkable. What they lack is process. The SDLC provides it.
