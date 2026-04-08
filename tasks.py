@@ -177,3 +177,37 @@ def dev(c):
     """Start development environment and show logs."""
     start(c)
     logs(c)
+
+
+@task
+def ensure_proton_bridge(c):
+    """Ensure Proton Mail Bridge is installed, installing via Homebrew if needed."""
+    result = c.run("command -v protonmail-bridge", warn=True, hide=True)
+    if result.ok:
+        print("Proton Mail Bridge is already installed.")
+        return
+
+    result = c.run(
+        "brew list --cask protonmail-bridge", warn=True, hide=True
+    )
+    if result.ok:
+        print("Proton Mail Bridge is already installed.")
+        return
+
+    print("Proton Mail Bridge not found. Installing via Homebrew...")
+    c.run("brew install --cask protonmail-bridge")
+    print("Proton Mail Bridge installed. Launch it from Applications to configure.")
+
+
+@task
+def substack(c, post, force=False, draft=False):
+    """Cross-post a Jekyll blog post to Substack via email publishing.
+
+    Usage:
+        invoke substack --post _posts/2026-04-08-my-post.md
+        invoke substack --post _posts/2026-04-08-my-post.md --force
+        invoke substack --post _posts/2026-04-08-my-post.md --draft
+    """
+    from scripts.substack import crosspost
+
+    crosspost(post, force=force, draft=draft)
