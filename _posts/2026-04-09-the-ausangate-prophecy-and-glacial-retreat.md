@@ -12,7 +12,6 @@ tags:
 - Quechua
 - Climate Change
 - Glaciology
-- Essays
 ---
 
 There is a prophecy about Ausangate. It says the mountain will turn grey, then black, until it becomes a mountain of black cinder. The world as it is known will end.
