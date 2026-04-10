@@ -13,9 +13,10 @@
 - name: "Expedition Planning"
   slug: "expedition-planning"
   description: "Plan and organize expeditions with tools for logistics, team coordination, and field preparation."
+  repo: "https://github.com/jtdub/expedition-planning-app"
   feedback_repo: "https://github.com/jtdub/expedition-planning-app/issues"
   app_store_url: "#"
-  source: "closed"
+  source: "open"
   platforms:
     - "iOS"
   category: "Productivity"
