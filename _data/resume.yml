@@ -1,6 +1,6 @@
 ---
 summary: |
-  Senior Network Automation Engineer with 20+ years in IT, specializing in network automation, Linux systems, and Python development. Proven expertise in designing automation platforms, mentoring teams, and driving efficiency in enterprise and service provider networks. Strong cross-disciplinary background in environmental sustainability and archaeological fieldwork, with published work documenting submerged cultural resources in Peru and Mexico.
+  Senior Network Software Engineer with 20+ years in IT, specializing in network automation, Linux systems, and Python development. Proven expertise in designing automation platforms, mentoring teams, and driving efficiency in enterprise and service provider networks. Strong cross-disciplinary background in environmental sustainability and archaeological fieldwork, with published work documenting submerged cultural resources in Peru and Mexico.
 
 contact:
   - name: LinkedIn
@@ -22,9 +22,16 @@ skills:
 
 experience:
   - employer: Network to Code
+    role: Senior Software Engineer
+    start: "2026"
+    end: Present
+    location: Remote
+    description:
+      - Working on the Product Team writing Nautobot adjacent software.
+  - employer: Network to Code
     role: Senior Network Automation Engineer
     start: "2020"
-    end: Present
+    end: "2026"
     location: Remote
     description:
       - Mentor junior engineers and lead automation initiatives.
@@ -51,13 +58,13 @@ experience:
 education:
   - school: Southern New Hampshire University
     start: "2022"
-    end: "Expected 2026"
+    end: "2026"
     major: B.A. Anthropology (Environmental Sustainability)
     gpa: "3.9"
   - school: Amarillo College
     start: ""
-    end: ""
-    major: A.A.S. Electronics Technology
+    end: "2009"
+    major: A.A.S. Electronics Technology (Networking Technology)
     gpa: ""
 
 certifications:
