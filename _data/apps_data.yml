@@ -10,12 +10,12 @@
     - "macOS"
   category: "Productivity"
 
-- name: "Expedition Planning"
-  slug: "expedition-planning"
+- name: "Chaki Expedition Planning"
+  slug: "chaki-expedition-planning"
   description: "Plan and organize expeditions with tools for logistics, team coordination, and field preparation."
   repo: "https://github.com/jtdub/expedition-planning-app"
   feedback_repo: "https://github.com/jtdub/expedition-planning-app/issues"
-  app_store_url: "#"
+  app_store_url: "https://apps.apple.com/us/app/chaki-expedition-planner/id6762018624"
   source: "open"
   platforms:
     - "iOS"
