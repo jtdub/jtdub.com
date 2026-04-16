@@ -1,5 +1,11 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { postUrl } from '../utils/post-url';
+
+const recentPosts = (await getCollection('posts'))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
 ---
 
 <BaseLayout title="James Williams — jtdub.com" zone="home">
@@ -94,27 +100,19 @@ james@jtdub ~ %
         <a href="/writing" class="landing__recent-all">All writing &rarr;</a>
       </div>
       <ul class="landing__recent-list">
-        <li>
-          <a href="/2026/04/09/the-ausangate-prophecy-and-glacial-retreat" data-zone="field">
-            <span class="landing__recent-tag">Field</span>
-            <span class="landing__recent-title">The Ausangate Prophecy and Glacial Retreat</span>
-            <time>April 2026</time>
-          </a>
-        </li>
-        <li>
-          <a href="#" data-zone="engineering">
-            <span class="landing__recent-tag">Engineering</span>
-            <span class="landing__recent-title">Applying the SDLC to AI Coding with Claude</span>
-            <time>February 2026</time>
-          </a>
-        </li>
-        <li>
-          <a href="#" data-zone="field">
-            <span class="landing__recent-tag">Field</span>
-            <span class="landing__recent-title">When the Mountain Decides</span>
-            <time>January 2026</time>
-          </a>
-        </li>
+        {recentPosts.map((post) => (
+          <li>
+            <a href={postUrl(post)} data-zone={post.data.zone}>
+              <span class="landing__recent-tag">
+                {post.data.zone === 'field' ? 'Field' : 'Engineering'}
+              </span>
+              <span class="landing__recent-title">{post.data.title}</span>
+              <time datetime={post.data.date.toISOString()}>
+                {post.data.date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+              </time>
+            </a>
+          </li>
+        ))}
       </ul>
     </aside>
   </section>

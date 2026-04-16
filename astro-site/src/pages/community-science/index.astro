@@ -1,0 +1,174 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Community Science — jtdub.com"
+  description="San Gabriel River water quality monitoring through the Texas Stream Team community science program."
+  zone="field"
+>
+  <section class="cs-page" data-zone="field">
+    <header class="cs-page__header">
+      <p class="cs-page__eyebrow">Field &amp; Research</p>
+      <h1 class="cs-page__title">Community Science</h1>
+      <p class="cs-page__lede">
+        San Gabriel River water quality time-series data collected through the
+        Texas Stream Team community monitoring program.
+      </p>
+    </header>
+
+    <div class="cs-page__charts">
+      <div class="cs-page__chart-grid">
+        <div class="cs-page__chart-card">
+          <canvas id="waterTemperatureChart"></canvas>
+        </div>
+        <div class="cs-page__chart-card">
+          <canvas id="dissolvedOxygenChart"></canvas>
+        </div>
+        <div class="cs-page__chart-card">
+          <canvas id="conductivityChart"></canvas>
+        </div>
+        <div class="cs-page__chart-card">
+          <canvas id="phChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-page__link">
+      <a href="/community-science/texas-stream-team">
+        View monitoring protocols and methodology &rarr;
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .cs-page {
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: var(--space-9) var(--gutter) var(--space-10);
+  }
+
+  .cs-page__header {
+    margin-bottom: var(--space-9);
+  }
+
+  .cs-page__eyebrow {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+  }
+
+  .cs-page__title {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--step-4), 5vw, var(--step-6));
+    font-weight: 400;
+    letter-spacing: var(--tracking-tight);
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    margin-bottom: var(--space-5);
+  }
+
+  .cs-page__lede {
+    font-family: var(--font-serif);
+    font-size: var(--step-2);
+    line-height: var(--leading-relaxed);
+    color: var(--ink-soft);
+    max-width: var(--measure);
+  }
+
+  .cs-page__chart-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+
+  .cs-page__chart-card {
+    padding: var(--space-5);
+    border: 1px solid var(--rule);
+    background: var(--paper);
+  }
+
+  .cs-page__chart-card canvas {
+    width: 100%;
+    height: auto;
+  }
+
+  .cs-page__link {
+    margin-top: var(--space-7);
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .cs-page__link a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  @media (max-width: 720px) {
+    .cs-page__chart-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script is:inline src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script is:inline>
+  var sheetId = '1YFSx__TXpx66LwODJISEisWmgKOZQVSMcMi1gJHfNfo';
+  var url = 'https://docs.google.com/spreadsheets/d/' + sheetId + '/gviz/tq?tqx=out:json';
+
+  function renderChart(canvasId, label, labels, data) {
+    var canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: label,
+          data: data,
+          tension: 0.1,
+          fill: false,
+          borderColor: 'rgba(75, 192, 192, 1)'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: { display: true, text: label + ' Over Time' }
+        }
+      }
+    });
+  }
+
+  fetch(url)
+    .then(function (response) { return response.text(); })
+    .then(function (text) {
+      var json = JSON.parse(text.substr(47).slice(0, -2));
+      var rows = json.table.rows;
+      var dates = [], waterTemps = [], dissolvedOxygen = [], conductivity = [], ph = [];
+
+      rows.forEach(function (row) {
+        if (row.c[0]) dates.push(new Date(row.c[0].f).toLocaleDateString('en-US'));
+        if (row.c[15]) waterTemps.push(parseFloat(row.c[15].v) || 0);
+        if (row.c[17]) dissolvedOxygen.push(parseFloat(row.c[17].v) || 0);
+        if (row.c[16]) conductivity.push(parseFloat(row.c[16].v) || 0);
+        if (row.c[18]) ph.push(parseFloat(row.c[18].v) || 0);
+      });
+
+      renderChart('waterTemperatureChart', 'Water Temperature (°C)', dates, waterTemps);
+      renderChart('dissolvedOxygenChart', 'Dissolved Oxygen (mg/L)', dates, dissolvedOxygen);
+      renderChart('conductivityChart', 'Conductivity (µS/cm)', dates, conductivity);
+      renderChart('phChart', 'pH (standard units)', dates, ph);
+    })
+    .catch(function (err) { console.error('Error loading data:', err); });
+</script>
