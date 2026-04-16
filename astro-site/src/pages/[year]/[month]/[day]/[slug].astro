@@ -1,21 +1,16 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { parsePostId } from '../../../../utils/post-url';
+import { zoneLabel } from '../../../../utils/zone';
 import '../../../../styles/article.css';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
-  return posts.map((post) => {
-    const match = post.id.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)$/);
-    if (!match) {
-      throw new Error(`Post id does not match YYYY-MM-DD-slug pattern: ${post.id}`);
-    }
-    const [, year, month, day, slug] = match;
-    return {
-      params: { year, month, day, slug },
-      props: { post },
-    };
-  });
+  return posts.map((post) => ({
+    params: parsePostId(post.id),
+    props: { post },
+  }));
 }
 
 const { post } = Astro.props;
@@ -27,12 +22,8 @@ const dateFormatted = post.data.date.toLocaleDateString('en-US', {
   day: 'numeric',
 });
 
-const readingTime = (() => {
-  const words = post.body?.split(/\s+/).length ?? 0;
-  return Math.max(1, Math.round(words / 220));
-})();
-
-const zoneLabel = post.data.zone === 'field' ? 'Field & Research' : 'Engineering & Code';
+const words = post.body?.split(/\s+/).length ?? 0;
+const readingTime = Math.max(1, Math.round(words / 220));
 ---
 
 <BaseLayout
@@ -45,7 +36,7 @@ const zoneLabel = post.data.zone === 'field' ? 'Field & Research' : 'Engineering
 >
   <article class="article">
     <header class="article__header">
-      <p class="article__eyebrow">{zoneLabel}</p>
+      <p class="article__eyebrow">{zoneLabel(post.data.zone, 'long')}</p>
       <h1 class="article__title">{post.data.title}</h1>
       <div class="article__meta">
         <time datetime={post.data.date.toISOString()}>{dateFormatted}</time>

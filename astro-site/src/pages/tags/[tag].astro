@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostList from '../../components/PostList.astro';
+import { tagSlug } from '../../utils/tag-slug';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
@@ -13,7 +14,7 @@ export async function getStaticPaths() {
     }
   }
   return [...tagMap.entries()].map(([tag, tagPosts]) => ({
-    params: { tag: tag.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') },
+    params: { tag: tagSlug(tag) },
     props: {
       tag,
       posts: tagPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime()),

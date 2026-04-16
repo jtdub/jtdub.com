@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { postUrl } from '../utils/post-url';
+import { zoneLabel } from '../utils/zone';
 
 const recentPosts = (await getCollection('posts'))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
@@ -24,8 +25,9 @@ const recentPosts = (await getCollection('posts'))
           <img
             src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/a83a9258-7a68-4ec4-c9bd-689d4b0b8a00/public"
             alt="A glaciated peak overlooking Sibinacocha in the Andes"
-            loading="lazy"
+            loading="eager"
             decoding="async"
+            fetchpriority="high"
           />
           <figcaption>Cordillera Vilcanota · Peru</figcaption>
         </figure>
@@ -104,7 +106,7 @@ james@jtdub ~ %
           <li>
             <a href={postUrl(post)} data-zone={post.data.zone}>
               <span class="landing__recent-tag">
-                {post.data.zone === 'field' ? 'Field' : 'Engineering'}
+                {zoneLabel(post.data.zone)}
               </span>
               <span class="landing__recent-title">{post.data.title}</span>
               <time datetime={post.data.date.toISOString()}>

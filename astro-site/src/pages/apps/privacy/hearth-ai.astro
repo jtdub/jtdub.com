@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import '../../../styles/article.css';
+---
+
+<BaseLayout title="Hearth AI - Privacy Policy — jtdub.com" description="Privacy policy for the Hearth AI app.">
+  <article class="article">
+    <div class="article__body" style="max-width: var(--measure); margin: 0 auto; padding: var(--space-9) var(--gutter) var(--space-10);">
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h1>Hearth AI &mdash; Privacy Policy</h1>
+            <p class="text-muted">Last updated: March 10, 2026</p>
+
+            <h2>Overview</h2>
+            <p>Hearth AI is designed with privacy as a core principle. All language model inference runs entirely on your device. We do not collect, transmit, or store your conversations, documents, or personal data on any external server.</p>
+
+            <h2>Data Collection</h2>
+            <p>Hearth AI does <strong>not</strong> collect any personal data. Specifically:</p>
+            <ul>
+                <li>No analytics or tracking SDKs are included.</li>
+                <li>No user accounts or sign-in are required.</li>
+                <li>No data is transmitted to our servers or any third party.</li>
+            </ul>
+
+            <h2>On-Device Data</h2>
+            <p>The following data is stored locally on your device and is never transmitted externally:</p>
+            <ul>
+                <li><strong>Conversations:</strong> Chat history is stored on-device using SwiftData.</li>
+                <li><strong>Models:</strong> Downloaded GGUF model files are stored in your app's local storage.</li>
+                <li><strong>Documents:</strong> Any documents imported for Q&amp;A are processed and stored locally.</li>
+                <li><strong>Conversation Memory:</strong> The personal knowledge base is stored locally and can be exported as JSON.</li>
+            </ul>
+
+            <h2>Network Usage</h2>
+            <p>The app connects to the internet only for:</p>
+            <ul>
+                <li><strong>Hugging Face Hub:</strong> Browsing and downloading GGUF models. No personal data is sent during these requests.</li>
+            </ul>
+
+            <h2>Third-Party Services</h2>
+            <p>Hearth AI does not integrate with any third-party analytics, advertising, or tracking services.</p>
+
+            <h2>Children's Privacy</h2>
+            <p>We do not knowingly collect personal information from children under 13. Since no personal data is collected at all, the app is safe for users of all ages.</p>
+
+            <h2>Changes to This Policy</h2>
+            <p>We may update this privacy policy from time to time. Changes will be posted on this page with an updated revision date.</p>
+
+            <h2>Contact</h2>
+            <p>If you have questions about this privacy policy, please visit the <a href="/contact/">contact page</a> or open an issue on the <a href="https://github.com/jtdub/hearth-ai-app/issues" target="_blank">GitHub repository</a>.</p>
+        </div>
+    </div>
+</div>
+    </div>
+  </article>
+</BaseLayout>
