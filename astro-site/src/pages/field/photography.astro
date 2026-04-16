@@ -237,12 +237,58 @@ const years = [...new Set(photos.map((p) => p.year))].sort((a, b) => b - a);
       <line x1="4" y1="4" x2="20" y2="20" /><line x1="20" y1="4" x2="4" y2="20" />
     </svg>
   </button>
+  <button type="button" class="lightbox__prev" aria-label="Previous photo">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <polyline points="15 18 9 12 15 6" />
+    </svg>
+  </button>
+  <button type="button" class="lightbox__next" aria-label="Next photo">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <polyline points="9 6 15 12 9 18" />
+    </svg>
+  </button>
   <img class="lightbox__img" src="" alt="" />
   <div class="lightbox__caption">
     <div class="lightbox__title"></div>
     <div class="lightbox__desc"></div>
+    <div class="lightbox__counter"></div>
   </div>
 </div>
+
+<style>
+  .lightbox__prev,
+  .lightbox__next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--paper);
+    cursor: pointer;
+    padding: var(--space-4);
+    line-height: 0;
+    opacity: 0.6;
+    transition: opacity 120ms ease;
+    z-index: 1;
+  }
+
+  .lightbox__prev:hover,
+  .lightbox__next:hover {
+    opacity: 1;
+  }
+
+  .lightbox__prev { left: var(--space-4); }
+  .lightbox__next { right: var(--space-4); }
+
+  .lightbox__counter {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    color: var(--paper-deep);
+    margin-top: var(--space-2);
+    font-variant-numeric: tabular-nums;
+    opacity: 0.6;
+  }
+</style>
 
 <script is:inline>
   (function () {
@@ -250,13 +296,28 @@ const years = [...new Set(photos.map((p) => p.year))].sort((a, b) => b - a);
     var lbImg = lb.querySelector('.lightbox__img');
     var lbTitle = lb.querySelector('.lightbox__title');
     var lbDesc = lb.querySelector('.lightbox__desc');
+    var lbCounter = lb.querySelector('.lightbox__counter');
     var lbClose = lb.querySelector('.lightbox__close');
+    var lbPrev = lb.querySelector('.lightbox__prev');
+    var lbNext = lb.querySelector('.lightbox__next');
 
-    function open(src, alt, title, desc) {
-      lbImg.src = src;
-      lbImg.alt = alt;
-      lbTitle.textContent = title;
-      lbDesc.textContent = desc;
+    var links = Array.from(document.querySelectorAll('[data-lightbox]'));
+    var current = 0;
+
+    function show(index) {
+      if (index < 0) index = links.length - 1;
+      if (index >= links.length) index = 0;
+      current = index;
+      var link = links[current];
+      lbImg.src = link.href;
+      lbImg.alt = link.querySelector('img').alt;
+      lbTitle.textContent = link.dataset.title || '';
+      lbDesc.textContent = link.dataset.desc || '';
+      lbCounter.textContent = (current + 1) + ' / ' + links.length;
+    }
+
+    function open(index) {
+      show(index);
       lb.classList.add('is-open');
       document.body.style.overflow = 'hidden';
     }
@@ -266,19 +327,25 @@ const years = [...new Set(photos.map((p) => p.year))].sort((a, b) => b - a);
       document.body.style.overflow = '';
     }
 
-    document.querySelectorAll('[data-lightbox]').forEach(function (link) {
+    links.forEach(function (link, i) {
       link.addEventListener('click', function (e) {
         e.preventDefault();
-        open(link.href, link.querySelector('img').alt, link.dataset.title, link.dataset.desc);
+        open(i);
       });
     });
+
+    lbPrev.addEventListener('click', function (e) { e.stopPropagation(); show(current - 1); });
+    lbNext.addEventListener('click', function (e) { e.stopPropagation(); show(current + 1); });
 
     lb.addEventListener('click', function (e) {
       if (e.target === lb || e.target === lbClose || lbClose.contains(e.target)) close();
     });
 
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && lb.classList.contains('is-open')) close();
+      if (!lb.classList.contains('is-open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') show(current - 1);
+      if (e.key === 'ArrowRight') show(current + 1);
     });
   })();
 </script>
