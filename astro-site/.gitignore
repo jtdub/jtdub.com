@@ -6,6 +6,9 @@ dist/
 # dependencies
 node_modules/
 
+# pagefind build output (copied to public/ for dev server access)
+public/pagefind/
+
 # logs
 npm-debug.log*
 yarn-debug.log*
