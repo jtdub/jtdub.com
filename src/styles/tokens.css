@@ -74,6 +74,11 @@
   --eng-accent-deep: #142640;
   --eng-tint: #E4E9F0;
 
+  /* Essays zone accent — muted sage */
+  --essays-accent: #5B7553;
+  --essays-accent-deep: #3E5438;
+  --essays-tint: #E6EDE4;
+
   /* Default zone (until overridden by [data-zone]) */
   --accent: var(--ink);
   --accent-deep: var(--ink);
@@ -95,4 +100,10 @@
   --accent: var(--eng-accent);
   --accent-deep: var(--eng-accent-deep);
   --accent-tint: var(--eng-tint);
+}
+
+[data-zone='essays'] {
+  --accent: var(--essays-accent);
+  --accent-deep: var(--essays-accent-deep);
+  --accent-tint: var(--essays-tint);
 }

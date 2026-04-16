@@ -1,7 +1,7 @@
 ---
 title: Group Trail Run at Colorado Bend State Park
 date: '2019-04-22'
-zone: field
+zone: essays
 author: jtdub
 tags:
 - Trail Running

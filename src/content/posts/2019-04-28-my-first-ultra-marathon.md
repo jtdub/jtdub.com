@@ -1,7 +1,7 @@
 ---
 title: My First Ultra Marathon
 date: '2019-04-28'
-zone: field
+zone: essays
 author: jtdub
 tags:
 - Essays

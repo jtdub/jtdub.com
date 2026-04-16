@@ -8,7 +8,7 @@ const posts = defineCollection({
     date: z.coerce.date(),
     author: z.string().optional(),
     tags: z.array(z.string()).default([]),
-    zone: z.enum(['field', 'engineering']).default('field'),
+    zone: z.enum(['field', 'engineering', 'essays']).default('field'),
     description: z.string().optional(),
     external_url: z.string().url().optional(),
   }),

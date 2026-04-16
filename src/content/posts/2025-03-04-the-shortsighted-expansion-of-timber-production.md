@@ -1,7 +1,7 @@
 ---
 title: 'The Shortsighted Expansion of Timber Production: A Dangerous Executive Order'
 date: '2025-03-04'
-zone: engineering
+zone: essays
 author: jtdub
 tags:
 - Politics
