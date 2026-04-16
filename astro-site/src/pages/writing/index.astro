@@ -1,0 +1,85 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostList from '../../components/PostList.astro';
+
+const posts = (await getCollection('posts')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+---
+
+<BaseLayout title="Writing — jtdub.com" zone="home">
+  <section class="writing-landing">
+    <header class="writing-landing__header">
+      <p class="writing-landing__eyebrow">Writing · Both zones</p>
+      <h1 class="writing-landing__title">
+        Everything<br /><em>in order.</em>
+      </h1>
+      <p class="writing-landing__lede">
+        Every post across both doorways, chronological. {posts.length} entries
+        spanning {new Date().getFullYear() - posts[posts.length - 1].data.date.getFullYear() + 1} years
+        of fieldwork, engineering, and whatever else found its way into a draft.
+      </p>
+    </header>
+
+    <PostList posts={posts} showZone={true} />
+  </section>
+</BaseLayout>
+
+<style>
+  .writing-landing {
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: var(--space-9) var(--gutter) var(--space-10);
+  }
+
+  .writing-landing__header {
+    max-width: var(--measure-wide);
+    margin-bottom: var(--space-10);
+  }
+
+  .writing-landing__eyebrow {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    margin-bottom: var(--space-5);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .writing-landing__eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--ink-faint);
+  }
+
+  .writing-landing__title {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--step-4), 5vw, var(--step-6));
+    line-height: 1.02;
+    letter-spacing: var(--tracking-tight);
+    font-weight: 400;
+    color: var(--ink);
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    margin-bottom: var(--space-6);
+  }
+
+  .writing-landing__title em {
+    font-style: italic;
+    color: var(--ink-faint);
+    font-weight: 300;
+  }
+
+  .writing-landing__lede {
+    font-family: var(--font-serif);
+    font-size: var(--step-3);
+    line-height: var(--leading-relaxed);
+    color: var(--ink-soft);
+    max-width: var(--measure);
+  }
+</style>
