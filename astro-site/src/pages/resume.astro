@@ -1,0 +1,298 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import resume from '../data/resume.json';
+---
+
+<BaseLayout
+  title="Résumé — jtdub.com"
+  description={resume.summary}
+  zone="engineering"
+>
+  <section class="resume" data-zone="engineering">
+    <header class="resume__header">
+      <p class="resume__eyebrow">Résumé</p>
+      <h1 class="resume__name">James Williams</h1>
+      <p class="resume__summary">{resume.summary}</p>
+      <div class="resume__contact">
+        {resume.contact.map((c: any) => (
+          <a href={c.url} rel="me">{c.name}</a>
+        ))}
+      </div>
+    </header>
+
+    <div class="resume__section">
+      <h2>Skills</h2>
+      <div class="resume__skills">
+        {resume.skills.map((s: any) => (
+          <div class="resume__skill-group">
+            <h3>{s.category}</h3>
+            <p>{s.items.join(' · ')}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="resume__section">
+      <h2>Experience</h2>
+      {resume.experience.map((e: any) => (
+        <div class="resume__entry">
+          <div class="resume__entry-meta">
+            <span>{e.start}–{e.end}</span>
+            <span>{e.location}</span>
+          </div>
+          <div class="resume__entry-body">
+            <h3>{e.role}</h3>
+            <p class="resume__employer">{e.employer}</p>
+            <ul>
+              {e.description.map((d: string) => <li>{d}</li>)}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="resume__section">
+      <h2>Education</h2>
+      {resume.education.map((e: any) => (
+        <div class="resume__entry">
+          <div class="resume__entry-meta">
+            <span>{e.start ? `${e.start}–` : ''}{e.end}</span>
+          </div>
+          <div class="resume__entry-body">
+            <h3>{e.major}</h3>
+            <p class="resume__employer">{e.school}</p>
+            {e.gpa && <p class="resume__detail">GPA: {e.gpa}</p>}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="resume__section">
+      <h2>Certifications</h2>
+      {resume.certifications.map((c: any) => (
+        <div class="resume__entry">
+          <div class="resume__entry-meta">
+            <span>{c.start}{c.end ? `–${c.end}` : '–present'}</span>
+            <span class={`resume__status resume__status--${c.status}`}>{c.status}</span>
+          </div>
+          <div class="resume__entry-body">
+            <h3>{c.cert}</h3>
+            <p class="resume__employer">{c.vendor}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="resume__section">
+      <h2>Research &amp; Volunteering</h2>
+      {resume.research_volunteering.map((r: any) => (
+        <div class="resume__entry">
+          <div class="resume__entry-meta">
+            {r.period && <span>{r.period}</span>}
+          </div>
+          <div class="resume__entry-body">
+            <h3>{r.role}</h3>
+            <p class="resume__employer">{r.organization}</p>
+            {r.description && <p class="resume__detail">{r.description}</p>}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="resume__section">
+      <h2>Publications</h2>
+      {resume.publications.map((p: any) => (
+        <div class="resume__entry">
+          <div class="resume__entry-meta">
+            <span>{p.year}</span>
+          </div>
+          <div class="resume__entry-body">
+            <h3>{p.title}</h3>
+            <p class="resume__employer">{p.journal}, {p.volume}, pp. {p.pages}</p>
+            <p class="resume__detail">{p.authors}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .resume {
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: var(--space-9) var(--gutter) var(--space-10);
+  }
+
+  .resume__header {
+    max-width: var(--measure-wide);
+    margin-bottom: var(--space-10);
+  }
+
+  .resume__eyebrow {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: var(--space-5);
+  }
+
+  .resume__name {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--step-4), 5vw, var(--step-6));
+    font-weight: 400;
+    letter-spacing: var(--tracking-tight);
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    margin-bottom: var(--space-5);
+  }
+
+  .resume__summary {
+    font-family: var(--font-serif);
+    font-size: var(--step-2);
+    line-height: var(--leading-relaxed);
+    color: var(--ink-soft);
+    max-width: var(--measure);
+  }
+
+  .resume__contact {
+    display: flex;
+    gap: var(--space-5);
+    margin-top: var(--space-5);
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .resume__contact a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  .resume__section {
+    max-width: var(--measure-wide);
+    margin-bottom: var(--space-9);
+  }
+
+  .resume__section > h2 {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: var(--space-6);
+  }
+
+  .resume__skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--space-5);
+  }
+
+  .resume__skill-group h3 {
+    font-family: var(--font-sans);
+    font-size: var(--step-0);
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: var(--space-2);
+  }
+
+  .resume__skill-group p {
+    font-family: var(--font-sans);
+    font-size: var(--step-1);
+    color: var(--ink-soft);
+  }
+
+  .resume__entry {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: var(--space-5);
+    padding: var(--space-5) 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .resume__entry:last-child {
+    border-bottom: none;
+  }
+
+  .resume__entry-meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: var(--tracking-snug);
+  }
+
+  .resume__entry-body h3 {
+    font-family: var(--font-serif);
+    font-size: var(--step-2);
+    font-weight: 500;
+    line-height: var(--leading-snug);
+    font-variation-settings: 'opsz' 144, 'SOFT' 40;
+    margin-bottom: var(--space-2);
+  }
+
+  .resume__employer {
+    font-family: var(--font-sans);
+    font-size: var(--step-1);
+    color: var(--ink-soft);
+    margin-bottom: var(--space-3);
+  }
+
+  .resume__entry-body ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .resume__entry-body li {
+    font-family: var(--font-sans);
+    font-size: var(--step-1);
+    line-height: var(--leading-relaxed);
+    color: var(--ink-soft);
+    padding-left: var(--space-4);
+    position: relative;
+  }
+
+  .resume__entry-body li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .resume__detail {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    color: var(--ink-faint);
+  }
+
+  .resume__status {
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .resume__status--current { color: var(--accent); }
+  .resume__status--expired { color: var(--ink-faint); }
+
+  @media (max-width: 720px) {
+    .resume__entry {
+      grid-template-columns: 1fr;
+      gap: var(--space-2);
+    }
+  }
+</style>

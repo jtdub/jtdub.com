@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import publications from '../../data/publications.json';
+import academicPapers from '../../data/academic-papers.json';
+---
+
+<BaseLayout title="Publications — jtdub.com" zone="field">
+  <section class="pubs-page" data-zone="field">
+    <header class="pubs-page__header">
+      <p class="pubs-page__eyebrow">Field &amp; Research</p>
+      <h1 class="pubs-page__title">Publications</h1>
+    </header>
+
+    <div class="pubs-page__section">
+      <h2>Peer-Reviewed &amp; Published</h2>
+      {publications.map((p: any) => (
+        <div class="pubs-page__entry">
+          <h3>
+            {p.url ? <a href={p.url}>{p.title}</a> : p.title}
+          </h3>
+          <p class="pubs-page__meta">
+            <em>{p.publication}</em>
+            {p.volume && `, ${p.volume}`}
+            {p.pages && `, pp. ${p.pages}`}
+            {p.date && ` (${p.date})`}
+          </p>
+          {p.description && <p class="pubs-page__desc">{p.description}</p>}
+          {p.impact && <p class="pubs-page__impact">{p.impact}</p>}
+        </div>
+      ))}
+    </div>
+
+    <div class="pubs-page__section">
+      <h2>Academic Papers</h2>
+      {academicPapers.map((p: any) => (
+        <div class="pubs-page__entry">
+          <h3>
+            {p.url ? <a href={p.url}>{p.title}</a> : p.title}
+          </h3>
+          {p.date && <p class="pubs-page__meta">{p.date}</p>}
+          {p.notes && <p class="pubs-page__desc">{p.notes}</p>}
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .pubs-page {
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: var(--space-9) var(--gutter) var(--space-10);
+  }
+
+  .pubs-page__header {
+    margin-bottom: var(--space-10);
+  }
+
+  .pubs-page__eyebrow {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+  }
+
+  .pubs-page__title {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--step-4), 5vw, var(--step-6));
+    font-weight: 400;
+    letter-spacing: var(--tracking-tight);
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+  }
+
+  .pubs-page__section {
+    max-width: var(--measure-wide);
+    margin-bottom: var(--space-9);
+  }
+
+  .pubs-page__section > h2 {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: var(--space-6);
+  }
+
+  .pubs-page__entry {
+    padding: var(--space-5) 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .pubs-page__entry:last-child {
+    border-bottom: none;
+  }
+
+  .pubs-page__entry h3 {
+    font-family: var(--font-serif);
+    font-size: var(--step-2);
+    font-weight: 500;
+    line-height: var(--leading-snug);
+    font-variation-settings: 'opsz' 144, 'SOFT' 40;
+    margin-bottom: var(--space-2);
+  }
+
+  .pubs-page__entry a {
+    color: var(--accent-deep);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+  }
+
+  .pubs-page__meta {
+    font-family: var(--font-sans);
+    font-size: var(--step-1);
+    color: var(--ink-faint);
+  }
+
+  .pubs-page__desc {
+    font-family: var(--font-serif);
+    font-size: var(--step-1);
+    line-height: var(--leading-relaxed);
+    color: var(--ink-soft);
+    margin-top: var(--space-3);
+  }
+
+  .pubs-page__impact {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    color: var(--ink-faint);
+    font-style: italic;
+    margin-top: var(--space-2);
+  }
+</style>
