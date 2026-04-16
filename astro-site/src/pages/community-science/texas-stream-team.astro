@@ -37,50 +37,50 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <div class="tst-page__protocol">
           <h3>Dissolved Oxygen (DO)</h3>
           <dl>
-            <dt>Method</dt><dd>Electronic probe measurement (mg/L)</dd>
-            <dt>Protocol</dt><dd>Calibrate probe daily, measure at multiple depths, record temperature simultaneously</dd>
-            <dt>Significance</dt><dd>Critical indicator of aquatic ecosystem health. Values below 5 mg/L stress aquatic life; below 2 mg/L cause fish kills</dd>
-            <dt>Factors</dt><dd>Temperature-dependent, affected by organic pollution, algal blooms, and thermal stratification</dd>
+            <dt>Method</dt><dd>Modified Winkler Titration (mg/L) · Accuracy ±0.5 mg/L · Resolution 0.1 mg/L</dd>
+            <dt>Protocol</dt><dd>Collect samples at 0.3 m depth, fill bottles underwater with no air bubbles. Fix with Manganous Sulfate + Alkaline Potassium Iodide Azide (8 drops each), invert 25 times. Add Sulfuric Acid, titrate with Sodium Thiosulfate until pale yellow, add Starch indicator, continue until blue disappears. Average two titrations within 0.5 mg/L.</dd>
+            <dt>Significance</dt><dd>Essential for all aquatic life. Most organisms require 5–6 mg/L; below 3 mg/L organisms struggle; below 1–2 mg/L most cannot survive.</dd>
+            <dt>Factors</dt><dd>Temperature (cold water holds more oxygen — 31°C holds half the DO of 1°C), photosynthesis/respiration cycles, algae blooms, wind/turbulence, barometric pressure, salinity.</dd>
           </dl>
         </div>
 
         <div class="tst-page__protocol">
-          <h3>pH Levels</h3>
+          <h3>pH</h3>
           <dl>
-            <dt>Method</dt><dd>Calibrated electronic pH meter (standard units)</dd>
-            <dt>Protocol</dt><dd>Two-point calibration (pH 7.0, 10.0), temperature compensation, multiple readings</dd>
-            <dt>Significance</dt><dd>Indicates acid-base balance. Natural waters: 6.5–8.5; values outside this range stress aquatic organisms</dd>
-            <dt>Factors</dt><dd>Influenced by geology, acid rain, agricultural runoff, and biological processes</dd>
+            <dt>Method</dt><dd>Wide Range Color Comparator (3.0–10.5 s.u.) · Accuracy ±1 s.u. · Resolution 1 s.u.</dd>
+            <dt>Protocol</dt><dd>Rinse test tube twice with sample water, fill to 5 mL line. Add 10 drops Wide Range Indicator, cap and invert 10 times. Insert into Color Comparator Viewer against white background, estimate to nearest 0.1 s.u. Red = acidic, yellow-green = mid-range, blue = basic.</dd>
+            <dt>Significance</dt><dd>Most aquatic organisms thrive at pH 6.5–8.2. Texas streams typically range 7.0–9.0. Extreme pH (&gt;9.0 or &lt;5.0) prevents reproduction and releases toxic metals from sediments.</dd>
+            <dt>Factors</dt><dd>Buffering capacity from local geology (soils, minerals, rocks), photosynthesis (removes CO₂, raises pH), respiration, acid rain, agricultural runoff, plant decomposition.</dd>
           </dl>
         </div>
 
         <div class="tst-page__protocol">
-          <h3>Turbidity</h3>
+          <h3>Water Temperature</h3>
           <dl>
-            <dt>Method</dt><dd>Nephelometric measurement (NTU)</dd>
-            <dt>Protocol</dt><dd>Use turbidity meter, collect sample avoiding air bubbles, measure within 24 hours</dd>
-            <dt>Significance</dt><dd>Measures suspended particles. High turbidity reduces light penetration, affects photosynthesis and aquatic habitats</dd>
-            <dt>Factors</dt><dd>Erosion, construction, agricultural practices, urban runoff, and natural events</dd>
+            <dt>Method</dt><dd>Armored centigrade thermometer (°C) · Accuracy ±1°C · Resolution 0.5°C</dd>
+            <dt>Protocol</dt><dd>Air: hang thermometer in shaded location out of direct sun and wind for 2–3 minutes, hold by end opposite bulb. Water: place thermometer in sample bucket (out of sun, do not hold bucket) for 1.5 minutes with bulb submerged, read while bulb remains underwater.</dd>
+            <dt>Significance</dt><dd>Affects metabolic rates, reproductive cycles, and oxygen solubility. Cold-water and warm-water species have different tolerances. Thermal pollution from industrial discharge or dams harms sensitive species.</dd>
+            <dt>Factors</dt><dd>Season, time of day, riparian shading, groundwater inputs, upstream reservoirs, solar radiation, industrial thermal discharge, urban runoff.</dd>
           </dl>
         </div>
 
         <div class="tst-page__protocol">
           <h3>Conductivity</h3>
           <dl>
-            <dt>Method</dt><dd>Electronic conductivity meter (µS/cm)</dd>
-            <dt>Protocol</dt><dd>Temperature-compensated readings, calibration with standard solutions, multiple measurements</dd>
-            <dt>Significance</dt><dd>Indicates dissolved ion concentrations. Useful for detecting pollution and salinity changes</dd>
-            <dt>Factors</dt><dd>Geology, road salt, sewage discharge, industrial pollution, and natural mineral content</dd>
+            <dt>Method</dt><dd>Digital probe / ECTester11 (µS/cm, 0–1999) · Accuracy ±2% · Resolution 0.1 µS/cm</dd>
+            <dt>Protocol</dt><dd>Calibrate with standard solution 24 hours before or at site — rinse probe twice, submerge 1 cm above bottom with no air bubbles, wait 2 minutes for temperature compensation. Field: rinse with sample, fill beaker to 20 mL, submerge probe, wait 2 minutes, read. Post-test QC: re-check against same standard within 10%.</dd>
+            <dt>Significance</dt><dd>Measures Total Dissolved Solids via electrical conductance. Distilled water: 0.5–3 µS/cm; typical rivers: 50–1,500 µS/cm. Higher TDS indicates higher ion concentration affecting osmotic stress on organisms.</dd>
+            <dt>Factors</dt><dd>Dissolved minerals/ions (calcium, magnesium, sodium, potassium), mineral-rich geology, road salt, agricultural fertilizer runoff, septic/sewage discharge, industrial wastewater.</dd>
           </dl>
         </div>
 
         <div class="tst-page__protocol">
-          <h3>Water Clarity</h3>
+          <h3>Water Clarity / Transparency</h3>
           <dl>
-            <dt>Method</dt><dd>Secchi disk measurement (centimeters or meters)</dd>
-            <dt>Protocol</dt><dd>Lower black and white disk until no longer visible, record depth, repeat measurement</dd>
-            <dt>Significance</dt><dd>Simple but effective measure of water transparency, related to turbidity and productivity</dd>
-            <dt>Factors</dt><dd>Suspended sediments, algal growth, organic matter, and seasonal variations</dd>
+            <dt>Method</dt><dd>Secchi Disk (20 cm, black/white quadrants) or Transparency Tube (m) · Accuracy ±0.1 m · Resolution 0.1 m</dd>
+            <dt>Protocol</dt><dd>Without sunglasses, in shade or with sun behind you. Lower disk until it disappears, note depth. Raise slowly until it reappears, note depth. Average the two readings as the limit of visibility. For transparency tube: pour sample slowly avoiding air bubbles, release water from valve in 1 cm increments until black/white pattern just becomes visible.</dd>
+            <dt>Significance</dt><dd>Turbidity impacts photosynthesis, seagrass/algal growth, and fish feeding (reduced visibility). Excessive turbidity from erosion or algae blooms can transport heavy metals and toxic substances. Moderate turbidity indicates healthy plankton levels.</dd>
+            <dt>Factors</dt><dd>Suspended sediment from erosion, plankton blooms in warm nutrient-rich water, wind-generated waves and boat wakes, bottom-feeding fish, dissolved organic acids (tannins/lignins from decaying plants), seasonal algae growth.</dd>
           </dl>
         </div>
       </div>
