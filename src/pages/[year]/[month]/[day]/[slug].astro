@@ -1,0 +1,54 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { parsePostId } from '../../../../utils/post-url';
+import { zoneLabel } from '../../../../utils/zone';
+import '../../../../styles/article.css';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({
+    params: parsePostId(post.id),
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const dateFormatted = post.data.date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const words = post.body?.split(/\s+/).length ?? 0;
+const readingTime = Math.max(1, Math.round(words / 220));
+---
+
+<BaseLayout
+  title={`${post.data.title} — jtdub.com`}
+  description={post.data.description}
+  zone={post.data.zone}
+  type="article"
+  publishedDate={post.data.date}
+  tags={post.data.tags}
+>
+  <article class="article">
+    <header class="article__header">
+      <p class="article__eyebrow">{zoneLabel(post.data.zone, 'long')}</p>
+      <h1 class="article__title">{post.data.title}</h1>
+      <div class="article__meta">
+        <time datetime={post.data.date.toISOString()}>{dateFormatted}</time>
+        <span>{readingTime} min read</span>
+        {post.data.tags.length > 0 && (
+          <span>{post.data.tags.slice(0, 3).join(' · ')}</span>
+        )}
+      </div>
+    </header>
+
+    <div class="article__body">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

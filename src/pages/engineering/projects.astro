@@ -1,0 +1,175 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import apps from '../../data/projects-apps.json';
+import oss from '../../data/projects-oss.json';
+
+const projects = [
+  ...apps.map((a: any) => ({ ...a, kind: 'app' as const })),
+  ...oss.map((o: any) => ({ ...o, kind: 'library' as const })),
+];
+---
+
+<BaseLayout title="Projects — jtdub.com" zone="engineering">
+  <section class="projects-page" data-zone="engineering">
+    <header class="projects-page__header">
+      <p class="projects-page__eyebrow">Engineering &amp; Code</p>
+      <h1 class="projects-page__title">Projects</h1>
+      <p class="projects-page__count">{projects.length} projects — apps and open source libraries</p>
+    </header>
+
+    <div class="projects-page__section">
+      <h2>Apps</h2>
+      <div class="projects-page__grid">
+        {apps.map((a: any) => (
+          <div class="projects-page__card">
+            <h3>{a.name}</h3>
+            <p class="projects-page__desc">{a.description}</p>
+            <div class="projects-page__links">
+              {a.repo && <a href={a.repo}>Source</a>}
+              {a.app_store_url && a.app_store_url !== '#' && (
+                <a href={a.app_store_url}>App Store</a>
+              )}
+              {a.slug && <a href={`/apps/privacy/${a.slug}`}>Privacy</a>}
+              {a.slug && <a href={`/apps/support/${a.slug}`}>Support</a>}
+            </div>
+            <div class="projects-page__meta">
+              {a.platforms?.join(' · ')}
+              {a.source === 'open' && ' · Open Source'}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="projects-page__section">
+      <h2>Open Source</h2>
+      <div class="projects-page__grid">
+        {oss.map((o: any) => (
+          <div class="projects-page__card">
+            <h3>
+              <a href={o.repo}>{o.name}</a>
+            </h3>
+            <p class="projects-page__desc">{o.purpose}</p>
+            <div class="projects-page__meta">
+              {o.language} · {o.category} · {o.contrib}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .projects-page {
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: var(--space-9) var(--gutter) var(--space-10);
+  }
+
+  .projects-page__header {
+    margin-bottom: var(--space-10);
+  }
+
+  .projects-page__eyebrow {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+  }
+
+  .projects-page__title {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--step-4), 5vw, var(--step-6));
+    font-weight: 400;
+    letter-spacing: var(--tracking-tight);
+    font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 0;
+    margin-bottom: var(--space-3);
+  }
+
+  .projects-page__count {
+    font-family: var(--font-sans);
+    font-size: var(--step-1);
+    color: var(--ink-faint);
+  }
+
+  .projects-page__section {
+    margin-bottom: var(--space-9);
+  }
+
+  .projects-page__section > h2 {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: var(--space-6);
+  }
+
+  .projects-page__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: var(--space-5);
+  }
+
+  .projects-page__card {
+    padding: var(--space-6);
+    border: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    transition: border-color 180ms ease;
+  }
+
+  .projects-page__card:hover {
+    border-color: var(--accent);
+  }
+
+  .projects-page__card h3 {
+    font-family: var(--font-serif);
+    font-size: var(--step-3);
+    font-weight: 500;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 0;
+  }
+
+  .projects-page__card a {
+    color: var(--accent-deep);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+  }
+
+  .projects-page__desc {
+    font-family: var(--font-serif);
+    font-size: var(--step-1);
+    line-height: var(--leading-relaxed);
+    color: var(--ink-soft);
+  }
+
+  .projects-page__links {
+    display: flex;
+    gap: var(--space-5);
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .projects-page__links a {
+    color: var(--accent);
+  }
+
+  .projects-page__meta {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    color: var(--ink-faint);
+    margin-top: auto;
+  }
+</style>

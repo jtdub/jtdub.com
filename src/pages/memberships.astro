@@ -1,0 +1,252 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Memberships & Fieldwork — jtdub.com"
+  description="Professional affiliations and key fieldwork experiences in archaeological methods, research collaboration, and community engagement."
+  zone="field"
+>
+  <section class="memberships" data-zone="field">
+    <header class="memberships__header">
+      <p class="memberships__eyebrow">Field &amp; Research</p>
+      <h1 class="memberships__title">Memberships &amp; Fieldwork</h1>
+      <p class="memberships__lede">
+        Professional affiliations and key fieldwork experiences showcasing
+        archaeological methods, research collaboration, and community engagement.
+      </p>
+    </header>
+
+    <div class="memberships__section">
+      <h2>Professional Memberships</h2>
+      <p class="memberships__intro">
+        Active membership in professional organizations supports ongoing engagement
+        with archaeological research, methods development, and community outreach.
+      </p>
+
+      <div class="memberships__grid">
+        <div class="memberships__card">
+          <h3>Texas Archaeological Society (TAS)</h3>
+          <p>
+            Texas's premier organization for archaeological research and education,
+            promoting the investigation, preservation, and interpretation of
+            archaeological sites throughout the state.
+          </p>
+          <dl>
+            <dt>Focus</dt>
+            <dd>Regional archaeology, field schools, site preservation</dd>
+            <dt>Activities</dt>
+            <dd>Field training, research collaboration, public outreach</dd>
+          </dl>
+        </div>
+
+        <div class="memberships__card">
+          <h3>Travis County Archaeological Society (TCAS)</h3>
+          <p>
+            Local archaeological society serving the Austin area and Travis County,
+            promoting archaeological research, education, and preservation of
+            regional archaeological resources.
+          </p>
+          <dl>
+            <dt>Focus</dt>
+            <dd>Travis County archaeology, local site preservation, community education</dd>
+            <dt>Activities</dt>
+            <dd>Monthly meetings, volunteering with Texas Archaeological Research Laboratory (TARL)</dd>
+          </dl>
+        </div>
+
+        <div class="memberships__card">
+          <h3>Society for American Archaeology (SAA)</h3>
+          <p>
+            International organization for professional archaeologists dedicated to
+            research, interpretation, and protection of archaeological heritage
+            throughout the Americas.
+          </p>
+          <dl>
+            <dt>Focus</dt>
+            <dd>International standards, ethics, professional development</dd>
+            <dt>Activities</dt>
+            <dd>Annual meetings, publications, ethical guidelines</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="memberships__section">
+      <h2>Professional Development &amp; Training</h2>
+      <div class="memberships__training">
+        <div>
+          <h3>Archaeological Methods Training</h3>
+          <ul>
+            <li>TAS Field School 2025: Excavation &amp; Documentation</li>
+            <li>Underwater archaeology methods (Sibinacocha Project)</li>
+            <li>Digital documentation and 3D modeling techniques</li>
+            <li>Site mapping and survey methodologies</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Community Engagement &amp; Ethics</h3>
+          <ul>
+            <li>Community-based participatory research methods</li>
+            <li>Indigenous community collaboration protocols</li>
+            <li>Environmental monitoring and citizen science</li>
+            <li>Ethical guidelines for archaeological research</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .memberships {
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: var(--space-9) var(--gutter) var(--space-10);
+  }
+
+  .memberships__header {
+    margin-bottom: var(--space-10);
+  }
+
+  .memberships__eyebrow {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+  }
+
+  .memberships__title {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--step-4), 5vw, var(--step-6));
+    font-weight: 400;
+    letter-spacing: var(--tracking-tight);
+    font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 0;
+    margin-bottom: var(--space-5);
+  }
+
+  .memberships__lede {
+    font-family: var(--font-serif);
+    font-size: var(--step-2);
+    line-height: var(--leading-relaxed);
+    color: var(--ink-soft);
+    max-width: var(--measure);
+  }
+
+  .memberships__section {
+    margin-bottom: var(--space-10);
+  }
+
+  .memberships__section > h2 {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: var(--space-6);
+  }
+
+  .memberships__intro {
+    font-family: var(--font-serif);
+    font-size: var(--step-2);
+    line-height: var(--leading-relaxed);
+    color: var(--ink-soft);
+    max-width: var(--measure);
+    margin-bottom: var(--space-7);
+  }
+
+  .memberships__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-5);
+  }
+
+  .memberships__card {
+    padding: var(--space-6);
+    border: 1px solid var(--rule);
+  }
+
+  .memberships__card h3 {
+    font-family: var(--font-serif);
+    font-size: var(--step-2);
+    font-weight: 500;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 0;
+    color: var(--accent);
+    margin-bottom: var(--space-4);
+  }
+
+  .memberships__card p {
+    font-family: var(--font-serif);
+    font-size: var(--step-1);
+    line-height: var(--leading-relaxed);
+    color: var(--ink-soft);
+    margin-bottom: var(--space-4);
+  }
+
+  .memberships__card dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-2) var(--space-4);
+  }
+
+  .memberships__card dt {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: var(--step--1);
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+  }
+
+  .memberships__card dd {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    color: var(--ink-soft);
+    line-height: var(--leading-relaxed);
+  }
+
+  .memberships__training {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+
+  .memberships__training h3 {
+    font-family: var(--font-serif);
+    font-size: var(--step-2);
+    font-weight: 500;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 0;
+    margin-bottom: var(--space-4);
+  }
+
+  .memberships__training ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: var(--step-1);
+    color: var(--ink-soft);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .memberships__training li::before {
+    content: '· ';
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  @media (max-width: 720px) {
+    .memberships__training {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

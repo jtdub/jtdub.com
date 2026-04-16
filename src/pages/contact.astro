@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Contact — jtdub.com" description="Get in touch for collaboration opportunities or questions about my work.">
+  <section class="contact-page">
+    <header class="contact-page__header">
+      <p class="contact-page__eyebrow">Get in touch</p>
+      <h1 class="contact-page__title">Contact</h1>
+    </header>
+
+    <div class="contact-page__body">
+      <div class="contact-page__card">
+        <h2>Collaboration &amp; Questions</h2>
+        <p>
+          Interested in fieldwork collaboration, network automation, open source,
+          or anything else you've read here? I'd like to hear from you.
+        </p>
+        <ul class="contact-page__links">
+          <li><a href="https://github.com/jtdub" rel="me">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/jtdub/" rel="me">LinkedIn</a></li>
+        </ul>
+      </div>
+
+      <div class="contact-page__card">
+        <h2>Résumé / CV</h2>
+        <p>View my professional background and experience.</p>
+        <a href="/resume" class="contact-page__cta">View résumé &rarr;</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-page {
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: var(--space-9) var(--gutter) var(--space-10);
+  }
+
+  .contact-page__header {
+    margin-bottom: var(--space-9);
+  }
+
+  .contact-page__eyebrow {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+  }
+
+  .contact-page__title {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--step-4), 5vw, var(--step-6));
+    font-weight: 400;
+    letter-spacing: var(--tracking-tight);
+    font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 0;
+  }
+
+  .contact-page__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    max-width: var(--measure-wide);
+  }
+
+  .contact-page__card {
+    padding: var(--space-7);
+    border: 1px solid var(--rule);
+  }
+
+  .contact-page__card h2 {
+    font-family: var(--font-serif);
+    font-size: var(--step-3);
+    font-weight: 500;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 0;
+    margin-bottom: var(--space-4);
+  }
+
+  .contact-page__card p {
+    font-family: var(--font-serif);
+    font-size: var(--step-1);
+    line-height: var(--leading-relaxed);
+    color: var(--ink-soft);
+    margin-bottom: var(--space-5);
+  }
+
+  .contact-page__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: var(--space-5);
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .contact-page__links a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  .contact-page__cta {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  @media (max-width: 720px) {
+    .contact-page__body {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

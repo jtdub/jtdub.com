@@ -1,0 +1,116 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { tagSlug } from '../../utils/tag-slug';
+
+const posts = await getCollection('posts');
+const tagCounts = new Map<string, number>();
+for (const post of posts) {
+  for (const tag of post.data.tags) {
+    tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+  }
+}
+
+const tags = [...tagCounts.entries()]
+  .sort((a, b) => b[1] - a[1])
+  .map(([tag, count]) => ({
+    name: tag,
+    slug: tagSlug(tag),
+    count,
+  }));
+---
+
+<BaseLayout title="Tags — jtdub.com">
+  <section class="tags-page">
+    <header class="tags-page__header">
+      <p class="tags-page__eyebrow">Index</p>
+      <h1 class="tags-page__title">Tags</h1>
+      <p class="tags-page__count">{tags.length} topics across {posts.length} entries</p>
+    </header>
+
+    <ul class="tags-page__list">
+      {
+        tags.map((tag) => (
+          <li>
+            <a href={`/tags/${tag.slug}`}>
+              <span class="tags-page__tag-name">{tag.name}</span>
+              <span class="tags-page__tag-count">{tag.count}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .tags-page {
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: var(--space-9) var(--gutter) var(--space-10);
+  }
+
+  .tags-page__header {
+    margin-bottom: var(--space-10);
+  }
+
+  .tags-page__eyebrow {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+  }
+
+  .tags-page__title {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--step-4), 5vw, var(--step-6));
+    font-weight: 400;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-tight);
+    font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 0;
+    margin-bottom: var(--space-3);
+  }
+
+  .tags-page__count {
+    font-family: var(--font-sans);
+    font-size: var(--step-1);
+    color: var(--ink-faint);
+  }
+
+  .tags-page__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .tags-page__list a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--rule);
+    font-family: var(--font-sans);
+    font-size: var(--step-0);
+    color: var(--ink-soft);
+    transition: border-color 180ms ease, color 180ms ease, background 180ms ease;
+  }
+
+  .tags-page__list a:hover {
+    border-color: var(--accent);
+    color: var(--ink);
+    background: var(--accent-tint);
+    text-decoration: none;
+  }
+
+  .tags-page__tag-count {
+    font-size: var(--step--1);
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+</style>

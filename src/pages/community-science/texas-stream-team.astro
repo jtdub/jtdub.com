@@ -1,0 +1,492 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Water Quality Monitoring Methods and Analysis — jtdub.com"
+  description="Comprehensive water quality monitoring protocols and environmental anthropology analysis for community science initiatives."
+  zone="field"
+>
+  <section class="tst-page" data-zone="field">
+    <header class="tst-page__header">
+      <nav class="tst-page__breadcrumb" aria-label="Breadcrumb">
+        <a href="/field">Field</a>
+        <span aria-hidden="true">›</span>
+        <a href="/community-science">Community Science</a>
+        <span aria-hidden="true">›</span>
+        <span>Water Quality Monitoring</span>
+      </nav>
+      <h1 class="tst-page__title">Water Quality Monitoring Methods and Analysis</h1>
+      <p class="tst-page__lede">
+        Community-based water quality monitoring program demonstrating
+        standardized protocols and their relevance to environmental anthropology
+        and sustainability research.
+      </p>
+    </header>
+
+    <div class="tst-page__section">
+      <h2>Standardized Monitoring Protocols</h2>
+      <p>
+        Water quality monitoring employs standardized methods to ensure data
+        consistency and comparability across temporal and spatial scales. These
+        protocols are essential for community science initiatives and
+        professional environmental monitoring.
+      </p>
+
+      <div class="tst-page__protocol-grid">
+        <div class="tst-page__protocol">
+          <h3>Dissolved Oxygen (DO)</h3>
+          <dl>
+            <dt>Method</dt><dd>Modified Winkler Titration (mg/L) · Accuracy ±0.5 mg/L · Resolution 0.1 mg/L</dd>
+            <dt>Protocol</dt><dd>Collect samples at 0.3 m depth, fill bottles underwater with no air bubbles. Fix with Manganous Sulfate + Alkaline Potassium Iodide Azide (8 drops each), invert 25 times. Add Sulfuric Acid, titrate with Sodium Thiosulfate until pale yellow, add Starch indicator, continue until blue disappears. Average two titrations within 0.5 mg/L.</dd>
+            <dt>Significance</dt><dd>Essential for all aquatic life. Most organisms require 5–6 mg/L; below 3 mg/L organisms struggle; below 1–2 mg/L most cannot survive.</dd>
+            <dt>Factors</dt><dd>Temperature (cold water holds more oxygen — 31°C holds half the DO of 1°C), photosynthesis/respiration cycles, algae blooms, wind/turbulence, barometric pressure, salinity.</dd>
+          </dl>
+        </div>
+
+        <div class="tst-page__protocol">
+          <h3>pH</h3>
+          <dl>
+            <dt>Method</dt><dd>Wide Range Color Comparator (3.0–10.5 s.u.) · Accuracy ±1 s.u. · Resolution 1 s.u.</dd>
+            <dt>Protocol</dt><dd>Rinse test tube twice with sample water, fill to 5 mL line. Add 10 drops Wide Range Indicator, cap and invert 10 times. Insert into Color Comparator Viewer against white background, estimate to nearest 0.1 s.u. Red = acidic, yellow-green = mid-range, blue = basic.</dd>
+            <dt>Significance</dt><dd>Most aquatic organisms thrive at pH 6.5–8.2. Texas streams typically range 7.0–9.0. Extreme pH (&gt;9.0 or &lt;5.0) prevents reproduction and releases toxic metals from sediments.</dd>
+            <dt>Factors</dt><dd>Buffering capacity from local geology (soils, minerals, rocks), photosynthesis (removes CO₂, raises pH), respiration, acid rain, agricultural runoff, plant decomposition.</dd>
+          </dl>
+        </div>
+
+        <div class="tst-page__protocol">
+          <h3>Water Temperature</h3>
+          <dl>
+            <dt>Method</dt><dd>Armored centigrade thermometer (°C) · Accuracy ±1°C · Resolution 0.5°C</dd>
+            <dt>Protocol</dt><dd>Air: hang thermometer in shaded location out of direct sun and wind for 2–3 minutes, hold by end opposite bulb. Water: place thermometer in sample bucket (out of sun, do not hold bucket) for 1.5 minutes with bulb submerged, read while bulb remains underwater.</dd>
+            <dt>Significance</dt><dd>Affects metabolic rates, reproductive cycles, and oxygen solubility. Cold-water and warm-water species have different tolerances. Thermal pollution from industrial discharge or dams harms sensitive species.</dd>
+            <dt>Factors</dt><dd>Season, time of day, riparian shading, groundwater inputs, upstream reservoirs, solar radiation, industrial thermal discharge, urban runoff.</dd>
+          </dl>
+        </div>
+
+        <div class="tst-page__protocol">
+          <h3>Conductivity</h3>
+          <dl>
+            <dt>Method</dt><dd>Digital probe / ECTester11 (µS/cm, 0–1999) · Accuracy ±2% · Resolution 0.1 µS/cm</dd>
+            <dt>Protocol</dt><dd>Calibrate with standard solution 24 hours before or at site — rinse probe twice, submerge 1 cm above bottom with no air bubbles, wait 2 minutes for temperature compensation. Field: rinse with sample, fill beaker to 20 mL, submerge probe, wait 2 minutes, read. Post-test QC: re-check against same standard within 10%.</dd>
+            <dt>Significance</dt><dd>Measures Total Dissolved Solids via electrical conductance. Distilled water: 0.5–3 µS/cm; typical rivers: 50–1,500 µS/cm. Higher TDS indicates higher ion concentration affecting osmotic stress on organisms.</dd>
+            <dt>Factors</dt><dd>Dissolved minerals/ions (calcium, magnesium, sodium, potassium), mineral-rich geology, road salt, agricultural fertilizer runoff, septic/sewage discharge, industrial wastewater.</dd>
+          </dl>
+        </div>
+
+        <div class="tst-page__protocol">
+          <h3>Water Clarity / Transparency</h3>
+          <dl>
+            <dt>Method</dt><dd>Secchi Disk (20 cm, black/white quadrants) or Transparency Tube (m) · Accuracy ±0.1 m · Resolution 0.1 m</dd>
+            <dt>Protocol</dt><dd>Without sunglasses, in shade or with sun behind you. Lower disk until it disappears, note depth. Raise slowly until it reappears, note depth. Average the two readings as the limit of visibility. For transparency tube: pour sample slowly avoiding air bubbles, release water from valve in 1 cm increments until black/white pattern just becomes visible.</dd>
+            <dt>Significance</dt><dd>Turbidity impacts photosynthesis, seagrass/algal growth, and fish feeding (reduced visibility). Excessive turbidity from erosion or algae blooms can transport heavy metals and toxic substances. Moderate turbidity indicates healthy plankton levels.</dd>
+            <dt>Factors</dt><dd>Suspended sediment from erosion, plankton blooms in warm nutrient-rich water, wind-generated waves and boat wakes, bottom-feeding fish, dissolved organic acids (tannins/lignins from decaying plants), seasonal algae growth.</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="tst-page__section">
+      <h2>Sample Water Quality Data</h2>
+      <p>
+        The following charts demonstrate typical water quality patterns observed
+        in Central Texas streams during community monitoring efforts.
+      </p>
+
+      <div class="tst-page__chart-grid">
+        <div class="tst-page__chart-card">
+          <h3>Dissolved Oxygen vs Temperature</h3>
+          <canvas id="doTemperatureChart"></canvas>
+        </div>
+        <div class="tst-page__chart-card">
+          <h3>pH Stability Over Time</h3>
+          <canvas id="phTimeChart"></canvas>
+        </div>
+        <div class="tst-page__chart-card tst-page__chart-card--wide">
+          <h3>Turbidity Response to Precipitation</h3>
+          <canvas id="turbidityChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="tst-page__section tst-page__section--split">
+      <div class="tst-page__prose">
+        <h2>Environmental Anthropology and Sustainability Implications</h2>
+
+        <h3>Community Science as Cultural Practice</h3>
+        <p>
+          Water quality monitoring through community science represents a
+          contemporary form of environmental knowledge production that bridges
+          scientific and local ways of understanding ecosystems. This practice
+          embodies what anthropologist Anna Tsing calls "collaborative survival"
+          — the ways humans and non-humans work together to maintain livable worlds.
+        </p>
+        <p>
+          The standardization of monitoring protocols serves multiple functions
+          beyond data collection. These practices create shared vocabularies and
+          methods that enable diverse communities to participate in environmental
+          governance.
+        </p>
+
+        <h3>Sustainability and Watershed Governance</h3>
+        <p>
+          Long-term water quality datasets generated through community monitoring
+          create new possibilities for environmental management that extend beyond
+          traditional technocratic approaches. By engaging local communities as
+          data collectors and stewards, these programs build social capacity for
+          adaptive management in the face of climate change and urban development
+          pressures.
+        </p>
+
+        <h3>Methodological Contributions to Environmental Anthropology</h3>
+        <p>
+          Community-based monitoring programs offer environmental anthropologists
+          unique opportunities to study the coproduction of scientific knowledge
+          and environmental governance. The integration of quantitative water
+          quality data with ethnographic observation creates opportunities for
+          understanding how environmental change is experienced and interpreted by
+          different communities.
+        </p>
+      </div>
+
+      <aside class="tst-page__sidebar">
+        <div class="tst-page__sidebar-card">
+          <h4>Program Details</h4>
+          <dl>
+            <dt>Program</dt><dd>Texas Stream Team</dd>
+            <dt>Scope</dt><dd>Statewide monitoring network</dd>
+            <dt>Role</dt><dd>Community Scientist &amp; Anthropological Observer</dd>
+            <dt>Focus</dt><dd>Water quality methods and environmental knowledge systems</dd>
+            <dt>Duration</dt><dd>Ongoing monitoring since 2019</dd>
+          </dl>
+        </div>
+
+        <div class="tst-page__sidebar-card">
+          <h4>Key Methods</h4>
+          <ul>
+            <li>Standardized water quality protocols</li>
+            <li>Community science training</li>
+            <li>Participatory data validation</li>
+            <li>Ethnographic observation</li>
+            <li>Environmental education</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .tst-page {
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: var(--space-9) var(--gutter) var(--space-10);
+  }
+
+  .tst-page__header {
+    max-width: var(--measure-wide);
+    margin-bottom: var(--space-10);
+  }
+
+  .tst-page__breadcrumb {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 500;
+    display: flex;
+    gap: var(--space-2);
+    margin-bottom: var(--space-5);
+  }
+
+  .tst-page__breadcrumb a {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .tst-page__title {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--step-4), 5vw, var(--step-6));
+    font-weight: 400;
+    letter-spacing: var(--tracking-tight);
+    font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 0;
+    margin-bottom: var(--space-5);
+  }
+
+  .tst-page__lede {
+    font-family: var(--font-serif);
+    font-size: var(--step-2);
+    line-height: var(--leading-relaxed);
+    color: var(--ink-soft);
+    max-width: var(--measure);
+  }
+
+  .tst-page__section {
+    margin-bottom: var(--space-10);
+  }
+
+  .tst-page__section > h2 {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: var(--space-6);
+  }
+
+  .tst-page__section > p {
+    font-family: var(--font-serif);
+    font-size: var(--step-2);
+    line-height: var(--leading-relaxed);
+    color: var(--ink-soft);
+    max-width: var(--measure);
+    margin-bottom: var(--space-6);
+  }
+
+  .tst-page__protocol-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--space-5);
+  }
+
+  .tst-page__protocol {
+    padding: var(--space-6);
+    border: 1px solid var(--rule);
+  }
+
+  .tst-page__protocol h3 {
+    font-family: var(--font-serif);
+    font-size: var(--step-2);
+    font-weight: 500;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 0;
+    margin-bottom: var(--space-4);
+    color: var(--accent);
+  }
+
+  .tst-page__protocol dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-2) var(--space-4);
+    font-size: var(--step-1);
+  }
+
+  .tst-page__protocol dt {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: var(--step--1);
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+  }
+
+  .tst-page__protocol dd {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    color: var(--ink-soft);
+    line-height: var(--leading-relaxed);
+  }
+
+  .tst-page__chart-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+
+  .tst-page__chart-card {
+    padding: var(--space-5);
+    border: 1px solid var(--rule);
+  }
+
+  .tst-page__chart-card h3 {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+  }
+
+  .tst-page__chart-card--wide {
+    grid-column: 1 / -1;
+    max-width: 720px;
+  }
+
+  .tst-page__section--split {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-8);
+    align-items: start;
+  }
+
+  .tst-page__prose h3 {
+    font-family: var(--font-serif);
+    font-size: var(--step-3);
+    font-weight: 500;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 0;
+    margin-top: var(--space-7);
+    margin-bottom: var(--space-3);
+  }
+
+  .tst-page__prose h3:first-child {
+    margin-top: 0;
+  }
+
+  .tst-page__prose p {
+    font-family: var(--font-serif);
+    font-size: var(--step-2);
+    line-height: var(--leading-relaxed);
+    color: var(--ink-soft);
+    margin-bottom: var(--space-5);
+    max-width: var(--measure);
+  }
+
+  .tst-page__sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    position: sticky;
+    top: calc(var(--space-8) + 20px);
+  }
+
+  .tst-page__sidebar-card {
+    padding: var(--space-5);
+    border: 1px solid var(--rule);
+    background: var(--paper-deep);
+  }
+
+  .tst-page__sidebar-card h4 {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+  }
+
+  .tst-page__sidebar-card dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-2) var(--space-3);
+    font-size: var(--step--1);
+  }
+
+  .tst-page__sidebar-card dt {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .tst-page__sidebar-card dd {
+    margin: 0;
+    font-family: var(--font-sans);
+    color: var(--ink-soft);
+  }
+
+  .tst-page__sidebar-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    color: var(--ink-soft);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .tst-page__sidebar-card li::before {
+    content: '· ';
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  @media (max-width: 880px) {
+    .tst-page__section--split {
+      grid-template-columns: 1fr;
+    }
+    .tst-page__sidebar {
+      position: static;
+    }
+    .tst-page__chart-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script is:inline src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    new Chart(document.getElementById('doTemperatureChart'), {
+      type: 'line',
+      data: {
+        labels: ['15°C', '18°C', '21°C', '24°C', '27°C', '30°C', '33°C'],
+        datasets: [{
+          label: 'Dissolved Oxygen (mg/L)',
+          data: [10.2, 9.1, 8.3, 7.6, 6.9, 6.1, 5.4],
+          borderColor: 'rgba(54, 162, 235, 1)',
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          tension: 0.1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: false, title: { display: true, text: 'DO (mg/L)' } },
+          x: { title: { display: true, text: 'Temperature' } }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('phTimeChart'), {
+      type: 'line',
+      data: {
+        labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+        datasets: [{
+          label: 'pH',
+          data: [7.8, 7.9, 7.7, 7.6, 7.4, 7.2, 7.1, 7.0, 7.2, 7.5, 7.7, 7.8],
+          borderColor: 'rgba(75, 192, 192, 1)',
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          tension: 0.1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { min: 6.5, max: 8.5, title: { display: true, text: 'pH (standard units)' } },
+          x: { title: { display: true, text: 'Month' } }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('turbidityChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Pre-rain', 'During storm', '1 day post', '3 days post', '7 days post', '14 days post'],
+        datasets: [{
+          label: 'Turbidity (NTU)',
+          data: [5.2, 45.8, 28.3, 15.7, 8.9, 6.1],
+          backgroundColor: 'rgba(255, 206, 86, 0.8)',
+          borderColor: 'rgba(255, 206, 86, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: true, title: { display: true, text: 'Turbidity (NTU)' } },
+          x: { title: { display: true, text: 'Time Relative to Precipitation Event' } }
+        }
+      }
+    });
+  });
+</script>

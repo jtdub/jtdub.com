@@ -1,0 +1,88 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostList from '../../components/PostList.astro';
+
+const posts = (await getCollection('posts'))
+  .filter((p) => p.data.zone === 'engineering')
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BaseLayout title="Engineering &amp; Code — jtdub.com" zone="engineering">
+  <section class="zone-landing">
+    <header class="zone-landing__header">
+      <p class="zone-landing__eyebrow">Doorway 02 · Engineering &amp; Code</p>
+      <h1 class="zone-landing__title">
+        Twenty years of keeping<br />
+        <em>large systems honest.</em>
+      </h1>
+      <p class="zone-landing__lede">
+        Network automation, Linux, Python, open source, and the slow craft of
+        running infrastructure at scale. An archive that starts in 2009 and
+        spans certs, scripts, essays on practice, and the occasional rant about
+        how software eats the network.
+      </p>
+    </header>
+
+    <PostList posts={posts} />
+  </section>
+</BaseLayout>
+
+<style>
+  .zone-landing {
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: var(--space-9) var(--gutter) var(--space-10);
+  }
+
+  .zone-landing__header {
+    max-width: var(--measure-wide);
+    margin-bottom: var(--space-10);
+  }
+
+  .zone-landing__eyebrow {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: var(--space-5);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .zone-landing__eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .zone-landing__title {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--step-4), 5vw, var(--step-6));
+    line-height: 1.02;
+    letter-spacing: var(--tracking-tight);
+    font-weight: 400;
+    color: var(--ink);
+    font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 0;
+    margin-bottom: var(--space-6);
+    max-width: 18ch;
+  }
+
+  .zone-landing__title em {
+    font-style: italic;
+    color: var(--ink-faint);
+    font-weight: 300;
+  }
+
+  .zone-landing__lede {
+    font-family: var(--font-serif);
+    font-size: var(--step-3);
+    line-height: var(--leading-relaxed);
+    color: var(--ink-soft);
+    max-width: var(--measure);
+  }
+</style>

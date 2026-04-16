@@ -1,0 +1,79 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostList from '../../components/PostList.astro';
+import { tagSlug } from '../../utils/tag-slug';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  const tagMap = new Map<string, typeof posts>();
+  for (const post of posts) {
+    for (const tag of post.data.tags) {
+      if (!tagMap.has(tag)) tagMap.set(tag, []);
+      tagMap.get(tag)!.push(post);
+    }
+  }
+  return [...tagMap.entries()].map(([tag, tagPosts]) => ({
+    params: { tag: tagSlug(tag) },
+    props: {
+      tag,
+      posts: tagPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime()),
+    },
+  }));
+}
+
+const { tag, posts } = Astro.props;
+---
+
+<BaseLayout title={`${tag} — jtdub.com`}>
+  <section class="tag-page">
+    <header class="tag-page__header">
+      <p class="tag-page__eyebrow">Tag</p>
+      <h1 class="tag-page__title">{tag}</h1>
+      <p class="tag-page__count">
+        {posts.length} {posts.length === 1 ? 'entry' : 'entries'}
+      </p>
+    </header>
+
+    <PostList posts={posts} showZone={true} />
+  </section>
+</BaseLayout>
+
+<style>
+  .tag-page {
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: var(--space-9) var(--gutter) var(--space-10);
+  }
+
+  .tag-page__header {
+    margin-bottom: var(--space-10);
+  }
+
+  .tag-page__eyebrow {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+  }
+
+  .tag-page__title {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--step-4), 5vw, var(--step-6));
+    font-weight: 400;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-tight);
+    font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 0;
+    margin-bottom: var(--space-3);
+  }
+
+  .tag-page__count {
+    font-family: var(--font-sans);
+    font-size: var(--step-1);
+    color: var(--ink-faint);
+    letter-spacing: var(--tracking-snug);
+  }
+</style>
