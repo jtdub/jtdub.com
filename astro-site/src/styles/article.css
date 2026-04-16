@@ -136,6 +136,80 @@
   color: var(--ink-soft);
 }
 
+/* Code blocks */
+.article__body pre {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  padding: var(--space-5) var(--space-6);
+  border-radius: 4px;
+  overflow-x: auto;
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-6);
+  -webkit-overflow-scrolling: touch;
+  tab-size: 4;
+}
+
+.article__body :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--paper-deep);
+  padding: 0.15em 0.35em;
+  border-radius: 3px;
+  color: var(--ink);
+}
+
+/* Lists */
+.article__body ul,
+.article__body ol {
+  padding-left: var(--space-6);
+}
+
+.article__body li + li {
+  margin-top: var(--space-2);
+}
+
+.article__body li::marker {
+  color: var(--accent);
+}
+
+/* Tables */
+.article__body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+  font-size: var(--step-1);
+  margin: var(--space-6) 0;
+}
+
+.article__body th,
+.article__body td {
+  text-align: left;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--rule);
+}
+
+.article__body th {
+  font-weight: 600;
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* Iframes (Strava, YouTube, etc.) */
+.article__body iframe {
+  max-width: 100%;
+  margin: var(--space-7) 0;
+  border: 1px solid var(--rule);
+}
+
+/* Images within articles */
+.article__body img {
+  border-radius: 2px;
+  margin: var(--space-7) 0;
+}
+
 /* References / footer block */
 .article__references {
   max-width: var(--measure);
