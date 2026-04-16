@@ -102,4 +102,4 @@ Starting ntpd:                                             [  OK  ]
  ntp1.Housing.Be 128.32.206.55    2 u    6   64    1   51.920   -6.134   0.000
 ```
 
-If you want to use other peers, you can modify the 'server' directive in /etc/ntpd.conf. Besure to use 'chkconfig' to make ntpd persistent.
+If you want to use other peers, you can modify the 'server' directive in /etc/ntpd.conf. Be sure to use 'chkconfig' to make ntpd persistent.

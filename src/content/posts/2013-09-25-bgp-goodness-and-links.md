@@ -18,4 +18,4 @@ end
 wr mem
 ```
 
-While I'm at it, I figured that I share the two links that have helped me the most with BGP. The first is the [BGP cheat sheet](http://media.packetlife.net/media/library/1/BGP.pdf). The second is [BGP Regular Expressions](http://blog.ine.com/2008/01/06/understanding-bgp-regular-expressions/).
+While I'm at it, I figured that I'd share the two links that have helped me the most with BGP. The first is the [BGP cheat sheet](http://media.packetlife.net/media/library/1/BGP.pdf). The second is [BGP Regular Expressions](http://blog.ine.com/2008/01/06/understanding-bgp-regular-expressions/).

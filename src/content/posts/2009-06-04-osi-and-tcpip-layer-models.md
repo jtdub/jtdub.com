@@ -21,7 +21,7 @@ By the late 1980's, there were many proprietary, and two standardized network mo
 
 #### TCP/IP
 
-TCP/IP classifies the various protocols into different catagories or layers.
+TCP/IP classifies the various protocols into different categories or layers.
 
 <table class="table">
  <thead>
@@ -66,7 +66,7 @@ TCP/IP classifies the various protocols into different catagories or layers.
  </tbody>
 </table>
 
-If someone makes up a new application, the protocol used directly by the application would be considered to be application layer protocols. Similarly, the network access layer includes protocols and standards such as Ethernet. If someone makes up a new type of LAN, those protocols would be considered to be apart of the network access layer.
+If someone makes up a new application, the protocol used directly by the application would be considered to be application layer protocols. Similarly, the network access layer includes protocols and standards such as Ethernet. If someone makes up a new type of LAN, those protocols would be considered to be a part of the network access layer.
 
 #### TCP/IP Application Layer
 
@@ -82,11 +82,11 @@ The TCP/IP transport layer consists of two main protocol options: Transmission C
 
 TCP/IP needs a mechanism to guarantee delivery of data across a network. TCP provides an error-recovery feature to the application protocols by using acknowledgments.
 
-The benefits of TCP error recovery can not be seen unless the data is lost. TCP will resend data and ensure that it is received successfully. This is demonstrates an example of adjacent-layer interaction, which defines the concept of how adjacent layers in a network model, on the same computer, work together. Higher layer protocols (example, SMTP, HTTP) need to do something that it can not do, error recovery. The higher layer asks the next lower-layer protocol, TCP, to perform the service.
+The benefits of TCP error recovery cannot be seen unless the data is lost. TCP will resend data and ensure that it is received successfully. This demonstrates an example of adjacent-layer interaction, which defines the concept of how adjacent layers in a network model, on the same computer, work together. Higher layer protocols (example, SMTP, HTTP) need to do something that they cannot do, error recovery. The higher layer asks the next lower-layer protocol, TCP, to perform the service.
 
 UDP does not perform error recovery.
 
-Same-layer interaction on different computers: Two computers use a protocol to communicate with the same layer on another computer. the protocol defined by each layer uses a header that is transmitted between the computers, to communicate each computer wants to do.
+Same-layer interaction on different computers: Two computers use a protocol to communicate with the same layer on another computer. the protocol defined by each layer uses a header that is transmitted between the computers, to communicate what each computer wants to do.
 
 Adjacent-layer interaction on the same computer: A single computer, one layer provides a service to a higher layer. the software or hardware that implements the higher layer requests that the next lower layer perform the needed function.
 
@@ -96,15 +96,15 @@ IP defines logical addresses, called IP addresses, which allow each TCP/IP-speak
 
 #### TCP/IP Network Access Layer
 
-The network access layer defines the protocol and hardware required to deliver data across some physical network. The term network access refers to the fact that this layer defines how to physically connect a computer to the phyical media over which data can be transmitted. Ethernet is one example protocol at the TCP/IP network access layer. Each layer provides services to the layer above it in the model. (TCP/IP and OSI models)
+The network access layer defines the protocol and hardware required to deliver data across some physical network. The term network access refers to the fact that this layer defines how to physically connect a computer to the physical media over which data can be transmitted. Ethernet is one example protocol at the TCP/IP network access layer. Each layer provides services to the layer above it in the model. (TCP/IP and OSI models)
 
-IP, an TCP/IP Internet Layer, relies on the network access layer to deliver IP packets across a physical network.
+IP, a TCP/IP Internet Layer protocol, relies on the network access layer to deliver IP packets across a physical network.
 
 The network access layer includes a large number of protocols, such as Ethernet, PPP, IPSEC, Frame Relay, etc.
 
 IP uses the network access layer protocols to deliver an IP packet to the next router or host, with each router repeating the process until the packet arrives at the destination. Each network access protocol uses headers to encode the information needed to successfully deliver the data across the physical network, in much the same way as other layers use headers to achieve their goals.
 
-#### Data Encapsulation Terminalolgy
+#### Data Encapsulation Terminology
 
 As you can see from the explanations of how HTTP, TCP, IP and the network access protocols, Ethernet and PPP do their jobs, each layer adds its own header (and sometimes trailer) to the data supplied by the higher layer. Encapsulation refers to the process of putting headers and trailers around some data.
 
@@ -143,7 +143,7 @@ As you can see from the explanations of how HTTP, TCP, IP and the network access
 </table>
 
 *LH and LT stand for link header and link trailer*
-*Segment, packet, and frame* refer to the headers and possibly trailers defined by a particular layer. Only the network access layer provides a trailer in it's encapsulation, called a frame.
+*Segment, packet, and frame* refer to the headers and possibly trailers defined by a particular layer. Only the network access layer provides a trailer in its encapsulation, called a frame.
 
 #### The OSI Reference Model
 
@@ -212,7 +212,7 @@ Not all TCP/IP layers correspond to a single OSI layer. In particular, the TCP/I
 
 **Note:** be aware of both views about whether TCP/IP has a single network access layer or two lower layers (data link and physical).
 
-The upper layers of the OSI reference model (application, presentation, and session - Layers 7 - 5) define functions focused on the application. the lower four layers (transport, network, data link, and physical - Layers 4 - 1) define functions focused on the end-to-end delivery of the data.
+The upper layers of the OSI reference model (application, presentation, and session - Layers 7 - 5) define functions focused on the application. The lower four layers (transport, network, data link, and physical - Layers 4 - 1) define functions focused on the end-to-end delivery of the data.
 
 <table class="table">
  <thead>
@@ -235,7 +235,7 @@ The upper layers of the OSI reference model (application, presentation, and sess
     6
    </th>
    <td>
-    The layers's main purpose is to define negotiate data formats, such as ASCII text, EBCDIC text, binary, BCD, and JPEG. Encryption also is defined by OSI as a presentation layer service.
+    The layer's main purpose is to define and negotiate data formats, such as ASCII text, EBCDIC text, binary, BCD, and JPEG. Encryption also is defined by OSI as a presentation layer service.
    </td>
   </tr>
   <tr>
@@ -243,7 +243,7 @@ The upper layers of the OSI reference model (application, presentation, and sess
     5
    </th>
    <td>
-    The session layer defines how to start, control, and end conversations (called sessions). This includes the control and management of multiple bidirectional messages so that the application can be notified if only some of the series of messages are completed. this allows the presentation layer to have a seamless view of an incoming stream of data.
+    The session layer defines how to start, control, and end conversations (called sessions). This includes the control and management of multiple bidirectional messages so that the application can be notified if only some of the series of messages are completed. This allows the presentation layer to have a seamless view of an incoming stream of data.
    </td>
   </tr>
   <tr>
@@ -251,7 +251,7 @@ The upper layers of the OSI reference model (application, presentation, and sess
     4
    </th>
    <td>
-    Layer 4 protocols provide a large number of services, as described of Chapter 6 of this book. Although OSI Layer 5 through 7 focus on issues related to the application, Layer 4 focuses on issues related to data delivery to another computer - for instance, error recovery and flow contol.
+    Layer 4 protocols provide a large number of services, as described in Chapter 6 of this book. Although OSI Layer 5 through 7 focus on issues related to the application, Layer 4 focuses on issues related to data delivery to another computer - for instance, error recovery and flow control.
    </td>
   </tr>
   <tr>
@@ -267,7 +267,7 @@ The upper layers of the OSI reference model (application, presentation, and sess
     2
    </th>
    <td>
-    The data link layer defines the rules (protocols) that determine when a device can send data over a particular medium. Data link protocols also define the format of a header and trailer that allows devices attached to the medium to send and reeive data successfully. The data link trailer, which follows the encapsulated data, typically defines a Frame Check Sequence (FCS) field, which allows the receiving device to detect transmission errors.
+    The data link layer defines the rules (protocols) that determine when a device can send data over a particular medium. Data link protocols also define the format of a header and trailer that allows devices attached to the medium to send and receive data successfully. The data link trailer, which follows the encapsulated data, typically defines a Frame Check Sequence (FCS) field, which allows the receiving device to detect transmission errors.
    </td>
   </tr>
   <tr>

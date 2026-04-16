@@ -331,7 +331,7 @@ info: Creating state file /var/lib/puppet/state/state.yaml
 notice: Finished catalog run in 19.31 seconds
 ```
 
-Finally, the last thing to do is start the puppet service, on the agent, and verify that its running.
+Finally, the last thing to do is start the puppet service, on the agent, and verify that it's running.
 
 ```bash
 [root@puppet ~]# service puppet start

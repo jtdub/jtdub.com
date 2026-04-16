@@ -8,7 +8,7 @@ tags:
 - Pranks
 ---
 
-Here's a script that will change a user's password at random internals with a randomly generated 30 character password. :)
+Here's a script that will change a user's password at random intervals with a randomly generated 30 character password. :)
 
 ```bash
 #!/bin/sh

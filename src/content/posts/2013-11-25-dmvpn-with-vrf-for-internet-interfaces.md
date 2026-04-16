@@ -9,7 +9,7 @@ tags:
 - BGP
 ---
 
-I've been playing with some different DMVPN configurations. In this scenario, I wanted the Internet facing interface to have a separate routing table, which I accomplished with a VRF. I also wanted to use a phase 2 DMVPN - which allows spokes to communicate directly to each other without having to send all traffic to the hub. The tricky part was getting the DMVPN tunnels to form over that interface. This is accomplished via the tunnel vrf command in the tunnel interface and specifying the vrf in the crypto keyring.
+I've been playing with some different DMVPN configurations. In this scenario, I wanted the Internet facing interface to have a separate routing table, which I accomplished with a VRF. I also wanted to use a phase 2 DMVPN - which allows spokes to communicate directly with each other without having to send all traffic to the hub. The tricky part was getting the DMVPN tunnels to form over that interface. This is accomplished via the tunnel vrf command in the tunnel interface and specifying the vrf in the crypto keyring.
 
 Here is my hub config:
 
@@ -148,7 +148,7 @@ Update:
 
 I had an interesting idea. Having the hub's and the spokes in the same BGP ASN. Having the DMVPN hubs act as BGP route reflectors and having the spoke connect to the hubs. As the hubs are route reflectors, they will propagate all routes about the spokes to all other spokes. In a DMVPN phase 2 scenario, this would allow the spokes to communicate next to each other as the spokes know about each other through BGP next-hop. I set it up in my lab and it actually works pretty well.
 
-Here the BGP configuration from my hub:
+Here is the BGP configuration from my hub:
 
 ```bash
 DMVPN-HUB1-R1#sh run | s router bgp

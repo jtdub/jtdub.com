@@ -11,7 +11,7 @@ tags:
 - Gue
 ---
 
-Some friends and I met up at Blue Lagoon in Huntsville, TX. The goal of the dives were to do some skills before my friend started his GUE Tech 1 class. While my friends did skills, I took some pictures.
+Some friends and I met up at Blue Lagoon in Huntsville, TX. The goal of the dives was to do some skills before my friend started his GUE Tech 1 class. While my friends did skills, I took some pictures.
 
 <img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/263ef67e-241f-468b-2e7c-ea8e6bf5e700/public" width="600"/>
 

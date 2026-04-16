@@ -174,7 +174,7 @@ Options:
 
 The remaining functionality can be found in 'man iptables'. There is A LOT of functionality! However, the RHCE objectives state that you should be able to create a packet filtering firewall. Note that it doesn't state anything about needing to create a modern stateful packet inspection firewall. It also states that you should be able to create a NAT.
 
-Let's start with a packet filtering firewall. IPtables reads the rules from the top down and will process it's responses based upon the first matching rule.
+Let's start with a packet filtering firewall. IPtables reads the rules from the top down and will process its responses based upon the first matching rule.
 
 In this first example. I created two rules. The first one blocks all ICMP traffic from 192.168.101.101 (client1), while the second permits all ICMP traffic from 192.168.101.102 (client2).
 
@@ -340,7 +340,7 @@ Here are some other options:
     Change chain name, (moving any references)
 ```
 
-Be default, in the `filter` table there are three chains. Those types are INPUT, FORWARD, and OUTPUT. In the `nat` table there are PREROUTING, POSTROUTING, and OUTPUT. You can also create new chains with the -N switch.
+By default, in the `filter` table there are three chains. Those types are INPUT, FORWARD, and OUTPUT. In the `nat` table there are PREROUTING, POSTROUTING, and OUTPUT. You can also create new chains with the -N switch.
 
 The next option was to specify a source with `-s 192.168.101.101/32`. With this you can specify entire subnets, individual IP Addresses, hostname, or you can get creative and specify custom chains with groups of addresses. Another common option is the -i option, which lets you specify the incoming interface.
 

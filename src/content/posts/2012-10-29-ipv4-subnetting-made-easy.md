@@ -17,7 +17,7 @@ Many people are intimidated by the idea of subnetting a block of IP Addresses. I
 
 There are two things that a person needs to know, so that they understand how the process works. Those two things are binary and the powers of two. We use binary and the powers of two to calculate the block size of a subnet, the number of hosts a subnet will have, and the number of subnets that a sub-network can accommodate.
 
-An IP Address of made up of four numbers, separated by a period. Each number represents an octet, which is one byte long. Eight bits make up a byte. Binary is a computer language that has two functions; on or off. The "1" in binary is "on" and the "0" is "off". These binary digits are counted from right to left to determine what an decimal number value is of an octet.
+An IP Address is made up of four numbers, separated by a period. Each number represents an octet, which is one byte long. Eight bits make up a byte. Binary is a computer language that has two functions; on or off. The "1" in binary is "on" and the "0" is "off". These binary digits are counted from right to left to determine what the decimal number value is of an octet.
 
 Each byte can have a value of up to 255, starting with zero. Counting in binary goes against logic to those of us who were taught that we read left to right. Counting in binary is done right to left.
 
@@ -58,7 +58,7 @@ To determine the number of subnets, you have to use the powers of two and count 
 
 *2^2 = 4*. So the number of subnets is 4.
 
-Which IPv4 IP Addresses, each subnet has a network address (the first address in a subnet and defines the start position of a network) and a broadcast address (the last address in a subnet and is used for broadcasting in a network). These addresses can not be assigned to computers.
+With IPv4 IP Addresses, each subnet has a network address (the first address in a subnet and defines the start position of a network) and a broadcast address (the last address in a subnet and is used for broadcasting in a network). These addresses can not be assigned to computers.
 
 For instance: 192.168.1.0/24, The network address is 192.168.1.0, while the broadcast address is 192.168.1.255. This means that the only addresses that are able to be assigned to computers are 192.168.1.1 - 192.168.1.254. The network address and broadcast address are determined by the subnet mask.
 

@@ -8,7 +8,7 @@ tags:
 - Ddos
 - Security
 - Miscellaneous Hacking
-- Net Nuetrality
+- Net Neutrality
 - Network Connectivity
 ---
 
@@ -22,4 +22,4 @@ Another defense strategy is to utilize network and application firewalls, sittin
 
 Then, in some cases, volumetric attacks are so large, that they completely overwhelm the destination network. In this case, they use a BGP community, known as Remote Triggered Black Holes (RTBH) to tell their upstream service providers to drop traffic destined to the victim before it even reaches the destination network. In this case, the victim is sacrificed for the availability of rest of the network. This is typically the worst case scenario, as the victim still goes offline, conceding a victory to the attacker.
 
-These countermeasures obviously are not going to scale with ever growing attacks. This is why we need the architects and builders of the Internet to come together to standardize on a new method of defending against the these attacks. We need a global community of real time analytics that identify malicious sources and use RTBH techniques to automatically take the offending sources off the Internet, instead of the victims. This technique will require that every Internet provider agree on a standard, and abide by it.
+These countermeasures obviously are not going to scale with ever growing attacks. This is why we need the architects and builders of the Internet to come together to standardize on a new method of defending against these attacks. We need a global community of real time analytics that identify malicious sources and use RTBH techniques to automatically take the offending sources off the Internet, instead of the victims. This technique will require that every Internet provider agree on a standard, and abide by it.

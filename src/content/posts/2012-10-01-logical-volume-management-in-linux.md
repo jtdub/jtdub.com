@@ -144,9 +144,9 @@ root@server1 ~]# pvs
   Physical volume "/dev/sda1" successfully created
 ```
 
-Now is where you have to make your first decision. Do you want to create a new "Volume Group" or add the new drive to an existing "Volume Group". Both commands are simple. Creating a new volume group utilizes the vgcreate command, whereas extending the phsyical drive to an existing volume uses the vgextend command.
+Now is where you have to make your first decision. Do you want to create a new "Volume Group" or add the new drive to an existing "Volume Group". Both commands are simple. Creating a new volume group utilizes the vgcreate command, whereas extending the physical drive to an existing volume uses the vgextend command.
 
-To be able to show both methods, I first extended the physical volume into an existing volume group via the vgextend command. I then removed the the physical volume from the volume group so that I could demostrate creating a new volume group. You don't need to run through both commands. It's just a decision that you need to make when you're creating your volumes.
+To be able to show both methods, I first extended the physical volume into an existing volume group via the vgextend command. I then removed the physical volume from the volume group so that I could demonstrate creating a new volume group. You don't need to run through both commands. It's just a decision that you need to make when you're creating your volumes.
 
 ```bash
 root@server1 ~]# vgs
@@ -167,7 +167,7 @@ root@server1 ~]# vgs
   VolGroup01   1   0   0 wz--n- 2.00g 2.00g
 ```
 
-From here on, I'll continue with the new volume group "VolGroup01". After we have extended or created a new volume group, we'll need to create the actual logical volume. That includes needing to made a decision on the name of the volume, as well as the size of the volume. For this test, I'm going to create a volume called data and make it 1GB. That will leave 1GB for expansion or new volumes.
+From here on, I'll continue with the new volume group "VolGroup01". After we have extended or created a new volume group, we'll need to create the actual logical volume. That includes needing to make a decision on the name of the volume, as well as the size of the volume. For this test, I'm going to create a volume called data and make it 1GB. That will leave 1GB for expansion or new volumes.
 
 ```bash
 [root@server1 ~]# lvcreate -n data -L 1G VolGroup01
@@ -232,7 +232,7 @@ tmpfs                 246M     0  246M   0% /dev/shm
 9437503c5996490b3518861e4d3754a7  /data/somefile
 ```
 
-Now let's say that I wanted to resize the volume. That could be done with the lvresize, lvextend, or lvreduce commands. Depending on what exactly you're wanting to do, but the lvresize is generally a better universal command as it will allow you to make the volume larger as well as shrink the volume. Shrinking a volume can be tricky, particularly if you have data on it. It's always a best practice to fensure that you have a proper backup of the volume, before you resize it. One of the switches with the lvresize command that will make life easier is the '-r' switch, which is the resize2fs, switch. When this switch is enabled, it will unmount the volume, which is needed to shrink the volume, but not extend the volume. It will also run a file system check on the volume and make sure that no data will get lost somewhere in translation, and remount the volume. Just be prepared to execute a restore if the process fails.
+Now let's say that I wanted to resize the volume. That could be done with the lvresize, lvextend, or lvreduce commands. Depending on what exactly you're wanting to do, but the lvresize is generally a better universal command as it will allow you to make the volume larger as well as shrink the volume. Shrinking a volume can be tricky, particularly if you have data on it. It's always a best practice to ensure that you have a proper backup of the volume, before you resize it. One of the switches with the lvresize command that will make life easier is the '-r' switch, which is the resize2fs, switch. When this switch is enabled, it will unmount the volume, which is needed to shrink the volume, but not extend the volume. It will also run a file system check on the volume and make sure that no data will get lost somewhere in translation, and remount the volume. Just be prepared to execute a restore if the process fails.
 
 ```bash
 [root@server1 ~]# lvresize --help
@@ -292,9 +292,9 @@ The filesystem on /dev/mapper/VolGroup01-data is now 525312 blocks long.
 9437503c5996490b3518861e4d3754a7  /data/somefile
 ```
 
-As you can see, I shrunk the volume by 500M, verified that the data remained in tact and then grew the volume to the full space (extents) remaining. One of the gotchas with shrinking a volume is to make sure that nothing is accessing the volume that you want to shrink. You can accomplish this with the lsof command. If there are applications or people accessing the volume, you'll need to either stop the application or get the person to leave the volume as their working directory.
+As you can see, I shrunk the volume by 500M, verified that the data remained intact and then grew the volume to the full space (extents) remaining. One of the gotchas with shrinking a volume is to make sure that nothing is accessing the volume that you want to shrink. You can accomplish this with the lsof command. If there are applications or people accessing the volume, you'll need to either stop the application or get the person to leave the volume as their working directory.
 
-One of the other cool features with LVM is being able to take snapshots. This can be accomplished with the lvcreate command in conjunction with the '-s' switch. You will need to have sufficiant space within your volume group to accomplish this.
+One of the other cool features with LVM is being able to take snapshots. This can be accomplished with the lvcreate command in conjunction with the '-s' switch. You will need to have sufficient space within your volume group to accomplish this.
 
 ```bash
 [root@server1 ~]# lvcreate -s /dev/VolGroup01/data -L 250M -n data-snapshot

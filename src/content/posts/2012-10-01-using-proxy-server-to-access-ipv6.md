@@ -115,7 +115,7 @@ target     prot opt source               destination
 
 As you can see, all that I did with squid was set it up to allow connections from authenticated users rather than IP Addresses. This would allow somebody to be mobile and still use the proxy. I then used 'htpasswd' from the httpd-tools package to generate the /etc/squid/passwd file, and finally, I opened up squid on the firewall.
 
-The only other changes would need to be made on your local machine. You would need to use DNS servers that served AAAA records. Googles servers do this. 8.8.8.8 and 8.8.4.4. Your local ISP may serve the AAAA records as well. You can test this with the dig or nslookup command.
+The only other changes would need to be made on your local machine. You would need to use DNS servers that served AAAA records. Google's servers do this. 8.8.8.8 and 8.8.4.4. Your local ISP may serve the AAAA records as well. You can test this with the dig or nslookup command.
 
 ```bash
 dig aaaa packetgeek.net @ns1.rackspace.com

@@ -13,7 +13,7 @@ tags:
 
 I've been playing with Open vSwitch and the VXLAN patch that is available at: [https://github.com/mestery/ovs-vxlan](https://github.com/mestery/ovs-vxlan)
 
-So far all my testing has been done on my Rackspace Cloud account. I realize that you wouldn't use VXLAN in a scenario like this on any production network, but for my testing, I thought that it would be good to have a physical separation of the networks. While I was able to get my VXLAN tunnel up, I haven't been able to get the traffic to completely pass from my test-dfw to my test-ord servers. The traffic is getting lost at some point where the traffic leaves the ovs-ord internal interface (eth2) destined to test-ord server. I believe that I either need to add some configuration to the open vswitch service or the Rackspace Cloud Networks is stripping some data as it leaves ovs-ord, destined to test-ord. I'm still trying to figure that piece out. Below is that I have so far, along with the testing and troubleshooting section at the bottom.
+So far all my testing has been done on my Rackspace Cloud account. I realize that you wouldn't use VXLAN in a scenario like this on any production network, but for my testing, I thought that it would be good to have a physical separation of the networks. While I was able to get my VXLAN tunnel up, I haven't been able to get the traffic to completely pass from my test-dfw to my test-ord servers. The traffic is getting lost at some point where the traffic leaves the ovs-ord internal interface (eth2) destined to test-ord server. I believe that I either need to add some configuration to the open vswitch service or the Rackspace Cloud Networks is stripping some data as it leaves ovs-ord, destined to test-ord. I'm still trying to figure that piece out. Below is what I have so far, along with the testing and troubleshooting section at the bottom.
 
 Here is a diagram of the lab:
 
@@ -43,11 +43,11 @@ done
 reboot
 ```
 
-Once the servers came back up, I wanted to verify the kernel version that was running. This will be needed when building the open vswitch kernel module RPM. My kernel version is: 3.3.4-5.fc17.x86_64. If your kernel version is different, then you will need to take note and make the appropriate changes when building the openvswitch kernel moduele. I'll be sure to remind you of this later, as those processes come up.
+Once the servers came back up, I wanted to verify the kernel version that was running. This will be needed when building the open vswitch kernel module RPM. My kernel version is: 3.3.4-5.fc17.x86_64. If your kernel version is different, then you will need to take note and make the appropriate changes when building the openvswitch kernel module. I'll be sure to remind you of this later, as those processes come up.
 
 `uname -r`
 
-After you've taken note of the running kernel version, we'll need to install the utilities needed to compile code, build RPMs, and troubleshoot networks. Note that I installed a kernel specific kernel-devel package - kernel-devel-3.3.4-5.fc17.x86_64. If your running kernel is different, then chage the package name to the appropriate kernel.
+After you've taken note of the running kernel version, we'll need to install the utilities needed to compile code, build RPMs, and troubleshoot networks. Note that I installed a kernel specific kernel-devel package - kernel-devel-3.3.4-5.fc17.x86_64. If your running kernel is different, then change the package name to the appropriate kernel.
 
 ```bash
 yum install -y openvswitch gcc make python-devel openssl-devel kernel-devel kernel-debug-devel git automake autoconf rpmdevtools kernel-devel-3.3.4-5.fc17.x86_64 tcpdump
@@ -103,7 +103,7 @@ ps -ae | grep ovs
 ovs-vsctl show
 ```
 
-Once open vswitch has been verified, let's configure it for VXLAN! Where */ip_addr_of_remote_server/* is, replace that with the IP Address of the remote OVS server. So, on the OVS-DFW server, you should put the IP Address of the OVS-ORD server and vise versa. Those IP Addresses on the Rackspace Cloud servers reside on eth0.
+Once open vswitch has been verified, let's configure it for VXLAN! Where */ip_addr_of_remote_server/* is, replace that with the IP Address of the remote OVS server. So, on the OVS-DFW server, you should put the IP Address of the OVS-ORD server and vice versa. Those IP Addresses on the Rackspace Cloud servers reside on eth0.
 
 ```bash
 ip addr show dev eth0 | grep inet | head -1 | awk '{print $2}' | cut -d / -f 1
@@ -281,7 +281,7 @@ rtt min/avg/max/mdev = 1.423/17.622/33.821/16.199 ms
 
 #######################################
 
-tpcdump of a successful ping between ovs-ord and test-ord
+tcpdump of a successful ping between ovs-ord and test-ord
 
 #######################################
 

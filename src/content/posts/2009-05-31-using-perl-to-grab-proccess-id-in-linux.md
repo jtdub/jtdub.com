@@ -7,7 +7,7 @@ tags:
 - Perl Tips
 ---
 
-Ever since I first started doing Linux system administration, I've used perl scripts to automate some basic tasks. I've never really been that great at writing scripts because I never took the time to sit down and really learn the intricate details of the language. Here recently, I've written some of my most complex and detail oriented scripts, where I've had to really learn a little bit about regular expressions. Along the way I also learned how to pick very specific data out of a array and feed it to my script for processing.
+Ever since I first started doing Linux system administration, I've used perl scripts to automate some basic tasks. I've never really been that great at writing scripts because I never took the time to sit down and really learn the intricate details of the language. Here recently, I've written some of my most complex and detail oriented scripts, where I've had to really learn a little bit about regular expressions. Along the way I also learned how to pick very specific data out of an array and feed it to my script for processing.
 
 Here is a simple script that utilizes the 'ps' command, grabs the process id (PID) from the array, and prints as an output.
 
@@ -20,4 +20,4 @@ foreach $proc (@ps) {
         print "PID: $pid[0]\n";
 }
 ```
-The things that you can with this sort of script are endless in automating system administration.
+The things that you can do with this sort of script are endless in automating system administration.

@@ -48,7 +48,7 @@ I spent last week attending the Virtualization Pro Summit. I came away with a we
   * http://www.vkernal.com
   * http://www.teamquest.com/solutions-products/products/model/
 * Disk Raid:
-  * Raid 5 is a good compromise of performance and fault tollerance.
+  * Raid 5 is a good compromise of performance and fault tolerance.
   * Raid 10 provides the best performance, but is costs more on disk usage.
   * Raid 1 can be used for VM hosts.
 

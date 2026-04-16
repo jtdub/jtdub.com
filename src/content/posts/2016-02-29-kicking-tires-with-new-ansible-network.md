@@ -15,7 +15,7 @@ Ansible [recently announced](http://www.redhat.com/en/about/press-releases/red-h
 
 These modules aren't yet in the stable release of Ansible, but they do make an appearance in the development version, so I decided to kick the tires a bit.
 
-First thing I did was set up an development environment using python's virtualenv.
+First thing I did was set up a development environment using python's virtualenv.
 
 ```bash
 mkdir -p ansible2.0/env

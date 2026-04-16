@@ -95,7 +95,7 @@ In this example:
 * Data is split into batches of 2.
 * Data shuffling and parallel data loading are enabled.
 
-### TesnsorFlow
+### TensorFlow
 
 #### Install TensorFlow
 

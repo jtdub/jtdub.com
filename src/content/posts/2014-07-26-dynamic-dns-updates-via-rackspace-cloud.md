@@ -12,7 +12,7 @@ tags:
 
 Do you remember the old days when dyndns.org offered free sub domains, that pointed to your home internet connection? This service allowed you to access your home computer remotely, by hostname, without the need of remembering your IP Address.
 
-I wrote a python script that does something similar. It uses the Rackspace Cloud API to manage an DNS A record of a domain that you own and is hosted with Rackspace.
+I wrote a python script that does something similar. It uses the Rackspace Cloud API to manage a DNS A record of a domain that you own and is hosted with Rackspace.
 
 Below is the code:
 
@@ -102,7 +102,7 @@ There are a couple things that still need to be added:
 
 Given that, the current limitations are:
 * Your hostname, needs to already exist. The script will only update the hostname, not create it. Example: thisismyhomepc.example.com
-* You have to obain the record ID by hand.
+* You have to obtain the record ID by hand.
 
 In the examples, I'm going to be using CentOS 7. The first thing that I'm going to do is install EPEL, which will allow me to install the package 'pip'.
 
@@ -420,7 +420,7 @@ Here's my first run of the script. Here you can see that it determines my public
 *** Updated IP Address: 240.0.0.1
 ```
 
-I gave DNS a five minutes to update, then I ran the script again. This time, the script determined that my current public IP Address is the same as my DNS A record of myhomepc.jtdub.com, so it didn't even attempt to authenticate to the API to make any changes.
+I gave DNS five minutes to update, then I ran the script again. This time, the script determined that my current public IP Address is the same as my DNS A record of myhomepc.jtdub.com, so it didn't even attempt to authenticate to the API to make any changes.
 
 ```bash
 [jtdub@pyrax-test pyraxDynDNS]$ ./pyraxDynDNS.py 

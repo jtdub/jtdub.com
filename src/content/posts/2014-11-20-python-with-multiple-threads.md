@@ -7,7 +7,7 @@ tags:
 - Python Tips
 ---
 
-I have a need to have a script to execute the same task, among many devices, as close to the same time as possible. As a non-programmer, whom happens to write code in an effort to make my job easier, I thought the task would be easier than it actually is. Spawning multiple threads is pretty easy. However, hitting resource limits is a limiting factor - as is how you output your data.
+I have a need to have a script to execute the same task, among many devices, as close to the same time as possible. As a non-programmer, who happens to write code in an effort to make my job easier, I thought the task would be easier than it actually is. Spawning multiple threads is pretty easy. However, hitting resource limits is a limiting factor - as is how you output your data.
 
 Here is an example of how I'm using BoundedSemaphores, within Python to limit the number of threads that I spawn.
 
@@ -74,6 +74,6 @@ Thread: 6 - 1416558829.13
 End: 1416558835.23
 ```
 
-With the max_threads set to one, it essentially disable's threading - in that it doesn't spawn multiple threads to complete a task. You can see that it took approximately five seconds to spawn all threads and another two seconds to complete the tasks.
+With the max_threads set to one, it essentially disables threading - in that it doesn't spawn multiple threads to complete a task. You can see that it took approximately five seconds to spawn all threads and another two seconds to complete the tasks.
 
 With the max_threads set to six, it spawned all threads in less than a millisecond and took approximately six seconds to complete the tasks.

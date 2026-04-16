@@ -10,7 +10,7 @@ tags:
 
 I recently had a request to combine the SSH and TELNET functionality on my [pyMultiChange](https://github.com/jtdub/pyMultiChange) scripts, as they share a lot of code. I thought that this was a reasonable request, so I started that process today.
 
-First off, I updated the [pyRouterLib](https://github.com/jtdub/pyRouterLib) to be more pep8 complaint. Once that was updated, I tossed the library into the pyMultiChange project, for consumption.
+First off, I updated the [pyRouterLib](https://github.com/jtdub/pyRouterLib) to be more pep8 compliant. Once that was updated, I tossed the library into the pyMultiChange project, for consumption.
 
 Currently, 'telnet-multi.py' and 'ssh-multi.py' are still available, but I plan on phasing them out, after I test 'multi.py' more.
 
@@ -53,7 +53,7 @@ def default_args(hosts_file, command_file, protocol, command_output, verbose):
     return hosts_file, command_file, protocol, command_output, verbose
 ```
 
-Next, Here is the combined functionality of the multi change script, called multi.py:
+Next, here is the combined functionality of the multi change script, called multi.py:
 
 ```python
 #!/usr/bin/env python

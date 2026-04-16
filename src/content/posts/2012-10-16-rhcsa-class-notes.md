@@ -48,21 +48,21 @@ Here are some notes from a recent RHCSA class.
     * mkfs -t ext4 /dev/mapper/
   * Mount the filesystem:
     * mount /dev/mapper/
-  * Make filesystem persistant:
+  * Make filesystem persistent:
     * vim /etc/fstab
       * /dev/mapper/cryptomount ext4 defaults 1 2
   * Removing access to an encrypted device:
     * Umount the filesystem, if mounted:
       * umount /mnt
     * cryptsetup luksClose mapname
-  * To make LUKS devices available at boot time (persistance):
+  * To make LUKS devices available at boot time (persistence):
     * /etc/crypttab
       * [keyfile] [options]
   * To create a keyfile:
     * dd if=/dev/urandom of=/etc/keyfile bs=1k count=4
     * cryptsetup luksAddKey
     * chmod 400 /etc/keyfile
-  * To test LUKS functionality for persistance:
+  * To test LUKS functionality for persistence:
     * umount /cryptfs
     * cryptsetup luksClose mapname
     * #> bash
@@ -121,7 +121,7 @@ Here are some notes from a recent RHCSA class.
   * lvextend { -l <+extents> | -L <+size> }
   * resize2fs
     * lvresize -r {-l <+extents> | -L <+size> }
-      * ‘-r’ - Resize logical volume and filesystem at the sametime.
+      * ‘-r’ - Resize logical volume and filesystem at the same time.
   * lvreduce -r { -l | -L }
 * Snapshots
   * create snapshots

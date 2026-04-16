@@ -8,7 +8,7 @@ tags:
 - Pranks
 ---
 
-Make this script run when ever a user logs into their system and watch them freak out as it tells them that all their commands aren't found. :)
+Make this script run whenever a user logs into their system and watch them freak out as it tells them that all their commands aren't found. :)
 
 ```bash
 #!/bin/sh

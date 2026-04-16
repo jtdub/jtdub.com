@@ -13,7 +13,7 @@ I finally got a chance to sit down and play with pre-built Open Stack 'Private C
 
 The first thing that you need to do is obtain the Private Cloud Edition (PCE) iso. The iso can be downloaded for FREE at the Rackspace website - [http://www.rackspace.com/cloud/private/](http://www.rackspace.com/cloud/private/). Once it's downloaded and you have a bootable thumb drive or DVD, you're ready to rock! The system requirements for Installing PCE on the Rackspace website are pretty stout. They list the controller node as needing 16 GB of RAM, 144 GB of disk space, and a dual socket CPU with dual cores or a single quad core. Then they list the compute node as needing the same specs with the exception of RAM, which they list as 32 GB. Those are more of recommendations. I installed the compute and controller node (all-in-one) on a single desktop PC with a single dual core CPU, 4 GB of RAM, and a 80 GB hard drive. For testing purposes, this is completely fine. The requirement that is needed is that your CPU's will need to support virtualization technologies (VT-x), as the underlying hypervisor runs on KVM.
 
-The install is a pretty painless process. The first screen prompts you for a EULA, then how what you want to install - Controller, Compute, or All-in-One.
+The install is a pretty painless process. The first screen prompts you for a EULA, then what you want to install - Controller, Compute, or All-in-One.
 
 <img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/42dae73b-4219-4b6d-ec45-67e386c7e300/public" width="320"/>
 

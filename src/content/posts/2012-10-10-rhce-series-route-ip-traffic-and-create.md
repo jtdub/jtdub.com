@@ -13,7 +13,7 @@ tags:
   <strong>📚 Archived Content:</strong> This post is part of my historical study notes archive. While some concepts may remain relevant, the specific technologies, procedures, and certifications mentioned may be outdated. For current technical content, visit the <a href="/technology/" class="alert-link">Technology</a> section.
 </div>
 
-As I start preparing for the RHCE exam, I'm attempting to go through each exam objective one by one and put together my notes on the subjects. I'll try to go trough each exam objective in the order that it's listed on it's page, but I may skip around a little bit on the objectives that very vague on what exactly they want. This first set of notes is on routing IP traffic and static routes. Enjoy.
+As I start preparing for the RHCE exam, I'm attempting to go through each exam objective one by one and put together my notes on the subjects. I'll try to go through each exam objective in the order that it's listed on its page, but I may skip around a little bit on the objectives that are very vague on what exactly they want. This first set of notes is on routing IP traffic and static routes. Enjoy.
 
 There are two installed packages that can provide the same routing and information and allow you to create static routes. Those packages are net-tools and iproute.
 
@@ -179,7 +179,7 @@ Other       : Provides-match: /sbin/ip
 /usr/share/tc/paretonormal.dist
 ```
 
-Above, you will see the package description, as well as the files that are installed with each package. Net-tools is the old tools and are pretty much kept around for compatibility. I personally like the output of the ifconfig and the route command better than I do the ip command, but as ifconfig and route are pretty much depreciated and will be going away at some point, I'll focus my notes on the command sequence of the ip command.
+Above, you will see the package description, as well as the files that are installed with each package. Net-tools is the old tools and are pretty much kept around for compatibility. I personally like the output of the ifconfig and the route command better than I do the ip command, but as ifconfig and route are pretty much deprecated and will be going away at some point, I'll focus my notes on the command sequence of the ip command.
 
 ip command structure:
 

@@ -96,7 +96,7 @@ class TelnetCisco:
 		print "### CODE DEBUG ###"
 ```
 
-Usage is pretty simple. You need to specify a username, password, enable password, and host variable. To activate the module. The easiest way is to do it within the your python script.
+Usage is pretty simple. You need to specify a username, password, enable password, and host variable. To activate the module, the easiest way is to do it within your python script.
 
 ```bash
 import TelnetCisco
@@ -110,4 +110,4 @@ somejob = TelnetCisco(username, password, enable, host)
 somejob.devLogin("ios")
 ```
 
-Of course, the module also has options to specify a authentication file (credsFile(authfile)) or prompt prompt for your credentials (getCreds()). At the moment, the script only runs a 'show arp' on your devices. I'm still working on how I want to implement feeding commands to your devices. I'll post an update as I get more functionality working.
+Of course, the module also has options to specify a authentication file (credsFile(authfile)) or prompt for your credentials (getCreds()). At the moment, the script only runs a 'show arp' on your devices. I'm still working on how I want to implement feeding commands to your devices. I'll post an update as I get more functionality working.

@@ -10,7 +10,7 @@ tags:
 - Encryption
 ---
 
-In the age of mobile devices that contain private information, whether it's personal or business information, encrypting your devices is a good idea. Filesystem encryption allows you to encrypt a single partition or even an entire hard drive. When configuring correctly, this will help mitigate privacy issues from stolen devices.
+In the age of mobile devices that contain private information, whether it's personal or business information, encrypting your devices is a good idea. Filesystem encryption allows you to encrypt a single partition or even an entire hard drive. When configured correctly, this will help mitigate privacy issues from stolen devices.
 
 One of the solutions for encrypting a file system in Linux is to use LUKS. LUKS stands for "Linux Unified Key Setup".
 
@@ -146,7 +146,7 @@ Once you've accessed the data that you needed, you can umount and close the dm-c
 [root@sgnhv ~]# cryptsetup luksClose crypt_dev_mapper
 ```
 
-Now accessing the encrypted device using the `luksOpen` and `luksClose` extension is fine. In fact, a simple bash or perl script could be written to help facilitate the process. Every time you use the `luksOpen` extension, LUKS will ask you for the passphrase that you used initially set up.
+Now accessing the encrypted device using the `luksOpen` and `luksClose` extension is fine. In fact, a simple bash or perl script could be written to help facilitate the process. Every time you use the `luksOpen` extension, LUKS will ask you for the passphrase that you initially set up.
 
 However, if you want your system to initialize the encrypted file system and even mount it at boot, you will need to follow a few extra steps.
 
@@ -168,7 +168,7 @@ Enter any passphrase:
 
 Once the key has been created, you can add the key path in the /etc/crypttab file in the third column. In the crypttab man page, it states the third column is for adding a password. This is incorrect and it will not work if you enter the passphrase there.
 
-Also, be sure to make the key file only readable to root, otherwise when when init_crypt function initializes and looks at the permissions of the file, it will give you a warning about it being insecure. In some instances, it will refuse to read the file, thus failing to mount the encrypted file system.
+Also, be sure to make the key file only readable to root, otherwise when the init_crypt function initializes and looks at the permissions of the file, it will give you a warning about it being insecure. In some instances, it will refuse to read the file, thus failing to mount the encrypted file system.
 
 ```bash
 [root@sgnhv ~]# vim /etc/crypttab 
@@ -202,4 +202,4 @@ As you can see, the encrypted file system was mounted without asking for a passp
 
 Now for a public service announcement. It's actually more food for thought. If you are having your computer mount your encrypted file system on boot without any kind of interaction to authenticate the process, what good does it do to encrypt the file system in the first place?
 
-For my personal preference, encrypting a notebooks entire filesystem or even a tablet or smart phone should be the course of action. In Linux, that can be done during the install. Otherwise, I'd propose something like [TruCrypt](http://www.truecrypt.org/). Other than that, encrypting thumb drives would be handy.
+For my personal preference, encrypting a notebook's entire filesystem or even a tablet or smart phone should be the course of action. In Linux, that can be done during the install. Otherwise, I'd propose something like [TruCrypt](http://www.truecrypt.org/). Other than that, encrypting thumb drives would be handy.

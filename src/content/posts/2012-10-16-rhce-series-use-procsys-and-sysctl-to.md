@@ -15,7 +15,7 @@ tags:
   <strong>📚 Archived Content:</strong> This post is part of my historical study notes archive. While some concepts may remain relevant, the specific technologies, procedures, and certifications mentioned may be outdated. For current technical content, visit the <a href="/technology/" class="alert-link">Technology</a> section.
 </div>
 
-Kernel tuning is pretty easy. There are a couple of ways of doing it. The old way of modifying kernel perimeters was by modifying the /proc.
+Kernel tuning is pretty easy. There are a couple of ways of doing it. The old way of modifying kernel parameters was by modifying the /proc.
 
 For example:
 
@@ -87,6 +87,6 @@ To make any changes persistent on boot up, you'll need to put them in the /etc/s
 net.ipv4.icmp_echo_ignore_all = 0
 ```
 
-Practice care when outputting kernel paremeters to the /etc/sysctl.conf. There are already some values specified and you output using > instead of >>, then you'll overwrite those values. Got backups?
+Practice care when outputting kernel parameters to the /etc/sysctl.conf. There are already some values specified and you output using > instead of >>, then you'll overwrite those values. Got backups?
 
 You can also see all kernel tunable values by issuing a `sysctl -a`.

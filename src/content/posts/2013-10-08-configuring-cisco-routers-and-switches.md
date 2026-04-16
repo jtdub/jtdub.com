@@ -120,4 +120,4 @@ else:
     sessioncommands()
 ```
 
-I need to implement the [getops](http://docs.python.org/2/library/getopt.html#module-getopt) Python module to make it more command line friendly. I'm sure that I'll also find some tweaks that I need to make here and there as I experiment with other devices. So far, it works pretty well with IOS devices. I'll post updates as it becomes more stable, user friendly, and over all useful. This is just what I've come up with in a couple hours of tinkering and reteaching myself Python.
+I need to implement the [getops](http://docs.python.org/2/library/getopt.html#module-getopt) Python module to make it more command line friendly. I'm sure that I'll also find some tweaks that I need to make here and there as I experiment with other devices. So far, it works pretty well with IOS devices. I'll post updates as it becomes more stable, user friendly, and overall useful. This is just what I've come up with in a couple hours of tinkering and reteaching myself Python.

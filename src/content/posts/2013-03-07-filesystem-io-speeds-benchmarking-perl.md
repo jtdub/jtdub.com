@@ -9,7 +9,7 @@ tags:
 - Perl Tips
 ---
 
-I wrote a quick perl script to test the read and write speeds of a file system in Linux. Below is the contents of the script.
+I wrote a quick perl script to test the read and write speeds of a file system in Linux. Below are the contents of the script.
 
 ```bash
 jtdub@db1 ~]$ cat iobenchmark.pl 

@@ -19,7 +19,7 @@ Virtual LAN, also known as VLAN, is exactly as it sounds. It's a method of havin
 
 A switch port can operate in three modes. Those modes are access, trunk and hybrid.
 
-An access port is typically how ports are setup that connect to workstations, printers, etc. They can only be apart of a single vlan, with one exception. Hosts connected to access ports are oblivious to what vlan that they are on. Hosts can communicate with other hosts on the same vlan, but are not able to communicate with hosts on other vlan's with out passing through a layer three device, such as a router.
+An access port is typically how ports are setup that connect to workstations, printers, etc. They can only be a part of a single vlan, with one exception. Hosts connected to access ports are oblivious to what vlan that they are on. Hosts can communicate with other hosts on the same vlan, but are not able to communicate with hosts on other vlan's without passing through a layer three device, such as a router.
 
 Now the one exception to an access port only being able to pass traffic for a single vlan is when an access port is configured with a voice vlan, as well as a data vlan. In this configuration an IP phone is plugged into the switch port and the PC is plugged into the phone. The switch port then puts voice traffic on one vlan and data on another vlan. This allows for better security as well as quality of service for the voice traffic.
 
@@ -29,7 +29,7 @@ There are a few different trunking protocols. In the Ethernet world, there are t
 
 ISL:
 * Only carries 1000 VLANs
-* Encapsulates the frame, which add overhead
+* Encapsulates the frame, which adds overhead
 * Must be point-to-point
 * does not have a separate QoS field
 

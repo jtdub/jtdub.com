@@ -19,7 +19,7 @@ tags:
 
 #### HSRP
 
-[Hot Standby Routing Protocol](http://www.cisco.com/en/US/tech/tk648/tk362/tk321/tsd_technology_support_sub-protocol_home.html), or HSRP, is a Cisco proprietary redundancy routing protocol. It's typically used in the distribution layer of a LAN. It works is by having two or more layer three devices that communicate with each other via multicast address 224.0.0.2 to UDP port 1985. In a typical configuration there will be a active router and a standby router. Each router has it's own physical IP Address and they share a virtual IP Address, which hosts on the LAN use as their default gateway. If the standby router detects that the active router is unavailable, then it will assume the active router role by assigning itself the virtual IP Address. There can only be a single active router in an HSRP group, but there can be multiple standby routers.
+[Hot Standby Routing Protocol](http://www.cisco.com/en/US/tech/tk648/tk362/tk321/tsd_technology_support_sub-protocol_home.html), or HSRP, is a Cisco proprietary redundancy routing protocol. It's typically used in the distribution layer of a LAN. It works by having two or more layer three devices that communicate with each other via multicast address 224.0.0.2 to UDP port 1985. In a typical configuration there will be a active router and a standby router. Each router has its own physical IP Address and they share a virtual IP Address, which hosts on the LAN use as their default gateway. If the standby router detects that the active router is unavailable, then it will assume the active router role by assigning itself the virtual IP Address. There can only be a single active router in an HSRP group, but there can be multiple standby routers.
 
 HSRP has an election process to determine which router is used as the active router. The router configured with the highest HSRP priority is determined to be the active router. In the event of multiple routers with identical priorities, then the router with the highest IP Address wins the active router election.
 
@@ -27,7 +27,7 @@ The preempt option in HSRP enables a router to resume the forwarding router role
 
 The hello default is 3 seconds and the hold time default is 10 seconds. When changing the default hello and hold times, the hold time would be at least three times the value of the hello timer.
 
-HSRP is defined by RFC 2281..
+HSRP is defined by RFC 2281.
 
 **Active Router Interface Config**
 
@@ -104,9 +104,9 @@ Internet  10.10.10.1              0   0000.0c07.ac01  ARPA   FastEthernet0/0
 
 In some instances, your routers participating in an HSRP group connect to different devices on their uplinks. If HSRP doesn't have any method of tracking when there is an uplink failure, then HSRP doesn't do a very good job of maintaining an active connection to external resources. In those cases, you should implement interface tracking in HSRP. This is done using the `standby 1 track uplink interface priority decrement` command on the HSRP interface.
 
-The `uplink interface` is the interface on your router that you want HSRP to monitor it's status. This interface would connect to the upstream device and probably isn't participating in HSRP directly. It's important to want to track the status of the interface so that HSRP can fail over to the other router in the event of a uplink failure.
+The `uplink interface` is the interface on your router that you want HSRP to monitor its status. This interface would connect to the upstream device and probably isn't participating in HSRP directly. It's important to track the status of the interface so that HSRP can fail over to the other router in the event of an uplink failure.
 
-The `priority decrement` is how much HSRP should automatically decrement it's priority to make the interface go into standby. This value should lower the value enough to no longer be the highest priority in the HSRP group.
+The `priority decrement` is how much HSRP should automatically decrement its priority to make the interface go into standby. This value should lower the value enough to no longer be the highest priority in the HSRP group.
 
 Here is the debug output from the standby router going into active mode, as the primary active router becomes unavailable (via the "shut" command on the interface) and then becomes the standby router again.
 
@@ -314,7 +314,7 @@ It doesn't appear that VRRP has the ability to perform interface tracking, but c
 
 #### GLBP
 
-[Gateway Load Balancing Protocol](http://www.cisco.com/en/US/docs/ios/12_2t/12_2t15/feature/guide/ft_glbp.html), or GLBP, is another Cisco proprietary protocol. It was created with the idea of better utilizing the network resources while still performing the same functionality as HSSRP and VRRP. GLBP performs automatic selection and simultaneous use of multiple available gateways as well as automatic failover in the event of a failure. With HSRP and VRRP, the load balancing and attempt to fully utilize available network resources is a manual process and be burdensome on the network administrator.
+[Gateway Load Balancing Protocol](http://www.cisco.com/en/US/docs/ios/12_2t/12_2t15/feature/guide/ft_glbp.html), or GLBP, is another Cisco proprietary protocol. It was created with the idea of better utilizing the network resources while still performing the same functionality as HSRP and VRRP. GLBP performs automatic selection and simultaneous use of multiple available gateways as well as automatic failover in the event of a failure. With HSRP and VRRP, the load balancing and attempt to fully utilize available network resources is a manual process and be burdensome on the network administrator.
 
 GLBP communicates via multicast address 224.0.0.102 to UDP 3222.
 
@@ -433,7 +433,7 @@ Internet  10.10.10.3              5   000f.8f6d.ab60  ARPA   FastEthernet0/0
 Internet  10.10.10.1              -   0007.b400.0102  ARPA   FastEthernet0/0
 ```
 
-Here is the output from a debug from the standby router. As you can see GLBP load balances by continuously moving the virutal IP Address from one router to the other. You can also see where the standby router becomes active in a failure, then becomes standby again.
+Here is the output from a debug from the standby router. As you can see GLBP load balances by continuously moving the virtual IP Address from one router to the other. You can also see where the standby router becomes active in a failure, then becomes standby again.
 
 ```bash
 host-vlan2#debug glbp

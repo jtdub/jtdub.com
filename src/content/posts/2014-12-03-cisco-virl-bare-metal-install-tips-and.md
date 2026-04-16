@@ -49,7 +49,7 @@ iface p3p1 inet static
      gateway 172.16.1.1
 ```
 
-Remember to substitute the 172.16.x.x addresses and netmask for your specific network. Also, leave the dns-nameservers section in, but change the name servers to suite your network.
+Remember to substitute the 172.16.x.x addresses and netmask for your specific network. Also, leave the dns-nameservers section in, but change the name servers to suit your network.
 * After the necessary changes have been made, save the changes and exit the file.
 * Restart the network stack.
   * service network restart
@@ -68,11 +68,11 @@ From here, the install should be ready to go. After the install is complete and 
   * sudo service ntp start
 * From here, the activation should work properly. Don't be a dim wit, like myself, and leave the *.pem* suffix on the Salt ID and domain.
 
-After that, It's a mater of editing the /etc/virl.ini file. Take note that all the variables are lower case with under scores ("_") between words in a variable. There are at least two variables that mistakenly have upper case letters, thus won't be recognized by the automation and skipped - forcing you to either re-install or hack your way through the remainder of the install. Here are the variables that I noticed:
+After that, it's a matter of editing the /etc/virl.ini file. Take note that all the variables are lower case with under scores ("_") between words in a variable. There are at least two variables that mistakenly have upper case letters, thus won't be recognized by the automation and skipped - forcing you to either re-install or hack your way through the remainder of the install. Here are the variables that I noticed:
 * *Static_IP* should be *static_ip*
 * *internalnet_IP* should be *internalnet_ip*
 
-I also noticed that the 'dummy' interfaces don't work above the number 4 - I attempted to create a dummy interface scheme that matched my ip prefixes. That didn't work out to well. I'm also noticed that the *internalnet* section changes itself to 172.16.10.0/24 - according to /etc/network/interfaces and MySQL, but it's completely different in my /etc/virl.ini and I'm not certain where it's getting that prefix from, yet.
+I also noticed that the 'dummy' interfaces don't work above the number 4 - I attempted to create a dummy interface scheme that matched my ip prefixes. That didn't work out too well. I also noticed that the *internalnet* section changes itself to 172.16.10.0/24 - according to /etc/network/interfaces and MySQL, but it's completely different in my /etc/virl.ini and I'm not certain where it's getting that prefix from, yet.
 
 Once you get VIRL up and working, copy your /etc/virl.ini file off to another computer. That way, if you have to re-install, you can make quick work of the re-install.
 

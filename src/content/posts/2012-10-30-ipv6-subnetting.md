@@ -8,7 +8,7 @@ tags:
 - IPv6
 ---
 
-Subnetting IPv6 is just like IPv4, that is it uses the powers of two to determine the subnet mask. IPv6 doesn't use a subnet mask, per say. Instead it uses slash notation. For example /64, /48, etc. The slash notation is known as a prefix.
+Subnetting IPv6 is just like IPv4, that is it uses the powers of two to determine the subnet mask. IPv6 doesn't use a subnet mask, per se. Instead it uses slash notation. For example /64, /48, etc. The slash notation is known as a prefix.
 
 IPv6 has 8 x 16 bit, colon (:) separated addresses that are 128 bits in length. In IPv6, if a 16 bit field has leading zeros, the leading zeros are dropped from the address. Also, if a 16 bit field has all zeros, then all the zeros can be dropped from the address and will be represented as with a double colon (::). However, the double colon can only occur once. If there are multiple fields that contain all zeros, then one field can be represented with the double colon (::), while the remaining fields will be represented with a single zero (:0:) Another thing to notice is that IPv6 uses Hexadecimal addresses, rather than plain decimal.
 
@@ -30,7 +30,7 @@ You're correct. The difference is the prefix, or slash notation at the end of th
 
 Now again, I know what you're thinking. "How many addresses does that represent". The answer is 2^80 or 1.2089258e+24.
 
-Now consider that the IPv4 address space has approximately 4.3 billion addresses (2^32 = 4,294,967,296). Out of those, only about 250 million addresses are usable. That's because the address space has been broken up into smaller chunks, and as you know, each subnet has a network address and a broadcast address that can be assigned to computers. There is also private address ranges (RFC 1918 - 10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16) which can't be routed through the Internet, but only reside on private LAN's and only access the Internet through NAT. There is the 127.0.0.0/8 network used for loop back addresses, Class D networks which is used for multicast, and Class E which is 'experimental' and isn't used. That's a whole lot of wasted address space.
+Now consider that the IPv4 address space has approximately 4.3 billion addresses (2^32 = 4,294,967,296). Out of those, only about 250 million addresses are usable. That's because the address space has been broken up into smaller chunks, and as you know, each subnet has a network address and a broadcast address that can't be assigned to computers. There is also private address ranges (RFC 1918 - 10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16) which can't be routed through the Internet, but only reside on private LAN's and only access the Internet through NAT. There is the 127.0.0.0/8 network used for loop back addresses, Class D networks which is used for multicast, and Class E which is 'experimental' and isn't used. That's a whole lot of wasted address space.
 
 IPv6 on the other hand is a lot more efficient with address space and there is more address space than any one person will ever need. In fact, every single individual can have an entire Internet worth of address space, in IPv6, and everybody will still have unique addresses. Even better, there will be room to spare. For reference, the IPv6 Address space is 2^128 or 3.4028237e+38. I can't even count that high. :)
 
@@ -63,7 +63,7 @@ And a /112 prefix, out of a /48 will allot you 1.8446744e+19 networks with a to
 
 Tell me, how could you possibly run out of addresses?
 
-I hope that you're getting the grasp of this. However, let me try to break this down even further. Let's go back to our taking a/48 prefix and breaking it down int /64 prefixes.
+I hope that you're getting the grasp of this. However, let me try to break this down even further. Let's go back to our taking a/48 prefix and breaking it down into /64 prefixes.
 
 `2001:470:1f0f`:`0`:`0:0:0:0`
 
@@ -73,6 +73,6 @@ The first section consists of the global prefix. This section of the address spa
 
 The second field, is the subnet. and this number will increment from 0 - ffff (remember hexadecimal numbers instead of binary). This is the field that you will use to define your networks with layer three boundaries. You can compare this to IPv4 networks, like 192.168.0.0/24 and 192.168.1.0/24 are two different networks that are separated by layer three boundaries. To make the networks communicate with each other, you'll need to add a router to the mix.
 
-Lastly, the remaining address space, in yellow, is dedicated to host addresses. 0:0:0:0 - ffff:ffff:ffff:ffff is the usable host range. IPv6 has a really cool feature, that will most likely replace DHCP (even though there is DHCPv6 for IPv6 networks), called Autoconf. Autoconf allows automatic allocation of IPv6 Addresses and the host portion of the IPv6 address will be your computers mac address. Each mac address is unique to each computer, which is perfect! For example, if my mac address is 123:456:789:0ab, then my IPv6 address via autoconf would be 2001:470:1f0f:0:123:456:789:ab, assuming that my subnet was 0. If you've been around the IT industry long enough to remember IPX/SPX from the novel days, then this should be a familiar concept to you.
+Lastly, the remaining address space, in yellow, is dedicated to host addresses. 0:0:0:0 - ffff:ffff:ffff:ffff is the usable host range. IPv6 has a really cool feature, that will most likely replace DHCP (even though there is DHCPv6 for IPv6 networks), called Autoconf. Autoconf allows automatic allocation of IPv6 Addresses and the host portion of the IPv6 address will be your computers mac address. Each mac address is unique to each computer, which is perfect! For example, if my mac address is 123:456:789:0ab, then my IPv6 address via autoconf would be 2001:470:1f0f:0:123:456:789:ab, assuming that my subnet was 0. If you've been around the IT industry long enough to remember IPX/SPX from the Novell days, then this should be a familiar concept to you.
 
 Whoo.... That was a lot of rambling. I'm sure that I'll come back and edit this soon, as I just did this off the top of my head and I'm sure that there are some errors. If you have any questions, please ask and I'll attempt to clarify. :)

@@ -40,7 +40,7 @@ As is often the case at campsites in Peru, local dogs soon appeared, lingering i
 
 ![Camp dog](https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/d5ae9e96-e13a-4833-569c-1ac5dcde8700/public)
 
-The next morning brought no relief. As we packed camp and began our slow walk around Ausangate, I moved through a fog of discomfort. My carefully laid plans—the route to Sibinacocha, the crossing to Yayamari, the satisfaction of completing what I'd set out to do—began to feel less certain. We visited the seven lakes, their surfaces reflecting peaks and sky, and I tried to focus on the beauty rather than the pounding in my head. Eventually, the trail turned upward toward Campa Pass at 16,500 feet (5,100 meters), and each step became an negotiation with my body.
+The next morning brought no relief. As we packed camp and began our slow walk around Ausangate, I moved through a fog of discomfort. My carefully laid plans—the route to Sibinacocha, the crossing to Yayamari, the satisfaction of completing what I'd set out to do—began to feel less certain. We visited the seven lakes, their surfaces reflecting peaks and sky, and I tried to focus on the beauty rather than the pounding in my head. Eventually, the trail turned upward toward Campa Pass at 16,500 feet (5,100 meters), and each step became a negotiation with my body.
 
 We stopped often during the ascent. During those breaks, Felipe pointed out the surrounding peaks, naming them one by one: Callangate, Pachanta, Puku Punta, Mariposa. Each name carried weight, history, meaning I could only partially grasp. Then he told me the story of Ausangate's daughters.
 

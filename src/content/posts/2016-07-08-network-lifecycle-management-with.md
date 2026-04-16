@@ -17,7 +17,7 @@ As your fleet routers and switches grow, it becomes pretty natural to place thes
 
 So, what is hierarchical_configuration? hierarchical_configuration is a python library that allows you to compare the running configuration and the intended configuration from a network device, then generate a set of commands that it will bring the network device into compliance with the intended configuration. hierarchical_configuration also has an extensive configuration file, so that you can define how specific commands or sections of commands get remediated.
 
-Most utilities that performs a similar function as hierarchical_configuration, apply command remediation by negating a command, then applying the new command. For instance, if you wanted to change the interface description of an interface, most utilities will do something like:
+Most utilities that perform a similar function as hierarchical_configuration, apply command remediation by negating a command, then applying the new command. For instance, if you wanted to change the interface description of an interface, most utilities will do something like:
 
 ```
 interface Ethernet0/1
@@ -25,7 +25,7 @@ interface Ethernet0/1
  description ROUTER2
 ```
 
-That works, but it's wasteful on CPU cycles, which slows down the over all application run time when you are attempting to apply interface descriptions to thousands of interfaces. What if the command was something that could be impactful, if it were negated? Maybe something like changing 'transport input ssh telnet' to 'transport input ssh', under your line vty? Negating the command could potentially cause you to lose management access.
+That works, but it's wasteful on CPU cycles, which slows down the overall application run time when you are attempting to apply interface descriptions to thousands of interfaces. What if the command was something that could be impactful, if it were negated? Maybe something like changing 'transport input ssh telnet' to 'transport input ssh', under your line vty? Negating the command could potentially cause you to lose management access.
 
 hierarchical_configuration gives you several configuration options for dealing with such scenarios. You define those as a [YAML](http://yaml.org/) file under hier_options. Here is a sample of hier_options:
 
@@ -262,7 +262,7 @@ hier_options:
   #  use: command
 ```
 
-Lets break down the individual sections of hier_options. The first section is 'sectional_overwrite'. sectional_overwrite does exactly like it sounds. It over-writes an entire section of configuration if there is a change. In the example, it tags ipv6 access-lists as a section of code that should use sectional_overwrite.  If any changes are made to the intended configuration for ipv6 access-list, then hierarchical_configuration over writes the entire section of configuration, rather than targeting individual lines of children configuration in the section.
+Let's break down the individual sections of hier_options. The first section is 'sectional_overwrite'. sectional_overwrite does exactly like it sounds. It over-writes an entire section of configuration if there is a change. In the example, it tags ipv6 access-lists as a section of code that should use sectional_overwrite.  If any changes are made to the intended configuration for ipv6 access-list, then hierarchical_configuration over writes the entire section of configuration, rather than targeting individual lines of children configuration in the section.
 
 The next section is 'ordering'. Ordering is a very handy configuration option. It allows you to weight the order in which commands are presented in hierarchical_configuration. The default weight is 500. The smaller the number, the higher up in the configuration the commands are presented. While the commands tagged with larger numbers are presented lower in the configuration.
 

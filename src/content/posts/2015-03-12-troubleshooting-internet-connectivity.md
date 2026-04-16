@@ -11,7 +11,7 @@ tags:
 
 This evening, I noticed that I was having some horrible Internet connectivity issues, from home. Trying to stream anything online? Forget it. Frustrated, I started troubleshooting the issue, fully expecting that I would end up opening up a trouble ticket with my ISP, sending them all my available troubleshooting information, and asking them to resolve their issue.
 
-Turns out, the issue was a simple fix - on my side, but I figured that I would provide my troubleshooting steps as a learning experience for anybody whom runs across this page.
+Turns out, the issue was a simple fix - on my side, but I figured that I would provide my troubleshooting steps as a learning experience for anybody who runs across this page.
 
 Background information: My home Internet connectivity is provided by Cable Internet with a 30Mbps downstream / 5Mbps upstream.
 

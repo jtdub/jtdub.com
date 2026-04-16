@@ -21,7 +21,7 @@ sudo pip install -r requirements.txt
 sudo python setup.py install
 ```
 
-After that, you're ready to go. Accessing network devices via telnet and ssh are currently supported. Both have a very similar API syntax, that is layed out in the README on github.
+After that, you're ready to go. Accessing network devices via telnet and ssh are currently supported. Both have a very similar API syntax, that is laid out in the README on github.
 
 Here is an example of how to use the ssh module:
 
@@ -102,7 +102,7 @@ core1a.sat#
 >>> conn.close()
 ```
 
-How easy is that? I'm stoked about netlib. It should make rapidly creating code for interact with network devices pretty trivial. I'm experimenting with SNMP functionality, though it's not ready for prime time.
+How easy is that? I'm stoked about netlib. It should make rapidly creating code for interacting with network devices pretty trivial. I'm experimenting with SNMP functionality, though it's not ready for prime time.
 
 I also have a method for storing and reading user credentials, so that they don't have to be stored in the script, called every time a script is run, or entered manually for every device that is accessed.
 

@@ -20,7 +20,7 @@ A switch can operate in three VTP modes. The first is server mode. This is the V
 
 The second is client mode. This is a VTP client. These switches communicate with the VTP server to obtain the database. A network admin can not add or remove VLANs manually from a switch in client mode.
 
-And finally the the third mode is transparent mode. In transparent mode, the switch does not communicate with the VTP server and does not act as a VTP client. The network admin can add and remove VLANs from a switch in transparent mode and it will also allow VTP traffic to pass through it to other switches participating in the VTP domain.
+And finally the third mode is transparent mode. In transparent mode, the switch does not communicate with the VTP server and does not act as a VTP client. The network admin can add and remove VLANs from a switch in transparent mode and it will also allow VTP traffic to pass through it to other switches participating in the VTP domain.
 
 Misconfigured, VTP can cause a major headache, but fortunately, troubleshooting VTP is pretty straight forward.
 

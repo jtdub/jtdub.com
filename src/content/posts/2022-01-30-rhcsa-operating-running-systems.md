@@ -151,7 +151,7 @@ Remove `rhgb quiet` from the command and add `rd.break enforcing=0`. Once comple
 
 <img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/df7af3ec-5e49-45c3-aba1-2b4d86f48000/public" alt="Grub Menu:Single User Mode" width=600>
 
-At this point, the system will boot into single user mode and will boot into a `switch_root:/#` prompt. The `/sysroot` filesystem will mount in read-only mode. This can be verified by executing: `mount | grep /sysroot`. You'll need to remount the filesystem as read-write. To to this execute, `mount -o rw,remount /sysroot`. The `mount | grep /sysroot` command will verify that it's mounted as read-write.
+At this point, the system will boot into single user mode and will boot into a `switch_root:/#` prompt. The `/sysroot` filesystem will mount in read-only mode. This can be verified by executing: `mount | grep /sysroot`. You'll need to remount the filesystem as read-write. To do this, execute, `mount -o rw,remount /sysroot`. The `mount | grep /sysroot` command will verify that it's mounted as read-write.
 
 With the system booted into single user mode and the `/sysroot` volume mounted with read-write permissions, you will need to change the root to /sysroot. This can be done by executing `chroot /sysroot`. Once completed, execute the `passwd` command to change the root password. Once completed type `exit` twice and the system will reboot. At this point, you will be able to login with the new root password.
 
@@ -397,7 +397,7 @@ Jan 30 16:01:01 rhel-server run-parts[384056]: (/etc/cron.hourly) finished 0anac
 
 `journalctl --since -6h --unit ssh` will display all sshd journal logs for the previous six hours.
 
-The journal logs exist soley in RAM. To make these logs persistent, you need to uncomment the `Storage=auto` line and change `auto` to `persistent`.
+The journal logs exist solely in RAM. To make these logs persistent, you need to uncomment the `Storage=auto` line and change `auto` to `persistent`.
 
 ```bash
 [root@rhel-server ~]# grep '#Storage' /etc/systemd/journald.conf

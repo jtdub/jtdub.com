@@ -17,9 +17,9 @@ tags:
 
 There are a lot of very good articles on the Internet about how Network Engineers can use Ansible to create standardized network device configurations or use Ansible with existing network vendor API's to make changes to network devices. Some of my favorites can be found on the [Python for Network Engineers](https://pynet.twb-tech.com/blog/) and [Jason Edelman's](http://jedelman.com/) sites.
 
-However, what if you have [older, legacy] network devices or are running on software revisions that don't support the newer vendor API's? What if you need to push a common configuration among a multi-vendor or multi-platform of devices quickly? Pushing configurations quickly is easy with my [pyMultiChange](https://github.com/jtdub/pyMultiChange) tool, but one of its biggest limitations is a multi-[vendor, platform] support - where common configurations may have differing syntax, by [vendor, platform] to accomplish the same task. I have yet to find any blogs on Google that share ideas of this category.
+However, what if you have [older, legacy] network devices or are running on software revisions that don't support the newer vendor API's? What if you need to push a common configuration among a multi-vendor or multi-platform set of devices quickly? Pushing configurations quickly is easy with my [pyMultiChange](https://github.com/jtdub/pyMultiChange) tool, but one of its biggest limitations is a multi-[vendor, platform] support - where common configurations may have differing syntax, by [vendor, platform] to accomplish the same task. I have yet to find any blogs on Google that share ideas of this category.
 
-For a while, this led me to believe that it it just wasn't possible, unless you invested the time in developing the appropriate Ansible modules.  However, I had an idea the other day, which proved that it is possible to push configurations to this category of network devices.
+For a while, this led me to believe that it just wasn't possible, unless you invested the time in developing the appropriate Ansible modules.  However, I had an idea the other day, which proved that it is possible to push configurations to this category of network devices.
 
 Here is my example playbook:
 
@@ -141,7 +141,7 @@ darkstar                   : ok=2    changed=1    unreachable=0    failed=0
 net-ansible]$
 ```
 
-This obviously works, but it does have a couple limitations, currently the playbook is not multi-[vendor, platform] ready. To do this, I would need to specify host_vars that define each device by vendor or platoform.
+This obviously works, but it does have a couple limitations, currently the playbook is not multi-[vendor, platform] ready. To do this, I would need to specify host_vars that define each device by vendor or platform.
 
 For example, I could define a variable called 'network_platform' in the host_vars and define each host by platform. I could use the values of IOS, NX-OS, IOS-XR, EOS, or JUN-OS defined as the 'network_platform' in the host_vars. Then when I called my playbooks, it could look like:
 
@@ -193,6 +193,6 @@ For example, I could define a variable called 'network_platform' in the host_va
     delegate_to: 127.0.0.1
 ```
 
-The other limitation that is that the script writes the configuration to the network devices every time that the playbook is ran, regardless of whether it's needed or not. For creating an snmp contact, this isn't a huge deal, with the exception of taking extra CPU cycles. However, what if you ran a playbook that was entirely roll based, and it called a role to define BGP route reflectors. Obviously, this would bounce BGP neighbors every time that you ran the playbook. Basically, it boils down to needing a method of checking whether the configuration is actually needed before the script applies it. This is something that I hope to be able to work on. In the mean time, I hope that you've enjoyed this. If you have any ideas, please feel free to share them with me!
+The other limitation that is that the script writes the configuration to the network devices every time that the playbook is ran, regardless of whether it's needed or not. For creating an snmp contact, this isn't a huge deal, with the exception of taking extra CPU cycles. However, what if you ran a playbook that was entirely role based, and it called a role to define BGP route reflectors. Obviously, this would bounce BGP neighbors every time that you ran the playbook. Basically, it boils down to needing a method of checking whether the configuration is actually needed before the script applies it. This is something that I hope to be able to work on. In the mean time, I hope that you've enjoyed this. If you have any ideas, please feel free to share them with me!
 
 I have a generic Github repository that I've been using to play with [Ansible Network Engineering](https://github.com/jtdub/net-ansible) functionality. Feel free to play with it and contribute to it! Note that '[netlib](https://github.com/jtdub/netlib)' is called as a submodule. :) Enjoy!

@@ -24,6 +24,6 @@ I've verified that my VIRL instance can ping the Cisco salt infrastructure. I ca
 
 <img src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/c2d737c4-02c3-4b3e-a61d-d37897bb6b00/public"/>
 
-I'm also a little irritated with the VIRL support forums, as I can't post this screen shot, because I'm a 'new users'. The best that I can do is link to it.
+I'm also a little irritated with the VIRL support forums, as I can't post this screen shot, because I'm a 'new user'. The best that I can do is link to it.
 
 If you know what I may be doing wrong - or if you know of a fix, shoot me a DM on [twitter](http://twitter.com/packetgeeknet).

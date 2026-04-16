@@ -19,7 +19,7 @@ tags:
   <strong>📚 Archived Content:</strong> This post is part of my historical study notes archive. While some concepts may remain relevant, the specific technologies, procedures, and certifications mentioned may be outdated. For current technical content, visit the <a href="/technology/" class="alert-link">Technology</a> section.
 </div>
 
-I've been building and using virtual IOS images, such as IOS-XE (CSR1000v) and IOS-XRv for a while now. It's been great to just spin up a lab, based upon what ever topology that I want, not have to worry about a mess of cables, or hear the mildly annoying hum of a rack of routers and switches running up my electric bill.
+I've been building and using virtual IOS images, such as IOS-XE (CSR1000v) and IOS-XRv for a while now. It's been great to just spin up a lab, based upon whatever topology that I want, not have to worry about a mess of cables, or hear the mildly annoying hum of a rack of routers and switches running up my electric bill.
 
 However, there are instances where running a physical lab makes sense. For example, the Cisco Switching images aren't where they need to be to be able to simulate live environments. There are a host of quirks, from creating bridging loops easily and crashing the images to FHRP's not having the desired functionality. Then there's the aspect of only being able to run so many virtual images on a single computer. Every now and then, I want to create a larger topology. I already have four switches and ten routers, so why not integrate my virtual lab environment and physical lab environment?
 
@@ -53,7 +53,7 @@ switch='ovs-br0'
 ovs-vsctl del-port ${switch} $1
 ```
 
-Next, you need to create a bridge within openvswitch, and attach it to an unused physical nic. In my Fedora computer, I have my primary nic (p3p1), which is has the main IP Address that I use to access the computer remotely, then I have a secondary nic (enps4s0u1) that I'm allocating to openvswitch.
+Next, you need to create a bridge within openvswitch, and attach it to an unused physical nic. In my Fedora computer, I have my primary nic (p3p1), which has the main IP Address that I use to access the computer remotely, then I have a secondary nic (enps4s0u1) that I'm allocating to openvswitch.
 
 ```bash
 ** Physical NIC's on my Fedora Computer
@@ -87,7 +87,7 @@ a8b9ccc7-fa12-46a1-a6c0-acd6dddf49e3
 
 At this point, my physical nic, enp4s0u1, is already attached to a switch port on my physical lab. The switch port on the physical lab is in a trunking state. This is all you have to do for openvswitch, as it will automatically trunk the interface to the physical nic.
 
-Next, It's time to spin up my virtual IOS image. Here is my configuration:
+Next, it's time to spin up my virtual IOS image. Here is my configuration:
 
 ```bash
 qemu-kvm -cpu kvm64 -nographic -m 2548 -hda /var/lib/libvirt/images/ios-xrv-test.img \

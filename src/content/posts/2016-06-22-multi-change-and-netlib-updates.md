@@ -144,7 +144,7 @@ This is very handy for running a common command set across a large number of dev
 
 Beyond that, there are a few under the hood enhancements.
 
-* Protocol failover will no longer happen. Meaning that if a device fails to login via SSH, it will no longer failover to attempt to login via telnet and vise versa.
+* Protocol failover will no longer happen. Meaning that if a device fails to login via SSH, it will no longer failover to attempt to login via telnet and vice versa.
 * Login failures are logged in a file called 'failure.log'. This file is created in the local folder that you're running 'multi_change.py' in.
 * multi_change.py will now only read the commands file once, rather than reading it for every device that it attempts to make changes on.
 * pyMultiChange and netlib are now python installable packages. Meaning that you can run their 'setup.py' files and they will be installed as native python packages, allowing them to be called from anywhere on the OS.

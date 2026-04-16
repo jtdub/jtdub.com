@@ -11,7 +11,7 @@ tags:
 - Open vSwitch
 ---
 
-Here are a few nuggets pertaining to OpenvSwtich, NVP, SDN, and Nicira.
+Here are a few nuggets pertaining to OpenvSwitch, NVP, SDN, and Nicira.
 
 VMWare/Nicira NVP Deep Dive
 
