@@ -1,0 +1,500 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="James Williams — jtdub.com" zone="home">
+  <section class="landing">
+    <div class="landing__intro">
+      <p class="landing__eyebrow">James Williams</p>
+      <h1 class="landing__lede">
+        Network Software Engineer by profession.
+        <span>Anthropologist by education.</span>
+      </h1>
+    </div>
+
+    <div class="landing__split">
+      <a href="/field" class="doorway doorway--field" data-zone="field">
+        <figure class="doorway__visual doorway__visual--photo">
+          <img
+            src="https://imagedelivery.net/KfNXtSV3XH0tLyWKv3PbRw/a83a9258-7a68-4ec4-c9bd-689d4b0b8a00/public"
+            alt="A glaciated peak overlooking Sibinacocha in the Andes"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>Cordillera Vilcanota · Peru</figcaption>
+        </figure>
+        <div class="doorway__top">
+          <span class="doorway__kicker">Doorway 01</span>
+          <span class="doorway__index">I.</span>
+        </div>
+        <h2 class="doorway__title">
+          Field<br /><em>&amp; Research</em>
+        </h2>
+        <p class="doorway__blurb">
+          Notes from the Andes. Glacial retreat in the Cordillera Vilcanota,
+          underwater archaeology in high-altitude lakes, and the cosmologies
+          that hold them together.
+        </p>
+        <ul class="doorway__list">
+          <li>Anthropology &amp; archaeology</li>
+          <li>Expedition fieldwork</li>
+          <li>Publications &amp; community science</li>
+          <li>Photography</li>
+        </ul>
+        <span class="doorway__cta">
+          Enter the field
+          <svg width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M0 7h20M14 1l6 6-6 6" stroke-linecap="square" stroke-linejoin="miter" />
+          </svg>
+        </span>
+      </a>
+
+      <a href="/engineering" class="doorway doorway--engineering" data-zone="engineering">
+        <figure class="doorway__visual doorway__visual--ornament" aria-hidden="true">
+          <pre class="doorway__ascii">{`$ whoami
+james@jtdub ~ %
+→ network-engineering
+→ network-automation
+→ software-engineering
+→ linux
+→ open-source
+→ python`}</pre>
+          <div class="doorway__grid"></div>
+        </figure>
+        <div class="doorway__top">
+          <span class="doorway__kicker">Doorway 02</span>
+          <span class="doorway__index">II.</span>
+        </div>
+        <h2 class="doorway__title">
+          Engineering<br /><em>&amp; Code</em>
+        </h2>
+        <p class="doorway__blurb">
+          Twenty years of network automation, infrastructure, and the slow
+          craft of keeping large systems honest. Open source, writing,
+          and the apps I&rsquo;ve shipped along the way.
+        </p>
+        <ul class="doorway__list">
+          <li>Network automation</li>
+          <li>Open source maintainership</li>
+          <li>Python &amp; tooling</li>
+          <li>Apps for the field</li>
+        </ul>
+        <span class="doorway__cta">
+          Enter the workshop
+          <svg width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M0 7h20M14 1l6 6-6 6" stroke-linecap="square" stroke-linejoin="miter" />
+          </svg>
+        </span>
+      </a>
+    </div>
+
+    <aside class="landing__recent">
+      <div class="landing__recent-head">
+        <h3>Recent across both</h3>
+        <a href="/writing" class="landing__recent-all">All writing &rarr;</a>
+      </div>
+      <ul class="landing__recent-list">
+        <li>
+          <a href="/posts/the-ausangate-prophecy-and-glacial-retreat" data-zone="field">
+            <span class="landing__recent-tag">Field</span>
+            <span class="landing__recent-title">The Ausangate Prophecy and Glacial Retreat</span>
+            <time>April 2026</time>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-zone="engineering">
+            <span class="landing__recent-tag">Engineering</span>
+            <span class="landing__recent-title">Applying the SDLC to AI Coding with Claude</span>
+            <time>February 2026</time>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-zone="field">
+            <span class="landing__recent-tag">Field</span>
+            <span class="landing__recent-title">When the Mountain Decides</span>
+            <time>January 2026</time>
+          </a>
+        </li>
+      </ul>
+    </aside>
+  </section>
+</BaseLayout>
+
+<style>
+  .landing {
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: var(--space-9) var(--gutter) var(--space-10);
+  }
+
+  /* Intro */
+  .landing__intro {
+    max-width: var(--measure-wide);
+    margin-bottom: var(--space-9);
+  }
+
+  .landing__eyebrow {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    margin-bottom: var(--space-5);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .landing__eyebrow::before {
+    content: '';
+    width: 48px;
+    height: 1px;
+    background: var(--ink-faint);
+  }
+
+  .landing__lede {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--step-4), 4vw, var(--step-5));
+    line-height: 1.05;
+    letter-spacing: var(--tracking-tight);
+    font-weight: 400;
+    color: var(--ink);
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    max-width: none;
+    text-wrap: balance;
+  }
+
+  .landing__lede span {
+    display: block;
+    font-style: italic;
+    color: var(--ink-faint);
+    font-weight: 300;
+    margin-top: var(--space-2);
+  }
+
+  /* Split */
+  .landing__split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+
+  .doorway {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-7);
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    text-decoration: none;
+    position: relative;
+    min-height: 540px;
+    transition: background 240ms ease, border-color 240ms ease, transform 240ms ease;
+    overflow: hidden;
+  }
+
+  .doorway::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-tint);
+    opacity: 0;
+    transition: opacity 240ms ease;
+    pointer-events: none;
+  }
+
+  .doorway:hover {
+    border-color: var(--accent);
+    text-decoration: none;
+    transform: translateY(-2px);
+  }
+
+  .doorway:hover::before {
+    opacity: 1;
+  }
+
+  .doorway > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Visual slot — sits above the kicker row in both doorways */
+  .doorway__visual {
+    margin: calc(var(--space-7) * -1) calc(var(--space-7) * -1) var(--space-7);
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--paper-deep);
+  }
+
+  .doorway__visual--photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.9) contrast(1.02);
+    transition: transform 600ms ease, filter 240ms ease;
+  }
+
+  .doorway:hover .doorway__visual--photo img {
+    transform: scale(1.03);
+    filter: saturate(1.05) contrast(1.04);
+  }
+
+  .doorway__visual--photo figcaption {
+    position: absolute;
+    bottom: var(--space-3);
+    left: var(--space-4);
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--paper);
+    font-weight: 500;
+    padding: var(--space-2) var(--space-3);
+    background: rgba(22, 20, 18, 0.72);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  /* Engineering ornament — blueprint grid + terminal transcript */
+  .doorway__visual--ornament {
+    margin: calc(var(--space-7) * -1) calc(var(--space-7) * -1) var(--space-7);
+    background: var(--eng-accent-deep);
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  .doorway__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(228, 233, 240, 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(228, 233, 240, 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+    mask-image: radial-gradient(ellipse at 70% 40%, black 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at 70% 40%, black 30%, transparent 75%);
+  }
+
+  .doorway__ascii {
+    position: absolute;
+    top: var(--space-5);
+    left: var(--space-5);
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--eng-tint);
+    white-space: pre;
+    text-shadow: 0 0 20px rgba(31, 58, 95, 0.4);
+  }
+
+  .doorway__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: var(--space-9);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .doorway__kicker {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .doorway__index {
+    font-family: var(--font-serif);
+    font-size: var(--step-3);
+    font-style: italic;
+    color: var(--ink-faint);
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+  }
+
+  .doorway__title {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--step-5), 5vw, var(--step-6));
+    line-height: 0.95;
+    letter-spacing: var(--tracking-tight);
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: var(--space-6);
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+  }
+
+  .doorway__title em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 300;
+  }
+
+  .doorway__blurb {
+    font-family: var(--font-serif);
+    font-size: var(--step-2);
+    line-height: var(--leading-relaxed);
+    color: var(--ink-soft);
+    max-width: 38ch;
+    margin-bottom: var(--space-6);
+  }
+
+  .doorway__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 auto 0;
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    color: var(--ink-faint);
+    letter-spacing: var(--tracking-snug);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .doorway__list li {
+    padding-left: var(--space-4);
+    position: relative;
+  }
+
+  .doorway__list li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .doorway__cta {
+    margin-top: var(--space-7);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-4);
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    font-weight: 600;
+    align-self: flex-start;
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--accent);
+  }
+
+  .doorway:hover .doorway__cta svg {
+    transform: translateX(4px);
+  }
+
+  .doorway__cta svg {
+    transition: transform 240ms ease;
+  }
+
+  /* Recent strip */
+  .landing__recent {
+    margin-top: var(--space-10);
+    padding-top: var(--space-7);
+    border-top: 1px solid var(--rule);
+  }
+
+  .landing__recent-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: var(--space-6);
+  }
+
+  .landing__recent h3 {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+  }
+
+  .landing__recent-all {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+
+  .landing__recent-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .landing__recent-list li {
+    border-bottom: 1px solid var(--rule);
+    border-right: 1px solid var(--rule);
+  }
+
+  .landing__recent-list li:last-child {
+    border-right: none;
+  }
+
+  .landing__recent-list a {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-6) var(--space-5);
+    height: 100%;
+    transition: background 200ms ease;
+  }
+
+  .landing__recent-list a:hover {
+    background: var(--accent-tint);
+    text-decoration: none;
+  }
+
+  .landing__recent-tag {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .landing__recent-title {
+    font-family: var(--font-serif);
+    font-size: var(--step-3);
+    line-height: var(--leading-snug);
+    color: var(--ink);
+    font-variation-settings: 'opsz' 144, 'SOFT' 40;
+  }
+
+  .landing__recent-list time {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    color: var(--ink-faint);
+    letter-spacing: var(--tracking-snug);
+    margin-top: auto;
+  }
+
+  @media (max-width: 880px) {
+    .landing__split {
+      grid-template-columns: 1fr;
+    }
+    .doorway {
+      min-height: auto;
+    }
+    .landing__recent-list {
+      grid-template-columns: 1fr;
+    }
+    .landing__recent-list li {
+      border-right: none;
+    }
+  }
+</style>

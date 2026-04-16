@@ -1,0 +1,44 @@
+---
+import '../styles/tokens.css';
+import '../styles/base.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  zone?: 'field' | 'engineering' | 'home';
+}
+
+const {
+  title,
+  description = 'James Williams — network automation engineer, anthropologist, scientific diver. Field notes from the Andes and the command line.',
+  zone = 'home',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" data-zone={zone === 'home' ? undefined : zone}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,30..100&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <Header zone={zone} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

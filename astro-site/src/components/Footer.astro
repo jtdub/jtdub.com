@@ -1,0 +1,141 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__col site-footer__col--brand">
+      <p class="site-footer__name">James Williams</p>
+      <p class="site-footer__bio">
+        Network automation engineer. Anthropologist. Scientific diver. Writing from
+        the high Andes and the command line.
+      </p>
+    </div>
+
+    <div class="site-footer__col">
+      <h4>Field</h4>
+      <ul>
+        <li><a href="/field/research">Research</a></li>
+        <li><a href="/field/publications">Publications</a></li>
+        <li><a href="/field/photography">Photography</a></li>
+        <li><a href="/field/community-science">Community Science</a></li>
+      </ul>
+    </div>
+
+    <div class="site-footer__col">
+      <h4>Engineering</h4>
+      <ul>
+        <li><a href="/engineering/projects">Projects</a></li>
+        <li><a href="/engineering/writing">Writing</a></li>
+        <li><a href="/engineering/apps">Apps</a></li>
+        <li><a href="/engineering/resume">Résumé</a></li>
+      </ul>
+    </div>
+
+    <div class="site-footer__col">
+      <h4>Elsewhere</h4>
+      <ul>
+        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="https://github.com/jtdub" rel="me">GitHub</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="site-footer__legal">
+    <span>&copy; {year} James Williams</span>
+    <span class="site-footer__sep">·</span>
+    <span>Built with care in the high country</span>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: var(--space-11);
+    background: var(--paper-deep);
+    border-top: 1px solid var(--rule);
+    padding: var(--space-9) var(--gutter) var(--space-7);
+  }
+
+  .site-footer__inner {
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr repeat(3, 1fr);
+    gap: var(--space-7);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .site-footer__col h4 {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+  }
+
+  .site-footer__col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    font-family: var(--font-sans);
+    font-size: var(--step-1);
+  }
+
+  .site-footer__col a {
+    color: var(--ink-soft);
+  }
+
+  .site-footer__col a:hover {
+    color: var(--ink);
+  }
+
+  .site-footer__name {
+    font-family: var(--font-serif);
+    font-size: var(--step-3);
+    font-weight: 500;
+    letter-spacing: var(--tracking-snug);
+    margin-bottom: var(--space-3);
+    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+  }
+
+  .site-footer__bio {
+    max-width: 38ch;
+    font-family: var(--font-serif);
+    font-size: var(--step-1);
+    line-height: var(--leading-relaxed);
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  .site-footer__legal {
+    max-width: var(--shell-max);
+    margin: var(--space-6) auto 0;
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    color: var(--ink-faint);
+    letter-spacing: var(--tracking-snug);
+    display: flex;
+    gap: var(--space-3);
+  }
+
+  .site-footer__sep {
+    color: var(--rule);
+  }
+
+  @media (max-width: 720px) {
+    .site-footer__inner {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+    }
+    .site-footer__col--brand {
+      grid-column: 1 / -1;
+    }
+  }
+</style>
