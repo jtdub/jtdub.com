@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.jtdub.com',
-  trailingSlash: 'never',
+  trailingSlash: 'ignore',
   build: {
     format: 'directory',
   },
