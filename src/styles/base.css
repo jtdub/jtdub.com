@@ -29,7 +29,7 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: var(--tracking-tight);
   margin: 0;
   color: var(--ink);
-  font-variation-settings: 'opsz' 144, 'SOFT' 100;
+  font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 0;
 }
 
 p {
