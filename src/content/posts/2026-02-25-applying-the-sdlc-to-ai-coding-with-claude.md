@@ -5,15 +5,15 @@ zone: field
 author: jtdub
 tags:
 - Research
-- Claude-Code
-- Ai-Assisted-Development
+- Claude Code
+- AI-Assisted Development
 - SDLC
-- Software-Engineering
+- Software Engineering
 - LLM
-- Ios-Development
-- Prompt-Engineering
-- Developer-Productivity
-- Agentic-Coding
+- iOS Development
+- Prompt Engineering
+- Developer Productivity
+- Agentic Coding
 - Claude
 ---
 
