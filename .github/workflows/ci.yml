@@ -1,32 +1,40 @@
-name: Jekyll Continuous Integration
+name: Astro CI
 
 on:
   push:
-    branches: [ master, main ]
+    branches: [master, main]
   pull_request:
-    branches: [ master, main ]
+    branches: [master, main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      
-    - name: Setup Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.1'
-        bundler-cache: true
-        
-    - name: Build site
-      run: bundle exec jekyll build --future
-      
-    - name: Test build
-      run: |
-        if [ ! -d "_site" ]; then
-          echo "Build failed - _site directory not found"
-          exit 1
-        fi
-        echo "Build successful - _site directory exists"
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build site
+        run: pnpm build
+
+      - name: Verify build
+        run: |
+          if [ ! -d "dist" ]; then
+            echo "Build failed - dist directory not found"
+            exit 1
+          fi
+          PAGE_COUNT=$(find dist -name "index.html" | wc -l)
+          echo "Build successful - ${PAGE_COUNT} pages generated"
