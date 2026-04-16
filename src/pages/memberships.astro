@@ -73,97 +73,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
 
     <div class="memberships__section">
-      <h2>TAS Field School 2025: Excavation &amp; Laboratory Documentation</h2>
-      <p class="memberships__intro">
-        Intensive archaeological training program combining hands-on excavation
-        techniques with rigorous documentation protocols. The field school
-        provided comprehensive experience in site mapping, stratigraphic recording,
-        artifact processing, and digital documentation methods.
-      </p>
-
-      <div class="memberships__methods-grid">
-        <div class="memberships__method">
-          <h3>Site Excavation &amp; Grid Layout</h3>
-          <p>
-            Systematic excavation using 1x1 meter grid system with careful attention
-            to stratigraphic contexts and feature identification.
-          </p>
-        </div>
-        <div class="memberships__method">
-          <h3>Stratigraphic Profile Documentation</h3>
-          <p>
-            Detailed recording of archaeological layers and soil contexts using
-            standardized forms and photographic documentation.
-          </p>
-        </div>
-        <div class="memberships__method">
-          <h3>Laboratory Artifact Processing</h3>
-          <p>
-            Cleaning, cataloging, and initial analysis of recovered materials
-            following standardized protocols.
-          </p>
-        </div>
-        <div class="memberships__method">
-          <h3>3D Modeling &amp; Photogrammetry</h3>
-          <p>
-            Digital documentation techniques including photogrammetric recording
-            and 3D modeling of features and artifacts.
-          </p>
-        </div>
-        <div class="memberships__method">
-          <h3>Site Mapping &amp; Survey</h3>
-          <p>
-            Systematic archaeological site mapping using total station and GPS
-            equipment for precise spatial documentation.
-          </p>
-        </div>
-        <div class="memberships__method">
-          <h3>Collaborative Documentation</h3>
-          <p>
-            Team-based approach to archaeological documentation emphasizing
-            standardized protocols and peer review processes.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="memberships__section">
-      <h2>Related Research Projects</h2>
-      <div class="memberships__projects">
-        <div class="memberships__project">
-          <h3>Sibinacocha High-Altitude Research</h3>
-          <p>
-            Multi-year research project investigating environmental, archaeological,
-            and anthropological records alongside contemporary ecosystem dynamics
-            in Peru's highest navigable lake, situated at 4,873 meters above sea level.
-          </p>
-          <ul>
-            <li>Underwater archaeological investigation at extreme altitude</li>
-            <li>Terrestrial survey and surface reconnaissance</li>
-            <li>Ethnographic interviews and community partnerships</li>
-            <li>Environmental monitoring and documentation</li>
-          </ul>
-        </div>
-
-        <div class="memberships__project">
-          <h3>Texas Stream Team Water Quality Monitoring</h3>
-          <p>
-            Community-based water quality monitoring program demonstrating
-            standardized protocols and their relevance to environmental
-            anthropology and sustainability research.
-          </p>
-          <ul>
-            <li>Standardized water quality protocols (DO, pH, turbidity, conductivity)</li>
-            <li>Community science training and data validation</li>
-            <li>Environmental monitoring and analysis</li>
-            <li>Collaborative research approaches</li>
-          </ul>
-          <a href="/community-science/texas-stream-team" class="memberships__cta">Learn more &rarr;</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="memberships__section">
       <h2>Professional Development &amp; Training</h2>
       <div class="memberships__training">
         <div>
@@ -303,89 +212,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     line-height: var(--leading-relaxed);
   }
 
-  .memberships__methods-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: var(--space-5);
-  }
-
-  .memberships__method {
-    padding: var(--space-5);
-    border: 1px solid var(--rule);
-  }
-
-  .memberships__method h3 {
-    font-family: var(--font-serif);
-    font-size: var(--step-1);
-    font-weight: 500;
-    font-variation-settings: 'opsz' 144, 'SOFT' 40;
-    margin-bottom: var(--space-3);
-  }
-
-  .memberships__method p {
-    font-family: var(--font-sans);
-    font-size: var(--step--1);
-    line-height: var(--leading-relaxed);
-    color: var(--ink-soft);
-  }
-
-  .memberships__projects {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-6);
-  }
-
-  .memberships__project {
-    padding: var(--space-6);
-    border: 1px solid var(--rule);
-  }
-
-  .memberships__project h3 {
-    font-family: var(--font-serif);
-    font-size: var(--step-3);
-    font-weight: 500;
-    font-variation-settings: 'opsz' 144, 'SOFT' 40;
-    margin-bottom: var(--space-4);
-  }
-
-  .memberships__project p {
-    font-family: var(--font-serif);
-    font-size: var(--step-1);
-    line-height: var(--leading-relaxed);
-    color: var(--ink-soft);
-    margin-bottom: var(--space-5);
-  }
-
-  .memberships__project ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 var(--space-4) 0;
-    font-family: var(--font-sans);
-    font-size: var(--step--1);
-    color: var(--ink-soft);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-  }
-
-  .memberships__project li::before {
-    content: '· ';
-    color: var(--accent);
-    font-weight: 700;
-  }
-
-  .memberships__cta {
-    font-family: var(--font-sans);
-    font-size: var(--step--1);
-    letter-spacing: var(--tracking-wider);
-    text-transform: uppercase;
-    font-weight: 600;
-    color: var(--accent);
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.2em;
-  }
-
   .memberships__training {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -419,7 +245,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   @media (max-width: 720px) {
-    .memberships__projects,
     .memberships__training {
       grid-template-columns: 1fr;
     }
