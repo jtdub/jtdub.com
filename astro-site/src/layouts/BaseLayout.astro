@@ -3,17 +3,26 @@ import '../styles/tokens.css';
 import '../styles/base.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import SEO from '../components/SEO.astro';
 
 interface Props {
   title: string;
   description?: string;
   zone?: 'field' | 'engineering' | 'home';
+  type?: 'website' | 'article';
+  publishedDate?: Date;
+  tags?: string[];
+  image?: string;
 }
 
 const {
   title,
-  description = 'James Williams — network automation engineer, anthropologist, scientific diver. Field notes from the Andes and the command line.',
+  description = 'James Williams — software engineer by profession, anthropologist by education. Field notes from the Andes and the command line.',
   zone = 'home',
+  type = 'website',
+  publishedDate,
+  tags = [],
+  image,
 } = Astro.props;
 ---
 
@@ -25,6 +34,16 @@ const {
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
+
+    <SEO
+      title={title}
+      description={description}
+      url={Astro.url.pathname}
+      type={type}
+      publishedDate={publishedDate}
+      tags={tags}
+      image={image}
+    />
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link
