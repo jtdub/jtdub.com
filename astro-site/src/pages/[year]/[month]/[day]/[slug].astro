@@ -1,14 +1,21 @@
 ---
 import { getCollection, render } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import '../../styles/article.css';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import '../../../../styles/article.css';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
-  return posts.map((post) => ({
-    params: { slug: post.id },
-    props: { post },
-  }));
+  return posts.map((post) => {
+    const match = post.id.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)$/);
+    if (!match) {
+      throw new Error(`Post id does not match YYYY-MM-DD-slug pattern: ${post.id}`);
+    }
+    const [, year, month, day, slug] = match;
+    return {
+      params: { year, month, day, slug },
+      props: { post },
+    };
+  });
 }
 
 const { post } = Astro.props;

@@ -1,16 +1,16 @@
 ---
-title: "The Ausangate Prophecy and Glacial Retreat"
-date: 2026-04-09
-author: jtdub
+title: The Ausangate Prophecy and Glacial Retreat
+date: '2026-04-09'
 zone: field
+author: jtdub
 tags:
-  - Anthropology
-  - Research
-  - Peru
-  - Cordillera Vilcanota
-  - Quechua
-  - Climate Change
-  - Glaciology
+- Anthropology
+- Research
+- Peru
+- Cordillera Vilcanota
+- Quechua
+- Climate Change
+- Glaciology
 ---
 
 There is a prophecy about Ausangate. It says the mountain will turn grey, then black, until it becomes a mountain of black cinder. The world as it is known will end.
