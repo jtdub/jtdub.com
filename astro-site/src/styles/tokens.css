@@ -8,9 +8,9 @@
 
 :root {
   /* Type families */
-  --font-serif: 'Fraunces', 'Source Serif 4', 'Iowan Old Style', Georgia, serif;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+  --font-serif: 'Fraunces Variable', 'Source Serif 4', 'Iowan Old Style', Georgia, serif;
+  --font-sans: 'Inter Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono Variable', 'SF Mono', Menlo, Consolas, monospace;
 
   /* Type scale — editorial, generous on the high end */
   --step--1: 0.875rem;   /* 14px — meta, captions */
