@@ -34,10 +34,12 @@ const years = [...new Set(photos.map((p) => p.year))].sort((a, b) => b - a);
                   data-desc={p.description || ''}
                 >
                   <img
-                    src={p.url}
+                    src={p.url.replace('/public', '/w=640,fit=cover')}
                     alt={p.description || p.title}
                     loading="lazy"
                     decoding="async"
+                    width="640"
+                    height="480"
                   />
                 </a>
                 <figcaption>
